@@ -15,8 +15,12 @@ Introduction
 
    Kotlin/kotlin_basic_01
 
+.. raw:: latex
+
+   \chapter{Theory and Examples}
+
 .. toctree::
-   :caption: Old
+   :caption: Theory and Examples
    :maxdepth: 2
 
    usage
