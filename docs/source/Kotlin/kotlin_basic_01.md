@@ -1,6 +1,5 @@
 # 0. Основы Kotlin
 
-
 <!-- -   Содержание
 -   [Объявление переменной](https://developer.android.com/kotlin/learn?hl=ru#variables)
     -   [Вывод типа](https://developer.android.com/kotlin/learn?hl=ru#inference)
