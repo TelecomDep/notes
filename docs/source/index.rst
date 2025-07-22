@@ -21,7 +21,7 @@ Introduction
 
 .. toctree::
    :caption: Android
-   :maxdepth: 2
+   :maxdepth: 1
 
    Android/android
 
