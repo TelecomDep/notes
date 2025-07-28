@@ -3,7 +3,7 @@ Android
 
 .. toctree::
    :caption: Android
-   :maxdepth: 2
+   :maxdepth: 1
 
    01_install_android_studio
    02_first_app
