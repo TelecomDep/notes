@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Работа ViewGroup &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Работа виджетами из Activity" href="05_widgets.html" />
+    <link rel="prev" title="3. Архитектура приложения" href="03_app_architecture.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">2. Создание первого приложения (начало)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_app_architecture.html">3. Архитектура приложения</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Работа ViewGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#view">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">ViewGroup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xml">XML</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xml-res">Подключение XML-res</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Атрибуты</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">ИДЕНТИФИКАТОР</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Параметры макета</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Положение макета</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#view">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#id1">Создание нового Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#views">Виджеты (Views)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theory and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
+      <li class="breadcrumb-item active">4. Работа ViewGroup</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Android/04_view_group.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="viewgroup">
+<h1>4. Работа ViewGroup<a class="headerlink" href="#viewgroup" title="Permalink to this heading"></a></h1>
+<p>Снова про <code class="docutils literal notranslate"><span class="pre">root</span></code> класс для всех виджетов.</p>
+</section>
+<section id="view">
+<h1>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h1>
+<p>Android SDK включает множество виджетов, которые являются дочерним классом класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. Таким образом, каждый виджет является экземпляром класса <code class="docutils literal notranslate"><span class="pre">View</span></code>, как и отражено на рисунке ниже.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true" /></p>
+<p>Рис. 1. Иерархия класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. <a class="reference external" href="https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg">Источник изображения</a>.</p>
+</section>
+<section id="id1">
+<h1>ViewGroup<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>Макет определяет структуру пользовательского интерфейса в вашем приложении, например в <a class="reference external" href="https://developer.android.com/guide/components/activities?hl=ru">действии</a> . Все элементы макета построены с использованием иерархии объектов <a class="reference external" href="https://developer.android.com/reference/android/view/View?hl=ru">View</a> и <a class="reference external" href="https://developer.android.com/reference/android/view/ViewGroup?hl=ru">ViewGroup</a> . <code class="docutils literal notranslate"><span class="pre">View</span></code> обычно рисует то, что пользователь может видеть и с чем может взаимодействовать. <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> — это невидимый контейнер, определяющий структуру макета для <code class="docutils literal notranslate"><span class="pre">View</span></code> и других объектов <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> , как показано на рисунке 1.</p>
+<p><img alt="" src="https://developer.android.com/static/images/viewgroup_2x.png?hl=ru" /></p>
+<p><strong>Рисунок 1.</strong> Иллюстрация иерархии представлений, определяющей макет пользовательского интерфейса.</p>
+<p>Объекты <code class="docutils literal notranslate"><span class="pre">View</span></code> часто называются <strong><em>виджетами</em></strong> и могут быть одним из многих подклассов, таких как <a class="reference external" href="https://developer.android.com/reference/android/widget/Button?hl=ru">Button</a> или <a class="reference external" href="https://developer.android.com/reference/android/widget/TextView?hl=ru">TextView</a> . Объекты <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> обычно называются <strong><em>макетами</em></strong> и могут относиться к одному из многих типов, предоставляющих другую структуру макета, например <a class="reference external" href="https://developer.android.com/reference/android/widget/LinearLayout?hl=ru">LinearLayout</a> или <a class="reference external" href="https://developer.android.com/reference/androidx/constraintlayout/widget/ConstraintLayout?hl=ru"><code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code></a> .</p>
+<p>Объявить макет можно двумя способами:</p>
+<ul class="simple">
+<li><p><strong>Объявляйте элементы пользовательского интерфейса в XML.</strong> Android предоставляет простой словарь XML, соответствующий классам и подклассам <code class="docutils literal notranslate"><span class="pre">View</span></code> , например, для виджетов и макетов. Вы также можете использовать <a class="reference external" href="https://developer.android.com/studio/write/layout-editor?hl=ru">редактор макетов</a> Android Studio для создания макета XML с помощью интерфейса перетаскивания.</p></li>
+<li><p><strong>Создание экземпляров элементов макета во время выполнения.</strong> Ваше приложение может создавать объекты <code class="docutils literal notranslate"><span class="pre">View</span></code> и <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> и программно управлять их свойствами.</p></li>
+</ul>
+<p><strong>Совет:</strong> Для отладки макета во время выполнения используйте инструмент <a class="reference external" href="https://developer.android.com/studio/debug/layout-inspector?hl=ru">«Инспектор макета»</a> .</p>
+<section id="xml">
+<h2>XML<a class="headerlink" href="#xml" title="Permalink to this heading"></a></h2>
+<p>Используя словарь XML Android, вы можете быстро разрабатывать макеты пользовательского интерфейса и элементы экрана, которые они содержат, точно так же, как вы создаете веб-страницы в HTML с рядом вложенных элементов.</p>
+<p>Каждый файл макета должен содержать ровно один корневой элемент, который должен быть объектом <code class="docutils literal notranslate"><span class="pre">View</span></code> или <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> . После определения корневого элемента вы можете добавить дополнительные объекты или виджеты макета в качестве дочерних элементов, чтобы постепенно построить иерархию <code class="docutils literal notranslate"><span class="pre">View</span></code> , определяющую ваш макет. Например, вот макет XML, в котором используется вертикальный <code class="docutils literal notranslate"><span class="pre">LinearLayout</span></code> для хранения <code class="docutils literal notranslate"><span class="pre">TextView</span></code> и <code class="docutils literal notranslate"><span class="pre">Button</span></code> :</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+              android:layout\_width=&quot;match\_parent&quot;
+              android:layout\_height=&quot;match\_parent&quot;
+              android:orientation=&quot;vertical&quot; \&gt;
+    &lt;TextView android:id=&quot;@+id/text&quot;
+              android:layout\_width=&quot;wrap\_content&quot;
+              android:layout\_height=&quot;wrap\_content&quot;
+              android:text=&quot;Hello, I am a TextView&quot; /&gt;
+    &lt;Button android:id=&quot;@+id/button&quot;
+            android:layout\_width=&quot;wrap\_content&quot;
+            android:layout\_height=&quot;wrap\_content&quot;
+            android:text=&quot;Hello, I am a Button&quot; /&gt;
+&lt;/LinearLayout&gt;
+</pre></div>
+</div>
+<p>После объявления макета в XML сохраните файл с расширением <code class="docutils literal notranslate"><span class="pre">.xml</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">res/layout/</span></code> вашего проекта Android, чтобы он правильно скомпилировался.</p>
+<p>Дополнительные сведения о синтаксисе XML-файла макета см. в <a class="reference external" href="https://developer.android.com/guide/topics/resources/layout-resource?hl=ru">разделе layout-resource</a> .</p>
+</section>
+<section id="xml-res">
+<h2>Подключение XML-res<a class="headerlink" href="#xml-res" title="Permalink to this heading"></a></h2>
+<p>При компиляции приложения каждый файл макета XML компилируется в ресурс <code class="docutils literal notranslate"><span class="pre">View</span></code> . Загрузите ресурс макета в реализацию обратного вызова <a class="reference external" href="https://developer.android.com/reference/android/app/Activity?hl=ru#onCreate(android.os.Bundle)">Activity.onCreate()</a> вашего приложения. Сделайте это, вызвав <a class="reference external" href="https://developer.android.com/reference/android/app/Activity?hl=ru#setContentView(int)">setContentView()</a> , передав ему ссылку на ваш ресурс макета в форме: <code class="docutils literal notranslate"><span class="pre">R.layout.</span> <span class="pre">_layout_file_name_</span></code> . Например, если ваш XML-макет сохранен как <code class="docutils literal notranslate"><span class="pre">main_layout.xml</span></code> , загрузите его для своей <code class="docutils literal notranslate"><span class="pre">Activity</span></code> следующим образом:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">    </span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">main_layout</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Платформа Android вызывает метод обратного вызова <code class="docutils literal notranslate"><span class="pre">onCreate()</span></code> в вашем <code class="docutils literal notranslate"><span class="pre">Activity</span></code> при запуске <code class="docutils literal notranslate"><span class="pre">Activity</span></code> . Дополнительные сведения о жизненных циклах действий см. в <a class="reference external" href="https://developer.android.com/guide/components/activities?hl=ru#Lifecycle">разделе Введение в действия</a> .</p>
+</section>
+<section id="id2">
+<h2>Атрибуты<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Каждый объект <code class="docutils literal notranslate"><span class="pre">View</span></code> и <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> поддерживает собственный набор атрибутов XML. Некоторые атрибуты специфичны для объекта <code class="docutils literal notranslate"><span class="pre">View</span></code> . Например, <code class="docutils literal notranslate"><span class="pre">TextView</span></code> поддерживает атрибут <code class="docutils literal notranslate"><span class="pre">textSize</span></code> . Однако эти атрибуты также наследуются любыми объектами <code class="docutils literal notranslate"><span class="pre">View</span></code> , расширяющими этот класс. Некоторые из них являются общими для всех объектов <code class="docutils literal notranslate"><span class="pre">View</span></code> , поскольку они наследуются от корневого класса <code class="docutils literal notranslate"><span class="pre">View</span></code> , например атрибут <code class="docutils literal notranslate"><span class="pre">id</span></code> . Другие атрибуты считаются <em>параметрами макета</em> , которые являются атрибутами, описывающими определенные ориентации макета объекта <code class="docutils literal notranslate"><span class="pre">View</span></code> , как определено родительским объектом <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> этого объекта.</p>
+<section id="id3">
+<h3>ИДЕНТИФИКАТОР<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>Любой объект <code class="docutils literal notranslate"><span class="pre">View</span></code> может иметь связанный с ним целочисленный идентификатор, позволяющий однозначно идентифицировать <code class="docutils literal notranslate"><span class="pre">View</span></code> в дереве. При компиляции приложения этот идентификатор упоминается как целое число, но идентификатор обычно назначается в XML-файле макета в виде строки в атрибуте <code class="docutils literal notranslate"><span class="pre">id</span></code> . Это атрибут XML, общий для всех объектов <code class="docutils literal notranslate"><span class="pre">View</span></code> , и он определяется классом <code class="docutils literal notranslate"><span class="pre">View</span></code> . Вы используете его очень часто. Синтаксис идентификатора внутри тега XML следующий:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>android:id=&quot;@+id/my\_button&quot;
+</pre></div>
+</div>
+<p><em>Символ</em> (&#64;) в начале строки указывает, что синтаксический анализатор XML анализирует и расширяет остальную часть строки идентификатора и идентифицирует ее как ресурс идентификатора. Символ <em>плюса</em> (<code class="docutils literal notranslate"><span class="pre">+</span></code>) означает, что это новое имя ресурса, которое необходимо создать и добавить к вашим ресурсам в файле <code class="docutils literal notranslate"><span class="pre">R.java</span></code> .</p>
+<p>Платформа Android предлагает множество других ресурсов для идентификации. При ссылке на идентификатор ресурса Android вам не нужен символ <em>плюса</em> , но вы должны добавить пространство имен пакета <code class="docutils literal notranslate"><span class="pre">android</span></code> следующим образом:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>android:id=&quot;@android:id/empty&quot;
+</pre></div>
+</div>
+<p>Пространство имен пакета <code class="docutils literal notranslate"><span class="pre">android</span></code> указывает, что вы ссылаетесь на идентификатор из класса ресурсов <code class="docutils literal notranslate"><span class="pre">android.R</span></code> , а не из класса локальных ресурсов.</p>
+<p>Чтобы создавать <code class="docutils literal notranslate"><span class="pre">View</span></code> и ссылаться на них из вашего приложения, вы можете использовать следующий общий шаблон:</p>
+<ol class="arabic simple">
+<li><p>Определите представление в файле макета и присвойте ему уникальный идентификатор, как в следующем примере:</p></li>
+</ol>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    &lt;Button android:id=&quot;@+id/my\_button&quot;
+            android:layout\_width=&quot;wrap\_content&quot;
+            android:layout\_height=&quot;wrap\_content&quot;
+            android:text=&quot;@string/my\_button\_text&quot;/&gt;
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Создайте экземпляр объекта представления и запишите его из макета, обычно с помощью метода <a class="reference external" href="https://developer.android.com/reference/android/app/Activity?hl=ru#onCreate(android.os.Bundle)">onCreate()</a> , как показано в следующем примере:</p></li>
+</ol>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">myButton</span><span class="p">:</span><span class="w"> </span><span class="n">Button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">my_button</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Определение идентификаторов для объектов представления важно при создании <a class="reference external" href="https://developer.android.com/reference/android/widget/RelativeLayout?hl=ru">RelativeLayout</a> . В относительном макете родственные представления могут определять свой макет относительно другого родственного представления, на которое ссылается уникальный идентификатор.</p>
+<p>Идентификатор не обязательно должен быть уникальным во всем дереве, но он должен быть уникальным в той части дерева, в которой вы ищете. Часто это может быть все дерево, поэтому лучше сделать его уникальным, если это возможно.</p>
+</section>
+<section id="id4">
+<h3>Параметры макета<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>Атрибуты макета XML с именем <code class="docutils literal notranslate"><span class="pre">layout_</span> <span class="pre">_something_</span></code> определяют параметры макета для <code class="docutils literal notranslate"><span class="pre">View</span></code> , соответствующие <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> , в которой оно находится.</p>
+<p>Каждый класс <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> реализует вложенный класс, расширяющий <a class="reference external" href="https://developer.android.com/reference/android/view/ViewGroup.LayoutParams?hl=ru">ViewGroup.LayoutParams</a> . Этот подкласс содержит типы свойств, которые определяют размер и положение каждого дочернего <code class="docutils literal notranslate"><span class="pre">View</span></code> в зависимости от <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. Как показано на рисунке 2, родительская <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>й определяет параметры макета для каждого дочернего <code class="docutils literal notranslate"><span class="pre">View</span></code>, включая дочернюю <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>.</p>
+<p><img alt="" src="https://developer.android.com/static/images/layoutparams.png?hl=ru" /></p>
+<p><strong>Рисунок 2.</strong> Визуализация иерархии <code class="docutils literal notranslate"><span class="pre">View</span></code> с параметрами макета, связанными с каждым <code class="docutils literal notranslate"><span class="pre">View</span></code>.</p>
+<p>Каждый подкласс <code class="docutils literal notranslate"><span class="pre">LayoutParams</span></code> имеет свой собственный синтаксис для установки значений. Каждый дочерний элемент должен определять <code class="docutils literal notranslate"><span class="pre">LayoutParams</span></code> , соответствующий его родительскому элементу, хотя он также может определять разные <code class="docutils literal notranslate"><span class="pre">LayoutParams</span></code> для своих собственных дочерних элементов.</p>
+<p>Вы можете указать ширину и высоту с точными измерениями, но, возможно, вам не захочется делать это часто. Чаще всего вы используете одну из этих констант для установки ширины или высоты:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wrap_content</span></code> : сообщает вашему <code class="docutils literal notranslate"><span class="pre">View</span></code>, что его размер соответствует размерам, требуемым его содержимым.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">match_parent</span></code> : сообщает вашему <code class="docutils literal notranslate"><span class="pre">View</span></code>, что оно должно стать настолько большим, насколько позволяет его родительская <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>.</p></li>
+</ul>
+<p>Как правило, мы не рекомендуем указывать ширину и высоту макета в абсолютных единицах, таких как пиксели. Лучшим подходом является использование относительных измерений, таких как независимые от плотности пиксельные единицы (dp), <code class="docutils literal notranslate"><span class="pre">wrap_content</span></code> или <code class="docutils literal notranslate"><span class="pre">match_parent</span></code> , поскольку это помогает вашему приложению правильно отображаться на экранах различных размеров. Принятые типы измерений определены в <a class="reference external" href="https://developer.android.com/guide/topics/resources/layout-resource?hl=ru">ресурсе макета</a> .</p>
+</section>
+</section>
+<section id="id5">
+<h2>Положение макета<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">View</span></code> имеет прямоугольную геометрию. Он имеет местоположение, выраженное как пара <strong><em>левой</em></strong> и <strong><em>верхней</em></strong> координат, и два измерения, выраженные как ширина и высота. Единицей местоположения и размеров является пиксель.</p>
+<p>Вы можете получить местоположение представления, вызвав методы <a class="reference external" href="https://developer.android.com/reference/android/view/View?hl=ru#getLeft()">getLeft()</a> и <a class="reference external" href="https://developer.android.com/reference/android/view/View?hl=ru#getTop()">getTop()</a> . Первый возвращает левую координату ( <em>x</em> ) прямоугольника, представляющего <code class="docutils literal notranslate"><span class="pre">View</span></code>. Последний возвращает верхнюю координату ( <em>y</em> ) прямоугольника, представляющего <code class="docutils literal notranslate"><span class="pre">View</span></code>. Эти методы возвращают расположение <code class="docutils literal notranslate"><span class="pre">View</span></code> относительно его родителя. Например, когда <code class="docutils literal notranslate"><span class="pre">getLeft()</span></code> возвращает 20, это означает, что представление расположено на 20 пикселей правее левого края его прямого родительского элемента.</p>
+<p>Кроме того, существуют удобные методы, позволяющие избежать ненужных вычислений: а именно <a class="reference external" href="https://developer.android.com/reference/android/view/View?hl=ru#getRight()">getRight()</a> и <a class="reference external" href="https://developer.android.com/reference/android/view/View?hl=ru#getBottom()">getBottom()</a>. Эти методы возвращают координаты правого и нижнего краев прямоугольника, представляющего <code class="docutils literal notranslate"><span class="pre">View</span></code>. Например, вызов <code class="docutils literal notranslate"><span class="pre">getRight()</span></code> аналогичен следующему вычислению: <code class="docutils literal notranslate"><span class="pre">getLeft()</span> <span class="pre">+</span> <span class="pre">getWidth()</span></code> .</p>
+<!-- ## Размер, отступы и поля
+
+Размер представления выражается шириной и высотой. Представление имеет две пары значений ширины и высоты.
+
+Первая пара известна как _измеренная ширина_ и _измеренная высота_ . Эти размеры определяют, насколько большим должно быть представление внутри своего родителя. Вы можете получить измеренные размеры, вызвав методы [getMeasuredWidth()](https://developer.android.com/reference/android/view/View?hl=ru#getMeasuredWidth()) и [getMeasuredHeight()](https://developer.android.com/reference/android/view/View?hl=ru#getMeasuredHeight()).
+
+Вторая пара известна как _ширина_ и _высота_ или иногда _ширина_ и _высота_ рисунка. Эти размеры определяют фактический размер представления на экране, во время рисования и после компоновки. Эти значения могут, но не обязательно, отличаться от измеренных ширины и высоты. Вы можете получить ширину и высоту, вызвав [getWidth()](https://developer.android.com/reference/android/view/View?hl=ru#getWidth()) и [getHeight()](https://developer.android.com/reference/android/view/View?hl=ru#getHeight()).
+
+Чтобы измерить свои размеры, представление учитывает его отступы. Заполнение выражается в пикселях для левой, верхней, правой и нижней частей представления. Вы можете использовать отступы, чтобы сместить содержимое представления на определенное количество пикселей. Например, левое заполнение, равное двум, смещает содержимое представления на два пикселя вправо от левого края. Вы можете установить заполнение с помощью метода [setPadding(int, int, int, int)](https://developer.android.com/reference/android/view/View?hl=ru#setPadding(int,%20int,%20int,%20int)) и запросить его, вызвав [getPaddingLeft()](https://developer.android.com/reference/android/view/View?hl=ru#getPaddingLeft()) , [getPaddingTop()](https://developer.android.com/reference/android/view/View?hl=ru#getPaddingTop()), [getPaddingRight()](https://developer.android.com/reference/android/view/View?hl=ru#getPaddingRight()) и [getPaddingBottom()](https://developer.android.com/reference/android/view/View?hl=ru#getPaddingBottom()).
+
+Хотя представление может определять отступы, оно не поддерживает поля. Однако группы представлений поддерживают поля. Дополнительные сведения см. [ViewGroup](https://developer.android.com/reference/android/view/ViewGroup?hl=ru) и [ViewGroup.MarginLayoutParams](https://developer.android.com/reference/android/view/ViewGroup.MarginLayoutParams?hl=ru)` .
+
+Дополнительные сведения о размерах см. в разделе [Размер](https://developer.android.com/guide/topics/resources/more-resources?hl=ru#Dimension) .
+
+Помимо программной настройки полей и отступов, вы также можете установить их в макетах XML, как показано в следующем примере:
+```xml
+  <?xml version\="1.0" encoding\="utf-8"?>  
+<LinearLayout xmlns:android\="http://schemas.android.com/apk/res/android"                   android:layout\_width\="match\_parent"                
+android:layout\_height\="match\_parent"                
+android:orientation\="vertical" \>      
+    <TextView android:id\="@+id/text"                
+            android:layout\_width\="wrap\_content"                
+            android:layout\_height\="wrap\_content"               
+            **android:layout\_margin\="16dp"                
+            android:padding\="8dp"**                
+            android:text\="Hello, I am a TextView" />      
+    <Button android:id\="@+id/button"              
+            android:layout\_width\="wrap\_content"              
+            android:layout\_height\="wrap\_content"              
+            **android:layout\_marginTop\="16dp"              
+            android:paddingBottom\="4dp"              
+            android:paddingEnd\="8dp"              
+            android:paddingStart\="8dp"              
+            android:paddingTop\="4dp"**              
+            android:text\="Hello, I am a Button" />  
+ </LinearLayout>  
+```
+В предыдущем примере показано применение полей и отступов. `TextView` имеет одинаковые поля и отступы, а `Button` показывает, как можно применять их независимо к разным краям.
+
+**Примечание.** Рекомендуется использовать `paddingStart` , `paddingEnd` , `layout_marginStart` и `layout_marginEnd` вместо `paddingLeft` , `paddingRight` , `layout_marginLeft` и `layout_marginRight` , поскольку они лучше работают как с языковыми скриптами с письмом слева направо, так и с письмом справа налево.
+
+## Общие макеты
+
+Каждый подкласс класса `ViewGroup` предоставляет уникальный способ отображения вложенных в него представлений. Самый гибкий тип макета и тот, который предоставляет лучшие инструменты для поддержания мелкой иерархии макетов, — это [ConstraintLayout](https://developer.android.com/develop/ui/views/layout/constraint-layout?hl=ru) .
+
+Ниже приведены некоторые распространенные типы макетов, встроенные в платформу Android.
+
+**Примечание.** Хотя вы можете вложить один или несколько макетов в другой макет для достижения желаемого дизайна пользовательского интерфейса, сохраняйте иерархию макетов как можно более мелкой. Ваш макет прорисовывается быстрее, если в нем меньше вложенных макетов. Иерархия широкого представления лучше, чем иерархия глубокого представления.
+
+**[Линейный макет](https://developer.android.com/develop/ui/views/layout/linear?hl=ru)**
+
+[![](https://developer.android.com/static/images/ui/linearlayout-small.png?hl=ru)](https://developer.android.com/develop/ui/views/layout/linear?hl=ru)
+
+Организует дочерние элементы в одну горизонтальную или вертикальную строку и создает полосу прокрутки, если длина окна превышает длину экрана.
+
+**[Создание веб-приложений в WebView](https://developer.android.com/guide/webapps/webview?hl=ru)**
+
+[![](https://developer.android.com/static/images/ui/webview-small.png?hl=ru)](https://developer.android.com/guide/webapps/webview?hl=ru)
+
+Отображает веб-страницы.
+
+## Динамические списки
+
+Если содержимое вашего макета является динамическим или не определено заранее, вы можете использовать [RecyclerView](https://developer.android.com/develop/ui/views/layout/recyclerview?hl=ru) или подкласс [AdapterView](https://developer.android.com/develop/ui/views/layout/binding?hl=ru). `RecyclerView` обычно является лучшим вариантом, поскольку он использует память более эффективно, чем `AdapterView` .
+
+Общие макеты, возможные с помощью `RecyclerView` и `AdapterView` включают следующее:
+
+**[Список](https://developer.android.com/develop/ui/views/layout/recyclerview?hl=ru)**
+
+[![](https://developer.android.com/static/images/ui/listview-small.png?hl=ru)](https://developer.android.com/develop/ui/views/layout/recyclerview?hl=ru)
+
+Отображает прокручиваемый список из одного столбца.
+
+**[Сетка](https://developer.android.com/develop/ui/views/layout/recyclerview?hl=ru)**
+
+[![](https://developer.android.com/static/images/ui/gridview-small.png?hl=ru)](https://developer.android.com/develop/ui/views/layout/recyclerview?hl=ru)
+
+Отображает прокручиваемую сетку столбцов и строк.
+
+`RecyclerView` предлагает больше возможностей и возможность [создать собственный менеджер макетов](https://developer.android.com/develop/ui/views/layout/recyclerview?hl=ru#plan-your-layout) .
+
+### Заполнение представления адаптера данными
+
+Вы можете заполнить [AdapterView](https://developer.android.com/reference/android/widget/AdapterView?hl=ru) , такой как [ListView](https://developer.android.com/reference/android/widget/ListView?hl=ru) или [GridView](https://developer.android.com/reference/android/widget/GridView?hl=ru) путем привязки экземпляра `AdapterView` к [Adapter](https://developer.android.com/reference/android/widget/Adapter?hl=ru), который извлекает данные из внешнего источника и создает `View` , представляющее каждую запись данных.
+
+Android предоставляет несколько подклассов `Adapter` , которые полезны для получения различных типов данных и построения представлений для `AdapterView` . Два наиболее распространенных адаптера:
+
+[ArrayAdapter](https://developer.android.com/reference/android/widget/ArrayAdapter?hl=ru)
+
+Используйте этот адаптер, если источником данных является массив. По умолчанию `ArrayAdapter` создает представление для каждого элемента массива, вызывая [toString()](https://developer.android.com/reference/java/lang/Object?hl=ru#toString()) для каждого элемента и помещая содержимое в `TextView` .
+
+Например, если у вас есть массив строк, который вы хотите отобразить в `ListView` , инициализируйте новый `ArrayAdapter` , используя конструктор, чтобы указать макет для каждой строки и массива строк:
+
+
+```Kotlin
+val adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myStringArray)
+```
+    
+
+Аргументы этого конструктора следующие:
+
+-   [Context](https://developer.android.com/reference/android/content/Context?hl=ru) вашего приложения
+-   Макет, содержащий `TextView` для каждой строки в массиве.
+-   Строковый массив
+
+Затем вызовите [setAdapter()](https://developer.android.com/reference/android/widget/AdapterView?hl=ru#setAdapter(T)) в вашем `ListView` :
+
+```Kotlin
+val listView: ListView = findViewById(R.id.listview)
+listView.adapter = adapter
+```
+    
+
+Чтобы настроить внешний вид каждого элемента, вы можете переопределить метод `toString()` для объектов вашего массива. Или, чтобы создать представление для каждого элемента, отличное от `TextView` (например, если вам нужен [ImageView](https://developer.android.com/reference/android/widget/ImageView?hl=ru) для каждого элемента массива), расширьте класс `ArrayAdapter` и переопределите [getView()](https://developer.android.com/reference/android/widget/ArrayAdapter?hl=ru#getView(int,%20android.view.View,%20android.view.ViewGroup)) , чтобы он возвращал тип представления, который вы хотите для каждого элемента.
+
+[SimpleCursorAdapter](https://developer.android.com/reference/android/widget/SimpleCursorAdapter?hl=ru)
+
+Используйте этот адаптер, если ваши данные поступают из [Cursor](https://developer.android.com/reference/android/database/Cursor?hl=ru) . При использовании `SimpleCursorAdapter` укажите макет, который будет использоваться для каждой строки `Cursor` , и какие столбцы `Cursor` вы хотите вставить в представления нужного макета. Например, если вы хотите создать список имен и номеров телефонов людей, вы можете выполнить запрос, который возвращает `Cursor` , содержащий строку для каждого человека и столбцы для имен и номеров. Затем вы создаете массив строк, указывающий, какие столбцы из `Cursor` вы хотите разместить в макете для каждого результата, и целочисленный массив, указывающий соответствующие представления, в которых необходимо разместить каждый столбец:
+```Kotlin
+    val fromColumns \= arrayOf(ContactsContract.Data.DISPLAY\_NAME,
+                              ContactsContract.CommonDataKinds.Phone.NUMBER)
+    val toViews \= intArrayOf(R.id.display\_name, R.id.phone\_number)
+  ```  
+    
+
+Когда вы создаете экземпляр `SimpleCursorAdapter` , передайте макет, который будет использоваться для каждого результата, `Cursor` , содержащий результаты, и эти два массива:
+
+```Kotlin
+val adapter \= SimpleCursorAdapter(this,
+        R.layout.person\_name\_and\_number, cursor, fromColumns, toViews, 0)
+val listView \= getListView()
+listView.adapter \= adapter
+```
+    
+
+Затем `SimpleCursorAdapter` создает представление для каждой строки в `Cursor` , используя предоставленный макет, вставляя каждый элемент `fromColumns` в соответствующее представление `toViews` .
+
+Если в течение жизни вашего приложения вы измените базовые данные, считываемые вашим адаптером, вызовите [notifyDataSetChanged()](https://developer.android.com/reference/android/widget/ArrayAdapter?hl=ru#notifyDataSetChanged()) . Это уведомляет присоединенное представление о том, что данные были изменены, и оно обновляется.
+
+### Обработка событий кликов
+
+Вы можете реагировать на события щелчка по каждому элементу в `AdapterView` , реализуя интерфейс [AdapterView.OnItemClickListener](https://developer.android.com/reference/android/widget/AdapterView.OnItemClickListener?hl=ru) . Например:
+
+```Kotlin
+listView.onItemClickListener \= AdapterView.OnItemClickListener { parent, view, position, id \-\>
+    // Do something in response to the click.
+}
+
+``` -->
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03_app_architecture.html" class="btn btn-neutral float-left" title="3. Архитектура приложения" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05_widgets.html" class="btn btn-neutral float-right" title="5. Работа виджетами из Activity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. Работа виджетами из Activity &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="&lt;no title&gt;" href="../Latex/latex.html" />
+    <link rel="prev" title="4. Работа ViewGroup" href="04_view_group.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">2. Создание первого приложения (начало)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_app_architecture.html">3. Архитектура приложения</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#view">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#id1">ViewGroup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Работа виджетами из Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#view">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Создание нового Activity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#activity-intent">Переход между Activity (Intent, вкратце)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#views">Виджеты (Views)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#findviewbyid">findViewById()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#textview">TextView</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Атрибуты</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#button">Button</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#onclick">Первый, атрибут - onClick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setonclicklistener">Второй, метод - setOnClickListener()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onclicklistener">Третий, интерфейс - OnClickListener()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#seekbar">SeekBar (Слайдер)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Theory and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage.html">Usage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
+      <li class="breadcrumb-item active">5. Работа виджетами из Activity</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Android/05_widgets.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="activity">
+<h1>5. Работа виджетами из Activity<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h1>
+<p>Снова про <code class="docutils literal notranslate"><span class="pre">root</span></code> класс для всех виджетов.</p>
+</section>
+<section id="view">
+<h1>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h1>
+<p>Android SDK включает множество виджетов, которые являются дочерним классом класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. Таким образом, каждый виджет является экземпляром класса <code class="docutils literal notranslate"><span class="pre">View</span></code>, как и отражено на рисунке ниже.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true" /></p>
+<p>Рис. 1. Иерархия класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. <a class="reference external" href="https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg">Источник изображения</a>.</p>
+</section>
+<section id="id1">
+<h1>Создание нового Activity<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>Для начала, создадим новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, в котором будем создавать виджеты и работать из <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_05_create_new_activity.png?raw=true" /></p>
+<p>Рис. 2. Создание нового <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p>Далее, вам откроется окно с настройками нового <code class="docutils literal notranslate"><span class="pre">Activity</span></code>. Необходимо ввести имя и поставить галочку на автоматическое создание файла <code class="docutils literal notranslate"><span class="pre">layout</span></code> для <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_05_create_new_activity_naming.PNG?raw=true" /></p>
+<p>Рис. 3. Настройка нового <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p>Замем вы увидите изменения в структуре проекта: добавится файл с кодом <code class="docutils literal notranslate"><span class="pre">имя_класса.kt</span></code>, появится к нему файл <code class="docutils literal notranslate"><span class="pre">имя_layout.xml</span></code>. Также, не мало важным является добавление <code class="docutils literal notranslate"><span class="pre">Activity</span></code> в файл <code class="docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code>, который является <strong>основой</strong> вашего проекта.</p>
+<p>Содержание файла <code class="docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;manifest</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;application</span>
+<span class="w">        </span><span class="na">android:allowBackup=</span><span class="s">&quot;true&quot;</span>
+<span class="w">        </span><span class="na">android:dataExtractionRules=</span><span class="s">&quot;@xml/data_extraction_rules&quot;</span>
+<span class="w">        </span><span class="na">android:fullBackupContent=</span><span class="s">&quot;@xml/backup_rules&quot;</span>
+<span class="w">        </span><span class="na">android:icon=</span><span class="s">&quot;@mipmap/ic_launcher&quot;</span>
+<span class="w">        </span><span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
+<span class="w">        </span><span class="na">android:roundIcon=</span><span class="s">&quot;@mipmap/ic_launcher_round&quot;</span>
+<span class="w">        </span><span class="na">android:supportsRtl=</span><span class="s">&quot;true&quot;</span>
+<span class="w">        </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.Android_notes&quot;</span>
+<span class="w">        </span><span class="na">tools:targetApi=</span><span class="s">&quot;31&quot;</span><span class="nt">&gt;</span>
+<span class="w">        </span><span class="nt">&lt;activity</span>
+<span class="w">            </span><span class="na">android:name=</span><span class="s">&quot;.activities.ViewExamples&quot;</span>
+<span class="w">            </span><span class="na">android:exported=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">        </span><span class="nt">&lt;activity</span>
+<span class="w">            </span><span class="na">android:name=</span><span class="s">&quot;.MainActivity&quot;</span>
+<span class="w">            </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="w">            </span><span class="nt">&lt;intent-filter&gt;</span>
+<span class="w">                </span><span class="nt">&lt;action</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.action.MAIN&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="w">                </span><span class="nt">&lt;category</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.category.LAUNCHER&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="w">            </span><span class="nt">&lt;/intent-filter&gt;</span>
+<span class="w">        </span><span class="nt">&lt;/activity&gt;</span>
+<span class="w">    </span><span class="nt">&lt;/application&gt;</span>
+
+<span class="nt">&lt;/manifest&gt;</span>
+</pre></div>
+</div>
+<p>Где мы можем увидеть наше новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> в списке проекта.</p>
+<section id="activity-intent">
+<h2>Переход между Activity (Intent, вкратце)<a class="headerlink" href="#activity-intent" title="Permalink to this heading"></a></h2>
+<p>В рамках “удобства” по работе с несколькими <code class="docutils literal notranslate"><span class="pre">Activity</span></code> рассмотрим небольшой пример работы класса <a class="reference internal" href="#"><span class="xref myst">Intent</span></a></p>
+<p><code class="docutils literal notranslate"><span class="pre">Intent</span></code> — это абстрактное описание операции, которая должна быть выполнена. Его можно использовать с <a class="reference external" href="https://developer.android.com/reference/android/content/Context#startActivity(android.content.Intent)">startActivity</a> для запуска <a class="reference external" href="https://developer.android.com/reference/android/app/Activity">Activity</a>, <a class="reference external" href="https://developer.android.com/reference/android/content/Context#sendBroadcast(android.content.Intent)">broadcastIntent</a> для отправки его любым заинтересованным компонентам <a class="reference external" href="https://developer.android.com/reference/android/content/BroadcastReceiver">BroadcastReceiver</a> и <a class="reference external" href="https://developer.android.com/reference/android/content/Context#startService(android.content.Intent)">Context.startService(Intent)</a> или <a class="reference external" href="https://developer.android.com/reference/android/content/Context#bindService(android.content.Intent,%20android.content.Context.BindServiceFlags,%20java.util.concurrent.Executor,%20android.content.ServiceConnection)">Context.bindService(Intent, BindServiceFlags, Executor, ServiceConnection)</a> для связи с фоновой службой <a class="reference external" href="https://developer.android.com/reference/android/app/Service">Service</a>.</p>
+<p>Для начала, нам понадобится только метод <code class="docutils literal notranslate"><span class="pre">startActivity()</span></code>. Добавим переход на другое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> при помощи <code class="docutils literal notranslate"><span class="pre">Button</span></code> во время нажатия (<code class="docutils literal notranslate"><span class="pre">setOnClickListener</span></code>).
+Добавим кнопку в файле <code class="docutils literal notranslate"><span class="pre">activity_имя.xml</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;Button</span>
+<span class="w">    </span><span class="na">android:id=</span><span class="s">&quot;@+id/bViews&quot;</span>
+<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">    </span><span class="na">android:text=</span><span class="s">&quot;Views&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Инициализируем кнопку в коде <code class="docutils literal notranslate"><span class="pre">ИМЯ_Activity.kt</span></code>, выделяя память под кнопку в методе <code class="docutils literal notranslate"><span class="pre">onCreate()</span></code>, инициализируя обработчик нажатия на кнопку в методе <code class="docutils literal notranslate"><span class="pre">onResume()</span></code> (когда <code class="docutils literal notranslate"><span class="pre">Activity</span></code> уже видна пользователю):</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">bViewExamples</span><span class="p">:</span><span class="w"> </span><span class="n">Button</span>
+
+<span class="w">    </span><span class="c1">// onCreate() – вызывается при первом создании Activity</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="p">...</span>
+<span class="w">        </span><span class="p">...</span>
+<span class="w">        </span><span class="n">bViewExamples</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="o">&lt;</span><span class="n">Button</span><span class="o">&gt;</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">bViews</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResume</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+<span class="w">        </span><span class="n">bViewExamples</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">({</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">randomIntent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">ViewExamples</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+<span class="w">            </span><span class="n">startActivity</span><span class="p">(</span><span class="n">randomIntent</span><span class="p">)</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Из обработчика нажатия мы видим создание экземпляра класса <code class="docutils literal notranslate"><span class="pre">Intent</span></code>, используя конструктор <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">Intent(Context</span> <span class="pre">packageContext,</span> <span class="pre">Class&lt;?&gt;</span> <span class="pre">cls)</span></code>:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">randomIntent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">ViewExamples</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+<span class="n">startActivity</span><span class="p">(</span><span class="n">randomIntent</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Согласно документации аргументами функции являются:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Создание `Intent` для определенного компонента.  Это обеспечивает удобный способ создания `Intent`, которое предназначено для выполнения `hard-coded` класса.
+
+Params:
+packageContext – A Context of the application package implementing this class. 
+cls – The component class that is to be used for the intent.
+</pre></div>
+</div>
+<p>Первый параметр – это <code class="docutils literal notranslate"><span class="pre">Context</span></code>. <code class="docutils literal notranslate"><span class="pre">Activity</span></code> является подклассом <code class="docutils literal notranslate"><span class="pre">Context</span></code>, можем использовать запись <code class="docutils literal notranslate"><span class="pre">ИМЯ_КЛАССА_В_КОТОРОМ_НАХОДИМСЯ.this</span></code>, или укороченную запись <code class="docutils literal notranslate"><span class="pre">this</span></code>.</p>
+<p>Метод <code class="docutils literal notranslate"><span class="pre">startActivity(randomIntent)</span></code> выполняет переход на необходимый нам класс, т.е. <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+</section>
+</section>
+<section id="views">
+<h1>Виджеты (Views)<a class="headerlink" href="#views" title="Permalink to this heading"></a></h1>
+<section id="findviewbyid">
+<h2>findViewById()<a class="headerlink" href="#findviewbyid" title="Permalink to this heading"></a></h2>
+<p>Метод <code class="docutils literal notranslate"><span class="pre">findViewById()</span></code> возвращает объект класса <code class="docutils literal notranslate"><span class="pre">View</span></code> по его идентификатору на разметке (какой то из виджетов, например кнопку). Теперь, имея данный экземпляр <strong>виджета</strong>, вы можете вызывать реализованные для него методы, такие как изменение размеров, цвета, текста и т.п. Метод работает таким образом, что получает этот объект из предварительно подготовленного через инфлейт (парсинг разметки) и сгенерированного на его основе класса R нужный нам виджет из дерева объектов отображаемых на экране.</p>
+</section>
+<section id="textview">
+<h2>TextView<a class="headerlink" href="#textview" title="Permalink to this heading"></a></h2>
+<p><strong>Инициализация</strong></p>
+<p>В рамках <code class="docutils literal notranslate"><span class="pre">.xml-layout</span></code>’а добавляем след. образом:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/textView&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;130dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;0dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginStart=</span><span class="s">&quot;20dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginBottom=</span><span class="s">&quot;579dp&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;TextView&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintTop_toBottomOf=</span><span class="s">&quot;@+id/button_back_to_main&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>В коде Kotlin мы должны воспользоваться классом <code class="docutils literal notranslate"><span class="pre">TextView</span></code>, импортировав его из <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">android.widget.TextView</span></code>.</p>
+<p>Инициализация в коде и работа с конкретным обхъектом <code class="docutils literal notranslate"><span class="pre">View</span></code> происходит при помощи метода findVewiById():</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">tvView_01</span><span class="p">:</span><span class="w"> </span><span class="n">TextView</span>
+<span class="n">tvView_01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">textView</span><span class="p">)</span>
+</pre></div>
+</div>
+<section id="id2">
+<h3>Атрибуты<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p><strong>Программное изменение текста</strong></p>
+<p>Программно можно изменить наполнение TextView при помощи метода класса: <code class="docutils literal notranslate"><span class="pre">setText(CharSequence</span> <span class="pre">text)</span></code>:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">tvView_01</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Hello from Code&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Изменение размера текста</strong></p>
+<p>Приведем лишь 2 примера с установлением размера текста:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// COMPLEX_UNIT_PX - Value is raw pixels                </span>
+<span class="n">tvView_01</span><span class="p">.</span><span class="na">setTextSize</span><span class="p">(</span><span class="n">TypedValue</span><span class="p">.</span><span class="na">COMPLEX_UNIT_PX</span><span class="p">,</span><span class="w"> </span><span class="m">10F</span><span class="p">)</span><span class="w">  </span>
+<span class="c1">// COMPLEX_UNIT_DIP - Value is Device Independent Pixels</span>
+<span class="n">tvView_01</span><span class="p">.</span><span class="na">setTextSize</span><span class="p">(</span><span class="n">TypedValue</span><span class="p">.</span><span class="na">COMPLEX_UNIT_DIP</span><span class="p">,</span><span class="w"> </span><span class="m">20F</span><span class="p">)</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>Остальные возможные типы значений размера текста можно увидеть в классе <code class="docutils literal notranslate"><span class="pre">TypedValue.java</span></code>:</p>
+<div class="highlight-Java notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="cm">/** complex unit: Value is raw pixels. */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">COMPLEX_UNIT_PX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/** complex unit: Value is Device Independent Pixels. */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">COMPLEX_UNIT_DIP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/** complex unit: Value is a scaled pixel. */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">COMPLEX_UNIT_SP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/** complex unit: Value is in points. */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">COMPLEX_UNIT_PT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/** complex unit: Value is in inches. */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">COMPLEX_UNIT_IN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/** complex unit: Value is in millimeters. */</span>
+<span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">COMPLEX_UNIT_MM</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>Изменение цвета текста</strong></p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">tvView_01</span><span class="p">.</span><span class="na">setTextColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">rgb</span><span class="p">(</span><span class="m">255</span><span class="p">,</span><span class="m">192</span><span class="p">,</span><span class="m">0</span><span class="p">))</span><span class="w">    </span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/widgets/set_text_size.PNG?raw=true" /></p>
+<p><strong>Возможность нажать на TextView</strong></p>
+<p>Если вы хотите, чтобы <code class="docutils literal notranslate"><span class="pre">TextView</span></code> обрабатывал нажатия (атрибут <code class="docutils literal notranslate"><span class="pre">android:onClick</span></code>), то не забывайте также использовать в связке атрибут <code class="docutils literal notranslate"><span class="pre">android:clickable=&quot;true&quot;</span></code> (в файле layout/*.xml). Иначе работать не будет!</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// Возможность нажать на кнопку                           </span>
+<span class="n">tvView_01</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">({</span><span class="w">                             </span>
+<span class="w">  </span><span class="n">tvView_01</span><span class="p">.</span><span class="na">setTextColor</span><span class="p">(</span><span class="n">Color</span><span class="p">.</span><span class="na">rgb</span><span class="p">(</span><span class="m">55</span><span class="p">,</span><span class="m">12</span><span class="p">,</span><span class="m">0</span><span class="p">))</span><span class="w">              </span>
+<span class="p">})</span><span class="w">                                                         </span>
+</pre></div>
+</div>
+<p>Меняем цвет текста при нажатии на <code class="docutils literal notranslate"><span class="pre">TextView</span></code>.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/widgets/set_onclick_listener.PNG?raw=true" /></p>
+</section>
+</section>
+<section id="button">
+<h2>Button<a class="headerlink" href="#button" title="Permalink to this heading"></a></h2>
+<p>Наследуется от <code class="docutils literal notranslate"><span class="pre">TextView</span></code>и является базовым классом для класса <code class="docutils literal notranslate"><span class="pre">СompoundButton</span></code>. От класса <code class="docutils literal notranslate"><span class="pre">CompoundButton</span></code> в свою очередь, наследуются такие элементы как <code class="docutils literal notranslate"><span class="pre">CheckBox</span></code>, <code class="docutils literal notranslate"><span class="pre">ToggleButton</span></code> и <code class="docutils literal notranslate"><span class="pre">RadioButton</span></code>. В Android для кнопки используется класс <code class="docutils literal notranslate"><span class="pre">android.widget.Button</span></code>. На кнопке располагается текст и на кнопку нужно нажать, чтобы получить результат.</p>
+<p><strong>Инициализация</strong></p>
+<p>В рамках <code class="docutils literal notranslate"><span class="pre">.xml-layout</span></code>’а добавляем след. образом:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;Button</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/button&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginEnd=</span><span class="s">&quot;99dp&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;Button&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&quot;@+id/textView&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintStart_toEndOf=</span><span class="s">&quot;@+id/textView&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p><strong>Три способа обработать нажатие на кнопку</strong></p>
+<section id="onclick">
+<h3>Первый, атрибут - onClick<a class="headerlink" href="#onclick" title="Permalink to this heading"></a></h3>
+<p>Добавляем указатель на нашу функцию обработки нажатия на кнопку в атрибуты <code class="docutils literal notranslate"><span class="pre">Button</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>android:onClick=&quot;customOnClick&quot;
+</pre></div>
+</div>
+<p>В коде добавим функцию:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">customOnClick</span><span class="p">(</span><span class="n">v</span><span class="p">:</span><span class="w"> </span><span class="n">View?)</span><span class="p">{</span>
+<span class="w">    </span><span class="n">bExample</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;1st method&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="setonclicklistener">
+<h3>Второй, метод - setOnClickListener()<a class="headerlink" href="#setonclicklistener" title="Permalink to this heading"></a></h3>
+<p>В данном случае можно задать обработку нажатия для конкретной кнопки отдельно:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">bExample2</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">({</span>
+<span class="w">    </span><span class="n">bExample2</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;2nd method&quot;</span><span class="p">)</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</section>
+<section id="onclicklistener">
+<h3>Третий, интерфейс - OnClickListener()<a class="headerlink" href="#onclicklistener" title="Permalink to this heading"></a></h3>
+<p>В этом случае необходимо сначала добавить интерфейс <code class="docutils literal notranslate"><span class="pre">View.OnClickListener</span></code> к текущему классу, затем <code class="docutils literal notranslate"><span class="pre">override</span></code> метод обработки нажатий <code class="docutils literal notranslate"><span class="pre">onClick</span></code> для всех кнопок текущего класса <code class="docutils literal notranslate"><span class="pre">Activity</span></code>:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ViewExamples</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">(),</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{...}</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onClick</span><span class="p">(</span><span class="n">v</span><span class="p">:</span><span class="w"> </span><span class="n">View?)</span><span class="p">{</span>
+<span class="w">        </span><span class="n">bExample3</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;3dr method&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Далее, можем указать обработчику на интерфейс текущего класса:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">bExample3</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">(</span><span class="k">this</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/widgets/buttons.PNG?raw=true" /></p>
+</section>
+</section>
+<section id="seekbar">
+<h2>SeekBar (Слайдер)<a class="headerlink" href="#seekbar" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_view_group.html" class="btn btn-neutral float-left" title="4. Работа ViewGroup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Latex/latex.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
