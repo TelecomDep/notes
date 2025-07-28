@@ -27,10 +27,10 @@ Introduction
 
 .. raw:: latex
 
-   \chapter{Ref}
+   \chapter{references}
 
 .. toctree::
-   :caption: Ref
+   :caption: references
    :maxdepth: 2
 
    references/usefull_links
