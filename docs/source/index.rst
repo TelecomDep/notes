@@ -46,3 +46,13 @@ Introduction
 
    usage
    api
+
+.. raw:: latex
+
+   \chapter{Полезные ссылки}
+
+.. toctree::
+   :caption: Полезные ссылки
+   :maxdepth: 1
+
+   usefull_links
