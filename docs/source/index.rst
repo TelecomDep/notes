@@ -11,7 +11,7 @@ Introduction
 
 .. toctree::
    :caption: Kotlin
-   :maxdepth: 2
+   :maxdepth: 1
 
    Kotlin/kotlin
 
@@ -27,10 +27,10 @@ Introduction
 
 .. raw:: latex
 
-   \chapter{references}
+   \chapter{References}
 
 .. toctree::
-   :caption: references
-   :maxdepth: 2
+   :caption: References
+   :maxdepth: 1
 
-   references/usefull_links
+   References/usefull_links
