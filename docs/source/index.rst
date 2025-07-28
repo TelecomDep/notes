@@ -25,6 +25,10 @@ Introduction
 
    Android/android
 
+.. raw:: latex
+
+   \chapter{Latex}
+
 .. toctree::
    :caption: Latex
    :maxdepth: 1
