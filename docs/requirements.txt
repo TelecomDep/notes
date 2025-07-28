@@ -1,4 +1,4 @@
-furo==2021.11.16
+furo
 sphinx==7.1.2
 sphinx-rtd-theme==1.3.0rc1
 myst-parser
