@@ -13,7 +13,7 @@ Introduction
    :caption: Kotlin
    :maxdepth: 2
 
-   Kotlin/kotlin_basic_01
+   Kotlin/kotlin
 
 .. raw:: latex
 
@@ -24,6 +24,12 @@ Introduction
    :maxdepth: 1
 
    Android/android
+
+.. toctree::
+   :caption: Latex
+   :maxdepth: 1
+
+   Latex/latex
 
 
 .. raw:: latex
