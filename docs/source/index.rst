@@ -27,6 +27,17 @@ Introduction
 
 .. raw:: latex
 
+   \chapter{Полезные ссылки}
+
+.. toctree::
+   :caption: Полезные ссылки
+   :maxdepth: 1
+
+   references/usefull_links
+
+
+.. raw:: latex
+
    \chapter{Theory and Examples}
 
 .. toctree::
@@ -35,13 +46,3 @@ Introduction
 
    usage
    api
-
-.. raw:: latex
-
-   \chapter{Ref}
-
-.. toctree::
-   :caption: Ref
-   :maxdepth: 1
-
-   references/usefull_links
