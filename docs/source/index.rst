@@ -27,16 +27,6 @@ Introduction
 
 .. raw:: latex
 
-   \chapter{Latex}
-
-.. toctree::
-   :caption: Latex
-   :maxdepth: 1
-
-   Latex/latex
-
-.. raw:: latex
-
    \chapter{References}
 
 .. toctree::
