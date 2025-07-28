@@ -3,6 +3,6 @@ Kotlin
 
 .. toctree::
    :caption: Kotlin
-   :maxdepth: 1
+   :maxdepth: 2
 
-   01_install_android_studio
+   01_kotlin_basic
