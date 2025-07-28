@@ -5,6 +5,8 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
+    tools:
+      python: "3.10"
     permissions:
       contents: write
     steps:
