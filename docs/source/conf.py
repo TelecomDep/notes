@@ -33,12 +33,6 @@ extensions = [
     'myst_parser',
 ]
 
-"""
-Imports all link files into project.
-"""
-
-from links.link import *
-from links import *
 
 
 # -- Project information
