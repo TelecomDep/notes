@@ -17,6 +17,11 @@
 
     IntelliJ IDEA Community Edition (free).
 
+.. image:: assets/images/kotlin/00_intellij_idea_install.png
+    :name: Canti_1
+
+    IntelliJ IDEA Community Edition (free).
+
 .. figure:: ./images/kotlin/00_intellij_idea_install.png
     :name: Canti_1
 
