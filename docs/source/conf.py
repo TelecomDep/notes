@@ -46,6 +46,8 @@ master_doc = 'index'
 
 html_theme = 'sphinx_rtd_theme'
 
+figure_language_filename = '_static/images/'
+
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
 
