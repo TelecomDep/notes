@@ -16,3 +16,10 @@
 
 Компилировать и зап
 
+.. figure:: ../_static/images/kotlin/00_intellij_idea_install.png
+    :name: Canti_15
+    :width: 50%
+    :align: center
+    IntelliJ IDEA Community Edition (free).
+
+Компилировать и зап
