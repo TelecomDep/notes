@@ -14,14 +14,14 @@
 
 Компилировать и зап
 
-.. image:: _static/images/kotlin/00_intellij_idea_install.png
+.. figure:: _static/images/kotlin/00_intellij_idea_install.png
     :name: Canti_13
 
     IntelliJ IDEA Community Edition (free).
 
 Компилировать и зап
 
-.. image:: ../_static/images/kotlin/00_intellij_idea_install.png
+.. figure:: ../_static/images/kotlin/00_intellij_idea_install.png
     :name: Canti_14
 
     IntelliJ IDEA Community Edition (free).
