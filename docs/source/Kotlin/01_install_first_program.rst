@@ -10,5 +10,4 @@
 
 .. figure:: ../_static/images/kotlin/00_intellij_idea_install.png
     :name: Canti_14
-    :width: 800
     IntelliJ IDEA Community Edition (free).
