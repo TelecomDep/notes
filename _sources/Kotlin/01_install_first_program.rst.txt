@@ -12,25 +12,28 @@
 
     IntelliJ IDEA Community Edition (free).
 
+Компилировать и зап
 
-.. image:: images/kotlin/00_intellij_idea_install.png
+.. image:: _static/images/kotlin/00_intellij_idea_install.png
     :name: Canti_13
 
     IntelliJ IDEA Community Edition (free).
 
+Компилировать и зап
 
-.. image:: assets/images/kotlin/00_intellij_idea_install.png
+.. image:: ../_static/images/kotlin/00_intellij_idea_install.png
     :name: Canti_14
 
     IntelliJ IDEA Community Edition (free).
 
+Компилировать и зап
 
 .. figure:: images/00_intellij_idea_install.png
     :name: Canti_15
 
    IntelliJ IDEA Community Edition (free).
 
-
+Компилировать и зап
 
 .. image:: images/kotlin/00_intellij_idea_install.png
     :name: Canti_16
