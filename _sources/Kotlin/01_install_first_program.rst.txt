@@ -53,7 +53,7 @@
 
 .. figure:: ../_static/images/kotlin/00_new_project_first_file.png
     :name: Canti_15
-    :width: 50%
+    :width: 30%
 
     Создание первого кодофайла.
 
@@ -63,7 +63,7 @@
 
 .. figure:: ../_static/images/kotlin/00_new_project_first_file_name.png
     :name: Canti_15
-    :width: 50%
+    :width: 30%
 
     Application - filename.
 
@@ -81,7 +81,7 @@
 
 .. figure:: ../_static/images/kotlin/00_new_project_hello_world.png
     :name: Canti_15
-    :width: 50%
+    :width: 70%
 
     Hello World!.
 
