@@ -1,16 +1,24 @@
 # Configuration file for the Sphinx documentation builder.
 
-# -- Project information
 
-project = 'Telecom Notes'
-copyright = '2025, ...'
-author = '...'
+"""
+Imports the system and the 
+theme the project is using to the project.
+"""
 
-release = '0.1'
-version = '0.1.0'
+import sys, os
+import sphinx_bootstrap_theme
 
-# -- General configuration
+"""
+Adds path to the folder ext, where extensions are stored.
+"""
 
+sys.path.append(os.path.abspath('ext'))
+sys.path.append('.')
+
+"""
+Tells Sphinx which extensions to use.
+"""
 extensions = [
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
@@ -24,6 +32,24 @@ extensions = [
     'sphinx.ext.ifconfig',
     'myst_parser',
 ]
+
+"""
+Imports all link files into project.
+"""
+
+from links.link import *
+from links import *
+
+
+# -- Project information
+
+project = 'Telecom Notes'
+copyright = '2025, ...'
+author = '...'
+
+release = '0.1'
+version = '0.1.0'
+
 
 mathjax_path = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
 
