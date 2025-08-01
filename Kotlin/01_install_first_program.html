@@ -134,7 +134,7 @@
 <li><p><strong>Location</strong> можно указать путь к проекту, если не устраивает путь по умолчанию;</p></li>
 <li><p>В левом столбце выбираем Kotlin;</p></li>
 <li><p><strong>JDK</strong>  - можно указать путь к Java SDK, если он уже установлен на компьютере локально.  Заметьте, если у вас не установлен <code class="docutils literal notranslate"><span class="pre">JDK</span></code>, среда предложит версию для установки;</p></li>
-<li><p><strong>Add sample code</strong> - убираем галочку, чтобы начать проект <code class="docutils literal notranslate"><span class="pre">с</span> <span class="pre">нуля</span></code>.</p></li>
+<li><p><strong>Add sample code</strong> - убираем галочку, чтобы начать проект <code class="docutils literal notranslate"><span class="pre">с</span> <span class="pre">нуля</span></code>, без сгенерированного кода.</p></li>
 </ol>
 <p>После создания проекта, вам откроется сам проект, в левой части которого будет отображаться его структура.</p>
 <figure class="align-default" id="id6">
@@ -143,7 +143,28 @@
 <p><span class="caption-text">Создание первого кодофайла.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>Весь код нашего проекта будет находится в папке <strong>source</strong> aka <code class="docutils literal notranslate"><span class="pre">src</span></code>.</p>
+<p>Весь код нашего проекта будет находится в папке <strong>source</strong> aka <code class="docutils literal notranslate"><span class="pre">src</span></code>. Создадим первый файл, в котором и начнем писать код.</p>
+<p>В открывшемся окне, выбираем <code class="docutils literal notranslate"><span class="pre">File</span></code>, называем, например “application” (можно любой другое название) и получим <code class="docutils literal notranslate"><span class="pre">application.kt</span></code> или <code class="docutils literal notranslate"><span class="pre">ваше_имя.kt</span></code>.</p>
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="_static/images/kotlin/00_new_project_first_file_name.png"><img alt="_static/images/kotlin/00_new_project_first_file_name.png" src="_static/images/kotlin/00_new_project_first_file_name.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text">Application - filename.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Точкой входа в программу (первая фукнция выполнения), по умолчанию, является функция <code class="docutils literal notranslate"><span class="pre">main</span></code>. Напишем примитивный всем известный код:</p>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+<span class="linenos">2</span><span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">)</span>
+<span class="linenos">3</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>Для инициализации фукнции в Kotlin используется ключевое слово <cite>fun</cite>. Далее, вызываем другую функцию println(), которая выведет текс в консоль.</p>
+<figure class="align-default" id="id8">
+<a class="reference internal image-reference" href="_static/images/kotlin/00_new_project_hello_world.png"><img alt="_static/images/kotlin/00_new_project_hello_world.png" src="_static/images/kotlin/00_new_project_hello_world.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-text">Hello World!.</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Ура! Первый проект готов.</p>
 </section>
 </section>
 
