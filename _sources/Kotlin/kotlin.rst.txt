@@ -5,4 +5,7 @@ Kotlin
    :caption: Kotlin
    :maxdepth: 2
 
-   01_kotlin_basic
+
+   00_introduction
+   01_install_first_program
+   02_basic

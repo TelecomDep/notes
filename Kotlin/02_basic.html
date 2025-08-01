@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Android" href="../Android/android.html" />
-    <link rel="prev" title="Kotlin" href="kotlin.html" /> 
+    <link rel="prev" title="Установка средств разработки" href="01_install_first_program.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,8 +49,11 @@
               <p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="kotlin.html">Kotlin</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="00_introduction.html">Введение в язык Kotlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_install_first_program.html">Установка средств разработки</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">0. Основы Kotlin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Объявление переменных</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Переменные (изменяемые и неизменяемые)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Константы</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#type-inference">Type inference</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#null-safety">Null safety</a></li>
 </ul>
@@ -96,7 +99,7 @@
           <li class="breadcrumb-item"><a href="kotlin.html">Kotlin</a></li>
       <li class="breadcrumb-item active">0. Основы Kotlin</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/Kotlin/01_kotlin_basic.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Kotlin/02_basic.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -123,7 +126,7 @@
 <p><a class="reference external" href="https://kotlinlang.org/">Kotlin</a> — это язык программирования, широко используемый разработчиками Android во всем мире. Эта тема представляет собой ускоренный курс Kotlin, который поможет вам быстро приступить к работе.</p>
 </section>
 <section id="id1">
-<h1>Объявление переменных<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h1>Переменные (изменяемые и неизменяемые)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>Kotlin использует два разных ключевых слова для объявления переменных: <code class="docutils literal notranslate"><span class="pre">val</span></code> и <code class="docutils literal notranslate"><span class="pre">var</span></code> .</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">val</span></code> для переменной, значение которой никогда не меняется. <strong>НЕЛЬЗЯ</strong> переназначить значение переменной, объявленной с помощью <code class="docutils literal notranslate"><span class="pre">val</span></code>;</p></li>
@@ -134,7 +137,7 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Int</span></code> — это тип, представляющий целое число, один из многих числовых типов, которые могут быть представлены в Kotlin. Как и в других языках, вы также можете использовать <code class="docutils literal notranslate"><span class="pre">Byte</span></code> , <code class="docutils literal notranslate"><span class="pre">Short</span></code> , <code class="docutils literal notranslate"><span class="pre">Long</span></code> , <code class="docutils literal notranslate"><span class="pre">Float</span></code> и <code class="docutils literal notranslate"><span class="pre">Double</span></code> в зависимости от ваших числовых данных.</p>
-<p>Ключевое слово <code class="docutils literal notranslate"><span class="pre">var</span></code> означает, что вы можете переназначать значения для <code class="docutils literal notranslate"><span class="pre">count</span></code> по мере необходимости. Например, вы можете изменить значение <code class="docutils literal notranslate"><span class="pre">count</span></code> с <code class="docutils literal notranslate"><span class="pre">10</span></code> на <code class="docutils literal notranslate"><span class="pre">15</span></code> :</p>
+<p>Ключевое слово <code class="docutils literal notranslate"><span class="pre">var</span></code> (англ., <code class="docutils literal notranslate"><span class="pre">variable</span></code> - изменяемый) означает, что вы можете переназначать значения для <code class="docutils literal notranslate"><span class="pre">count</span></code> по мере необходимости. Например, вы можете изменить значение <code class="docutils literal notranslate"><span class="pre">count</span></code> с <code class="docutils literal notranslate"><span class="pre">10</span></code> на <code class="docutils literal notranslate"><span class="pre">15</span></code> :</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="nv">count</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
 <span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span>
 </pre></div>
@@ -143,16 +146,33 @@
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">languageName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Kotlin&quot;</span>
 </pre></div>
 </div>
-<p>Эти ключевые слова позволяют вам четко указать, что можно изменить. Используйте их в своих интересах по мере необходимости. Если ссылка на переменную должна быть переназначаемой, объявите ее как <code class="docutils literal notranslate"><span class="pre">var</span></code> . В противном случае используйте <code class="docutils literal notranslate"><span class="pre">val</span></code> .</p>
+<p>Эти ключевые слова позволяют вам указать, что можно изменить, а что нельзя. Используйте их в своих интересах по мере необходимости. Если ссылка на переменную должна быть переназначаемой, объявите ее как <code class="docutils literal notranslate"><span class="pre">var</span></code> . В противном случае используйте <code class="docutils literal notranslate"><span class="pre">val</span></code> .
+Также, следует отметить, что <code class="docutils literal notranslate"><span class="pre">val</span></code> не является константой. <code class="docutils literal notranslate"><span class="pre">val</span></code> инициализируется во время выполнения программы, а не во время ее компиляции.</p>
+<section id="id2">
+<h2>Константы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Kotlin поддерживает, так называемые, <code class="docutils literal notranslate"><span class="pre">константы</span> <span class="pre">времени</span> <span class="pre">компиляции</span></code>. Значения таких переменных известны во время компиляции. Соответсвтенно, это накладывает ряд ограничений:</p>
+<ul class="simple">
+<li><p>находиться на самом верхнем уровне (вне класса) или быть членом объекта (<code class="docutils literal notranslate"><span class="pre">object</span></code> или <code class="docutils literal notranslate"><span class="pre">companion</span> <span class="pre">object</span></code>);</p></li>
+<li><p>тип данных должен соответствовать одному из примитивных (например, String);</p></li>
+<li><p>не иметь геттера.</p></li>
+</ul>
+<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">120</span><span class="w">  </span><span class="c1">// константа</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1500</span><span class="w">   </span><span class="c1">// Так нельзя </span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="type-inference">
 <h2>Type inference<a class="headerlink" href="#type-inference" title="Permalink to this heading"></a></h2>
 <p>Продолжая предыдущий пример, когда вы присваиваете начальное значение <code class="docutils literal notranslate"><span class="pre">languageName</span></code> , компилятор Kotlin может определить тип на основе типа присвоенного значения.</p>
 <p>Поскольку значение <code class="docutils literal notranslate"><span class="pre">&quot;Kotlin&quot;</span></code> имеет тип <code class="docutils literal notranslate"><span class="pre">String</span></code> , компилятор делает вывод, что <code class="docutils literal notranslate"><span class="pre">languageName</span></code> также является <code class="docutils literal notranslate"><span class="pre">String</span></code> . Обратите внимание, что Kotlin — <strong><em>статически типизированный</em></strong> язык. Это означает, что тип определяется во время компиляции и никогда не изменяется.</p>
 <p>В следующем примере <code class="docutils literal notranslate"><span class="pre">languageName</span></code> выводится как <code class="docutils literal notranslate"><span class="pre">String</span></code> , поэтому вы не можете вызывать какие-либо функции, которые не являются частью класса <code class="docutils literal notranslate"><span class="pre">String</span></code> :</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">languageName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Kotlin&quot;</span>
-<span class="kd">val</span><span class="w"> </span><span class="nv">upperCaseName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">languageName</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">()</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">upperCaseName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">languageName</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">()</span><span class="w"> </span><span class="c1">// Все нормально, можно вызвать</span>
 <span class="w">    </span>
-<span class="c1">// Fails to compile</span>
+<span class="c1">// Нельзя, т.к. это не &quot;числовая&quot; переменная</span>
 <span class="n">languageName</span><span class="p">.</span><span class="na">inc</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -392,7 +412,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="kotlin.html" class="btn btn-neutral float-left" title="Kotlin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="01_install_first_program.html" class="btn btn-neutral float-left" title="Установка средств разработки" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../Android/android.html" class="btn btn-neutral float-right" title="Android" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
