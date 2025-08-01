@@ -7,7 +7,7 @@
 
 Компилировать и запускать программы на базе языка Kotlin можно в консоли (в терминале), однако, удобнее разрабатывать приложения более сложно порядка, чем `println(Hello World)`, при помощи серьезных IDE, таких как, например, IntelliJ Idea.
 
-.. image:: _static/images/kotlin/00_intellij_idea_install.png
+.. image:: kotlin/00_intellij_idea_install.png
     :width: 400
     :name: Canti_1
 
