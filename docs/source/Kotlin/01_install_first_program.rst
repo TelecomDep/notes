@@ -11,6 +11,7 @@
 .. figure:: ../_static/images/kotlin/00_intellij_idea_install.png
     :name: Canti_15
     :width: 50%
+    
     IntelliJ IDEA Community Edition (free).
 
 Компилировать и зап
