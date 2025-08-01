@@ -3,4 +3,6 @@ sphinx==7.1.2
 sphinx-rtd-theme==1.3.0rc1
 myst-parser
 sphinx_bootstrap_theme
-links
+sphinxcontrib-googleanalytics
+sphinx-autobuild
+sphinxcontrib-osexample==0.1.1
