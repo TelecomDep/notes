@@ -81,7 +81,7 @@
 
 .. figure:: ../_static/images/kotlin/00_new_project_hello_world.png
     :name: Canti_15
-    :width: 70%
+    :width: 90%
 
     Hello World!.
 
