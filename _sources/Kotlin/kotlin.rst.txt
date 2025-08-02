@@ -8,4 +8,4 @@ Kotlin
 
    00_introduction
    01_install_first_program
-   02_basic
+   02_basic_compile
