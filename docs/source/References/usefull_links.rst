@@ -9,6 +9,10 @@ Kotlin
 
 .. _`Байткод в JVM простыми словами`: https://habr.com/ru/companies/domclick/articles/500646/
 
+2. `Варим байткод на кухне JVM`_
+
+.. _`Варим байткод на кухне JVM`: https://habr.com/ru/companies/domclick/articles/500646/
+
 
 Документация проекта (Sphinx)
 ------------------
