@@ -9,7 +9,8 @@
 
 ![Alt text](../_static/images/kotlin/compilation/01_compile.png?raw=true "Title")
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_compile.png" width="650" title="hover text">
+  <img src="../_static/images/kotlin/compilation/01_compile.png" width="650" title="hover text" alt="Alt text">
+  <figcaption>Это описание изображения</figcaption>
 </p>
 
 Список источников
