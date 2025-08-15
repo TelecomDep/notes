@@ -54,10 +54,10 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Основы языка Kotlin</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#jvm">Компиляция и JVM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#java-jvm">Виртуальная машина Java (JVM)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#jvm-os">Архитектура JVM и ее место в OS</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#class">Файл .class и байт-код</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Список источников</a></li>
 </ul>
 </li>
 </ul>
@@ -104,20 +104,68 @@
 </section>
 <section id="java-jvm">
 <h2>Виртуальная машина Java (JVM)<a class="headerlink" href="#java-jvm" title="Permalink to this heading"></a></h2>
-<section id="class">
-<h3>Файл .class и байт-код<a class="headerlink" href="#class" title="Permalink to this heading"></a></h3>
-<p><img alt="Alt text" src="_static/images/kotlin/compilation/01_compile.png?raw=true" /></p>
+<p>Виртуальная машина Java (JVM) была разработана компанией Sun Microsystems, а ключевую роль в ее создании сыграл Джеймс Гослинг. Позднее Sun Microsystems была приобретена компанией Oracle.  Слоганом компании является <code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">once,</span> <span class="pre">run</span> <span class="pre">anywhere</span> <span class="pre">(WORA)</span></code>.</p>
+<p>JVM, если кратко - это интерпретатор байт-кода <strong>Java</strong>. Главной особенностью JVM является возможность компиляции и запуска програм на, практически, любой платформе, не меняя при это код <strong>Java</strong> (сильно упращая жизнь разработчикам ПО).</p>
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_compile.png" width="650" title="hover text" alt="Alt text">
-  <figcaption>Это описание изображения</figcaption>
+  <img src="../_static/images/kotlin/compilation/01_wora.png" width="650" title="hover text" alt="Alt text">
+  <figcaption> Write Once Run Anywhere (WORA). <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
 </p>
-</section>
+<p align="center">
+  <img src="../_static/images/kotlin/compilation/01_woca.png" width="650" title="hover text" alt="Alt text">
+  <figcaption> Write Once Compile Anywhere (WOCA). <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
+</p>
+<p>JVM может быть установлена на любую операционную систему (Windows, macOS, Unix-like, и т.д.). Таким образом, позволяя написать код один раз, но работать он будет на нескольких операционных системах.</p>
+<section id="jvm-os">
+<h3>Архитектура JVM и ее место в OS<a class="headerlink" href="#jvm-os" title="Permalink to this heading"></a></h3>
+<p>Виртуальная машина Java является некой прослойкой между программным кодом и операционной системой:</p>
+<p align="center">
+  <img src="../_static/images/kotlin/compilation/01_jvm_in_os.jpg" width="650" title="hover text" alt="Alt text">
+  <figcaption> JVM and OS. <a href="https://www.nic.ru/help/jvm-chto-eto-kak-ustroena-virtual6naya-mashina-java_11250.html">Источник изображения.</a></figcaption>
+</p>
+<p>В данном случае, под <strong>программа</strong> - это <strong>байт-код</strong>, инструкции которого понимает и выполняет JVM.</p>
+<p>JVM состоит из трех основных компонентов:</p>
+<ul class="simple">
+<li><p>загрузчик классов (Classloader);</p></li>
+<li><p>область данных runtime (временеи выполнения);</p></li>
+<li><p>исполнительный механизм (Execution Engine).</p></li>
+</ul>
+<p align="center">
+  <img src="../_static/images/kotlin/compilation/01_jvm_architecture.jpg" width="650" title="hover text" alt="Alt text">
+  <figcaption> Архитектура JVM. <a href="https://www.nic.ru/help/jvm-chto-eto-kak-ustroena-virtual6naya-mashina-java_11250.html">Источник изображения.</a></figcaption>
+</p>
+<p><strong>Загрузчик классов</strong>: Classloader отвечает за загрузку Java-классов с диска в память JVM, разрешение зависимостей между классами и инициализацию классов во время выполнения программы. Загрузчик классов следует иерархии делегирования, начиная с Bootstrap Classloader, затем Extension Classloader и Application Classloader.</p>
+<p><strong>Области данных времени выполнения</strong>: Во время выполнения программы JVM выделяет области памяти, называемые Runtime Data Areas. Эти области памяти включают в себя Heap, Stack, Method Area, Constant Pool и PC Registers, в которых хранятся данные, необходимые для различных аспектов жизненного цикла приложения.</p>
+<p><strong>Execution Engine</strong>: Execution Engine - это основной компонент, отвечающий за выполнение байткода Java. Механизм выполнения интерпретирует байткод и преобразует его в нативный машинный код во время выполнения. Он включает в себя такие компоненты, как интерпретатор, компилятор Just-In-Time (JIT) и сборщик мусора.</p>
+<section id="jvm-runtime-memory">
+<h4>JVM Runtime Memory<a class="headerlink" href="#jvm-runtime-memory" title="Permalink to this heading"></a></h4>
+<p>Эффективное управление памятью - важнейший аспект архитектуры JVM, способствующий эффективному выполнению Java-приложений. JVM выделяет различные области памяти, называемые Runtime Data Areas, для различных типов хранения данных и манипулирования ими во время выполнения программы.</p>
+<p align="center">
+  <img src="../_static/images/kotlin/compilation/01_jvm_runtime_memory.png" width="650" title="hover text" alt="Alt text">
+  <figcaption> Архитектура JVM Runtime Memory. <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
+</p>
+<p>К основным областям памяти в JVM относятся:</p>
+<p><strong>Куча</strong>: Куча - это самая большая область памяти в JVM, которая разделяется между всеми потоками приложения. В ней хранятся инстанцированные объекты и массивы, созданные в процессе выполнения программы. Куча делится на области ‘Young Generation’ и ‘Old Generation’. В области “молодого поколения” хранятся вновь созданные объекты, а в области “старого поколения” - объекты, пережившие несколько циклов сборки мусора.</p>
+<p><strong>Стек</strong>: JVM создает отдельный стек для каждого потока. В стеке хранится информация о вызовах методов, локальные переменные и промежуточные результаты вычислений во время выполнения программы. Каждая запись в стеке называется фреймом стека, и JVM управляет фреймами стека независимо для каждого вызова метода.</p>
+<p><strong>Область методов</strong>: Область методов разделяется между всеми потоками приложения и хранит данные класса, такие как имена методов, имена переменных и значения констант. Область методов также содержит пул констант, в котором хранятся постоянные значения и символьные ссылки, используемые байткодом.</p>
+<p><strong>Регистры PC</strong>: Регистр PC (Program Counter) - это область памяти, содержащая адрес текущей выполняемой JVM инструкции для каждого потока. Регистр PC помогает JVM отслеживать, какая инструкция будет выполняться следующей.</p>
 </section>
 <section id="id1">
-<h2>Список источников<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<ol class="arabic simple">
-<li><p><a class="reference external" href="https://habr.com/ru/companies/domclick/articles/500646/">Байткод в JVM простыми словами</a></p></li>
-</ol>
+<h4>Загрузчик классов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+</section>
+<section id="id2">
+<h4>Управление памятью JVM<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+</section>
+</section>
+<section id="class">
+<h3>Файл .class и байт-код<a class="headerlink" href="#class" title="Permalink to this heading"></a></h3>
+<p>До изучания основ синтаксиса языка Kotlin, следует освоить основы его компиляции и зачем нужна JVM.</p>
+<p>Процесс компиляции кода происходит следующим образом:</p>
+<p align="center">
+  <img src="../_static/images/kotlin/compilation/01_compile.png" width="650" title="hover text" alt="Alt text">
+  <figcaption> Процесс компиляции в языке Kotlin. <a href="https://habr.com/ru/companies/inforion/articles/330060/">Источник изображения.</a></figcaption>
+</p>
+<p>На вход компилятора <code class="docutils literal notranslate"><span class="pre">kotlinc</span></code> поступают исходные файлы. Важно отметить, что java-файлы также поступают на вход компилятора. Это необходимо для возможности ссылаться на Java из Kotlin и наоборот. Далее, полученные файлы <code class="docutils literal notranslate"><span class="pre">*.class</span></code> передаются на компилятор <code class="docutils literal notranslate"><span class="pre">javac</span></code> вместе с исходными java-файлами. В итоге, компилируются все java-файлы, после чего собираются в файлы <code class="docutils literal notranslate"><span class="pre">.jar</span></code>.</p>
+</section>
 </section>
 </section>
 
