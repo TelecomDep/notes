@@ -52,9 +52,10 @@
 <li class="toctree-l2"><a class="reference internal" href="00_introduction.html">Введение в язык Kotlin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_install_first_program.html">Установка средств разработки</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Основы языка Kotlin</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#java-jvm">Виртуальная машина Java (JVM)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#kotlin-java-virtual-machine-jvm">Архитектура взаимодействия Kotlin с Java Virtual Machine (JVM)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#class">Файл .class и байт-код</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#java-jvm">Цели создания виртуальной машины Java (JVM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kotlin-jdk-java-development-kit">Архитектура взаимодействия Kotlin с JDK (Java Development Kit)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Компилятор и байт-код</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Виртуальная машина Java (JVM)</a></li>
 </ul>
 </li>
 </ul>
@@ -99,7 +100,7 @@
   <section id="kotlin">
 <h1>Основы языка Kotlin<a class="headerlink" href="#kotlin" title="Permalink to this heading"></a></h1>
 <section id="java-jvm">
-<h2>Виртуальная машина Java (JVM)<a class="headerlink" href="#java-jvm" title="Permalink to this heading"></a></h2>
+<h2>Цели создания виртуальной машины Java (JVM)<a class="headerlink" href="#java-jvm" title="Permalink to this heading"></a></h2>
 <p>Виртуальная машина Java (JVM) была разработана компанией Sun Microsystems, а ключевую роль в ее создании сыграл Джеймс Гослинг. Позднее Sun Microsystems была приобретена компанией Oracle.  Слоганом компании является <code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">once,</span> <span class="pre">run</span> <span class="pre">anywhere</span> <span class="pre">(WORA)</span></code>.</p>
 <p>JVM, если кратко - это интерпретатор байт-кода <strong>Java</strong>. Главной особенностью JVM является возможность компиляции и запуска програм на, практически, любой платформе, не меняя при это код <strong>Java</strong> (сильно упращая жизнь разработчикам ПО).</p>
 <p align="center">
@@ -111,8 +112,9 @@
   <figcaption> Write Once Compile Anywhere (WOCA). <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
 </p>
 <p>JVM может быть установлена на любую операционную систему (Windows, macOS, Unix-like, и т.д.). Таким образом, позволяя написать код один раз, но работать он будет на нескольких операционных системах.</p>
-<section id="kotlin-java-virtual-machine-jvm">
-<h3>Архитектура взаимодействия Kotlin с Java Virtual Machine (JVM)<a class="headerlink" href="#kotlin-java-virtual-machine-jvm" title="Permalink to this heading"></a></h3>
+</section>
+<section id="kotlin-jdk-java-development-kit">
+<h2>Архитектура взаимодействия Kotlin с JDK (Java Development Kit)<a class="headerlink" href="#kotlin-jdk-java-development-kit" title="Permalink to this heading"></a></h2>
 <p>Виртуальная машина Java является некой прослойкой между программным кодом и операционной системой:</p>
 <p align="center">
   <img src="../_static/images/kotlin/compilation/01_jvm_in_os.jpg" width="650" title="hover text" alt="Alt text">
@@ -124,61 +126,91 @@
   <img src="../_static/images/kotlin/compilation/Kotlin_JVM_Architecture.png" width="900" title="hover text" alt="Alt text">
   <figcaption> Архитектура взаимодействия Kotlin + JVM.</figcaption>
 </p>
-<p>JVM состоит из трех основных компонентов:</p>
-<ul class="simple">
-<li><p>загрузчик классов (Classloader);</p></li>
-<li><p>область данных runtime (времени выполнения);</p></li>
-<li><p>исполнительный механизм (Execution Engine).</p></li>
-</ul>
-<p><strong>Загрузчик классов</strong>: Classloader отвечает за загрузку Java-классов с диска в память JVM, разрешение зависимостей между классами и инициализацию классов во время выполнения программы. Загрузчик классов следует иерархии делегирования, начиная с Bootstrap Classloader, затем Extension Classloader и Application Classloader.</p>
-<p><strong>Области данных времени выполнения</strong>: Во время выполнения программы JVM выделяет области памяти, называемые Runtime Data Areas. Эти области памяти включают в себя Heap, Stack, Method Area, Constant Pool и PC Registers, в которых хранятся данные, необходимые для различных аспектов жизненного цикла приложения.</p>
-<p><strong>Execution Engine</strong>: Execution Engine - это основной компонент, отвечающий за выполнение байткода Java. Механизм выполнения интерпретирует байткод и преобразует его в нативный машинный код во время выполнения. Он включает в себя такие компоненты, как интерпретатор, компилятор Just-In-Time (JIT) и сборщик мусора.</p>
-<section id="jvm-runtime-memory">
-<h4>JVM Runtime Memory<a class="headerlink" href="#jvm-runtime-memory" title="Permalink to this heading"></a></h4>
-<p>Эффективное управление памятью - важнейший аспект архитектуры JVM, способствующий эффективному выполнению Java-приложений. JVM выделяет различные области памяти, называемые Runtime Data Areas, для различных типов хранения данных и манипулирования ими во время выполнения программы.</p>
+<p>Кратко по каждому блоку:</p>
+<ol class="arabic simple">
+<li><p>Инструменты разработки <code class="docutils literal notranslate"><span class="pre">Java</span> <span class="pre">(JDT)</span></code> - это набор расширений рабочей среды, с помощью которого можно редактировать, компилировать и запускать программы на Java.
+1.1 <code class="docutils literal notranslate"><span class="pre">javac</span></code> - компилятор языка Java. Преобразует <code class="docutils literal notranslate"><span class="pre">*.java</span></code> в байт-код <code class="docutils literal notranslate"><span class="pre">*.class</span></code>;
+1.2 <code class="docutils literal notranslate"><span class="pre">javap</span></code> - дизассемблер языка Java. Применяет обратную опереацию <code class="docutils literal notranslate"><span class="pre">javac</span></code>, преобразует <code class="docutils literal notranslate"><span class="pre">*.class</span></code> в понятный человеку формат;
+1.3 <code class="docutils literal notranslate"><span class="pre">VisualVM</span></code> - удобная утилита для визуализации, мониторинга, профилирования приложений Java;
+1.4 <code class="docutils literal notranslate"><span class="pre">Other</span></code> - набор доп. инструментов (Basic Tools, Security Tools, Monitoring and Troubleshooting Tools, Deployment Tools, etc.);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Kotlin</span> <span class="pre">Multiplatform</span></code> - включает в себя компилятор для разны сред разработки (JVM, JS, Native);
+2.1 <code class="docutils literal notranslate"><span class="pre">kotlinc</span></code> - компилятор языка Kotlin. Преобразует <code class="docutils literal notranslate"><span class="pre">*.kt</span></code> в <code class="docutils literal notranslate"><span class="pre">байт-код</span></code>, понятный <code class="docutils literal notranslate"><span class="pre">JVM</span></code>.
+2.2 etc.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JRE</span> <span class="pre">(Java</span> <span class="pre">Runtime</span> <span class="pre">Environment)</span></code> - среда выполнения Java. Необходима для запуска программ. Состоит из:
+3.1 Виртуальной машины Java (<code class="docutils literal notranslate"><span class="pre">JVM</span></code>) - сердце работы программ;
+3.2 Стандартная библиотека классов Java (<code class="docutils literal notranslate"><span class="pre">java.io</span></code>, <code class="docutils literal notranslate"><span class="pre">java.lang</span></code>, <code class="docutils literal notranslate"><span class="pre">java.math</span></code>, <code class="docutils literal notranslate"><span class="pre">java.net</span></code>, etc.).</p></li>
+</ol>
+<section id="id1">
+<h3>Компилятор и байт-код<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+</section>
+<section id="id2">
+<h3>Виртуальная машина Java (JVM)<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<!-- ### Архитектура
+### Архитектура
+### Архитектура -->
+<!-- JVM состоит из трех основных компонентов:
+
+- загрузчик классов (Classloader);
+- область данных runtime (времени выполнения);
+- исполнительный механизм (Execution Engine).
+
+**Загрузчик классов**: Classloader отвечает за загрузку Java-классов с диска в память JVM, разрешение зависимостей между классами и инициализацию классов во время выполнения программы. Загрузчик классов следует иерархии делегирования, начиная с Bootstrap Classloader, затем Extension Classloader и Application Classloader.
+
+**Области данных времени выполнения**: Во время выполнения программы JVM выделяет области памяти, называемые Runtime Data Areas. Эти области памяти включают в себя Heap, Stack, Method Area, Constant Pool и PC Registers, в которых хранятся данные, необходимые для различных аспектов жизненного цикла приложения.
+
+**Execution Engine**: Execution Engine - это основной компонент, отвечающий за выполнение байткода Java. Механизм выполнения интерпретирует байткод и преобразует его в нативный машинный код во время выполнения. Он включает в себя такие компоненты, как интерпретатор, компилятор Just-In-Time (JIT) и сборщик мусора.
+
+#### JVM Runtime Memory
+Эффективное управление памятью - важнейший аспект архитектуры JVM, способствующий эффективному выполнению Java-приложений. JVM выделяет различные области памяти, называемые Runtime Data Areas, для различных типов хранения данных и манипулирования ими во время выполнения программы. 
+
 <p align="center">
   <img src="../_static/images/kotlin/compilation/01_jvm_runtime_memory.png" width="650" title="hover text" alt="Alt text">
   <figcaption> Архитектура JVM Runtime Memory. <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
 </p>
-<p>К основным областям памяти в JVM относятся:</p>
-<p><strong>Куча</strong>: Куча - это самая большая область памяти в JVM, которая разделяется между всеми потоками приложения. В ней хранятся инстанцированные объекты и массивы, созданные в процессе выполнения программы. Куча делится на области ‘Young Generation’ и ‘Old Generation’. В области “молодого поколения” хранятся вновь созданные объекты, а в области “старого поколения” - объекты, пережившие несколько циклов сборки мусора.</p>
-<p><strong>Стек</strong>: JVM создает отдельный стек для каждого потока. В стеке хранится информация о вызовах методов, локальные переменные и промежуточные результаты вычислений во время выполнения программы. Каждая запись в стеке называется фреймом стека, и JVM управляет фреймами стека независимо для каждого вызова метода.</p>
-<p><strong>Область методов</strong>: Область методов разделяется между всеми потоками приложения и хранит данные класса, такие как имена методов, имена переменных и значения констант. Область методов также содержит пул констант, в котором хранятся постоянные значения и символьные ссылки, используемые байткодом.</p>
-<p><strong>Регистры PC</strong>: Регистр PC (Program Counter) - это область памяти, содержащая адрес текущей выполняемой JVM инструкции для каждого потока. Регистр PC помогает JVM отслеживать, какая инструкция будет выполняться следующей.</p>
-</section>
-<section id="id1">
-<h4>Загрузчик классов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
-<p>Загрузка классов — это поиск и загрузка типов (классов и интерфейсов) динамически во время выполнения программы. Данные о типах находятся в бинарных class-файлах.
-Подсистема загрузчика классов отвечает не только за поиск и импорт бинарных данных класса. Она также выполняет проверку правильности импортируемых классов, выделяет и инициализирует память для переменных класса, помогает в разрешении символьных ссылок. Эти действия выполняются в следующем порядке:</p>
+
+К основным областям памяти в JVM относятся:
+
+**Куча**: Куча - это самая большая область памяти в JVM, которая разделяется между всеми потоками приложения. В ней хранятся инстанцированные объекты и массивы, созданные в процессе выполнения программы. Куча делится на области 'Young Generation' и 'Old Generation'. В области "молодого поколения" хранятся вновь созданные объекты, а в области "старого поколения" - объекты, пережившие несколько циклов сборки мусора.
+
+**Стек**: JVM создает отдельный стек для каждого потока. В стеке хранится информация о вызовах методов, локальные переменные и промежуточные результаты вычислений во время выполнения программы. Каждая запись в стеке называется фреймом стека, и JVM управляет фреймами стека независимо для каждого вызова метода.
+
+**Область методов**: Область методов разделяется между всеми потоками приложения и хранит данные класса, такие как имена методов, имена переменных и значения констант. Область методов также содержит пул констант, в котором хранятся постоянные значения и символьные ссылки, используемые байткодом.
+
+**Регистры PC**: Регистр PC (Program Counter) - это область памяти, содержащая адрес текущей выполняемой JVM инструкции для каждого потока. Регистр PC помогает JVM отслеживать, какая инструкция будет выполняться следующей.
+
+
+#### Загрузчик классов
+Загрузка классов — это поиск и загрузка типов (классов и интерфейсов) динамически во время выполнения программы. Данные о типах находятся в бинарных class-файлах.
+Подсистема загрузчика классов отвечает не только за поиск и импорт бинарных данных класса. Она также выполняет проверку правильности импортируемых классов, выделяет и инициализирует память для переменных класса, помогает в разрешении символьных ссылок. Эти действия выполняются в следующем порядке:
+
 <p align="center">
   <img src="../_static/images/kotlin/compilation/01_class_loader_subsystem.png" width="650" title="hover text" alt="Alt text">
   <figcaption> Загрузчик классов. <a href="https://appmaster.io/ru/blog/arkhitektura-virtual-noi-mashiny-java">Источник изображения.</a></figcaption>
 </p>
-<ul class="simple">
-<li><p><strong>Загрузка (loading)</strong> — это процесс получения файлов классов с диска и их загрузки в память JVM. Загрузчик классов находит нужные файлы классов по полному имени класса, которое включает имя пакета и имя класса.</p></li>
-<li><p><strong>Связывание, линковка (linking)</strong> — Процесс связывания устанавливает связи между классами и проверяет их на наличие несоответствий или ошибок. Состоит из:</p>
-<ul>
-<li><p><strong>Верификация (verification)</strong> — проверка корректности импортируемого типа.</p></li>
-<li><p><strong>Подготовка (preparation)</strong> — выделение памяти для статических переменных класса и инициализация памяти значениями по умолчанию.</p></li>
-<li><p><strong>Разрешение (resolution)</strong> — преобразование символьных ссылок типов в прямые ссылки.</p></li>
-</ul>
-</li>
-<li><p><strong>Инициализация (initialization)</strong> — вызов Java-кода, который инициализирует переменные класса их правильными начальными значениями.</p></li>
-</ul>
-</section>
-<section id="jvm">
-<h4>Управление памятью JVM<a class="headerlink" href="#jvm" title="Permalink to this heading"></a></h4>
-</section>
-</section>
-<section id="class">
-<h3>Файл .class и байт-код<a class="headerlink" href="#class" title="Permalink to this heading"></a></h3>
-<p>До изучания основ синтаксиса языка Kotlin, следует освоить основы его компиляции и зачем нужна JVM.</p>
-<p>Процесс компиляции кода происходит следующим образом:</p>
+
+- **Загрузка (loading)** — это процесс получения файлов классов с диска и их загрузки в память JVM. Загрузчик классов находит нужные файлы классов по полному имени класса, которое включает имя пакета и имя класса.
+- **Связывание, линковка (linking)** — Процесс связывания устанавливает связи между классами и проверяет их на наличие несоответствий или ошибок. Состоит из:
+  - **Верификация (verification)** — проверка корректности импортируемого типа.
+  - **Подготовка (preparation)** — выделение памяти для статических переменных класса и инициализация памяти значениями по умолчанию.
+  - **Разрешение (resolution)** — преобразование символьных ссылок типов в прямые ссылки.
+- **Инициализация (initialization)** — вызов Java-кода, который инициализирует переменные класса их правильными начальными значениями.
+
+#### Управление памятью JVM
+
+
+
+### Файл .class и байт-код
+
+До изучания основ синтаксиса языка Kotlin, следует освоить основы его компиляции и зачем нужна JVM.
+
+Процесс компиляции кода происходит следующим образом:
 <p align="center">
   <img src="../_static/images/kotlin/compilation/01_compile.png" width="650" title="hover text" alt="Alt text">
   <figcaption> Процесс компиляции в языке Kotlin. <a href="https://habr.com/ru/companies/inforion/articles/330060/">Источник изображения.</a></figcaption>
 </p>
-<p>На вход компилятора <code class="docutils literal notranslate"><span class="pre">kotlinc</span></code> поступают исходные файлы. Важно отметить, что java-файлы также поступают на вход компилятора. Это необходимо для возможности ссылаться на Java из Kotlin и наоборот. Далее, полученные файлы <code class="docutils literal notranslate"><span class="pre">*.class</span></code> передаются на компилятор <code class="docutils literal notranslate"><span class="pre">javac</span></code> вместе с исходными java-файлами. В итоге, компилируются все java-файлы, после чего собираются в файлы <code class="docutils literal notranslate"><span class="pre">.jar</span></code>.</p>
+
+На вход компилятора `kotlinc` поступают исходные файлы. Важно отметить, что java-файлы также поступают на вход компилятора. Это необходимо для возможности ссылаться на Java из Kotlin и наоборот. Далее, полученные файлы `*.class` передаются на компилятор `javac` вместе с исходными java-файлами. В итоге, компилируются все java-файлы, после чего собираются в файлы `.jar`.
+ -->
 </section>
 </section>
 </section>
