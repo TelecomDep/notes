@@ -33,12 +33,12 @@ JVM может быть установлена на любую операцио�
 JVM состоит из трех основных компонентов:
 
 - загрузчик классов (Classloader);
-- область данных runtime (временеи выполнения);
+- область данных runtime (времени выполнения);
 - исполнительный механизм (Execution Engine).
 
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_jvm_architecture.jpg" width="650" title="hover text" alt="Alt text">
-  <figcaption> Архитектура JVM. <a href="https://www.nic.ru/help/jvm-chto-eto-kak-ustroena-virtual6naya-mashina-java_11250.html">Источник изображения.</a></figcaption>
+  <img src="../_static/images/kotlin/compilation/Kotlin_JVM_Architecture.png" width="900" title="hover text" alt="Alt text">
+  <figcaption> Архитектура JVM. <a href="https://www.geeksforgeeks.org/java/how-jvm-works-jvm-architecture/">Источник изображения.</a></figcaption>
 </p>
 
 **Загрузчик классов**: Classloader отвечает за загрузку Java-классов с диска в память JVM, разрешение зависимостей между классами и инициализацию классов во время выполнения программы. Загрузчик классов следует иерархии делегирования, начиная с Bootstrap Classloader, затем Extension Classloader и Application Classloader.
