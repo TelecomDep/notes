@@ -52,9 +52,8 @@
 <li class="toctree-l2"><a class="reference internal" href="00_introduction.html">Введение в язык Kotlin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_install_first_program.html">Установка средств разработки</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Основы языка Kotlin</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#jvm">Компиляция и JVM</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#java-jvm">Виртуальная машина Java (JVM)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#jvm-os">Архитектура JVM и ее место в OS</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#kotlin-java-virtual-machine-jvm">Архитектура взаимодействия Kotlin с Java Virtual Machine (JVM)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#class">Файл .class и байт-код</a></li>
 </ul>
 </li>
@@ -99,9 +98,6 @@
              
   <section id="kotlin">
 <h1>Основы языка Kotlin<a class="headerlink" href="#kotlin" title="Permalink to this heading"></a></h1>
-<section id="jvm">
-<h2>Компиляция и JVM<a class="headerlink" href="#jvm" title="Permalink to this heading"></a></h2>
-</section>
 <section id="java-jvm">
 <h2>Виртуальная машина Java (JVM)<a class="headerlink" href="#java-jvm" title="Permalink to this heading"></a></h2>
 <p>Виртуальная машина Java (JVM) была разработана компанией Sun Microsystems, а ключевую роль в ее создании сыграл Джеймс Гослинг. Позднее Sun Microsystems была приобретена компанией Oracle.  Слоганом компании является <code class="docutils literal notranslate"><span class="pre">Write</span> <span class="pre">once,</span> <span class="pre">run</span> <span class="pre">anywhere</span> <span class="pre">(WORA)</span></code>.</p>
@@ -115,24 +111,25 @@
   <figcaption> Write Once Compile Anywhere (WOCA). <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
 </p>
 <p>JVM может быть установлена на любую операционную систему (Windows, macOS, Unix-like, и т.д.). Таким образом, позволяя написать код один раз, но работать он будет на нескольких операционных системах.</p>
-<section id="jvm-os">
-<h3>Архитектура JVM и ее место в OS<a class="headerlink" href="#jvm-os" title="Permalink to this heading"></a></h3>
+<section id="kotlin-java-virtual-machine-jvm">
+<h3>Архитектура взаимодействия Kotlin с Java Virtual Machine (JVM)<a class="headerlink" href="#kotlin-java-virtual-machine-jvm" title="Permalink to this heading"></a></h3>
 <p>Виртуальная машина Java является некой прослойкой между программным кодом и операционной системой:</p>
 <p align="center">
   <img src="../_static/images/kotlin/compilation/01_jvm_in_os.jpg" width="650" title="hover text" alt="Alt text">
   <figcaption> JVM and OS. <a href="https://www.nic.ru/help/jvm-chto-eto-kak-ustroena-virtual6naya-mashina-java_11250.html">Источник изображения.</a></figcaption>
 </p>
-<p>В данном случае, под <strong>программа</strong> - это <strong>байт-код</strong>, инструкции которого понимает и выполняет JVM.</p>
+<p>Компилятор языков программирования Java и Kotlin преобразует <strong>пользовательскую программу</strong> в, так называемый, <strong>байт-код</strong>. Данный байт-код уже понимает виртуальная машина Java (<strong>JVM</strong>)
+Ниже рассмотрим более подробно этапы компиляции и запуска приложения, написанного на языке Kotlin (Kotlin + JVM).</p>
+<p align="center">
+  <img src="../_static/images/kotlin/compilation/Kotlin_JVM_Architecture.png" width="900" title="hover text" alt="Alt text">
+  <figcaption> Архитектура взаимодействия Kotlin + JVM.</figcaption>
+</p>
 <p>JVM состоит из трех основных компонентов:</p>
 <ul class="simple">
 <li><p>загрузчик классов (Classloader);</p></li>
 <li><p>область данных runtime (времени выполнения);</p></li>
 <li><p>исполнительный механизм (Execution Engine).</p></li>
 </ul>
-<p align="center">
-  <img src="../_static/images/kotlin/compilation/Kotlin_JVM_Architecture.png" width="900" title="hover text" alt="Alt text">
-  <figcaption> Архитектура JVM. <a href="https://www.geeksforgeeks.org/java/how-jvm-works-jvm-architecture/">Источник изображения.</a></figcaption>
-</p>
 <p><strong>Загрузчик классов</strong>: Classloader отвечает за загрузку Java-классов с диска в память JVM, разрешение зависимостей между классами и инициализацию классов во время выполнения программы. Загрузчик классов следует иерархии делегирования, начиная с Bootstrap Classloader, затем Extension Classloader и Application Classloader.</p>
 <p><strong>Области данных времени выполнения</strong>: Во время выполнения программы JVM выделяет области памяти, называемые Runtime Data Areas. Эти области памяти включают в себя Heap, Stack, Method Area, Constant Pool и PC Registers, в которых хранятся данные, необходимые для различных аспектов жизненного цикла приложения.</p>
 <p><strong>Execution Engine</strong>: Execution Engine - это основной компонент, отвечающий за выполнение байткода Java. Механизм выполнения интерпретирует байткод и преобразует его в нативный машинный код во время выполнения. Он включает в себя такие компоненты, как интерпретатор, компилятор Just-In-Time (JIT) и сборщик мусора.</p>
@@ -169,8 +166,8 @@
 <li><p><strong>Инициализация (initialization)</strong> — вызов Java-кода, который инициализирует переменные класса их правильными начальными значениями.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h4>Управление памятью JVM<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<section id="jvm">
+<h4>Управление памятью JVM<a class="headerlink" href="#jvm" title="Permalink to this heading"></a></h4>
 </section>
 </section>
 <section id="class">
