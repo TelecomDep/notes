@@ -54,7 +54,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Основы языка Kotlin</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#java-jvm">Цели создания виртуальной машины Java (JVM)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#kotlin-jdk-java-development-kit">Архитектура взаимодействия Kotlin с JDK (Java Development Kit)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Компилятор и байт-код</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Байт-код</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Виртуальная машина Java (JVM)</a></li>
 </ul>
 </li>
@@ -141,7 +141,21 @@
 3.2 Стандартная библиотека классов Java (<code class="docutils literal notranslate"><span class="pre">java.io</span></code>, <code class="docutils literal notranslate"><span class="pre">java.lang</span></code>, <code class="docutils literal notranslate"><span class="pre">java.math</span></code>, <code class="docutils literal notranslate"><span class="pre">java.net</span></code>, etc.).</p></li>
 </ol>
 <section id="id1">
-<h3>Компилятор и байт-код<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h3>Байт-код<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Запустим <code class="docutils literal notranslate"><span class="pre">Intellij</span> <span class="pre">Idea</span></code>, создадим простой проект для демонстрации компиляции из <code class="docutils literal notranslate"><span class="pre">*.kt</span></code> в <code class="docutils literal notranslate"><span class="pre">*.class</span></code>.</p>
+<p>В созданном проекте откроем файл <code class="docutils literal notranslate"><span class="pre">/src/application.kt</span></code> (создается по умолчанию, если не менять настройки). Добавим немного кода:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"> </span><span class="c1">// main() - точка входа в программу</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">counter</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">23</span>
+<span class="w">    </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span>
+<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="id2">
 <h3>Виртуальная машина Java (JVM)<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
