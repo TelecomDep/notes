@@ -5,7 +5,15 @@ Documentation for Telecom Notes
 Introduction
 ============
 
+.. raw:: HomeWork
+   \chapter{Практические задания}
 
+.. toctree::
+   :caption: Практические задания
+   :maxdepth: 1
+
+   HomeWork/home_work
+   
 .. raw:: git
    \chapter{Git}
 
@@ -32,16 +40,6 @@ Introduction
    :maxdepth: 1
 
    Android/android
-
-
-.. raw:: HomeWork
-   \chapter{Практические задания}
-
-.. toctree::
-   :caption: Практические задания
-   :maxdepth: 1
-
-   HomeWork/home_work
 
 .. raw:: latex
    \chapter{References}
