@@ -13,7 +13,7 @@ Introduction
    :maxdepth: 1
 
    HomeWork/home_work
-   
+
 .. raw:: git
    \chapter{Git}
 
@@ -42,10 +42,10 @@ Introduction
    Android/android
 
 .. raw:: latex
-   \chapter{References}
+   \chapter{Полезные ссылки}
 
 .. toctree::
-   :caption: References
+   :caption: Полезные ссылки
    :maxdepth: 1
 
    References/usefull_links
