@@ -33,6 +33,16 @@ Introduction
 
    Android/android
 
+
+.. raw:: HomeWork
+   \chapter{Практические задания}
+
+.. toctree::
+   :caption: Практические задания
+   :maxdepth: 1
+
+   HomeWork/home_work
+
 .. raw:: latex
    \chapter{References}
 
