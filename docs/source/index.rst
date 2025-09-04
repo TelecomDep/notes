@@ -5,8 +5,17 @@ Documentation for Telecom Notes
 Introduction
 ============
 
-.. raw:: latex
 
+.. raw:: git
+   \chapter{Git}
+
+.. toctree::
+   :caption: Git
+   :maxdepth: 1
+
+   Git/git_tips
+
+.. raw:: latex
    \chapter{Kotlin}
 
 .. toctree::
@@ -16,7 +25,6 @@ Introduction
    Kotlin/kotlin
 
 .. raw:: latex
-
    \chapter{Android}
 
 .. toctree::
@@ -26,7 +34,6 @@ Introduction
    Android/android
 
 .. raw:: latex
-
    \chapter{References}
 
 .. toctree::
