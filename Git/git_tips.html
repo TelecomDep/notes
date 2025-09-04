@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Git tips &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Kotlin" href="../Kotlin/kotlin.html" />
+    <link rel="prev" title="Documentation for Telecom Notes" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Git tips</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#git">1. Начало использования Git</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.1. Создание удалённого репозитория с целью объединения локального и удалённого.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.2. Создание локального репозитория</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#github-personal-auth-token">1.3. Персональный токен (GitHub personal auth token)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssh-github">1.4. Добавление SSH-ключа в профиль github</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">2. Небольшие практические наработки</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#commit">Перенести последний commit из одной ветки в текущую</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Удаление последнего коммита</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Восстановить удаленный коммит</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#vs-code">Объединение нескольких последних коммитов в один (VS Code)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Изменить имя пользователя</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Изменить имя автора последнего commit’а</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id8">Список Литературы</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Git tips</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Git/git_tips.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="git-tips">
+<h1>Git tips<a class="headerlink" href="#git-tips" title="Permalink to this heading"></a></h1>
+<section id="git">
+<h2>1. Начало использования Git<a class="headerlink" href="#git" title="Permalink to this heading"></a></h2>
+<p>Официальная ссылка на скачивание приложения Git - <a class="reference external" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+<p>ВАЖНО! !</p>
+<p>ИМЯ ЛОКАЛЬНОЙ ПАПКИ (репозитория) ДОЛЖНО СОВПАДАТЬ С УДАЛЕННЫМ РЕПОЗИТОРИЕМ</p>
+<section id="id1">
+<h3>1.1. Создание удалённого репозитория с целью объединения локального и удалённого.<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<p>Имя удалённого репозитория должно совпадать с названием локального репозитория (локальной папки проекта)</p>
+<p><img alt="git_test_2.PNG" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/git/git_test_2.png?raw=true" /></p>
+</section>
+<section id="id2">
+<h3>1.2. Создание локального репозитория<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Создать папку с названием проекта (репозитория)</span>
+mkdir<span class="w"> </span>git_test_2
+<span class="nb">cd</span><span class="w"> </span>git_test_2
+<span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;# git_test_2&quot;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>README.md
+<span class="c1"># Инициализация Git-репозитория (локального)</span>
+git<span class="w"> </span>init
+git<span class="w"> </span>add<span class="w"> </span>README.md<span class="w"> </span><span class="c1"># добавление файла в git </span>
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;first commit&quot;</span><span class="w"> </span><span class="c1"># первый &quot;слепок&quot; вашего проекта</span>
+git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>master<span class="w"> </span><span class="c1"># создание ветки с названием &quot;master&quot;</span>
+<span class="c1"># Добавление удаленного репозитория для дальнейшей синхронизации, где</span>
+<span class="c1"># origin - это название ссылки удаленного репозитория</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/fzybot/git_test_2.git
+
+<span class="c1"># загрузка всем коммитов на удаленный репозиторий</span>
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>master
+</pre></div>
+</div>
+</section>
+<section id="github-personal-auth-token">
+<h3>1.3. Персональный токен (GitHub personal auth token)<a class="headerlink" href="#github-personal-auth-token" title="Permalink to this heading"></a></h3>
+<p>Для получения персонального токена перейдите по ссылке ниже.</p>
+<p><a class="reference external" href="https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token">https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;username&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span><span class="s2">&quot;username@email.com&quot;</span>
+
+git<span class="w"> </span>clone<span class="w"> </span>&lt;personal<span class="w"> </span>repository&gt;
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>credential.helper<span class="w"> </span>cache
+git<span class="w"> </span>pull
+<span class="c1">#тут от вас потребуется ввести свой логин, </span>
+<span class="c1">#но вместо пароля вставьте персональный токен</span>
+<span class="c1">#&quot;username&quot;</span>
+<span class="c1">#&lt;TOKEN&gt;</span>
+<span class="c1">#Далее вы сможете обновлять репозиторий без постоянного ввода пароля и логина.</span>
+</pre></div>
+</div>
+</section>
+<section id="ssh-github">
+<h3>1.4. Добавление SSH-ключа в профиль github<a class="headerlink" href="#ssh-github" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://docs.github.com/ru/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">Оригинальная статья по подключению SSH к профилю github</a></p>
+<ol class="arabic simple">
+<li><p>Для начала необходимо сгенерировать SSH-ключ:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh-keygen<span class="w"> </span>-t<span class="w"> </span>ed25519<span class="w"> </span>-C<span class="w"> </span>your_email@example.com
+</pre></div>
+</div>
+<p>Путь и ключевую фразу добавляйте по желанию.</p>
+<ol class="arabic simple" start="2">
+<li><p>Выведете содержимое сгенерированных ключей (нам нжунен публичный <code class="docutils literal notranslate"><span class="pre">.pub</span></code>):</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>~/.ssh/
+cat<span class="w"> </span>id_ed25519.pub<span class="w"> </span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Копируем полученное содержимое в профиль github:</p></li>
+</ol>
+<p><img alt="git_add_ssh_key.PNG" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/git/github_add_ssh_key.png?raw=true" /></p>
+<ol class="arabic simple" start="4">
+<li><p>Клонируем репозиторий при помощи SSH-ссылки:</p></li>
+</ol>
+<p><img alt="git_add_ssh_key.PNG" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/git/git_clone_with_ssh.png?raw=true" /></p>
+<ol class="arabic simple" start="5">
+<li><p>Проверяем работу командами <code class="docutils literal notranslate"><span class="pre">push</span></code>, <code class="docutils literal notranslate"><span class="pre">pull</span></code>. Работа с профилем становится в разы удобнее.</p></li>
+</ol>
+</section>
+</section>
+<section id="id3">
+<h2>2. Небольшие практические наработки<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="commit">
+<h3>Перенести последний commit <a class="reference external" href="https://ru.stackoverflow.com/questions/57963/%D0%9F%D0%B5%D1%80%D0%B5%D0%BD%D0%B5%D1%81%D1%82%D0%B8-%D0%BA%D0%BE%D0%BC%D0%BC%D0%B8%D1%82-%D0%B8%D0%B7-%D0%BE%D0%B4%D0%BD%D0%BE%D0%B9-%D0%B2%D0%B5%D1%82%D0%BA%D0%B8-%D0%B2-%D0%B4%D1%80%D1%83%D0%B3%D1%83%D1%8E">из одной ветки в текущую</a><a class="headerlink" href="#commit" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Перенос последнего коммита в из ветки testBranch в текущую</span>
+<span class="c1"># Выполнить не из ветки targetBranch</span>
+git<span class="w"> </span>cherry-pick<span class="w"> </span>targetBranch
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Удаление последнего коммита<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#удаляет текущий коммит, переводит HEAD на предыдущий</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>HEAD~1<span class="w"> </span>
+
+<span class="c1"># заставляем удаленный репозиторий перейти на коммит после удаленного</span>
+git<span class="w"> </span>push<span class="w"> </span>-f<span class="w"> </span>origin<span class="w"> </span>master<span class="w"> </span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>Восстановить удаленный коммит<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://stackoverflow.com/questions/5473/how-can-i-undo-git-reset-hard-head1">https://stackoverflow.com/questions/5473/how-can-i-undo-git-reset-hard-head1</a></p>
+<p>Важно помнить, что git garbage collection производится примерно раз в месяц [<a class="reference external" href="https://www.notion.so/Git-38baaf5fd51b42abb9ec4e330923d5f6?pvs=21">2</a>].</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#Выводим информацию о HEAD несколько шагов назад</span>
+git<span class="w"> </span>reflog
+c4a978f5<span class="w"> </span><span class="o">(</span>HEAD<span class="w"> </span>-&gt;<span class="w"> </span>pusch_non_3gpp,<span class="w"> </span>origin/pusch_non_3gpp<span class="o">)</span><span class="w"> </span>HEAD@<span class="o">{</span><span class="m">0</span><span class="o">}</span>:<span class="w"> </span>pull:<span class="w"> </span>Fast-forward
+2964d9be<span class="w"> </span>HEAD@<span class="o">{</span><span class="m">1</span><span class="o">}</span>:<span class="w"> </span>reset:<span class="w"> </span>moving<span class="w"> </span>to<span class="w"> </span>HEAD~1
+4bcc52c4<span class="w"> </span>HEAD@<span class="o">{</span><span class="m">2</span><span class="o">}</span>:<span class="w"> </span>reset:<span class="w"> </span>moving<span class="w"> </span>to<span class="w"> </span>HEAD
+
+<span class="c1"># был удален, необходимо восстановить</span>
+**4bcc52c4<span class="w"> </span>HEAD@<span class="o">{</span><span class="m">3</span><span class="o">}</span>:<span class="w"> </span>commit:<span class="w"> </span><span class="m">10</span><span class="w"> </span>ssymbols<span class="w"> </span><span class="k">in</span><span class="w"> </span>slot<span class="w"> </span>-<span class="w"> </span>success,<span class="w"> </span>find<span class="w"> </span>seg11**
+<span class="w"> </span>
+2964d9be<span class="w"> </span>HEAD@<span class="o">{</span><span class="m">4</span><span class="o">}</span>:<span class="w"> </span>reset:<span class="w"> </span>moving<span class="w"> </span>to<span class="w"> </span>HEAD~
+360dd6b6<span class="w"> </span>HEAD@<span class="o">{</span><span class="m">5</span><span class="o">}</span>:<span class="w"> </span>pull:<span class="w"> </span>Fast-forward
+
+<span class="c1">#Ищем нужный, удаленный коммит и восстанавливаем по {SHA1 хэшу}.</span>
+git<span class="w"> </span>reset<span class="w"> </span>--hard<span class="w"> </span>4bcc52c4
+</pre></div>
+</div>
+</section>
+<section id="vs-code">
+<h3>Объединение нескольких последних коммитов в один (VS Code)<a class="headerlink" href="#vs-code" title="Permalink to this heading"></a></h3>
+<p>Выполняется при помощи интерактивного <strong>rebase</strong>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>rebase<span class="w"> </span>-i<span class="w"> </span>HEAD~8<span class="w"> </span><span class="c1"># 8 - количество коммитов, которые необходимо объединить в один</span>
+</pre></div>
+</div>
+<p>Далее, откроется окно редактора коммитов, будет выглядеть след. образом:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pick<span class="w"> </span>3d8c4702<span class="w"> </span>fapi<span class="w"> </span>в<span class="w"> </span>CMakeLists
+pick<span class="w"> </span>8f79668b<span class="w"> </span>Удалил<span class="w"> </span>неиспользуемые<span class="w"> </span>библиотеку<span class="w"> </span>nng<span class="w"> </span>и<span class="w"> </span>опцию<span class="w"> </span>is_server,<span class="w"> </span>начал<span class="w"> </span>переписывать<span class="w"> </span>файл<span class="w"> </span>sim_phy_main
+pick<span class="w"> </span>2e7ab2e0<span class="w"> </span>Поднимается<span class="w"> </span>туннель
+pick<span class="w"> </span>b21b5b9b<span class="w"> </span>Есть<span class="w"> </span>передача<span class="w"> </span>данных,<span class="w"> </span>не<span class="w"> </span>работает<span class="w"> </span>хэндовер,<span class="w"> </span>часто<span class="w"> </span>не<span class="w"> </span>доходит<span class="w"> </span>до<span class="w"> </span>ПД<span class="w"> </span>-<span class="w"> </span>PLMN<span class="w"> </span>не<span class="w"> </span>сходится<span class="w"> </span>TODO
+pick<span class="w"> </span>9e9b490c<span class="w"> </span>Исправлено:<span class="w"> </span>получение<span class="w"> </span>переотправок<span class="w"> </span>на<span class="w"> </span>L2/L3<span class="p">;</span><span class="w"> </span>DCIss_type<span class="w"> </span>после<span class="w"> </span>MSG4<span class="w"> </span>в<span class="w"> </span>sim_phy<span class="w"> </span>становится<span class="w"> </span>UE_specific<span class="w"> </span><span class="o">(</span>берется<span class="w"> </span>из<span class="w"> </span>L2<span class="w"> </span>конфигурации<span class="o">)</span>
+pick<span class="w"> </span>962a2179<span class="w"> </span>pucch_pdu<span class="w"> </span>и<span class="w"> </span>pusch_pdu<span class="w"> </span>теперь<span class="w"> </span>корректно<span class="w"> </span>отправляются<span class="w"> </span>в<span class="w"> </span>одном<span class="w"> </span>слоте
+pick<span class="w"> </span>691919fb<span class="w"> </span>Добавлена<span class="w"> </span>обработка<span class="w"> </span>Registration<span class="w"> </span>Accept<span class="w"> </span>и<span class="w"> </span>PDU<span class="w"> </span>Session<span class="w"> </span>Establishment<span class="w"> </span>Accept<span class="w"> </span>при<span class="w"> </span>получении<span class="w"> </span>через<span class="w"> </span>DL<span class="w"> </span>Information<span class="w"> </span>Transfer
+pick<span class="w"> </span>239a638f<span class="w"> </span>Работает<span class="w"> </span>ХО<span class="w"> </span>на<span class="w"> </span>UE<span class="w"> </span>через<span class="w"> </span>fapi<span class="w"> </span>sim
+....
+
+...
+
+<span class="c1"># Commands:</span>
+<span class="c1"># p, pick &lt;commit&gt; = use commit</span>
+<span class="c1"># r, reword &lt;commit&gt; = use commit, but edit the commit message</span>
+<span class="c1"># e, edit &lt;commit&gt; = use commit, but stop for amending</span>
+<span class="c1"># s, squash &lt;commit&gt; = use commit, but meld into previous commit</span>
+<span class="c1"># f, fixup &lt;commit&gt; = like &quot;squash&quot;, but discard this commit&#39;s log message</span>
+<span class="c1"># x, exec &lt;command&gt; = run command (the rest of the line) using shell</span>
+<span class="c1"># b, break = stop here (continue rebase later with &#39;git rebase --continue&#39;)</span>
+<span class="c1"># d, drop &lt;commit&gt; = remove commit</span>
+<span class="c1"># l, label &lt;label&gt; = label current HEAD with a name</span>
+<span class="c1"># t, reset &lt;label&gt; = reset HEAD to a label</span>
+<span class="c1"># m, merge [-C &lt;commit&gt; | -c &lt;commit&gt;] &lt;label&gt; [# &lt;oneline&gt;]</span>
+...
+...
+</pre></div>
+</div>
+<p>Порядок в списке коммитов читается <code class="docutils literal notranslate"><span class="pre">снизу</span> <span class="pre">вверх,</span> <span class="pre">внизу</span> <span class="pre">самый</span> <span class="pre">последний</span> <span class="pre">коммит</span></code>. Необходимо заменить <strong>pick</strong> нижних коммитов на <strong>squash</strong>, оставляя <strong>pick</strong> последний коммит в который вы хотите объединить все остальные.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>**pick**<span class="w"> </span>3d8c4702<span class="w"> </span>fapi<span class="w"> </span>в<span class="w"> </span>CMakeLists<span class="w"> </span><span class="c1"># Коммит, в который объеденятся остальные</span>
+squash<span class="w"> </span>8f79668b<span class="w"> </span>Удалил<span class="w"> </span>неиспользуемые<span class="w"> </span>библиотеку<span class="w"> </span>nng<span class="w"> </span>и<span class="w"> </span>опцию<span class="w"> </span>is_server,<span class="w"> </span>начал<span class="w"> </span>переписывать<span class="w"> </span>файл<span class="w"> </span>sim_phy_main
+squash<span class="w"> </span>2e7ab2e0<span class="w"> </span>Поднимается<span class="w"> </span>туннель
+squash<span class="w"> </span>b21b5b9b<span class="w"> </span>Есть<span class="w"> </span>передача<span class="w"> </span>данных,<span class="w"> </span>не<span class="w"> </span>работает<span class="w"> </span>хэндовер,<span class="w"> </span>часто<span class="w"> </span>не<span class="w"> </span>доходит<span class="w"> </span>до<span class="w"> </span>ПД<span class="w"> </span>-<span class="w"> </span>PLMN<span class="w"> </span>не<span class="w"> </span>сходится<span class="w"> </span>TODO
+squash<span class="w"> </span>9e9b490c<span class="w"> </span>Исправлено:<span class="w"> </span>получение<span class="w"> </span>переотправок<span class="w"> </span>на<span class="w"> </span>L2/L3<span class="p">;</span><span class="w"> </span>DCIss_type<span class="w"> </span>после<span class="w"> </span>MSG4<span class="w"> </span>в<span class="w"> </span>sim_phy<span class="w"> </span>становится<span class="w"> </span>UE_specific<span class="w"> </span><span class="o">(</span>берется<span class="w"> </span>из<span class="w"> </span>L2<span class="w"> </span>конфигурации<span class="o">)</span>
+squash<span class="w"> </span>962a2179<span class="w"> </span>pucch_pdu<span class="w"> </span>и<span class="w"> </span>pusch_pdu<span class="w"> </span>теперь<span class="w"> </span>корректно<span class="w"> </span>отправляются<span class="w"> </span>в<span class="w"> </span>одном<span class="w"> </span>слоте
+squash<span class="w"> </span>691919fb<span class="w"> </span>Добавлена<span class="w"> </span>обработка<span class="w"> </span>Registration<span class="w"> </span>Accept<span class="w"> </span>и<span class="w"> </span>PDU<span class="w"> </span>Session<span class="w"> </span>Establishment<span class="w"> </span>Accept<span class="w"> </span>при<span class="w"> </span>получении<span class="w"> </span>через<span class="w"> </span>DL<span class="w"> </span>Information<span class="w"> </span>Transfer
+squash<span class="w"> </span>239a638f<span class="w"> </span>Работает<span class="w"> </span>ХО<span class="w"> </span>на<span class="w"> </span>UE<span class="w"> </span>через<span class="w"> </span>fapi<span class="w"> </span>sim
+....
+</pre></div>
+</div>
+<p>Сохраняем и закрываем файл. Далее, вам предложат отредактировать комментарии, т.к. они все объединятся  в одном комментарии. Аналогично, сохраняем и закрываем. Проверить можно будет при помощи команды:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>log
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>Изменить имя пользователя<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">config</span> <span class="o">--</span><span class="k">global</span> <span class="o">--</span><span class="n">replace</span><span class="o">-</span><span class="nb">all</span> <span class="n">user</span><span class="o">.</span><span class="n">name</span> <span class="s2">&quot;new name&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>Изменить имя автора последнего commit’а<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>Вероятно вы работаете в нескольких компаниях и случайно оставили <code class="docutils literal notranslate"><span class="pre">—global</span> <span class="pre">user.*</span></code> одной из них. Вы случайно могли выполнить <code class="docutils literal notranslate"><span class="pre">commit</span></code> не под тем пользователем\автором. Не составит труда изменить авторство последнего <code class="docutils literal notranslate"><span class="pre">commit’а</span></code>:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">git</span><span class="w"> </span><span class="n">commit</span><span class="w"> </span><span class="o">--</span><span class="n">amend</span><span class="w"> </span><span class="o">--</span><span class="n">author</span><span class="o">=</span><span class="s">&quot;John Doe &lt;john@doe.org&gt;&quot;</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id8">
+<h2>Список Литературы<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h2>
+<p>[1] Краткое видео по основам работы с Git - <a class="reference external" href="https://www.youtube.com/watch?v=SWYqp7iY_Tc">https://www.youtube.com/watch?v=SWYqp7iY_Tc</a></p>
+<p>[2] git-gc - <a class="reference external" href="https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-gc.html">https://mirrors.edge.kernel.org/pub/software/scm/git/docs/git-gc.html</a></p>
+<p>[3] Онлайн-редактор оформления Readme. [Online]. Available: <a class="reference external" href="https://www.notion.so/Git-38baaf5fd51b42abb9ec4e330923d5f6?pvs=21">https://humble-ballcap-e09.notion.site/Git-38baaf5fd51b42abb9ec4e330923d5f6?pvs=4</a></p>
+<p>[4] Git в игровой форме - <a class="reference external" href="https://learngitbranching.js.org/?locale=ru_RU">https://learngitbranching.js.org/?locale=ru_RU</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="Documentation for Telecom Notes" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Kotlin/kotlin.html" class="btn btn-neutral float-right" title="Kotlin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
