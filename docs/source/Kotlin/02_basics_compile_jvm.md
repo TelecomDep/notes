@@ -35,18 +35,18 @@ JVM может быть установлена на любую операцио�
 
 Кратко по каждому блоку:
 1. Инструменты разработки `Java (JDT)` - это набор расширений рабочей среды, с помощью которого можно редактировать, компилировать и запускать программы на Java.
-1.1 `javac` - компилятор языка Java. Преобразует `*.java` в байт-код `*.class`;
-1.2 `javap` - дизассемблер языка Java. Применяет обратную опереацию `javac`, преобразует `*.class` в понятный человеку формат;
-1.3 `VisualVM` - удобная утилита для визуализации, мониторинга, профилирования приложений Java;
-1.4 `Other` - набор доп. инструментов (Basic Tools, Security Tools, Monitoring and Troubleshooting Tools, Deployment Tools, etc.);
+  1.1 `javac` - компилятор языка Java. Преобразует `*.java` в байт-код `*.class`;
+  1.2 `javap` - дизассемблер языка Java. Применяет обратную опереацию `javac`, преобразует `*.class` в понятный человеку формат;
+  1.3 `VisualVM` - удобная утилита для визуализации, мониторинга, профилирования приложений Java;
+  1.4 `Other` - набор доп. инструментов (Basic Tools, Security Tools, Monitoring and Troubleshooting Tools, Deployment Tools, etc.);
 
 2. `Kotlin Multiplatform` - включает в себя компилятор для разны сред разработки (JVM, JS, Native);
-2.1 `kotlinc` - компилятор языка Kotlin. Преобразует `*.kt` в `байт-код`, понятный `JVM`. 
-2.2 etc.
+  2.1 `kotlinc` - компилятор языка Kotlin. Преобразует `*.kt` в `байт-код`, понятный `JVM`. 
+  2.2 etc.
 
 3. `JRE (Java Runtime Environment)` - среда выполнения Java. Необходима для запуска программ. Состоит из:
-3.1 Виртуальной машины Java (`JVM`) - сердце работы программ;
-3.2 Стандартная библиотека классов Java (`java.io`, `java.lang`, `java.math`, `java.net`, etc.).
+  3.1 Виртуальной машины Java (`JVM`) - сердце работы программ;
+  3.2 Стандартная библиотека классов Java (`java.io`, `java.lang`, `java.math`, `java.net`, etc.).
 
 ### Байт-код
 
@@ -55,17 +55,80 @@ JVM может быть установлена на любую операцио�
 В созданном проекте откроем файл `/src/application.kt` (создается по умолчанию, если не менять настройки). Добавим немного кода:
 
 ```kotlin
-fun main(){ // main() - точка входа в программу
-    var age: Int
-    var counter : Long = 20
-    age = 23
-    counter = counter + age
-    age *= 2
-    println(age)
-    println(counter)
-    println("Hello World!")
+fun main(){ // Точка входа в программу
+
+    var number_01: Int = 10
+    var number_02: Int = 30
+    println(number_01)
+    println(number_02)
+
+    number_01 *= 2
+    number_02 += 20
+
+    println(number_01)
+    println(number_02)
+    println("Hello world!")
+
 }
 ```
+С помощью встроенных инструментов Intellij IDEA (`Tools` -> `Kotlin` -> `Show Kotlin Bytecode`) получаем дизассемблированный байткод.
+
+```kotlin
+// ================ApplicationKt.class =================
+// class version 52.0 (52)
+// access flags 0x31
+public final class ApplicationKt {
+
+  // compiled from: application.kt
+
+  @Lkotlin/Metadata;(mv={2, 2, 0}, k=2, xi=48, d1={"\u0000\u0008\n\u0000\n\u0002\u0010\u0002\n\u0000\u001a\u0006\u0010\u0000\u001a\u00020\u0001\u00a8\u0006\u0002"}, d2={"main", "", "HelloKotlin"})
+
+  // access flags 0x19
+  public final static main()V
+   L0
+    LINENUMBER 3 L0
+    BIPUSH 10
+    ISTORE 0
+   L1
+    LINENUMBER 4 L1
+    BIPUSH 30
+    ISTORE 1
+   L2
+    LINENUMBER 5 L2
+    IINC 1 20
+   L3
+    LINENUMBER 7 L3
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    ILOAD 0
+    INVOKEVIRTUAL java/io/PrintStream.println (I)V
+   L4
+    LINENUMBER 8 L4
+    GETSTATIC java/lang/System.out : Ljava/io/PrintStream;
+    ILOAD 1
+    INVOKEVIRTUAL java/io/PrintStream.println (I)V
+   L5
+    LINENUMBER 9 L5
+    RETURN
+   L6
+    LOCALVARIABLE number_01 I L1 L6 0
+    LOCALVARIABLE number_02 I L2 L6 1
+    MAXSTACK = 2
+    MAXLOCALS = 2
+
+  // access flags 0x1009
+  public static synthetic main([Ljava/lang/String;)V
+   L0
+    INVOKESTATIC ApplicationKt.main ()V
+    RETURN
+   L1
+    LOCALVARIABLE args [Ljava/lang/String; L0 L1 0
+    MAXSTACK = 0
+    MAXLOCALS = 1
+}
+```
+
+На данный момент не очень понятны команды `BIPUSH`, `ISTORE`, `ILOAD` и т.д.
+Для этого необходимо немного погрузиться в кухню **Java Virtual Machine**.
 
 ### Виртуальная машина Java (JVM)
 
