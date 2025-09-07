@@ -21,7 +21,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Android" href="../Android/android.html" />
-    <link rel="prev" title="Установка средств разработки" href="01_install_first_program.html" /> 
+    <link rel="prev" title="0. Основы Kotlin" href="02_basic.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -59,6 +59,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="kotlin.html">Kotlin</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="00_introduction.html">Введение в язык Kotlin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_install_first_program.html">Установка средств разработки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basic.html">0. Основы Kotlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basic.html#id1">Переменные (изменяемые и неизменяемые)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basic.html#id3">Условные операторы</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basic.html#id4">Функции</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basic.html#classes">Classes</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Основы языка Kotlin</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#java-jvm">Цели создания виртуальной машины Java (JVM)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#kotlin-jdk-java-development-kit">Архитектура взаимодействия Kotlin с JDK (Java Development Kit)</a><ul>
@@ -152,18 +157,79 @@
 <h3>Байт-код<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p>Запустим <code class="docutils literal notranslate"><span class="pre">Intellij</span> <span class="pre">Idea</span></code>, создадим простой проект для демонстрации компиляции из <code class="docutils literal notranslate"><span class="pre">*.kt</span></code> в <code class="docutils literal notranslate"><span class="pre">*.class</span></code>.</p>
 <p>В созданном проекте откроем файл <code class="docutils literal notranslate"><span class="pre">/src/application.kt</span></code> (создается по умолчанию, если не менять настройки). Добавим немного кода:</p>
-<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"> </span><span class="c1">// main() - точка входа в программу</span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">counter</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
-<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">23</span>
-<span class="w">    </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">age</span>
-<span class="w">    </span><span class="n">age</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="m">2</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">age</span><span class="p">)</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">)</span>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"> </span><span class="c1">// Точка входа в программу</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">number_01</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">number_02</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">number_01</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">number_02</span><span class="p">)</span>
+
+<span class="w">    </span><span class="n">number_01</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="n">number_02</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">20</span>
+
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">number_01</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">number_02</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">)</span>
+
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>С помощью встроенных инструментов Intellij IDEA (<code class="docutils literal notranslate"><span class="pre">Tools</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Kotlin</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Kotlin</span> <span class="pre">Bytecode</span></code>) получаем дизассемблированный байткод.</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// ================ApplicationKt.class =================</span>
+<span class="c1">// class version 52.0 (52)</span>
+<span class="c1">// access flags 0x31</span>
+<span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ApplicationKt</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="c1">// compiled from: application.kt</span>
+
+<span class="w">  </span><span class="nd">@Lkotlin</span><span class="o">/</span><span class="n">Metadata</span><span class="p">;(</span><span class="n">mv</span><span class="o">=</span><span class="p">{</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">},</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">xi</span><span class="o">=</span><span class="m">48</span><span class="p">,</span><span class="w"> </span><span class="n">d1</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;\u0000\u0008\n\u0000\n\u0002\u0010\u0002\n\u0000\u001a\u0006\u0010\u0000\u001a\u00020\u0001\u00a8\u0006\u0002&quot;</span><span class="p">},</span><span class="w"> </span><span class="n">d2</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;main&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HelloKotlin&quot;</span><span class="p">})</span>
+
+<span class="w">  </span><span class="c1">// access flags 0x19</span>
+<span class="w">  </span><span class="n">public</span><span class="w"> </span><span class="n">final</span><span class="w"> </span><span class="n">static</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="n">V</span>
+<span class="w">   </span><span class="n">L0</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="n">L0</span>
+<span class="w">    </span><span class="n">BIPUSH</span><span class="w"> </span><span class="m">10</span>
+<span class="w">    </span><span class="n">ISTORE</span><span class="w"> </span><span class="m">0</span>
+<span class="w">   </span><span class="n">L1</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="n">L1</span>
+<span class="w">    </span><span class="n">BIPUSH</span><span class="w"> </span><span class="m">30</span>
+<span class="w">    </span><span class="n">ISTORE</span><span class="w"> </span><span class="m">1</span>
+<span class="w">   </span><span class="n">L2</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="n">L2</span>
+<span class="w">    </span><span class="n">IINC</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">20</span>
+<span class="w">   </span><span class="n">L3</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="n">L3</span>
+<span class="w">    </span><span class="n">GETSTATIC</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Ljava</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ILOAD</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="n">INVOKEVIRTUAL</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">.</span><span class="na">println</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="n">V</span>
+<span class="w">   </span><span class="n">L4</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="n">L4</span>
+<span class="w">    </span><span class="n">GETSTATIC</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Ljava</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ILOAD</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="n">INVOKEVIRTUAL</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">.</span><span class="na">println</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="n">V</span>
+<span class="w">   </span><span class="n">L5</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="n">L5</span>
+<span class="w">    </span><span class="n">RETURN</span>
+<span class="w">   </span><span class="n">L6</span>
+<span class="w">    </span><span class="n">LOCALVARIABLE</span><span class="w"> </span><span class="n">number_01</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">L1</span><span class="w"> </span><span class="n">L6</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="n">LOCALVARIABLE</span><span class="w"> </span><span class="n">number_02</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">L2</span><span class="w"> </span><span class="n">L6</span><span class="w"> </span><span class="m">1</span>
+<span class="w">    </span><span class="n">MAXSTACK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="n">MAXLOCALS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span>
+
+<span class="w">  </span><span class="c1">// access flags 0x1009</span>
+<span class="w">  </span><span class="n">public</span><span class="w"> </span><span class="n">static</span><span class="w"> </span><span class="n">synthetic</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="o">[</span><span class="n">Ljava</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="kt">String</span><span class="p">;)</span><span class="n">V</span>
+<span class="w">   </span><span class="n">L0</span>
+<span class="w">    </span><span class="n">INVOKESTATIC</span><span class="w"> </span><span class="n">ApplicationKt</span><span class="p">.</span><span class="na">main</span><span class="w"> </span><span class="p">()</span><span class="n">V</span>
+<span class="w">    </span><span class="n">RETURN</span>
+<span class="w">   </span><span class="n">L1</span>
+<span class="w">    </span><span class="n">LOCALVARIABLE</span><span class="w"> </span><span class="n">args</span><span class="w"> </span><span class="o">[</span><span class="n">Ljava</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="kt">String</span><span class="p">;</span><span class="w"> </span><span class="n">L0</span><span class="w"> </span><span class="n">L1</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="n">MAXSTACK</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="n">MAXLOCALS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>На данный момент не очень понятны команды <code class="docutils literal notranslate"><span class="pre">BIPUSH</span></code>, <code class="docutils literal notranslate"><span class="pre">ISTORE</span></code>, <code class="docutils literal notranslate"><span class="pre">ILOAD</span></code> и т.д.
+Для этого необходимо немного погрузиться в кухню <strong>Java Virtual Machine</strong>.</p>
 </section>
 <section id="id2">
 <h3>Виртуальная машина Java (JVM)<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
@@ -241,7 +307,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_install_first_program.html" class="btn btn-neutral float-left" title="Установка средств разработки" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_basic.html" class="btn btn-neutral float-left" title="0. Основы Kotlin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="../Android/android.html" class="btn btn-neutral float-right" title="Android" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

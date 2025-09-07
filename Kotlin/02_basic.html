@@ -19,7 +19,9 @@
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Основы языка Kotlin" href="02_basics_compile_jvm.html" />
+    <link rel="prev" title="Установка средств разработки" href="01_install_first_program.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -53,8 +55,32 @@
 <li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="kotlin.html">Kotlin</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="kotlin.html">Kotlin</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="00_introduction.html">Введение в язык Kotlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_install_first_program.html">Установка средств разработки</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">0. Основы Kotlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Переменные (изменяемые и неизменяемые)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Константы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#type-inference">Интерфейс автоматический типизации (Type inference)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#null-safety">Null safety</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Условные операторы</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">Функции</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#simplifying-function-declarations">Simplifying function declarations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#anonymous-functions">Anonymous functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#higher-order-functions">Higher-order functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class-functions-and-encapsulation">Class functions and encapsulation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02_basics_compile_jvm.html">Основы языка Kotlin</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Android</span></p>
 <ul>
@@ -79,6 +105,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="kotlin.html">Kotlin</a></li>
       <li class="breadcrumb-item active">0. Основы Kotlin</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Kotlin/02_basic.md.txt" rel="nofollow"> View page source</a>
@@ -147,7 +174,7 @@
 </div>
 </section>
 <section id="type-inference">
-<h2>Type inference<a class="headerlink" href="#type-inference" title="Permalink to this heading"></a></h2>
+<h2>Интерфейс автоматический типизации (Type inference)<a class="headerlink" href="#type-inference" title="Permalink to this heading"></a></h2>
 <p>Продолжая предыдущий пример, когда вы присваиваете начальное значение <code class="docutils literal notranslate"><span class="pre">languageName</span></code> , компилятор Kotlin может определить тип на основе типа присвоенного значения.</p>
 <p>Поскольку значение <code class="docutils literal notranslate"><span class="pre">&quot;Kotlin&quot;</span></code> имеет тип <code class="docutils literal notranslate"><span class="pre">String</span></code> , компилятор делает вывод, что <code class="docutils literal notranslate"><span class="pre">languageName</span></code> также является <code class="docutils literal notranslate"><span class="pre">String</span></code> . Обратите внимание, что Kotlin — <strong><em>статически типизированный</em></strong> язык. Это означает, что тип определяется во время компиляции и никогда не изменяется.</p>
 <p>В следующем примере <code class="docutils literal notranslate"><span class="pre">languageName</span></code> выводится как <code class="docutils literal notranslate"><span class="pre">String</span></code> , поэтому вы не можете вызывать какие-либо функции, которые не являются частью класса <code class="docutils literal notranslate"><span class="pre">String</span></code> :</p>
@@ -176,8 +203,8 @@
 <p>Kotlin предоставляет ряд механизмов для безопасной работы с переменными, допускающими значение NULL. Дополнительные сведения см. в <a class="reference external" href="https://developer.android.com/kotlin/common-patterns?hl=ru#nullability">разделе Общие шаблоны Kotlin в Android: Nullability</a> .</p>
 </section>
 </section>
-<section id="conditionals">
-<h1>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this heading"></a></h1>
+<section id="id3">
+<h1>Условные операторы<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h1>
 <p>Котлин предлагает несколько механизмов реализации условной логики. Наиболее распространенным из них является <strong><em>оператор if-else</em></strong> . Если выражение, заключенное в круглые скобки рядом с ключевым словом <code class="docutils literal notranslate"><span class="pre">if</span></code> имеет значение <code class="docutils literal notranslate"><span class="pre">true</span></code> , то выполняется код внутри этой ветви (т. е. код, следующий сразу за ним и заключенный в фигурные скобки). В противном случае выполняется код внутри ветки <code class="docutils literal notranslate"><span class="pre">else</span></code> .</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">42</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;I have the answer.&quot;</span><span class="p">)</span>
@@ -210,7 +237,7 @@
 </div>
 <p>Неявно каждая условная ветвь возвращает результат выражения в своей последней строке, поэтому вам не нужно использовать ключевое слово <code class="docutils literal notranslate"><span class="pre">return</span></code> . Поскольку результат всех трех ветвей имеет тип <code class="docutils literal notranslate"><span class="pre">String</span></code> , результат выражения if-else также имеет тип <code class="docutils literal notranslate"><span class="pre">String</span></code> . В этом примере <code class="docutils literal notranslate"><span class="pre">answerString</span></code> присваивается начальное значение из результата выражения if-else. Вывод типа можно использовать, чтобы опустить явное объявление типа для <code class="docutils literal notranslate"><span class="pre">answerString</span></code> , но часто полезно включить его для ясности.</p>
 <p><strong>Примечание.</strong> Котлин не включает традиционный <a class="reference external" href="https://en.wikipedia.org/wiki/%3F:">тернарный оператор</a> , вместо этого предпочитает использование условных выражений.</p>
-<p>По мере роста сложности условного оператора вы можете рассмотреть возможность замены выражения if-else выражением <em>if</em> , как показано в следующем примере:</p>
+<p>По мере роста сложности условного оператора вы можете рассмотреть возможность замены выражения if-else выражением <em>when</em> , как показано в следующем примере:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">answerString</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">when</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">42</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;I have the answer.&quot;</span>
 <span class="w">        </span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">35</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="s">&quot;The answer is close.&quot;</span>
@@ -221,18 +248,9 @@
 </pre></div>
 </div>
 <p>Каждая ветвь выражения <code class="docutils literal notranslate"><span class="pre">when</span></code> представлена ​​условием, стрелкой ( <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> ) и результатом. Если условие в левой части стрелки принимает значение true, то возвращается результат выражения в правой части. Обратите внимание, что выполнение не переходит от одной ветки к другой. Код в примере выражения <code class="docutils literal notranslate"><span class="pre">when</span></code> функционально эквивалентен коду в предыдущем примере, но, возможно, его легче читать.</p>
-<p>Условные выражения Kotlin подчеркивают одну из его наиболее мощных функций — <em>умное приведение типов</em> . Вместо использования оператора безопасного вызова или оператора утверждения ненулевого значения для работы со значениями, допускающими значение NULL, вы можете вместо этого проверить, содержит ли переменная ссылку на значение NULL, используя условный оператор, как показано в следующем примере:</p>
-<div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">languageName</span><span class="p">:</span><span class="w"> </span><span class="kt">String?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">languageName</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// No need to write languageName?.toUpperCase()</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">languageName</span><span class="p">.</span><span class="na">toUpperCase</span><span class="p">())</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Внутри условной ветви <code class="docutils literal notranslate"><span class="pre">languageName</span></code> может рассматриваться как не допускающее значения NULL. Kotlin достаточно умен, чтобы распознать, что условием выполнения ветки является то, что <code class="docutils literal notranslate"><span class="pre">languageName</span></code> не содержит нулевого значения, поэтому вам не нужно рассматривать <code class="docutils literal notranslate"><span class="pre">languageName</span></code> как допускающий значение NULL в этой ветке. Это умное приведение работает для проверок на null, <a class="reference external" href="https://kotlinlang.org/docs/reference/typecasts.html#is-and-is-operators">проверок типов</a> или любых условий, удовлетворяющих <a class="reference external" href="https://kotlinlang.org/docs/reference/whatsnew13.html#contracts">контракту</a> .</p>
 </section>
-<section id="functions">
-<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading"></a></h1>
+<section id="id4">
+<h1>Функции<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h1>
 <p>Вы можете сгруппировать одно или несколько выражений в <em>функцию</em> . Вместо повторения одной и той же серии выражений каждый раз, когда вам нужен результат, вы можете обернуть выражения в функцию и вместо этого вызвать эту функцию.</p>
 <p>Чтобы объявить функцию, используйте ключевое слово <code class="docutils literal notranslate"><span class="pre">fun</span></code> , за которым следует имя функции. Затем определите типы входных данных, которые принимает ваша функция, если таковые имеются, и объявите тип выходных данных, которые она возвращает. В теле функции вы определяете выражения, которые вызываются при вызове вашей функции.</p>
 <p>Основываясь на предыдущих примерах, вот полная функция Kotlin:</p>
@@ -393,7 +411,10 @@
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="01_install_first_program.html" class="btn btn-neutral float-left" title="Установка средств разработки" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_basics_compile_jvm.html" class="btn btn-neutral float-right" title="Основы языка Kotlin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

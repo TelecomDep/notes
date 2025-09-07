@@ -50,7 +50,7 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Практические задания</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#git">0. Ведение Git-репозитория (требования)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#kotlin-java-virtual-machine">1. Байт-код Kotlin + Java Virtual Machine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1. Основы синтаксиса. “Ходячий”</a></li>
 </ul>
 </li>
 </ul>
@@ -110,8 +110,20 @@
 <li><p>Выполнить первый commit с обновленным README.MD, где будут указана информация о Вас (ФИО, № группы).</p></li>
 </ol>
 </section>
-<section id="kotlin-java-virtual-machine">
-<h2>1. Байт-код Kotlin + Java Virtual Machine<a class="headerlink" href="#kotlin-java-virtual-machine" title="Permalink to this heading"></a></h2>
+<section id="id2">
+<h2>1. Основы синтаксиса. “Ходячий”<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Создать проект в <code class="docutils literal notranslate"><span class="pre">Intellij</span> <span class="pre">Idea</span></code> с названием вашего репозитория на <code class="docutils literal notranslate"><span class="pre">Github</span></code>, либо создать проект внутри директории, если вы уже связали репозиторий на <code class="docutils literal notranslate"><span class="pre">Github</span></code> с локальным на вашей машине;</p></li>
+<li><p>Создвать новую ветку в вашем <code class="docutils literal notranslate"><span class="pre">Git-проекте</span></code> с названием практического задания;</p></li>
+<li><p>В созданном проекте, по умолчанию будет создан <code class="docutils literal notranslate"><span class="pre">sample</span> <span class="pre">code</span></code>, в котором и будет продолжаться дальнейшая работа;</p></li>
+<li><p>Создать Класс <code class="docutils literal notranslate"><span class="pre">Human</span></code>, с свойствами: <code class="docutils literal notranslate"><span class="pre">ФИО</span></code>, <code class="docutils literal notranslate"><span class="pre">Возраст</span></code>, <code class="docutils literal notranslate"><span class="pre">Текущая</span> <span class="pre">скорость</span></code>;</p></li>
+<li><p>Класс должен содержать методы: конструктор со всеми свойствами, метод <code class="docutils literal notranslate"><span class="pre">move()</span></code>, геттеры и сеттеры свойств класса;</p></li>
+<li><p>Метод <code class="docutils literal notranslate"><span class="pre">move()</span></code> должен реализовать один из методов моделирования движений (в Картезианской системе координат): Waypoint Walk, Random Walk, Gauss-Markov Mobility Model;</p></li>
+<li><p>В функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> создать массив из экземпляров (количество зависит от вашего номер в списке группы) класса <code class="docutils literal notranslate"><span class="pre">Human()</span></code>, задать время “симуляции” (на свое усмотрение, в секундах), где в основном цикле “времени” заствить каждого Human ходить;</p></li>
+<li><p>Сделать коммит (один или несколько) и обновить в удаленном репозитории (git push);
+9 Слить текущую ветку в “основную\стартовую” после проверки преподавателем.</p></li>
+</ol>
+<!-- ## 1. Байт-код Kotlin + Java Virtual Machine -->
 <!-- ## 1. Разработка простейшего калькулятора
 Разработать простую версию калькулятора, используя `TextView`, `Button` и обработчик нажатия (`onClickListener`).
 
