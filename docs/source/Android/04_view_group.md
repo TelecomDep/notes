@@ -1,6 +1,6 @@
 # 4. Работа ViewGroup
 Снова про `root` класс для всех виджетов. 
-# View
+## View
 Android SDK включает множество виджетов, которые являются дочерним классом класса `View`. Таким образом, каждый виджет является экземпляром класса `View`, как и отражено на рисунке ниже. 
 
 ![alt text](https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true )
@@ -8,7 +8,7 @@ Android SDK включает множество виджетов, которые
 Рис. 1. Иерархия класса `View`. [Источник изображения](https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg).
 
 
-# ViewGroup
+## ViewGroup
 
 Макет определяет структуру пользовательского интерфейса в вашем приложении, например в [действии](https://developer.android.com/guide/components/activities?hl=ru) . Все элементы макета построены с использованием иерархии объектов [View](https://developer.android.com/reference/android/view/View?hl=ru) и [ViewGroup](https://developer.android.com/reference/android/view/ViewGroup?hl=ru) . `View` обычно рисует то, что пользователь может видеть и с чем может взаимодействовать. `ViewGroup` — это невидимый контейнер, определяющий структуру макета для `View` и других объектов `ViewGroup` , как показано на рисунке 1.
 
@@ -51,7 +51,7 @@ Android SDK включает множество виджетов, которые
 
 Дополнительные сведения о синтаксисе XML-файла макета см. в [разделе layout-resource](https://developer.android.com/guide/topics/resources/layout-resource?hl=ru) .
 
-## Подключение XML-res
+### Подключение XML-res
 
 При компиляции приложения каждый файл макета XML компилируется в ресурс `View` . Загрузите ресурс макета в реализацию обратного вызова [Activity.onCreate()](https://developer.android.com/reference/android/app/Activity?hl=ru#onCreate(android.os.Bundle)) вашего приложения. Сделайте это, вызвав [setContentView()](https://developer.android.com/reference/android/app/Activity?hl=ru#setContentView(int)) , передав ему ссылку на ваш ресурс макета в форме: `R.layout. _layout_file_name_` . Например, если ваш XML-макет сохранен как `main_layout.xml` , загрузите его для своей `Activity` следующим образом:
 ```Kotlin
@@ -62,7 +62,7 @@ fun onCreate(savedInstanceState: Bundle) {
 ```
 Платформа Android вызывает метод обратного вызова `onCreate()` в вашем `Activity` при запуске `Activity` . Дополнительные сведения о жизненных циклах действий см. в [разделе Введение в действия](https://developer.android.com/guide/components/activities?hl=ru#Lifecycle) .
 
-## Атрибуты
+### Атрибуты
 
 Каждый объект `View` и `ViewGroup` поддерживает собственный набор атрибутов XML. Некоторые атрибуты специфичны для объекта `View` . Например, `TextView` поддерживает атрибут `textSize` . Однако эти атрибуты также наследуются любыми объектами `View` , расширяющими этот класс. Некоторые из них являются общими для всех объектов `View` , поскольку они наследуются от корневого класса `View` , например атрибут `id` . Другие атрибуты считаются _параметрами макета_ , которые являются атрибутами, описывающими определенные ориентации макета объекта `View` , как определено родительским объектом `ViewGroup` этого объекта.
 
