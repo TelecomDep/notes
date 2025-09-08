@@ -19,7 +19,9 @@
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Работа c сокетами (Sockets). Библиотека Zero MQ." href="sockets/06_sockets_zmq.html" />
+    <link rel="prev" title="4. Работа ViewGroup" href="04_view_group.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,8 +59,39 @@
 <li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Android</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="android.html">Android</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">2. Создание первого приложения (начало)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_app_architecture.html">3. Архитектура приложения</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#view">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#id1">ViewGroup</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Работа виджетами из Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#view">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Создание нового Activity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#activity-intent">Переход между Activity (Intent, вкратце)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#views">Виджеты (Views)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#findviewbyid">findViewById()</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#textview">TextView</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Атрибуты</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#button">Button</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#onclick">Первый, атрибут - onClick</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setonclicklistener">Второй, метод - setOnClickListener()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#onclicklistener">Третий, интерфейс - OnClickListener()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#seekbar">SeekBar (Слайдер)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets). Библиотека Zero MQ.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#id1">Основные функции сокетов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#linux">Директории ОС Linux</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
 <ul>
@@ -79,6 +112,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
       <li class="breadcrumb-item active">5. Работа виджетами из Activity</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Android/05_widgets.md.txt" rel="nofollow"> View page source</a>
@@ -335,7 +369,10 @@ cls – The component class that is to be used for the intent.
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="04_view_group.html" class="btn btn-neutral float-left" title="4. Работа ViewGroup" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sockets/06_sockets_zmq.html" class="btn btn-neutral float-right" title="6. Работа c сокетами (Sockets). Библиотека Zero MQ." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
