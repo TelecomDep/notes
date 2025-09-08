@@ -63,12 +63,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="02_first_app.html">2. Создание первого приложения (начало)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_app_architecture.html">3. Архитектура приложения</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Работа ViewGroup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#view">View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">ViewGroup</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#xml">XML</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xml-res">Подключение XML-res</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Атрибуты</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Работа ViewGroup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#view">View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">ViewGroup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xml">XML</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xml-res">Подключение XML-res</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Атрибуты</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id3">ИДЕНТИФИКАТОР</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id4">Параметры макета</a></li>
 </ul>
@@ -77,12 +77,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#view">View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#id1">Создание нового Activity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#views">Виджеты (Views)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets). Библиотека Zero MQ.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#id1">Основные функции сокетов</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#linux">Директории ОС Linux</a></li>
 </ul>
 </li>
 </ul>
@@ -119,15 +114,14 @@
   <section id="viewgroup">
 <h1>4. Работа ViewGroup<a class="headerlink" href="#viewgroup" title="Permalink to this heading"></a></h1>
 <p>Снова про <code class="docutils literal notranslate"><span class="pre">root</span></code> класс для всех виджетов.</p>
-</section>
 <section id="view">
-<h1>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h1>
+<h2>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h2>
 <p>Android SDK включает множество виджетов, которые являются дочерним классом класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. Таким образом, каждый виджет является экземпляром класса <code class="docutils literal notranslate"><span class="pre">View</span></code>, как и отражено на рисунке ниже.</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true" /></p>
 <p>Рис. 1. Иерархия класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. <a class="reference external" href="https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg">Источник изображения</a>.</p>
 </section>
 <section id="id1">
-<h1>ViewGroup<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h2>ViewGroup<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Макет определяет структуру пользовательского интерфейса в вашем приложении, например в <a class="reference external" href="https://developer.android.com/guide/components/activities?hl=ru">действии</a> . Все элементы макета построены с использованием иерархии объектов <a class="reference external" href="https://developer.android.com/reference/android/view/View?hl=ru">View</a> и <a class="reference external" href="https://developer.android.com/reference/android/view/ViewGroup?hl=ru">ViewGroup</a> . <code class="docutils literal notranslate"><span class="pre">View</span></code> обычно рисует то, что пользователь может видеть и с чем может взаимодействовать. <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> — это невидимый контейнер, определяющий структуру макета для <code class="docutils literal notranslate"><span class="pre">View</span></code> и других объектов <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> , как показано на рисунке 1.</p>
 <p><img alt="" src="https://developer.android.com/static/images/viewgroup_2x.png?hl=ru" /></p>
 <p><strong>Рисунок 1.</strong> Иллюстрация иерархии представлений, определяющей макет пользовательского интерфейса.</p>
@@ -138,6 +132,7 @@
 <li><p><strong>Создание экземпляров элементов макета во время выполнения.</strong> Ваше приложение может создавать объекты <code class="docutils literal notranslate"><span class="pre">View</span></code> и <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> и программно управлять их свойствами.</p></li>
 </ul>
 <p><strong>Совет:</strong> Для отладки макета во время выполнения используйте инструмент <a class="reference external" href="https://developer.android.com/studio/debug/layout-inspector?hl=ru">«Инспектор макета»</a> .</p>
+</section>
 <section id="xml">
 <h2>XML<a class="headerlink" href="#xml" title="Permalink to this heading"></a></h2>
 <p>Используя словарь XML Android, вы можете быстро разрабатывать макеты пользовательского интерфейса и элементы экрана, которые они содержат, точно так же, как вы создаете веб-страницы в HTML с рядом вложенных элементов.</p>
@@ -160,9 +155,8 @@
 </div>
 <p>После объявления макета в XML сохраните файл с расширением <code class="docutils literal notranslate"><span class="pre">.xml</span></code> в каталоге <code class="docutils literal notranslate"><span class="pre">res/layout/</span></code> вашего проекта Android, чтобы он правильно скомпилировался.</p>
 <p>Дополнительные сведения о синтаксисе XML-файла макета см. в <a class="reference external" href="https://developer.android.com/guide/topics/resources/layout-resource?hl=ru">разделе layout-resource</a> .</p>
-</section>
 <section id="xml-res">
-<h2>Подключение XML-res<a class="headerlink" href="#xml-res" title="Permalink to this heading"></a></h2>
+<h3>Подключение XML-res<a class="headerlink" href="#xml-res" title="Permalink to this heading"></a></h3>
 <p>При компиляции приложения каждый файл макета XML компилируется в ресурс <code class="docutils literal notranslate"><span class="pre">View</span></code> . Загрузите ресурс макета в реализацию обратного вызова <a class="reference external" href="https://developer.android.com/reference/android/app/Activity?hl=ru#onCreate(android.os.Bundle)">Activity.onCreate()</a> вашего приложения. Сделайте это, вызвав <a class="reference external" href="https://developer.android.com/reference/android/app/Activity?hl=ru#setContentView(int)">setContentView()</a> , передав ему ссылку на ваш ресурс макета в форме: <code class="docutils literal notranslate"><span class="pre">R.layout.</span> <span class="pre">_layout_file_name_</span></code> . Например, если ваш XML-макет сохранен как <code class="docutils literal notranslate"><span class="pre">main_layout.xml</span></code> , загрузите его для своей <code class="docutils literal notranslate"><span class="pre">Activity</span></code> следующим образом:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
@@ -173,8 +167,9 @@
 <p>Платформа Android вызывает метод обратного вызова <code class="docutils literal notranslate"><span class="pre">onCreate()</span></code> в вашем <code class="docutils literal notranslate"><span class="pre">Activity</span></code> при запуске <code class="docutils literal notranslate"><span class="pre">Activity</span></code> . Дополнительные сведения о жизненных циклах действий см. в <a class="reference external" href="https://developer.android.com/guide/components/activities?hl=ru#Lifecycle">разделе Введение в действия</a> .</p>
 </section>
 <section id="id2">
-<h2>Атрибуты<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h3>Атрибуты<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>Каждый объект <code class="docutils literal notranslate"><span class="pre">View</span></code> и <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> поддерживает собственный набор атрибутов XML. Некоторые атрибуты специфичны для объекта <code class="docutils literal notranslate"><span class="pre">View</span></code> . Например, <code class="docutils literal notranslate"><span class="pre">TextView</span></code> поддерживает атрибут <code class="docutils literal notranslate"><span class="pre">textSize</span></code> . Однако эти атрибуты также наследуются любыми объектами <code class="docutils literal notranslate"><span class="pre">View</span></code> , расширяющими этот класс. Некоторые из них являются общими для всех объектов <code class="docutils literal notranslate"><span class="pre">View</span></code> , поскольку они наследуются от корневого класса <code class="docutils literal notranslate"><span class="pre">View</span></code> , например атрибут <code class="docutils literal notranslate"><span class="pre">id</span></code> . Другие атрибуты считаются <em>параметрами макета</em> , которые являются атрибутами, описывающими определенные ориентации макета объекта <code class="docutils literal notranslate"><span class="pre">View</span></code> , как определено родительским объектом <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> этого объекта.</p>
+</section>
 <section id="id3">
 <h3>ИДЕНТИФИКАТОР<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>Любой объект <code class="docutils literal notranslate"><span class="pre">View</span></code> может иметь связанный с ним целочисленный идентификатор, позволяющий однозначно идентифицировать <code class="docutils literal notranslate"><span class="pre">View</span></code> в дереве. При компиляции приложения этот идентификатор упоминается как целое число, но идентификатор обычно назначается в XML-файле макета в виде строки в атрибуте <code class="docutils literal notranslate"><span class="pre">id</span></code> . Это атрибут XML, общий для всех объектов <code class="docutils literal notranslate"><span class="pre">View</span></code> , и он определяется классом <code class="docutils literal notranslate"><span class="pre">View</span></code> . Вы используете его очень часто. Синтаксис идентификатора внутри тега XML следующий:</p>

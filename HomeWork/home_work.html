@@ -52,6 +52,14 @@
 <li class="toctree-l2"><a class="reference internal" href="#git">0. Ведение Git-репозитория (требования)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">1. Основы ООП. “Ходячий”</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">Основы ООП.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#android">Android</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1. Разработка простейшего калькулятора</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mediaplayer">2. Разработать MediaPlayer для воспроизведения музыки</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#location">3. Местоположение смартфона. Location.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR).</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">5. Работа с сокетами (ZMQ). Передача данных от Android к PC.</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -129,46 +137,62 @@
 <section id="id3">
 <h2>Основы ООП.<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <!-- ## 1. Байт-код Kotlin + Java Virtual Machine -->
-<!-- ## 1. Разработка простейшего калькулятора
-Разработать простую версию калькулятора, используя `TextView`, `Button` и обработчик нажатия (`onClickListener`).
-
-**Требования к "калькулятору"**:
-
-1. Калькулятор должен состояить из кнопок циферблата (от `0` до `9`);
-2. Должен включать в состав `Layout` кнопки "действий" ( `+` , `-`, `*`, `/`, `=`);
-3. Должен включать в состав `TextView` для отображения результата нажатия на  `Button`'s из пунктов 1 и 2.
-4. При нажатии на `=` необходимо обработать строку из `TextView` вручную и выполнить записанные в строку операции;
-5. Достаточно обработки **одной** операции, **нет** необходимости обработки нескольких операций.
-6. Результата отправить на **Github** (или аналоги) - репозиторий.
-
-## 2. Разработать MediaPlayer для воспроизведения музыки
-
-Цель: Научиться работать с файлами внутренней (или внешней) памяти смартфона, в частности, со звуковыми "дорожками". Исползование класса `MediaPlayer` поможет в создании "каркаса" для MP3-проигрователя. 
-
-1. Создать новое `Activity` для работы с `MediaPlayer`;
-2. MediaPlayer должен поддерживать функции: воспроизведение текущего трека, пауза текущего трека, обработка перехода `Activity` в состояние `onPause()`, регулировка громкости, `SeekBar` для отображения текущей длительности трека и его движение, перемотка трека (при помощи `SeekBar`);
-3. Возможность вопроизводить музыку из хранилища телефона при помощи  [Permission](https://github.com/sibsutisTelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/MediaPlayerActivity.kt), строки 41-53;
-4. Важно реализовать проверку текущего файла на директорию (`isDirectory`);
-4. Отображение списка треков на экране `Activity`.
-
-## 3. Местоположение смартфона. Location.
- Цель: получить доступ к данным о местоположении Android-телефона и вывести на экран значения.
-
- 1. Создать `Activity` **Location**, в основном окне `MainActivity` добавить кнопку перехода в новую 'Activity';
- 2. Получить доступ к классу [Location](https://developer.android.com/reference/android/location/Location) при помощи **permissions**: `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`;
- 3. Вывести в `Activity` данные о текущем (или последнем известном) местоположении смартфона:
-    - [Latitude](https://developer.android.com/reference/android/location/Location#getLatitude());
-    - [Longitude](https://developer.android.com/reference/android/location/Location#getLongitude());
-    - [Altitude](https://developer.android.com/reference/android/location/Location#getAltitude());
-    - [Current Time](https://developer.android.com/reference/android/location/Location#getTime());
-4. Получить данные можно при помощи метода [getLastLocation()](https://developer.android.com/develop/sensors-and-location/location/retrieve-current)
-5. При каждом обновлении местоположения записывать данные в файл (лучше в формате `Json`);
-6. **ДОП. БАЛЛЫ**. Обернуть получение местоположения смартфона в [сервис](https://developer.android.com/develop/background-work/services) с целью записывать данные о местоположении в `backgroud`-режиме (когда приложение закрыто, `activity` не видно пользователю).
-
-## 4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR).
-
-1.  Создать новое `Activity`, добавив кнопку перехода основном "окне" `MainActivity`;
-2. При помощи класса `Telephony`; -->
+</section>
+<section id="android">
+<h2>Android<a class="headerlink" href="#android" title="Permalink to this heading"></a></h2>
+<section id="id4">
+<h3>1. Разработка простейшего калькулятора<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>Разработать простую версию калькулятора, используя <code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Button</span></code> и обработчик нажатия (<code class="docutils literal notranslate"><span class="pre">onClickListener</span></code>).</p>
+<p><strong>Требования к “калькулятору”</strong>:</p>
+<ol class="arabic simple">
+<li><p>Калькулятор должен состояить из кнопок циферблата (от <code class="docutils literal notranslate"><span class="pre">0</span></code> до <code class="docutils literal notranslate"><span class="pre">9</span></code>);</p></li>
+<li><p>Должен включать в состав <code class="docutils literal notranslate"><span class="pre">Layout</span></code> кнопки “действий” ( <code class="docutils literal notranslate"><span class="pre">+</span></code> , <code class="docutils literal notranslate"><span class="pre">-</span></code>, <code class="docutils literal notranslate"><span class="pre">*</span></code>, <code class="docutils literal notranslate"><span class="pre">/</span></code>, <code class="docutils literal notranslate"><span class="pre">=</span></code>);</p></li>
+<li><p>Должен включать в состав <code class="docutils literal notranslate"><span class="pre">TextView</span></code> для отображения результата нажатия на  <code class="docutils literal notranslate"><span class="pre">Button</span></code>’s из пунктов 1 и 2.</p></li>
+<li><p>При нажатии на <code class="docutils literal notranslate"><span class="pre">=</span></code> необходимо обработать строку из <code class="docutils literal notranslate"><span class="pre">TextView</span></code> вручную и выполнить записанные в строку операции;</p></li>
+<li><p>Достаточно обработки <strong>одной</strong> операции, <strong>нет</strong> необходимости обработки нескольких операций.</p></li>
+<li><p>Результата отправить на <strong>Github</strong> (или аналоги) - репозиторий.</p></li>
+</ol>
+</section>
+<section id="mediaplayer">
+<h3>2. Разработать MediaPlayer для воспроизведения музыки<a class="headerlink" href="#mediaplayer" title="Permalink to this heading"></a></h3>
+<p>Цель: Научиться работать с файлами внутренней (или внешней) памяти смартфона, в частности, со звуковыми “дорожками”. Исползование класса <code class="docutils literal notranslate"><span class="pre">MediaPlayer</span></code> поможет в создании “каркаса” для MP3-проигрователя.</p>
+<ol class="arabic simple">
+<li><p>Создать новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> для работы с <code class="docutils literal notranslate"><span class="pre">MediaPlayer</span></code>;</p></li>
+<li><p>MediaPlayer должен поддерживать функции: воспроизведение текущего трека, пауза текущего трека, обработка перехода <code class="docutils literal notranslate"><span class="pre">Activity</span></code> в состояние <code class="docutils literal notranslate"><span class="pre">onPause()</span></code>, регулировка громкости, <code class="docutils literal notranslate"><span class="pre">SeekBar</span></code> для отображения текущей длительности трека и его движение, перемотка трека (при помощи <code class="docutils literal notranslate"><span class="pre">SeekBar</span></code>);</p></li>
+<li><p>Возможность вопроизводить музыку из хранилища телефона при помощи  <a class="reference external" href="https://github.com/sibsutisTelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/MediaPlayerActivity.kt">Permission</a>, строки 41-53;</p></li>
+<li><p>Важно реализовать проверку текущего файла на директорию (<code class="docutils literal notranslate"><span class="pre">isDirectory</span></code>);</p></li>
+<li><p>Отображение списка треков на экране <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p></li>
+</ol>
+</section>
+<section id="location">
+<h3>3. Местоположение смартфона. Location.<a class="headerlink" href="#location" title="Permalink to this heading"></a></h3>
+<p>Цель: получить доступ к данным о местоположении Android-телефона и вывести на экран значения.</p>
+<ol class="arabic simple">
+<li><p>Создать <code class="docutils literal notranslate"><span class="pre">Activity</span></code> <strong>Location</strong>, в основном окне <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> добавить кнопку перехода в новую ‘Activity’;</p></li>
+<li><p>Получить доступ к классу <a class="reference external" href="https://developer.android.com/reference/android/location/Location">Location</a> при помощи <strong>permissions</strong>: <code class="docutils literal notranslate"><span class="pre">ACCESS_FINE_LOCATION</span></code>, <code class="docutils literal notranslate"><span class="pre">ACCESS_COARSE_LOCATION</span></code>;</p></li>
+<li><p>Вывести в <code class="docutils literal notranslate"><span class="pre">Activity</span></code> данные о текущем (или последнем известном) местоположении смартфона:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location#getLatitude()">Latitude</a>;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location#getLongitude()">Longitude</a>;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location#getAltitude()">Altitude</a>;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location#getTime()">Current Time</a>;</p></li>
+</ul>
+</li>
+<li><p>Получить данные можно при помощи метода <a class="reference external" href="https://developer.android.com/develop/sensors-and-location/location/retrieve-current">getLastLocation()</a></p></li>
+<li><p>При каждом обновлении местоположения записывать данные в файл (лучше в формате <code class="docutils literal notranslate"><span class="pre">Json</span></code>);</p></li>
+<li><p><strong>ДОП. БАЛЛЫ</strong>. Обернуть получение местоположения смартфона в <a class="reference external" href="https://developer.android.com/develop/background-work/services">сервис</a> с целью записывать данные о местоположении в <code class="docutils literal notranslate"><span class="pre">backgroud</span></code>-режиме (когда приложение закрыто, <code class="docutils literal notranslate"><span class="pre">activity</span></code> не видно пользователю).</p></li>
+</ol>
+</section>
+<section id="g-3g-4g-lte-5g-nr">
+<h3>4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR).<a class="headerlink" href="#g-3g-4g-lte-5g-nr" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создать новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, добавив кнопку перехода основном “окне” <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code>;</p></li>
+<li><p>При помощи класса <code class="docutils literal notranslate"><span class="pre">Telephony</span></code>;</p></li>
+</ol>
+</section>
+<section id="zmq-android-pc">
+<h3>5. Работа с сокетами (ZMQ). Передача данных от Android к PC.<a class="headerlink" href="#zmq-android-pc" title="Permalink to this heading"></a></h3>
+</section>
 </section>
 </section>
 

@@ -20,7 +20,7 @@
 
 ![28-1920x814.webp](28-1920x814.webp)
 
-# Основные функции сокетов
+## Основные функции сокетов
 
 | **Общие** |   |
 | --- | --- |
@@ -37,21 +37,9 @@
 | **Клиентские** |   |
 | Connect | Установить соединение |
 
-В Linux библиотека libc открывает для каждого запущенного приложения(процесса) 3 файл дескриптора, с номерами 0,1,2.
 
-- **Файл дескриптор 0 называется STDIN и ассоциируется с вводом данных у приложения**
-- **Файл дескриптор 1 называется STDOUT и используется приложениями для вывода данных, например командами print**
-- **Файл дескриптор 2 называется STDERR и используется приложениями для вывода данных, сообщающих об ошибке**
 
-# Директории ОС Linux
-
-Структура каталогов Linux имеет вид tree-shared (разветвленная). Важно выделить один момент, характерный только для Unix-схожих систем. Эти ОС стремятся к простоте и рассматривают каждый объект как последовательность байтов. Для Unix эти последовательности представлены в виде файлов.
-
-В отличие от ОС Windows, которая имеет несколько корней, файловая система Линукс допускает лишь один корень. Корневой каталог является местом, где находятся все остальные директории и файлы ОС (обозначается прямой косой чертой).
-
-Вся структура папок Linux представлена в едином каталоге, именуемым корневым (root directory).
-
-## socket()
+### socket()
 
 Создаёт конечную точку соединения и возвращает файловый дескриптор (с типом файла `S` , Создают прямую связь между процессами в системе. Передают данные между процессами, которые запущены в различных средах либо даже на различных машинах.). Принимает три аргумента:
 
@@ -66,289 +54,294 @@
     - **SOCK_RAW** (Сырой сокет — сырой протокол поверх сетевого уровня).
 3. **protocol**
     
-    Протоколы обозначаются символьными константами с префиксом **IPPROTO_*** (например, **IPPROTO_TCP** или **IPPROTO_UDP**). Допускается значение protocol=0 (протокол не указан), в этом случае используется значение по умолчанию для данного вида соединений.
-    
-    **С**
-    
-    ```cpp
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    
-    int socket(int domain, int type, int protocol);
-    ...
-    ...
-    
-    int main(){
-    	 struct sockaddr_in serv_addr;
-    		...
-    		...
-    		// Создаем сокет
-    		sockfd = socket(AF_INET, SOCK_STREAM, 0);
-        // Указываем тип сокета Интернет
-        bzero((char *) &serv_addr, sizeof(serv_addr));
-        serv_addr.sin_family = AF_INET;
-    }
-    ```
-    
-    **Python**
-    
-    ```python
-    import socket
-    
-    # Создание объекта сокета.
-    sock_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
-    
-    # AF_INET, SOCK_STREAM и 0 используются по умолчанию при создании сокета.
-    # Поэтому можно просто писать:
-    sock_obj = socket.socket()
-    ```
-    
-    ## bind()
-    
-    Связывает сокет с конкретным адресом. Когда сокет создается при помощи `socket()`, он ассоциируется с некоторым семейством адресов, но не с конкретным адресом. До того как сокет сможет принять входящие соединения, он должен быть связан с адресом. `bind()` принимает три аргумента:
-    
-    1. **sockfd** — дескриптор, представляющий сокет при привязке
-    2. **serv_addr** — указатель на структуру `sockaddr`, представляющую адрес, к которому привязываем.
-    3. **addrlen** — поле `socklen_t`, представляющее длину структуры `sockaddr`.
-    
-    **С**
-    
-    ```c
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    
-    int bind(int sockfd, const struct sockaddr *my_addr, socklen_t addrlen);
-    ```
-    
-    **Python**
-    
-    ```python
-    server_address = ('localhost', 8080)
-    sock_obj.bind(server_address)  # Привязка адреса и порта к сокету.
-    ```
-    
-    ## listen()
-    
-    Подготавливает привязываемый сокет к принятию входящих соединений. Данная функция применима только к типам сокетов `SOCK_STREAM` и `SOCK_SEQPACKET`. Принимает два аргумента:
-    
-    1. **sockfd** — корректный дескриптор сокета.
-    2. **backlog** — целое число, означающее число установленных соединений, которые могут быть обработаны в любой момент времени (`размер очереди`). Операционная система обычно ставит его равным максимальному значению.
-    
-    **C**
-    
-    ```c
-    #include <sys/socket.h>
-    int listen(int sockfd, int backlog);
-    ```
-    
-    **Python**
-    
-    ```c
-    sock_obj.listen(5)  # Ждем соединение клиента.
-    ```
-    
-    ## accept()
-    
-    Используется для принятия запроса на установление соединения от удаленного хоста. Принимает следующие аргументы:
-    
-    1. **sockfd** — дескриптор слушающего сокета на принятие соединения.
-    2. **cliaddr** — указатель на структуру `sockaddr`, для принятия информации об адресе клиента.
-    3. **addrlen** — указатель на `socklen_t`, определяющее размер структуры, содержащей клиентский адрес и переданной в `accept()`. Когда `accept()` возвращает некоторое значение, `socklen_t` указывает сколько байт структуры `cliaddr` использовано в данный момент.
-    
-    **C**
-    
-    ```c
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
-    ```
-    
-    **Python**
-    
-    ```c
-    conn, addr = sock_obj.accept()  # Установление соединения с клиентом.
-    ```
-    
-    ## connect()
-    
-    Устанавливает соединение с сервером.
-    
-    Некоторые типы сокетов работают без установления соединения, это в основном касается **UDP-сокетов**. Для них соединение приобретает особое значение: цель по умолчанию для посылки и получения данных присваивается переданному адресу, позволяя использовать такие функции как **send()** и **recv()** на сокетах без установления соединения.
-    
-    Загруженный сервер может отвергнуть попытку соединения, поэтому в некоторых видах программ необходимо предусмотреть повторные попытки соединения.
-    
-    **C**
-    
-    ```c
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    int connect(int sockfd, const struct sockaddr *serv_addr, socklen_t addrlen);
-    ```
-    
-    **Python**
-    
-    ```c
-    server_address = ('192.168.1.100', 8080)
-    sock_obj.connect(server_address)
-    ```
-    
-    ## Передача\прием данных
-    
-    Для передачи данных можно пользоваться стандартными функциями **чтения/записи** файлов **read** и **write**, но есть специальные функции для передачи данных через сокеты:
-    
-    - send
-    - recv
-    - sendto
-    - recvfrom
-    - sendmsg
-    - recvmsg
-    
-    Нужно обратить внимание, что при использовании протокола TCP (сокеты типа SOCK_STREAM) есть вероятность получить меньше данных, чем было передано, так как ещё не все данные были переданы, поэтому нужно либо дождаться, когда функция **recv возвратит 0 байт**, либо выставить флаг **MSG_WAITALL** для функции **recv**, что заставит её дождаться окончания передачи. Для остальных типов сокетов флаг MSG_WAITALL **ничего не меняет** (например, в UDP весь пакет = целое сообщение).
-    
-    ## send()
-    
-    **send**, **sendto** - отправка данных.
-    
-    **C**
-    
-    ```c
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    
-    ssize_t send(int s, const void *buf, size_t len, int flags);
-    ssize_t sendto(int  s, const void *buf, size_t len, int flags, const struct sockaddr *to, socklen_t tolen);
-    ```
-    
-    **Python**
-    
-    ```c
-    IP = '192.168.1.100'
-    PORT = 8080
-    
-    sock_obj.send('Hello World!')
-    sock_obj.sendto('Hello World!', (IP, PORT))
-    ```
-    
-    ## resv()
-    
-    **recv**, **recvfrom** - чтение данных из сокета.
-    
-    **C**
-    
-    ```c
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    
-    ssize_t recv(int s, void *buf, size_t len, int flags);
-    ssize_t recvfrom(int s, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);
-    ```
-    
-    **Python**
-    
-    ```c
-    BUFFER_SIZE = 1024
-    
-    data = conn.recv(BUFFER_SIZE)
-    data, sender_addr = conn.recvfrom(BUFFER_SIZE)
-    ```
-    
-    ## **SOCK_STREAM vs SOCK_DGRAM**
-    
-    | Потоковый (SOCK_STREAM) | Датаграммный(SOCK_DGRAM) |
-    | --- | --- |
-    | Устанавливает соединение | Нет |
-    | Гарантирует доставку данных | Нет в случае UDP |
-    | Гарантирует порядок доставки пакетов | Нет в случае UDP |
-    | Гарантирует целостность пакетов | Тоже |
-    | Разбивает сообщение на пакеты | Нет |
-    | Контролирует поток данных | Нет |
-    
-    ## Клиент-серверная программа (Python)
-    
-    **TCP- Server**
-    
-    ```python
-    import socket
-     
-    # Создаем сокет
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-     
-    # Привязываем сокет к IP-адресу и порту
-    server_socket.bind(('localhost', 12345))
-     
-    # Слушаем входящие соединения
-    server_socket.listen(1)
-     
-    print("Сервер запущен и ожидает подключений...")
-     
-    # Принимаем входящее соединение
-    client_socket, client_address = server_socket.accept()
-    print(f"Подключение установлено с {client_address}")
-     
-    # Получаем данные от клиента
-    data = client_socket.recv(1024)
-    print(f"Получены данные: {data}")
-     
-    # Закрываем соединения
-    client_socket.close()
-    server_socket.close()
-    ```
-    
-    **TCP-Client**
-    
-    ```python
-    import socket
-     
-    # Создаем сокет
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-     
-    # Подключаемся к серверу
-    client_socket.connect(('localhost', 12345))
-     
-    # Отправляем данные серверу
-    client_socket.sendall(b'Hello, server!')
-     
-    # Закрываем соединение
-    client_socket.close()
-    ```
-    
-    **UDP-Server**
-    
-    ```python
-    import socket
-     
-    # Создаем сокет
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-     
-    # Привязываем сокет к IP-адресу и порту
-    server_socket.bind(('localhost', 12345))
-     
-    print("Сервер запущен и ожидает входящих данных...")
-     
-    # Получаем данные от клиента
-    data, client_address = server_socket.recvfrom(1024)
-    print(f"Получены данные от {client_address}: {data}")
-     
-    # Закрываем сокет
-    server_socket.close()
-    ```
-    
-    **UDP-client** 
-    
-    ```python
-    import socket
-     
-    # Создаем сокет
-    client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-     
-    # Отправляем данные серверу
-    client_socket.sendto(b'Hello, server!', ('localhost', 12345))
-     
-    # Закрываем сокет
-    client_socket.close()
-    ```
-    
-    # Список литературы
-    
-    1. **Linux manual - page address_families(7) (**[https://man7.org/linux/man-pages/man7/address_families.7.html](https://man7.org/linux/man-pages/man7/address_families.7.html)**)**
-    2.
+Протоколы обозначаются символьными константами с префиксом **IPPROTO_*** (например, **IPPROTO_TCP** или **IPPROTO_UDP**). Допускается значение protocol=0 (протокол не указан), в этом случае используется значение по умолчанию для данного вида соединений.
+
+**С**
+
+```cpp
+#include <sys/types.h>
+#include <sys/socket.h>
+
+int socket(int domain, int type, int protocol);
+...
+...
+
+int main(){
+        struct sockaddr_in serv_addr;
+        ...
+        ...
+        // Создаем сокет
+        sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    // Указываем тип сокета Интернет
+    bzero((char *) &serv_addr, sizeof(serv_addr));
+    serv_addr.sin_family = AF_INET;
+}
+```
+
+**Python**
+
+```python
+import socket
+
+# Создание объекта сокета.
+sock_obj = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
+
+# AF_INET, SOCK_STREAM и 0 используются по умолчанию при создании сокета.
+# Поэтому можно просто писать:
+sock_obj = socket.socket()
+```
+
+### bind()
+
+Связывает сокет с конкретным адресом. Когда сокет создается при помощи `socket()`, он ассоциируется с некоторым семейством адресов, но не с конкретным адресом. До того как сокет сможет принять входящие соединения, он должен быть связан с адресом. `bind()` принимает три аргумента:
+
+1. **sockfd** — дескриптор, представляющий сокет при привязке
+2. **serv_addr** — указатель на структуру `sockaddr`, представляющую адрес, к которому привязываем.
+3. **addrlen** — поле `socklen_t`, представляющее длину структуры `sockaddr`.
+
+**С**
+
+```c
+#include <sys/types.h>
+#include <sys/socket.h>
+
+int bind(int sockfd, const struct sockaddr *my_addr, socklen_t addrlen);
+```
+
+**Python**
+
+```python
+server_address = ('localhost', 8080)
+sock_obj.bind(server_address)  # Привязка адреса и порта к сокету.
+```
+
+### listen()
+
+Подготавливает привязываемый сокет к принятию входящих соединений. Данная функция применима только к типам сокетов `SOCK_STREAM` и `SOCK_SEQPACKET`. Принимает два аргумента:
+
+1. **sockfd** — корректный дескриптор сокета.
+2. **backlog** — целое число, означающее число установленных соединений, которые могут быть обработаны в любой момент времени (`размер очереди`). Операционная система обычно ставит его равным максимальному значению.
+
+**C**
+
+```c
+#include <sys/socket.h>
+int listen(int sockfd, int backlog);
+```
+
+**Python**
+
+```c
+sock_obj.listen(5)  # Ждем соединение клиента.
+```
+
+### accept()
+
+Используется для принятия запроса на установление соединения от удаленного хоста. Принимает следующие аргументы:
+
+1. **sockfd** — дескриптор слушающего сокета на принятие соединения.
+2. **cliaddr** — указатель на структуру `sockaddr`, для принятия информации об адресе клиента.
+3. **addrlen** — указатель на `socklen_t`, определяющее размер структуры, содержащей клиентский адрес и переданной в `accept()`. Когда `accept()` возвращает некоторое значение, `socklen_t` указывает сколько байт структуры `cliaddr` использовано в данный момент.
+
+**C**
+
+```c
+#include <sys/types.h>
+#include <sys/socket.h>
+int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
+```
+
+**Python**
+
+```c
+conn, addr = sock_obj.accept()  # Установление соединения с клиентом.
+```
+
+### connect()
+
+Устанавливает соединение с сервером.
+
+Некоторые типы сокетов работают без установления соединения, это в основном касается **UDP-сокетов**. Для них соединение приобретает особое значение: цель по умолчанию для посылки и получения данных присваивается переданному адресу, позволяя использовать такие функции как **send()** и **recv()** на сокетах без установления соединения.
+
+Загруженный сервер может отвергнуть попытку соединения, поэтому в некоторых видах программ необходимо предусмотреть повторные попытки соединения.
+
+**C**
+
+```c
+#include <sys/types.h>
+#include <sys/socket.h>
+int connect(int sockfd, const struct sockaddr *serv_addr, socklen_t addrlen);
+```
+
+**Python**
+
+```c
+server_address = ('192.168.1.100', 8080)
+sock_obj.connect(server_address)
+```
+
+### Передача\прием данных
+
+Для передачи данных можно пользоваться стандартными функциями **чтения/записи** файлов **read** и **write**, но есть специальные функции для передачи данных через сокеты:
+
+- send
+- recv
+- sendto
+- recvfrom
+- sendmsg
+- recvmsg
+
+Нужно обратить внимание, что при использовании протокола TCP (сокеты типа SOCK_STREAM) есть вероятность получить меньше данных, чем было передано, так как ещё не все данные были переданы, поэтому нужно либо дождаться, когда функция **recv возвратит 0 байт**, либо выставить флаг **MSG_WAITALL** для функции **recv**, что заставит её дождаться окончания передачи. Для остальных типов сокетов флаг MSG_WAITALL **ничего не меняет** (например, в UDP весь пакет = целое сообщение).
+
+### send()
+
+**send**, **sendto** - отправка данных.
+
+**C**
+
+```c
+#include <sys/types.h>
+#include <sys/socket.h>
+
+ssize_t send(int s, const void *buf, size_t len, int flags);
+ssize_t sendto(int  s, const void *buf, size_t len, int flags, const struct sockaddr *to, socklen_t tolen);
+```
+
+**Python**
+
+```c
+IP = '192.168.1.100'
+PORT = 8080
+
+sock_obj.send('Hello World!')
+sock_obj.sendto('Hello World!', (IP, PORT))
+```
+
+### resv()
+
+**recv**, **recvfrom** - чтение данных из сокета.
+
+**C**
+
+```c
+#include <sys/types.h>
+#include <sys/socket.h>
+
+ssize_t recv(int s, void *buf, size_t len, int flags);
+ssize_t recvfrom(int s, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);
+```
+
+**Python**
+
+```c
+BUFFER_SIZE = 1024
+
+data = conn.recv(BUFFER_SIZE)
+data, sender_addr = conn.recvfrom(BUFFER_SIZE)
+```
+
+## **SOCK_STREAM vs SOCK_DGRAM**
+
+| Потоковый (SOCK_STREAM) | Датаграммный(SOCK_DGRAM) |
+| --- | --- |
+| Устанавливает соединение | Нет |
+| Гарантирует доставку данных | Нет в случае UDP |
+| Гарантирует порядок доставки пакетов | Нет в случае UDP |
+| Гарантирует целостность пакетов | Тоже |
+| Разбивает сообщение на пакеты | Нет |
+| Контролирует поток данных | Нет |
+
+### Клиент-серверная программа (Python)
+
+**TCP- Server**
+
+```python
+import socket
+    
+# Создаем сокет
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    
+# Привязываем сокет к IP-адресу и порту
+server_socket.bind(('localhost', 12345))
+    
+# Слушаем входящие соединения
+server_socket.listen(1)
+    
+print("Сервер запущен и ожидает подключений...")
+    
+# Принимаем входящее соединение
+client_socket, client_address = server_socket.accept()
+print(f"Подключение установлено с {client_address}")
+    
+# Получаем данные от клиента
+data = client_socket.recv(1024)
+print(f"Получены данные: {data}")
+    
+# Закрываем соединения
+client_socket.close()
+server_socket.close()
+```
+
+**TCP-Client**
+
+```python
+import socket
+    
+# Создаем сокет
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    
+# Подключаемся к серверу
+client_socket.connect(('localhost', 12345))
+    
+# Отправляем данные серверу
+client_socket.sendall(b'Hello, server!')
+    
+# Закрываем соединение
+client_socket.close()
+```
+
+**UDP-Server**
+
+```python
+import socket
+    
+# Создаем сокет
+server_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    
+# Привязываем сокет к IP-адресу и порту
+server_socket.bind(('localhost', 12345))
+    
+print("Сервер запущен и ожидает входящих данных...")
+    
+# Получаем данные от клиента
+data, client_address = server_socket.recvfrom(1024)
+print(f"Получены данные от {client_address}: {data}")
+    
+# Закрываем сокет
+server_socket.close()
+```
+
+**UDP-client** 
+
+```python
+import socket
+    
+# Создаем сокет
+client_socket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    
+# Отправляем данные серверу
+client_socket.sendto(b'Hello, server!', ('localhost', 12345))
+    
+# Закрываем сокет
+client_socket.close()
+```
+    
+
+## Библиотека Zero MQ
+
+
+
+### Список литературы
+
+1. **Linux manual - page address_families(7) (**[https://man7.org/linux/man-pages/man7/address_families.7.html](https://man7.org/linux/man-pages/man7/address_families.7.html)**)**
+2.

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Основные каталоги, входящие в root directory &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Директории ОС Linux &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
@@ -79,7 +79,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Основные каталоги, входящие в root directory</li>
+      <li class="breadcrumb-item active">Директории ОС Linux</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/os/file_system.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -89,7 +89,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="root-directory">
+  <section id="linux">
+<h1>Директории ОС Linux<a class="headerlink" href="#linux" title="Permalink to this heading"></a></h1>
+<p>Структура каталогов Linux имеет вид tree-shared (разветвленная). Важно выделить один момент, характерный только для Unix-схожих систем. Эти ОС стремятся к простоте и рассматривают каждый объект как последовательность байтов. Для Unix эти последовательности представлены в виде файлов.</p>
+<p>В отличие от ОС Windows, которая имеет несколько корней, файловая система Линукс допускает лишь один корень. Корневой каталог является местом, где находятся все остальные директории и файлы ОС (обозначается прямой косой чертой).</p>
+<p>Вся структура папок Linux представлена в едином каталоге, именуемым корневым (root directory).</p>
+</section>
+<section id="root-directory">
 <h1>Основные каталоги, входящие в root directory<a class="headerlink" href="#root-directory" title="Permalink to this heading"></a></h1>
 <p><em>/home</em></p>
 <p>Это home directory (домашняя директория). Разделы Linux — многопользовательская оболочка, поэтому отдельному пользователю назначается отдельный объект в системе, доступный исключительно ему и суперпользователю.</p>
@@ -126,6 +132,15 @@
 <p>Это каталог для super user (администратор) — домашняя директория пользователя root.</p>
 <p><em>/srv</em></p>
 <p>Это service catalog (служебная директория). Если вы используете web-сервер, то можно хранить в этой папке данные для конкретной веб-страницы.</p>
+<section id="id1">
+<h2>Файловый дескриптор<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>В Linux библиотека libc открывает для каждого запущенного приложения(процесса) 3 файл дескриптора, с номерами 0,1,2.</p>
+<ul class="simple">
+<li><p><strong>Файл дескриптор 0 называется STDIN и ассоциируется с вводом данных у приложения</strong></p></li>
+<li><p><strong>Файл дескриптор 1 называется STDOUT и используется приложениями для вывода данных, например командами print</strong></p></li>
+<li><p><strong>Файл дескриптор 2 называется STDERR и используется приложениями для вывода данных, сообщающих об ошибке</strong></p></li>
+</ul>
+</section>
 </section>
 
 

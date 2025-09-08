@@ -64,17 +64,13 @@
 <li class="toctree-l2"><a class="reference internal" href="02_first_app.html">2. Создание первого приложения (начало)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03_app_architecture.html">3. Архитектура приложения</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#view">View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#id1">ViewGroup</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Работа виджетами из Activity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#view">View</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Создание нового Activity</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Работа виджетами из Activity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#view">View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Создание нового Activity</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#activity-intent">Переход между Activity (Intent, вкратце)</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#views">Виджеты (Views)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#findviewbyid">findViewById()</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#textview">TextView</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#views">Виджеты (Views)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#findviewbyid">findViewById()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#textview">TextView</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Атрибуты</a></li>
 </ul>
 </li>
@@ -88,8 +84,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets). Библиотека Zero MQ.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#id1">Основные функции сокетов</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#linux">Директории ОС Linux</a></li>
 </ul>
 </li>
 </ul>
@@ -126,15 +120,14 @@
   <section id="activity">
 <h1>5. Работа виджетами из Activity<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h1>
 <p>Снова про <code class="docutils literal notranslate"><span class="pre">root</span></code> класс для всех виджетов.</p>
-</section>
 <section id="view">
-<h1>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h1>
+<h2>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h2>
 <p>Android SDK включает множество виджетов, которые являются дочерним классом класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. Таким образом, каждый виджет является экземпляром класса <code class="docutils literal notranslate"><span class="pre">View</span></code>, как и отражено на рисунке ниже.</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true" /></p>
 <p>Рис. 1. Иерархия класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. <a class="reference external" href="https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg">Источник изображения</a>.</p>
 </section>
 <section id="id1">
-<h1>Создание нового Activity<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h2>Создание нового Activity<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Для начала, создадим новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, в котором будем создавать виджеты и работать из <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_05_create_new_activity.png?raw=true" /></p>
 <p>Рис. 2. Создание нового <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
@@ -175,6 +168,7 @@
 </pre></div>
 </div>
 <p>Где мы можем увидеть наше новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> в списке проекта.</p>
+</section>
 <section id="activity-intent">
 <h2>Переход между Activity (Intent, вкратце)<a class="headerlink" href="#activity-intent" title="Permalink to this heading"></a></h2>
 <p>В рамках “удобства” по работе с несколькими <code class="docutils literal notranslate"><span class="pre">Activity</span></code> рассмотрим небольшой пример работы класса <a class="reference internal" href="#"><span class="xref myst">Intent</span></a></p>
@@ -226,15 +220,14 @@ cls – The component class that is to be used for the intent.
 <p>Первый параметр – это <code class="docutils literal notranslate"><span class="pre">Context</span></code>. <code class="docutils literal notranslate"><span class="pre">Activity</span></code> является подклассом <code class="docutils literal notranslate"><span class="pre">Context</span></code>, можем использовать запись <code class="docutils literal notranslate"><span class="pre">ИМЯ_КЛАССА_В_КОТОРОМ_НАХОДИМСЯ.this</span></code>, или укороченную запись <code class="docutils literal notranslate"><span class="pre">this</span></code>.</p>
 <p>Метод <code class="docutils literal notranslate"><span class="pre">startActivity(randomIntent)</span></code> выполняет переход на необходимый нам класс, т.е. <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
 </section>
-</section>
 <section id="views">
-<h1>Виджеты (Views)<a class="headerlink" href="#views" title="Permalink to this heading"></a></h1>
+<h2>Виджеты (Views)<a class="headerlink" href="#views" title="Permalink to this heading"></a></h2>
 <section id="findviewbyid">
-<h2>findViewById()<a class="headerlink" href="#findviewbyid" title="Permalink to this heading"></a></h2>
+<h3>findViewById()<a class="headerlink" href="#findviewbyid" title="Permalink to this heading"></a></h3>
 <p>Метод <code class="docutils literal notranslate"><span class="pre">findViewById()</span></code> возвращает объект класса <code class="docutils literal notranslate"><span class="pre">View</span></code> по его идентификатору на разметке (какой то из виджетов, например кнопку). Теперь, имея данный экземпляр <strong>виджета</strong>, вы можете вызывать реализованные для него методы, такие как изменение размеров, цвета, текста и т.п. Метод работает таким образом, что получает этот объект из предварительно подготовленного через инфлейт (парсинг разметки) и сгенерированного на его основе класса R нужный нам виджет из дерева объектов отображаемых на экране.</p>
 </section>
 <section id="textview">
-<h2>TextView<a class="headerlink" href="#textview" title="Permalink to this heading"></a></h2>
+<h3>TextView<a class="headerlink" href="#textview" title="Permalink to this heading"></a></h3>
 <p><strong>Инициализация</strong></p>
 <p>В рамках <code class="docutils literal notranslate"><span class="pre">.xml-layout</span></code>’а добавляем след. образом:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;TextView</span>
@@ -255,6 +248,7 @@ cls – The component class that is to be used for the intent.
 <span class="n">tvView_01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">textView</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
 <section id="id2">
 <h3>Атрибуты<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p><strong>Программное изменение текста</strong></p>
