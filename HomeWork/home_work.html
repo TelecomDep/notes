@@ -57,7 +57,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#mediaplayer">2. Разработать MediaPlayer для воспроизведения музыки</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#location">3. Местоположение смартфона. Location.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR).</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">5. Работа с сокетами (ZMQ). Передача данных от Android к PC.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-clang">5. Реализация клиент-серверного приложения (Python\clang)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">6. Работа с сокетами (ZMQ). Передача данных от Android к PC.</a></li>
 </ul>
 </li>
 </ul>
@@ -190,8 +191,22 @@
 <li><p>При помощи класса <code class="docutils literal notranslate"><span class="pre">Telephony</span></code>;</p></li>
 </ol>
 </section>
+<section id="python-clang">
+<h3>5. Реализация клиент-серверного приложения (Python\clang)<a class="headerlink" href="#python-clang" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создать новый репозиторий в профиле <code class="docutils literal notranslate"><span class="pre">github</span></code> (для backend-сервера);</p></li>
+<li><p>В созданный репозиторий добавить Ваш проект <code class="docutils literal notranslate"><span class="pre">Android'a</span></code> как <code class="docutils literal notranslate"><span class="pre">submodule</span></code>;</p></li>
+<li><p>В корне репозитория создать папку <code class="docutils literal notranslate"><span class="pre">examples/</span></code>, где будут находится примеры работы клиент-серверного приложения;</p></li>
+<li><p>Создать 2 файла: <code class="docutils literal notranslate"><span class="pre">client.py</span></code>, <code class="docutils literal notranslate"><span class="pre">server.py</span></code>;</p></li>
+<li><p>Реализовать передачу данных (можно просто “Hello World!”) от клиента к серверу и обратно;</p></li>
+<li><p>Посмотреть результат работы приложений в программе Wireshark, найти переданные сообщения;</p></li>
+<li><p>Добавить еще один файл в <code class="docutils literal notranslate"><span class="pre">examples/</span></code>: <code class="docutils literal notranslate"><span class="pre">client.c</span></code> или <code class="docutils literal notranslate"><span class="pre">server.c</span></code>;</p></li>
+<li><p>Реализовать соединение и передачу данных между примером на языке <code class="docutils literal notranslate"><span class="pre">Python</span></code> и примером на языке <code class="docutils literal notranslate"><span class="pre">СИ</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> &amp;&amp; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p></li>
+</ol>
+</section>
 <section id="zmq-android-pc">
-<h3>5. Работа с сокетами (ZMQ). Передача данных от Android к PC.<a class="headerlink" href="#zmq-android-pc" title="Permalink to this heading"></a></h3>
+<h3>6. Работа с сокетами (ZMQ). Передача данных от Android к PC.<a class="headerlink" href="#zmq-android-pc" title="Permalink to this heading"></a></h3>
 </section>
 </section>
 </section>
