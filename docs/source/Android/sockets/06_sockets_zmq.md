@@ -313,7 +313,7 @@ server_socket.bind(('localhost', 12345))
     
 print("Сервер запущен и ожидает входящих данных...")
     
-# Получаем данные от клиента
+# Получаем данные от клиент
 data, client_address = server_socket.recvfrom(1024)
 print(f"Получены данные от {client_address}: {data}")
     
@@ -335,9 +335,231 @@ client_socket.sendto(b'Hello, server!', ('localhost', 12345))
 # Закрываем сокет
 client_socket.close()
 ```
-    
+### Клиент-серверная программа на СИ
+**Сервер**
+```c
+#include <netinet/in.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#define PORT 8080
+int main(int argc, char const* argv[])
+{
+    int server_fd, new_socket;
+    ssize_t valread;
+    struct sockaddr_in address;
+    int opt = 1;
+    socklen_t addrlen = sizeof(address);
+    char buffer[1024] = { 0 };
+    char* hello = "Hello from server";
+
+    // Creating socket file descriptor
+    if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        perror("socket failed");
+        exit(EXIT_FAILURE);
+    }
+
+    // Forcefully attaching socket to the port 8080
+    if (setsockopt(server_fd, SOL_SOCKET,
+                   SO_REUSEADDR | SO_REUSEPORT, &opt,
+                   sizeof(opt))) {
+        perror("setsockopt");
+        exit(EXIT_FAILURE);
+    }
+    address.sin_family = AF_INET;
+    address.sin_addr.s_addr = INADDR_ANY;
+    address.sin_port = htons(PORT);
+
+    // Forcefully attaching socket to the port 8080
+    if (bind(server_fd, (struct sockaddr*)&address,
+             sizeof(address))
+        < 0) {
+        perror("bind failed");
+        exit(EXIT_FAILURE);
+    }
+    if (listen(server_fd, 3) < 0) {
+        perror("listen");
+        exit(EXIT_FAILURE);
+    }
+    if ((new_socket
+         = accept(server_fd, (struct sockaddr*)&address,
+                  &addrlen))
+        < 0) {
+        perror("accept");
+        exit(EXIT_FAILURE);
+    }
+  
+    // subtract 1 for the null
+    // terminator at the end
+    valread = read(new_socket, buffer,
+                   1024 - 1); 
+    printf("%s\n", buffer);
+    send(new_socket, hello, strlen(hello), 0);
+    printf("Hello message sent\n");
+
+    // closing the connected socket
+    close(new_socket);
+  
+    // closing the listening socket
+    close(server_fd);
+    return 0;
+}
+```
+
+**Клиент**
+
+```c
+#include <arpa/inet.h>
+#include <stdio.h>
+#include <string.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#define PORT 8080
+
+int main(int argc, char const* argv[])
+{
+    int status, valread, client_fd;
+    struct sockaddr_in serv_addr;
+    char* hello = "Hello from client";
+    char buffer[1024] = { 0 };
+    if ((client_fd = socket(AF_INET, SOCK_STREAM, 0)) < 0) {
+        printf("\n Socket creation error \n");
+        return -1;
+    }
+
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_port = htons(PORT);
+
+    // Convert IPv4 and IPv6 addresses from text to binary
+    // form
+    if (inet_pton(AF_INET, "127.0.0.1", &serv_addr.sin_addr)
+        <= 0) {
+        printf(
+            "\nInvalid address/ Address not supported \n");
+        return -1;
+    }
+
+    if ((status
+         = connect(client_fd, (struct sockaddr*)&serv_addr,
+                   sizeof(serv_addr)))
+        < 0) {
+        printf("\nConnection Failed \n");
+        return -1;
+    }
+  
+    // subtract 1 for the null
+    // terminator at the end
+    send(client_fd, hello, strlen(hello), 0);
+    printf("Hello message sent\n");
+    valread = read(client_fd, buffer,
+                   1024 - 1); 
+    printf("%s\n", buffer);
+
+    // closing the connected socket
+    close(client_fd);
+    return 0;
+}
+```
+**Компиляция**
+```bash
+gcc client.c -o clientgcc server.c -o server
+```
 
 ## Библиотека Zero MQ
+
+### Основы ZMQ
+Библиотека [ZeroMQ](https://zeromq.org/get-started/) поддерживает множество языков программирвоания (при помощи `bind'ов`): СИ, С++, Java, Python, Rust и т.д. (по ссылке можно найти полный список).
+
+
+### Немного потоки в Android (Thread)
+**Многопоточность** — возможность программы выполнять несколько задач одновременно в рамках одного процесса.
+Применение фоновых потоков — необходимое условие, если вы хотите избежать появления диалогового окна для принудительного закрытия приложения. Когда активность в Android на протяжении 5 секунд не отвечает на события пользовательского ввода (например, нажатие кнопки) или приёмник широковещательных `намерений (Intents)` не завершает работу обработчика `onReceive()` в течение 10 секунд, считается, что приложение зависло. Подобные ситуации следует избегать любой ценой. Используйте фоновые потоки для всех трудоёмких операций, включая **работу с файлами**, **сетевые запросы**, транзакции в базах данных и сложные вычисления.
+**Потоки** — средство, которое помогает организовать одновременное выполнение нескольких задач, каждой в независимом потоке. Потоки представляют собой экземпляры классов, каждый из которых запускается и функционирует самостоятельно, автономно (или относительно автономно) от главного потока выполнения программы.
+
+Проблема классических Thread в невозможности получить доступ к объектам\обработчикам основного **графического потока** (`UI thread`). Существует пара [правил](https://developer.android.com/guide/components/processes-and-threads) по работе с потоками:
+1. **НЕ** блокировать основной поток;
+2. **НЕ** пытайтесь получить доступ к `Android UI Tooklit` вне `UI Thread`.
+
+**Android** предоставляет несколько вариантов работы в **фоновом режиме** безопасно с UI-потоком:
+1. Activity.runOnUiThread(Runnable) 
+2. View.post(Runnable)
+3. View.postDelayed(Runnable, long)
+4. **Handlers** - начнем с с этого
+5. AsyncTask
+
+Пример с `View.post(Runnable)`:
+```kotlin
+fun onClick(v: View) {
+    Thread(Runnable {
+        //DO something
+        while(1){
+            println("Hello World!")
+        }
+    }).start()
+}
+```
+
+#### Жизненный цикл потока
+При выполнении программы объект класса `Thread` может быть в одном из четырех основных состояний: **«новый»**, **«работоспособный»**, **«неработоспособный»** и **«пассивный»**. При создании потока он получает состояние «новый» (`NEW`) и не выполняется. Для перевода потока из состояния «новый» в состояние «работоспособный» (`RUNNABLE`) следует выполнить метод `start()`, который вызывает метод `run()` — основной метод потока.
+
+Поток может находиться в одном из состояний, соответствующих элементам статически вложенного перечисления `Thread.State`:
+
+- `NEW` — поток создан, но еще не запущен;
+- `RUNNABLE` — поток выполняется;
+- `BLOCKED` — поток блокирован;
+- `WAITING` — поток ждет окончания работы другого потока;
+- `TIMED_WAITING` — поток некоторое время ждет окончания другого потока;
+- `TERMINATED` — поток завершен.
+
+#### Инициализация потока 
+
+```kotlin
+
+
+fun sayHello() {
+    for (i in 0..10){
+        println("Hello World!")
+    }
+}
+val runnableServer = Runnable{sayHello()} 
+val threadServer = Thread(runnableServer)
+threadServer.start()
+```
+### Подключение ZMQ (JeroMQ) в проект Android
+Для установки библиотеки [JeroMQ](https://zeromq.org/languages/java/) вам понадобится добавить зависимость в файл `Gradle Scripts` `->` `build.gradle.kts (Module :app)` (как показано на рисунке ниже):
+<!-- ![28-1920x814.webp](add_jeromq_build_gradle.png) -->
+<p align="center">
+  <img src="add_jeromq_build_gradle.png" width="450" title="hover text" alt="Alt text">
+  <figcaption> Путь к файлу сборки проекта Build gradle for Module :app </figcaption>
+</p>
+
+Добавляем зависимость (`implementation ("org.zeromq:jeromq:0.5.0")` ):
+```
+dependencies {
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
+    implementation("com.google.android.gms:play-services-location:21.2.0") // -->> Location
+    implementation ("org.zeromq:jeromq:0.5.0") // -->> JeroMQ
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+}
+```
+Далее, `IDE Android Studio` при фиксации новой зависимости предложит вам синхронизировать все зависимости проекта:
+
+<p align="center">
+  <img src="gradle_sync.png" width="650" title="hover text" alt="Alt text">
+  <figcaption> Синхронизация при изменении Build gradle for Module :app` </figcaption>
+</p>
+
+**Клиент и Сервер**
+Рассмотрим пример работы Клиента и Сервера в одном Acitvity:
 
 
 
