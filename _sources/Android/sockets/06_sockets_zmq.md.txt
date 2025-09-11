@@ -517,7 +517,6 @@ fun onClick(v: View) {
 
 ```kotlin
 
-
 fun sayHello() {
     for (i in 0..10){
         println("Hello World!")
