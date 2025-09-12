@@ -141,17 +141,26 @@
 </p>
 <p>Кратко по каждому блоку:</p>
 <ol class="arabic simple">
-<li><p>Инструменты разработки <code class="docutils literal notranslate"><span class="pre">Java</span> <span class="pre">(JDT)</span></code> - это набор расширений рабочей среды, с помощью которого можно редактировать, компилировать и запускать программы на Java.
-1.1. <code class="docutils literal notranslate"><span class="pre">javac</span></code> - компилятор языка Java. Преобразует <code class="docutils literal notranslate"><span class="pre">*.java</span></code> в байт-код <code class="docutils literal notranslate"><span class="pre">*.class</span></code>;
-1.2. <code class="docutils literal notranslate"><span class="pre">javap</span></code> - дизассемблер языка Java. Применяет обратную опереацию <code class="docutils literal notranslate"><span class="pre">javac</span></code>, преобразует <code class="docutils literal notranslate"><span class="pre">*.class</span></code> в понятный человеку формат;
-1.3. <code class="docutils literal notranslate"><span class="pre">VisualVM</span></code> - удобная утилита для визуализации, мониторинга, профилирования приложений Java;
-1.4. <code class="docutils literal notranslate"><span class="pre">Other</span></code> - набор доп. инструментов (Basic Tools, Security Tools, Monitoring and Troubleshooting Tools, Deployment Tools, etc.);</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Kotlin</span> <span class="pre">Multiplatform</span></code> - включает в себя компилятор для разны сред разработки (JVM, JS, Native);
-2.1. <code class="docutils literal notranslate"><span class="pre">kotlinc</span></code> - компилятор языка Kotlin. Преобразует <code class="docutils literal notranslate"><span class="pre">*.kt</span></code> в <code class="docutils literal notranslate"><span class="pre">байт-код</span></code>, понятный <code class="docutils literal notranslate"><span class="pre">JVM</span></code>.
-2.2. etc.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">JRE</span> <span class="pre">(Java</span> <span class="pre">Runtime</span> <span class="pre">Environment)</span></code> - среда выполнения Java. Необходима для запуска программ. Состоит из:
-3.1. Виртуальной машины Java (<code class="docutils literal notranslate"><span class="pre">JVM</span></code>) - сердце работы программ;
-3.2. Стандартная библиотека классов Java (<code class="docutils literal notranslate"><span class="pre">java.io</span></code>, <code class="docutils literal notranslate"><span class="pre">java.lang</span></code>, <code class="docutils literal notranslate"><span class="pre">java.math</span></code>, <code class="docutils literal notranslate"><span class="pre">java.net</span></code>, etc.).</p></li>
+<li><p>Инструменты разработки <code class="docutils literal notranslate"><span class="pre">Java</span> <span class="pre">(JDT)</span></code> - это набор расширений рабочей среды, с помощью которого можно редактировать, компилировать и запускать программы на Java.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">javac</span></code> - компилятор языка Java. Преобразует <code class="docutils literal notranslate"><span class="pre">*.java</span></code> в байт-код <code class="docutils literal notranslate"><span class="pre">*.class</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">javap</span></code> - дизассемблер языка Java. Применяет обратную опереацию <code class="docutils literal notranslate"><span class="pre">javac</span></code>, преобразует <code class="docutils literal notranslate"><span class="pre">*.class</span></code> в понятный человеку формат;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VisualVM</span></code> - удобная утилита для визуализации, мониторинга, профилирования приложений Java;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Other</span></code> - набор доп. инструментов (Basic Tools, Security Tools, Monitoring and Troubleshooting Tools, Deployment Tools, etc.);</p></li>
+</ol>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Kotlin</span> <span class="pre">Multiplatform</span></code> - включает в себя компилятор для разны сред разработки (JVM, JS, Native);</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kotlinc</span></code> - компилятор языка Kotlin. Преобразует <code class="docutils literal notranslate"><span class="pre">*.kt</span></code> в <code class="docutils literal notranslate"><span class="pre">байт-код</span></code>, понятный <code class="docutils literal notranslate"><span class="pre">JVM</span></code>.</p></li>
+<li><p>etc.</p></li>
+</ol>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">JRE</span> <span class="pre">(Java</span> <span class="pre">Runtime</span> <span class="pre">Environment)</span></code> - среда выполнения Java. Необходима для запуска программ. Состоит из:</p>
+<ol class="arabic simple">
+<li><p>Виртуальной машины Java (<code class="docutils literal notranslate"><span class="pre">JVM</span></code>) - сердце работы программ;</p></li>
+<li><p>Стандартная библиотека классов Java (<code class="docutils literal notranslate"><span class="pre">java.io</span></code>, <code class="docutils literal notranslate"><span class="pre">java.lang</span></code>, <code class="docutils literal notranslate"><span class="pre">java.math</span></code>, <code class="docutils literal notranslate"><span class="pre">java.net</span></code>, etc.).</p></li>
+</ol>
+</li>
 </ol>
 <section id="id1">
 <h3>Байт-код<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
@@ -161,27 +170,17 @@
 
 <span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">number_01</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
 <span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">number_02</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">30</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">number_01</span><span class="p">)</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">number_02</span><span class="p">)</span>
 
 <span class="w">    </span><span class="n">number_01</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="m">2</span>
 <span class="w">    </span><span class="n">number_02</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">20</span>
 
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">number_01</span><span class="p">)</span>
-<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">number_02</span><span class="p">)</span>
 <span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello world!&quot;</span><span class="p">)</span>
-
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>С помощью встроенных инструментов Intellij IDEA (<code class="docutils literal notranslate"><span class="pre">Tools</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Kotlin</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Show</span> <span class="pre">Kotlin</span> <span class="pre">Bytecode</span></code>) получаем дизассемблированный байткод.</p>
-<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// ================ApplicationKt.class =================</span>
-<span class="c1">// class version 52.0 (52)</span>
-<span class="c1">// access flags 0x31</span>
-<span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ApplicationKt</span><span class="w"> </span><span class="p">{</span>
-
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">ApplicationKt</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// compiled from: application.kt</span>
-
 <span class="w">  </span><span class="nd">@Lkotlin</span><span class="o">/</span><span class="n">Metadata</span><span class="p">;(</span><span class="n">mv</span><span class="o">=</span><span class="p">{</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">},</span><span class="w"> </span><span class="n">k</span><span class="o">=</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">xi</span><span class="o">=</span><span class="m">48</span><span class="p">,</span><span class="w"> </span><span class="n">d1</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;\u0000\u0008\n\u0000\n\u0002\u0010\u0002\n\u0000\u001a\u0006\u0010\u0000\u001a\u00020\u0001\u00a8\u0006\u0002&quot;</span><span class="p">},</span><span class="w"> </span><span class="n">d2</span><span class="o">=</span><span class="p">{</span><span class="s">&quot;main&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HelloKotlin&quot;</span><span class="p">})</span>
 
 <span class="w">  </span><span class="c1">// access flags 0x19</span>
@@ -195,20 +194,22 @@
 <span class="w">    </span><span class="n">BIPUSH</span><span class="w"> </span><span class="m">30</span>
 <span class="w">    </span><span class="n">ISTORE</span><span class="w"> </span><span class="m">1</span>
 <span class="w">   </span><span class="n">L2</span>
-<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="n">L2</span>
-<span class="w">    </span><span class="n">IINC</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">20</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="n">L2</span>
+<span class="w">    </span><span class="n">ILOAD</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="n">ICONST_2</span>
+<span class="w">    </span><span class="n">IMUL</span>
+<span class="w">    </span><span class="n">ISTORE</span><span class="w"> </span><span class="m">0</span>
 <span class="w">   </span><span class="n">L3</span>
 <span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="n">L3</span>
-<span class="w">    </span><span class="n">GETSTATIC</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Ljava</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">;</span>
-<span class="w">    </span><span class="n">ILOAD</span><span class="w"> </span><span class="m">0</span>
-<span class="w">    </span><span class="n">INVOKEVIRTUAL</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">.</span><span class="na">println</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="n">V</span>
+<span class="w">    </span><span class="n">IINC</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">20</span>
 <span class="w">   </span><span class="n">L4</span>
-<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">8</span><span class="w"> </span><span class="n">L4</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="n">L4</span>
+<span class="w">    </span><span class="n">LDC</span><span class="w"> </span><span class="s">&quot;Hello world!&quot;</span>
 <span class="w">    </span><span class="n">GETSTATIC</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Ljava</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">;</span>
-<span class="w">    </span><span class="n">ILOAD</span><span class="w"> </span><span class="m">1</span>
-<span class="w">    </span><span class="n">INVOKEVIRTUAL</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">.</span><span class="na">println</span><span class="w"> </span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="n">V</span>
+<span class="w">    </span><span class="n">SWAP</span>
+<span class="w">    </span><span class="n">INVOKEVIRTUAL</span><span class="w"> </span><span class="n">java</span><span class="o">/</span><span class="n">io</span><span class="o">/</span><span class="n">PrintStream</span><span class="p">.</span><span class="na">println</span><span class="w"> </span><span class="p">(</span><span class="n">Ljava</span><span class="o">/</span><span class="n">lang</span><span class="o">/</span><span class="n">Object</span><span class="p">;)</span><span class="n">V</span>
 <span class="w">   </span><span class="n">L5</span>
-<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="n">L5</span>
+<span class="w">    </span><span class="n">LINENUMBER</span><span class="w"> </span><span class="m">11</span><span class="w"> </span><span class="n">L5</span>
 <span class="w">    </span><span class="n">RETURN</span>
 <span class="w">   </span><span class="n">L6</span>
 <span class="w">    </span><span class="n">LOCALVARIABLE</span><span class="w"> </span><span class="n">number_01</span><span class="w"> </span><span class="n">I</span><span class="w"> </span><span class="n">L1</span><span class="w"> </span><span class="n">L6</span><span class="w"> </span><span class="m">0</span>
