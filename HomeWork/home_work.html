@@ -51,9 +51,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Практические задания</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#git">0. Ведение Git-репозитория (требования)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">1. Основы ООП. “Ходячий”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">Основы ООП.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#threads">2. Наследование. Threads.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#android">Android</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">1. Разработка простейшего калькулятора</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">1. Разработка простейшего калькулятора</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mediaplayer">2. Разработать MediaPlayer для воспроизведения музыки</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#location">3. Местоположение смартфона. Location</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)</a></li>
@@ -135,14 +135,30 @@
 <li><p>В файле Readme.md описать (с формулами) принцип работы модели движения, выбранной в пункте 6.</p></li>
 </ol>
 </section>
-<section id="id3">
-<h2>Основы ООП.<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="threads">
+<h2>2. Наследование. Threads.<a class="headerlink" href="#threads" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Создать новую ветку Вашего проекта, в которой будет выполняться практическая работа;</p></li>
+<li><p>В качестве нового функционала добавить <strong>класс-наследник</strong> <code class="docutils literal notranslate"><span class="pre">Driver()</span></code>, который должен наследовать некоторые свойства (на ваше усмотрение) класса <code class="docutils literal notranslate"><span class="pre">Human()</span></code>;</p></li>
+<li><p>Движение объектов (экземпляров) класса <code class="docutils literal notranslate"><span class="pre">Driver</span></code> должно быть <strong>прямолинейным</strong> (необходимо <strong>перегрузить</strong> функцию <code class="docutils literal notranslate"><span class="pre">move()</span></code> родительского класса);</p></li>
+<li><p>В основной фукнции <code class="docutils literal notranslate"><span class="pre">main()</span></code> создать (2-4 объекта <code class="docutils literal notranslate"><span class="pre">Human</span></code> и 1 объект <code class="docutils literal notranslate"><span class="pre">Dirve</span></code>);</p></li>
+<li><p>В методе <code class="docutils literal notranslate"><span class="pre">move()</span></code> реализовать параллельное движение каждого из объектов, созданных ранее; Используем <code class="docutils literal notranslate"><span class="pre">Thread</span></code>;</p></li>
+<li><p>При движении объектов <strong>НЕ</strong> должно происходить <strong>коллизий</strong> (2 объекта находятся на 1 точке пространства); Если возникла коллизия, меняем направление одного из объектов;</p></li>
+<li><p>Отслеживанием коллизий должна заниматься функция <code class="docutils literal notranslate"><span class="pre">main()</span></code> посредством общего блока памяти для координатной плоскости и блокировка при помощи <code class="docutils literal notranslate"><span class="pre">mutex()</span></code>.</p></li>
+<li><p>Сделать <code class="docutils literal notranslate"><span class="pre">commit</span></code>, <code class="docutils literal notranslate"><span class="pre">push</span></code>;</p></li>
+<li><p>Слить ветку в <code class="docutils literal notranslate"><span class="pre">main</span></code>.
+<strong>Почитать дома</strong>:</p></li>
+</ol>
+<ul class="simple">
+<li><p><a class="reference external" href="https://metanit.com/kotlin/tutorial/4.9.php">Наследование</a></p></li>
+<li><p><a class="reference external" href="https://medium.com/&#64;appdevinsights/kotlin-mutex-375bfe4330b0">Mutex</a></p></li>
+</ul>
 <!-- ## 1. Байт-код Kotlin + Java Virtual Machine -->
 </section>
 <section id="android">
 <h2>Android<a class="headerlink" href="#android" title="Permalink to this heading"></a></h2>
-<section id="id4">
-<h3>1. Разработка простейшего калькулятора<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h3>1. Разработка простейшего калькулятора<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>Разработать простую версию калькулятора, используя <code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Button</span></code> и обработчик нажатия (<code class="docutils literal notranslate"><span class="pre">onClickListener</span></code>).</p>
 <p><strong>Требования к “калькулятору”</strong>:</p>
 <ol class="arabic simple">
