@@ -113,7 +113,12 @@
 <h1>7. Библиотека Zero MQ (Android)<a class="headerlink" href="#zero-mq-android" title="Permalink to this heading"></a></h1>
 <section id="zmq">
 <h2>Основы ZMQ<a class="headerlink" href="#zmq" title="Permalink to this heading"></a></h2>
-<p>Библиотека <a class="reference external" href="https://zeromq.org/get-started/">ZeroMQ</a> поддерживает множество языков программирвоания (при помощи <code class="docutils literal notranslate"><span class="pre">bind'ов</span></code>): СИ, С++, Java, Python, Rust и т.д. (по ссылке можно найти полный список).</p>
+<p>Библиотека <a class="reference external" href="https://zeromq.org/get-started/">ZeroMQ</a> поддерживает множество языков программирвоания (при помощи <code class="docutils literal notranslate"><span class="pre">bind'ов</span></code>): СИ, С++, Java, Python, Rust и т.д. (по ссылке можно найти полный список).
+Прежде чем начать разбираться с <code class="docutils literal notranslate"><span class="pre">ZeroMQ</span></code>, давайте сначала посмотрим на общую концепцию очереди сообщений.</p>
+<p><strong>Очередь сообщений</strong></p>
+<p>Очередь сообщений, или, технически, <code class="docutils literal notranslate"><span class="pre">FIFO</span></code>(<code class="docutils literal notranslate"><span class="pre">First</span> <span class="pre">In</span> <span class="pre">First</span> <span class="pre">Out</span></code>), является одной из основных и хорошо изученных структур данных. Существуют различные реализации очереди, такие как очередь приоритетов или двусторонняя очередь, которые имеют различные свойства, но общая идея в том, что данные добавляются в очередь когда они появляются или вызывающий абонент будет готов.
+Вместе с тем очередь сообщений предоставляет гарантии, что сообщение будет доставлено независимо от того, что происходит. Очередь сообщений позволяет асинхронно взаимодействовать между слабо связанными компонентами, а также обеспечивает строгую последовательность очереди. В случае недостатка ресурсов, что мешает вам сразу же обработать посылаемые данные, вы можете поставить их в очередь сообщений на сервере, который будет хранить данные до тех пор, пока клиент не будет готов.</p>
+<p><img alt="1758001376380" src="../../_images/1758001376380.png" /></p>
 </section>
 <section id="android-thread">
 <h2>Немного потоки в Android (Thread)<a class="headerlink" href="#android-thread" title="Permalink to this heading"></a></h2>
