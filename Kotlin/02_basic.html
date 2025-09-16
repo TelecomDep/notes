@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>0. Основы Kotlin &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Основы синтаксиса Kotlin &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Основы языка Kotlin" href="02_basics_compile_jvm.html" />
-    <link rel="prev" title="Установка средств разработки" href="01_install_first_program.html" /> 
+    <link rel="next" title="Android" href="../Android/android.html" />
+    <link rel="prev" title="Основы языка Kotlin" href="02_basics_compile_jvm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -59,26 +59,28 @@
 <li class="toctree-l1 current"><a class="reference internal" href="kotlin.html">Kotlin</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="00_introduction.html">Введение в язык Kotlin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="01_install_first_program.html">Установка средств разработки</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">0. Основы Kotlin</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id1">Переменные (изменяемые и неизменяемые)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Константы</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#type-inference">Интерфейс автоматический типизации (Type inference)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#null-safety">Null safety</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#id3">Условные операторы</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">Функции</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#simplifying-function-declarations">Simplifying function declarations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#anonymous-functions">Anonymous functions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#higher-order-functions">Higher-order functions</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#classes">Classes</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#properties">Properties</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#class-functions-and-encapsulation">Class functions and encapsulation</a></li>
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="02_basics_compile_jvm.html">Основы языка Kotlin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Основы синтаксиса Kotlin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Переменные (изменяемые и неизменяемые)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Константы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#type-inference">Интерфейс автоматический типизации (Type inference)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#null-safety">Null safety</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Условные операторы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Функции</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#simplifying-function-declarations">Simplifying function declarations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#anonymous-functions">Anonymous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#higher-order-functions">Higher-order functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#classes">Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#properties">Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#class-functions-and-encapsulation">Class functions and encapsulation</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -106,7 +108,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="kotlin.html">Kotlin</a></li>
-      <li class="breadcrumb-item active">0. Основы Kotlin</li>
+      <li class="breadcrumb-item active">Основы синтаксиса Kotlin</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Kotlin/02_basic.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -117,7 +119,7 @@
            <div itemprop="articleBody">
              
   <section id="kotlin">
-<h1>0. Основы Kotlin<a class="headerlink" href="#kotlin" title="Permalink to this heading"></a></h1>
+<h1>Основы синтаксиса Kotlin<a class="headerlink" href="#kotlin" title="Permalink to this heading"></a></h1>
 <!-- -   Содержание
 -   [Объявление переменной](https://developer.android.com/kotlin/learn?hl=ru#variables)
     -   [Вывод типа](https://developer.android.com/kotlin/learn?hl=ru#inference)
@@ -133,9 +135,8 @@
 -   [Совместимость](https://developer.android.com/kotlin/learn?hl=ru#interoperability)
 -   [Следующие шаги](https://developer.android.com/kotlin/learn?hl=ru#next) -->
 <p><a class="reference external" href="https://kotlinlang.org/">Kotlin</a> — это язык программирования, широко используемый разработчиками Android во всем мире. Эта тема представляет собой ускоренный курс Kotlin, который поможет вам быстро приступить к работе.</p>
-</section>
 <section id="id1">
-<h1>Переменные (изменяемые и неизменяемые)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<h2>Переменные (изменяемые и неизменяемые)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Kotlin использует два разных ключевых слова для объявления переменных: <code class="docutils literal notranslate"><span class="pre">val</span></code> и <code class="docutils literal notranslate"><span class="pre">var</span></code> .</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">val</span></code> для переменной, значение которой никогда не меняется. <strong>НЕЛЬЗЯ</strong> переназначить значение переменной, объявленной с помощью <code class="docutils literal notranslate"><span class="pre">val</span></code>;</p></li>
@@ -158,7 +159,7 @@
 <p>Эти ключевые слова позволяют вам указать, что можно изменить, а что нельзя. Используйте их в своих интересах по мере необходимости. Если ссылка на переменную должна быть переназначаемой, объявите ее как <code class="docutils literal notranslate"><span class="pre">var</span></code> . В противном случае используйте <code class="docutils literal notranslate"><span class="pre">val</span></code> .
 Также, следует отметить, что <code class="docutils literal notranslate"><span class="pre">val</span></code> не является константой. <code class="docutils literal notranslate"><span class="pre">val</span></code> инициализируется во время выполнения программы, а не во время ее компиляции.</p>
 <section id="id2">
-<h2>Константы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<h3>Константы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>Kotlin поддерживает, так называемые, <code class="docutils literal notranslate"><span class="pre">константы</span> <span class="pre">времени</span> <span class="pre">компиляции</span></code>. Значения таких переменных известны во время компиляции. Соответсвтенно, это накладывает ряд ограничений:</p>
 <ul class="simple">
 <li><p>находиться на самом верхнем уровне (вне класса) или быть членом объекта (<code class="docutils literal notranslate"><span class="pre">object</span></code> или <code class="docutils literal notranslate"><span class="pre">companion</span> <span class="pre">object</span></code>);</p></li>
@@ -174,7 +175,7 @@
 </div>
 </section>
 <section id="type-inference">
-<h2>Интерфейс автоматический типизации (Type inference)<a class="headerlink" href="#type-inference" title="Permalink to this heading"></a></h2>
+<h3>Интерфейс автоматический типизации (Type inference)<a class="headerlink" href="#type-inference" title="Permalink to this heading"></a></h3>
 <p>Продолжая предыдущий пример, когда вы присваиваете начальное значение <code class="docutils literal notranslate"><span class="pre">languageName</span></code> , компилятор Kotlin может определить тип на основе типа присвоенного значения.</p>
 <p>Поскольку значение <code class="docutils literal notranslate"><span class="pre">&quot;Kotlin&quot;</span></code> имеет тип <code class="docutils literal notranslate"><span class="pre">String</span></code> , компилятор делает вывод, что <code class="docutils literal notranslate"><span class="pre">languageName</span></code> также является <code class="docutils literal notranslate"><span class="pre">String</span></code> . Обратите внимание, что Kotlin — <strong><em>статически типизированный</em></strong> язык. Это означает, что тип определяется во время компиляции и никогда не изменяется.</p>
 <p>В следующем примере <code class="docutils literal notranslate"><span class="pre">languageName</span></code> выводится как <code class="docutils literal notranslate"><span class="pre">String</span></code> , поэтому вы не можете вызывать какие-либо функции, которые не являются частью класса <code class="docutils literal notranslate"><span class="pre">String</span></code> :</p>
@@ -188,7 +189,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">toUpperCase()</span></code> — это функция, которую можно вызывать только для переменных типа <code class="docutils literal notranslate"><span class="pre">String</span></code> . Поскольку компилятор Kotlin определил <code class="docutils literal notranslate"><span class="pre">languageName</span></code> как <code class="docutils literal notranslate"><span class="pre">String</span></code> , вы можете смело вызывать <code class="docutils literal notranslate"><span class="pre">toUpperCase()</span></code> . Однако, <code class="docutils literal notranslate"><span class="pre">inc()</span></code> является операторной функцией <code class="docutils literal notranslate"><span class="pre">Int</span></code> , поэтому ее нельзя вызвать для <code class="docutils literal notranslate"><span class="pre">String</span></code> . Подход Kotlin к выводу типов обеспечивает как краткость, так и безопасность типов.</p>
 </section>
 <section id="null-safety">
-<h2>Null safety<a class="headerlink" href="#null-safety" title="Permalink to this heading"></a></h2>
+<h3>Null safety<a class="headerlink" href="#null-safety" title="Permalink to this heading"></a></h3>
 <p>В некоторых языках переменная ссылочного типа может быть объявлена ​​без указания первоначального явного значения. В этих случаях переменные обычно содержат <code class="docutils literal notranslate"><span class="pre">Null</span></code> значение. Переменные Kotlin по умолчанию не могут содержать <code class="docutils literal notranslate"><span class="pre">Null</span></code> значения. Это означает, что следующий фрагмент недействителен:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// Fails to compile</span>
 <span class="kd">val</span><span class="w"> </span><span class="nv">languageName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span>
@@ -204,7 +205,7 @@
 </section>
 </section>
 <section id="id3">
-<h1>Условные операторы<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h1>
+<h2>Условные операторы<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>Котлин предлагает несколько механизмов реализации условной логики. Наиболее распространенным из них является <strong><em>оператор if-else</em></strong> . Если выражение, заключенное в круглые скобки рядом с ключевым словом <code class="docutils literal notranslate"><span class="pre">if</span></code> имеет значение <code class="docutils literal notranslate"><span class="pre">true</span></code> , то выполняется код внутри этой ветви (т. е. код, следующий сразу за ним и заключенный в фигурные скобки). В противном случае выполняется код внутри ветки <code class="docutils literal notranslate"><span class="pre">else</span></code> .</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">42</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;I have the answer.&quot;</span><span class="p">)</span>
@@ -250,7 +251,7 @@
 <p>Каждая ветвь выражения <code class="docutils literal notranslate"><span class="pre">when</span></code> представлена ​​условием, стрелкой ( <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> ) и результатом. Если условие в левой части стрелки принимает значение true, то возвращается результат выражения в правой части. Обратите внимание, что выполнение не переходит от одной ветки к другой. Код в примере выражения <code class="docutils literal notranslate"><span class="pre">when</span></code> функционально эквивалентен коду в предыдущем примере, но, возможно, его легче читать.</p>
 </section>
 <section id="id4">
-<h1>Функции<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h1>
+<h2>Функции<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>Вы можете сгруппировать одно или несколько выражений в <em>функцию</em> . Вместо повторения одной и той же серии выражений каждый раз, когда вам нужен результат, вы можете обернуть выражения в функцию и вместо этого вызвать эту функцию.</p>
 <p>Чтобы объявить функцию, используйте ключевое слово <code class="docutils literal notranslate"><span class="pre">fun</span></code> , за которым следует имя функции. Затем определите типы входных данных, которые принимает ваша функция, если таковые имеются, и объявите тип выходных данных, которые она возвращает. В теле функции вы определяете выражения, которые вызываются при вызове вашей функции.</p>
 <p>Основываясь на предыдущих примерах, вот полная функция Kotlin:</p>
@@ -287,7 +288,7 @@
 </pre></div>
 </div>
 <section id="simplifying-function-declarations">
-<h2>Simplifying function declarations<a class="headerlink" href="#simplifying-function-declarations" title="Permalink to this heading"></a></h2>
+<h3>Simplifying function declarations<a class="headerlink" href="#simplifying-function-declarations" title="Permalink to this heading"></a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">generateAnswerString()</span></code> — довольно простая функция. Функция объявляет переменную и затем немедленно возвращает значение. Когда из функции возвращается результат одного выражения, вы можете пропустить объявление локальной переменной, напрямую вернув результат выражения if-else, содержащегося в функции, как показано в следующем примере:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">generateAnswerString</span><span class="p">(</span><span class="n">countThreshold</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">countThreshold</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -308,7 +309,7 @@
 </div>
 </section>
 <section id="anonymous-functions">
-<h2>Anonymous functions<a class="headerlink" href="#anonymous-functions" title="Permalink to this heading"></a></h2>
+<h3>Anonymous functions<a class="headerlink" href="#anonymous-functions" title="Permalink to this heading"></a></h3>
 <p>Не каждой функции нужно имя. Некоторые функции более непосредственно идентифицируются по их входам и выходам. Эти функции называются <em>анонимными функциями</em> . Вы можете сохранить ссылку на анонимную функцию и использовать ее для последующего вызова анонимной функции. Вы также можете передавать ссылку в свое приложение, как и в случае с другими типами ссылок.</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">stringLengthFunc</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">-&gt;</span>
 <span class="w">        </span><span class="n">input</span><span class="p">.</span><span class="na">length</span>
@@ -326,7 +327,7 @@
 </div>
 </section>
 <section id="higher-order-functions">
-<h2>Higher-order functions<a class="headerlink" href="#higher-order-functions" title="Permalink to this heading"></a></h2>
+<h3>Higher-order functions<a class="headerlink" href="#higher-order-functions" title="Permalink to this heading"></a></h3>
 <p>Функция может принимать в качестве аргумента другую функцию. Функции, которые используют другие функции в качестве аргументов, называются <em>функциями высшего порядка</em> . Этот шаблон полезен для взаимодействия между компонентами так же, как вы можете использовать интерфейс обратного вызова в Java.</p>
 <p>Вот пример функции высшего порядка:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">stringMapper</span><span class="p">(</span><span class="n">str</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">mapper</span><span class="p">:</span><span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="p">{</span>
@@ -352,13 +353,13 @@
 </section>
 </section>
 <section id="classes">
-<h1>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h1>
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this heading"></a></h2>
 <p>Все упомянутые до сих пор типы встроены в язык программирования Kotlin. Если вы хотите добавить свой собственный тип, вы можете определить класс, используя ключевое слово <code class="docutils literal notranslate"><span class="pre">class</span></code> , как показано в следующем примере:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Car</span>
 </pre></div>
 </div>
 <section id="properties">
-<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading"></a></h2>
+<h3>Properties<a class="headerlink" href="#properties" title="Permalink to this heading"></a></h3>
 <p>Классы представляют состояние с помощью свойств. <a class="reference external" href="https://kotlinlang.org/docs/reference/properties.html">Свойство</a> — это переменная уровня класса, которая может включать в себя метод получения, метод установки и вспомогательное поле. Поскольку для движения автомобилю необходимы колеса, вы можете добавить список объектов <code class="docutils literal notranslate"><span class="pre">Wheel</span></code> как свойство <code class="docutils literal notranslate"><span class="pre">Car</span></code> , как показано в следующем примере:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Car</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">wheels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">listOf</span><span class="o">&lt;</span><span class="n">Wheel</span><span class="o">&gt;</span><span class="p">()</span>
@@ -377,7 +378,7 @@
 <p>В приведенном выше примере конструктор класса принимает <code class="docutils literal notranslate"><span class="pre">List&lt;Wheel&gt;</span></code> в качестве аргумента конструктора и использует этот аргумент для инициализации своего свойства <code class="docutils literal notranslate"><span class="pre">wheels</span></code> .</p>
 </section>
 <section id="class-functions-and-encapsulation">
-<h2>Class functions and encapsulation<a class="headerlink" href="#class-functions-and-encapsulation" title="Permalink to this heading"></a></h2>
+<h3>Class functions and encapsulation<a class="headerlink" href="#class-functions-and-encapsulation" title="Permalink to this heading"></a></h3>
 <p>Классы используют функции для моделирования поведения. Функции могут изменять состояние, помогая вам предоставлять только те данные, которые вы хотите предоставить. Этот контроль доступа является частью более широкой объектно-ориентированной концепции, известной как <em>инкапсуляция</em> .</p>
 <p>В следующем примере свойство <code class="docutils literal notranslate"><span class="pre">doorLock</span></code> остается закрытым для всего, что находится за пределами класса <code class="docutils literal notranslate"><span class="pre">Car</span></code> . Чтобы разблокировать автомобиль, необходимо вызвать функцию <code class="docutils literal notranslate"><span class="pre">unlockDoor()</span></code> , передав действительный ключ, как показано в следующем примере:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Car</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">wheels</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Wheel</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -407,13 +408,14 @@
 <p>Комбинируя свойства и функции, вы можете создавать классы, моделирующие все типы объектов.</p>
 </section>
 </section>
+</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_install_first_program.html" class="btn btn-neutral float-left" title="Установка средств разработки" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02_basics_compile_jvm.html" class="btn btn-neutral float-right" title="Основы языка Kotlin" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="02_basics_compile_jvm.html" class="btn btn-neutral float-left" title="Основы языка Kotlin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Android/android.html" class="btn btn-neutral float-right" title="Android" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
