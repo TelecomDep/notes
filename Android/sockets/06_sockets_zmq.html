@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6. Работа c сокетами (Sockets). Библиотека Zero MQ. &mdash; Telecom Notes 0.1 documentation</title>
+  <title>6. Работа c сокетами (Sockets). &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/stylesheet.css" type="text/css" />
@@ -20,7 +20,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Полезные ссылки" href="../../References/usefull_links.html" />
+    <link rel="next" title="7. Библиотека Zero MQ (Android)" href="07_sockets_zmq_android.html" />
     <link rel="prev" title="5. Работа виджетами из Activity" href="../05_widgets.html" /> 
 </head>
 
@@ -65,7 +65,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../03_app_architecture.html">3. Архитектура приложения</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../04_view_group.html">4. Работа ViewGroup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../05_widgets.html">5. Работа виджетами из Activity</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Работа c сокетами (Sockets). Библиотека Zero MQ.</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. Работа c сокетами (Sockets).</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Основные функции сокетов</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#socket">socket()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bind">bind()</a></li>
@@ -80,17 +80,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#sock-stream-vs-sock-dgram"><strong>SOCK_STREAM vs SOCK_DGRAM</strong></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#python">Клиент-серверная программа (Python)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id3">Клиент-серверная программа на СИ</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#zero-mq">Библиотека Zero MQ</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#zmq">Основы ZMQ</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#android-thread">Немного потоки в Android (Thread)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#zmq-jeromq-android">Подключение ZMQ (JeroMQ) в проект Android</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">Список литературы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Список литературы</a></li>
 </ul>
 </li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
 </ul>
 </li>
 </ul>
@@ -114,7 +109,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../android.html">Android</a></li>
-      <li class="breadcrumb-item active">6. Работа c сокетами (Sockets). Библиотека Zero MQ.</li>
+      <li class="breadcrumb-item active">6. Работа c сокетами (Sockets).</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/Android/sockets/06_sockets_zmq.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -124,8 +119,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="c-sockets-zero-mq">
-<h1>6. Работа c сокетами (Sockets). Библиотека Zero MQ.<a class="headerlink" href="#c-sockets-zero-mq" title="Permalink to this heading"></a></h1>
+  <section id="c-sockets">
+<h1>6. Работа c сокетами (Sockets).<a class="headerlink" href="#c-sockets" title="Permalink to this heading"></a></h1>
 <p>Короткая выжимка из этих предыдущих лекций:</p>
 <ul class="simple">
 <li><p>У каждого компьютера в сети есть IP-адрес, даже если это просто локальная сеть.</p></li>
@@ -610,103 +605,8 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 </pre></div>
 </div>
 </section>
-</section>
-<section id="zero-mq">
-<h2>Библиотека Zero MQ<a class="headerlink" href="#zero-mq" title="Permalink to this heading"></a></h2>
-<section id="zmq">
-<h3>Основы ZMQ<a class="headerlink" href="#zmq" title="Permalink to this heading"></a></h3>
-<p>Библиотека <a class="reference external" href="https://zeromq.org/get-started/">ZeroMQ</a> поддерживает множество языков программирвоания (при помощи <code class="docutils literal notranslate"><span class="pre">bind'ов</span></code>): СИ, С++, Java, Python, Rust и т.д. (по ссылке можно найти полный список).</p>
-</section>
-<section id="android-thread">
-<h3>Немного потоки в Android (Thread)<a class="headerlink" href="#android-thread" title="Permalink to this heading"></a></h3>
-<p><strong>Многопоточность</strong> — возможность программы выполнять несколько задач одновременно в рамках одного процесса.
-Применение фоновых потоков — необходимое условие, если вы хотите избежать появления диалогового окна для принудительного закрытия приложения. Когда активность в Android на протяжении 5 секунд не отвечает на события пользовательского ввода (например, нажатие кнопки) или приёмник широковещательных <code class="docutils literal notranslate"><span class="pre">намерений</span> <span class="pre">(Intents)</span></code> не завершает работу обработчика <code class="docutils literal notranslate"><span class="pre">onReceive()</span></code> в течение 10 секунд, считается, что приложение зависло. Подобные ситуации следует избегать любой ценой. Используйте фоновые потоки для всех трудоёмких операций, включая <strong>работу с файлами</strong>, <strong>сетевые запросы</strong>, транзакции в базах данных и сложные вычисления.
-<strong>Потоки</strong> — средство, которое помогает организовать одновременное выполнение нескольких задач, каждой в независимом потоке. Потоки представляют собой экземпляры классов, каждый из которых запускается и функционирует самостоятельно, автономно (или относительно автономно) от главного потока выполнения программы.</p>
-<p>Проблема классических Thread в невозможности получить доступ к объектам\обработчикам основного <strong>графического потока</strong> (<code class="docutils literal notranslate"><span class="pre">UI</span> <span class="pre">thread</span></code>). Существует пара <a class="reference external" href="https://developer.android.com/guide/components/processes-and-threads">правил</a> по работе с потоками:</p>
-<ol class="arabic simple">
-<li><p><strong>НЕ</strong> блокировать основной поток;</p></li>
-<li><p><strong>НЕ</strong> пытайтесь получить доступ к <code class="docutils literal notranslate"><span class="pre">Android</span> <span class="pre">UI</span> <span class="pre">Tooklit</span></code> вне <code class="docutils literal notranslate"><span class="pre">UI</span> <span class="pre">Thread</span></code>.</p></li>
-</ol>
-<p><strong>Android</strong> предоставляет несколько вариантов работы в <strong>фоновом режиме</strong> безопасно с UI-потоком:</p>
-<ol class="arabic simple">
-<li><p>Activity.runOnUiThread(Runnable)</p></li>
-<li><p>View.post(Runnable)</p></li>
-<li><p>View.postDelayed(Runnable, long)</p></li>
-<li><p><strong>Handlers</strong> - начнем с с этого</p></li>
-<li><p>AsyncTask</p></li>
-</ol>
-<p>Пример с <code class="docutils literal notranslate"><span class="pre">View.post(Runnable)</span></code>:</p>
-<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">onClick</span><span class="p">(</span><span class="n">v</span><span class="p">:</span><span class="w"> </span><span class="n">View</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">Thread</span><span class="p">(</span><span class="n">Runnable</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">//DO something</span>
-<span class="w">        </span><span class="k">while</span><span class="p">(</span><span class="m">1</span><span class="p">){</span>
-<span class="w">            </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">)</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">    </span><span class="p">}).</span><span class="na">start</span><span class="p">()</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 <section id="id4">
-<h4>Жизненный цикл потока<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
-<p>При выполнении программы объект класса <code class="docutils literal notranslate"><span class="pre">Thread</span></code> может быть в одном из четырех основных состояний: <strong>«новый»</strong>, <strong>«работоспособный»</strong>, <strong>«неработоспособный»</strong> и <strong>«пассивный»</strong>. При создании потока он получает состояние «новый» (<code class="docutils literal notranslate"><span class="pre">NEW</span></code>) и не выполняется. Для перевода потока из состояния «новый» в состояние «работоспособный» (<code class="docutils literal notranslate"><span class="pre">RUNNABLE</span></code>) следует выполнить метод <code class="docutils literal notranslate"><span class="pre">start()</span></code>, который вызывает метод <code class="docutils literal notranslate"><span class="pre">run()</span></code> — основной метод потока.</p>
-<p>Поток может находиться в одном из состояний, соответствующих элементам статически вложенного перечисления <code class="docutils literal notranslate"><span class="pre">Thread.State</span></code>:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">NEW</span></code> — поток создан, но еще не запущен;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">RUNNABLE</span></code> — поток выполняется;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">BLOCKED</span></code> — поток блокирован;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">WAITING</span></code> — поток ждет окончания работы другого потока;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TIMED_WAITING</span></code> — поток некоторое время ждет окончания другого потока;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">TERMINATED</span></code> — поток завершен.</p></li>
-</ul>
-</section>
-<section id="id5">
-<h4>Инициализация потока<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
-<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0.</span><span class="p">.</span><span class="m">10</span><span class="p">){</span>
-<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">)</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="p">}</span>
-<span class="kd">val</span><span class="w"> </span><span class="nv">runnableServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Runnable</span><span class="p">{</span><span class="n">sayHello</span><span class="p">()}</span><span class="w"> </span>
-<span class="kd">val</span><span class="w"> </span><span class="nv">threadServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">runnableServer</span><span class="p">)</span>
-<span class="n">threadServer</span><span class="p">.</span><span class="na">start</span><span class="p">()</span>
-</pre></div>
-</div>
-</section>
-</section>
-<section id="zmq-jeromq-android">
-<h3>Подключение ZMQ (JeroMQ) в проект Android<a class="headerlink" href="#zmq-jeromq-android" title="Permalink to this heading"></a></h3>
-<p>Для установки библиотеки <a class="reference external" href="https://zeromq.org/languages/java/">JeroMQ</a> вам понадобится добавить зависимость в файл <code class="docutils literal notranslate"><span class="pre">Gradle</span> <span class="pre">Scripts</span></code> <code class="docutils literal notranslate"><span class="pre">-&gt;</span></code> <code class="docutils literal notranslate"><span class="pre">build.gradle.kts</span> <span class="pre">(Module</span> <span class="pre">:app)</span></code> (как показано на рисунке ниже):</p>
-<!-- ![28-1920x814.webp](add_jeromq_build_gradle.png) -->
-<p align="center">
-  <img src="add_jeromq_build_gradle.png" width="450" title="hover text" alt="Alt text">
-  <figcaption> Путь к файлу сборки проекта Build gradle for Module :app </figcaption>
-</p>
-<p>Добавляем зависимость (<code class="docutils literal notranslate"><span class="pre">implementation</span> <span class="pre">(&quot;org.zeromq:jeromq:0.5.0&quot;)</span></code> ):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dependencies</span> <span class="p">{</span>
-
-    <span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="o">.</span><span class="n">androidx</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">ktx</span><span class="p">)</span>
-    <span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="o">.</span><span class="n">androidx</span><span class="o">.</span><span class="n">appcompat</span><span class="p">)</span>
-    <span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="o">.</span><span class="n">material</span><span class="p">)</span>
-    <span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="o">.</span><span class="n">androidx</span><span class="o">.</span><span class="n">activity</span><span class="p">)</span>
-    <span class="n">implementation</span><span class="p">(</span><span class="n">libs</span><span class="o">.</span><span class="n">androidx</span><span class="o">.</span><span class="n">constraintlayout</span><span class="p">)</span>
-    <span class="n">implementation</span><span class="p">(</span><span class="s2">&quot;com.google.android.gms:play-services-location:21.2.0&quot;</span><span class="p">)</span> <span class="o">//</span> <span class="o">--&gt;&gt;</span> <span class="n">Location</span>
-    <span class="n">implementation</span> <span class="p">(</span><span class="s2">&quot;org.zeromq:jeromq:0.5.0&quot;</span><span class="p">)</span> <span class="o">//</span> <span class="o">--&gt;&gt;</span> <span class="n">JeroMQ</span>
-    <span class="n">testImplementation</span><span class="p">(</span><span class="n">libs</span><span class="o">.</span><span class="n">junit</span><span class="p">)</span>
-    <span class="n">androidTestImplementation</span><span class="p">(</span><span class="n">libs</span><span class="o">.</span><span class="n">androidx</span><span class="o">.</span><span class="n">junit</span><span class="p">)</span>
-    <span class="n">androidTestImplementation</span><span class="p">(</span><span class="n">libs</span><span class="o">.</span><span class="n">androidx</span><span class="o">.</span><span class="n">espresso</span><span class="o">.</span><span class="n">core</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Далее, <code class="docutils literal notranslate"><span class="pre">IDE</span> <span class="pre">Android</span> <span class="pre">Studio</span></code> при фиксации новой зависимости предложит вам синхронизировать все зависимости проекта:</p>
-<p align="center">
-  <img src="gradle_sync.png" width="650" title="hover text" alt="Alt text">
-  <figcaption> Синхронизация при изменении Build gradle for Module :app` </figcaption>
-</p>
-<p><strong>Клиент и Сервер</strong>
-Рассмотрим пример работы Клиента и Сервера в одном Acitvity:</p>
-</section>
-<section id="id6">
-<h3>Список литературы<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<h3>Список литературы<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Linux manual - page address_families(7) (</strong><a class="reference external" href="https://man7.org/linux/man-pages/man7/address_families.7.html">https://man7.org/linux/man-pages/man7/address_families.7.html</a><strong>)</strong></p></li>
 <li></li>
@@ -720,7 +620,7 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../05_widgets.html" class="btn btn-neutral float-left" title="5. Работа виджетами из Activity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../References/usefull_links.html" class="btn btn-neutral float-right" title="Полезные ссылки" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="07_sockets_zmq_android.html" class="btn btn-neutral float-right" title="7. Библиотека Zero MQ (Android)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
