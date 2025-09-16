@@ -67,10 +67,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../05_widgets.html">5. Работа виджетами из Activity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">7. Библиотека Zero MQ (Android)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Очередь сообщений</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#zmq">Основы ZMQ</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#android-thread">Немного потоки в Android (Thread)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Жизненный цикл потока</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Инициализация потока</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Жизненный цикл потока</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Инициализация потока</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#zmq-jeromq-android">Подключение ZMQ (JeroMQ) в проект Android</a></li>
@@ -111,14 +112,124 @@
              
   <section id="zero-mq-android">
 <h1>7. Библиотека Zero MQ (Android)<a class="headerlink" href="#zero-mq-android" title="Permalink to this heading"></a></h1>
-<section id="zmq">
-<h2>Основы ZMQ<a class="headerlink" href="#zmq" title="Permalink to this heading"></a></h2>
 <p>Библиотека <a class="reference external" href="https://zeromq.org/get-started/">ZeroMQ</a> поддерживает множество языков программирвоания (при помощи <code class="docutils literal notranslate"><span class="pre">bind'ов</span></code>): СИ, С++, Java, Python, Rust и т.д. (по ссылке можно найти полный список).
 Прежде чем начать разбираться с <code class="docutils literal notranslate"><span class="pre">ZeroMQ</span></code>, давайте сначала посмотрим на общую концепцию очереди сообщений.</p>
-<p><strong>Очередь сообщений</strong></p>
+<section id="id1">
+<h2>Очередь сообщений<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Очередь сообщений, или, технически, <code class="docutils literal notranslate"><span class="pre">FIFO</span></code>(<code class="docutils literal notranslate"><span class="pre">First</span> <span class="pre">In</span> <span class="pre">First</span> <span class="pre">Out</span></code>), является одной из основных и хорошо изученных структур данных. Существуют различные реализации очереди, такие как очередь приоритетов или двусторонняя очередь, которые имеют различные свойства, но общая идея в том, что данные добавляются в очередь когда они появляются или вызывающий абонент будет готов.
 Вместе с тем очередь сообщений предоставляет гарантии, что сообщение будет доставлено независимо от того, что происходит. Очередь сообщений позволяет асинхронно взаимодействовать между слабо связанными компонентами, а также обеспечивает строгую последовательность очереди. В случае недостатка ресурсов, что мешает вам сразу же обработать посылаемые данные, вы можете поставить их в очередь сообщений на сервере, который будет хранить данные до тех пор, пока клиент не будет готов.</p>
 <p><img alt="1758001376380" src="../../_images/1758001376380.png" /></p>
+<p><strong>Синхронные системы</strong></p>
+<p>Очередь сообщений играет важную роль при масштабировании распределенных систем, так как поддерживает асинхронные связи. Дадим краткую информацию о разнице между синхронными и асинхронными системами.
+В обычных синхронных системах задачи обрабатываются по одной за раз. Задача считается не обработанной, пока процесс ее обработки не закончен. Это самый простой способ организации работы.</p>
+<p><img alt="1758001441988" src="../../_images/1758001441988.png" /></p>
+<p>Мы также можем внедрить в эту систему потоки. В этом случае, процесс обработки каждой задачи выполнялся бы параллельно.</p>
+<p><img alt="1758001456327" src="../../_images/1758001456327.png" /></p>
+<p><strong>Асинхронные системы</strong></p>
+<p>В много-поточной модели потоки управляются самой операционной системой на одном процессоре или нескольких процессорах/ядрах.
+Асинхронный ввод/вывод (<code class="docutils literal notranslate"><span class="pre">AIO</span></code>) позволяет программе продолжить выполнение при обработке <code class="docutils literal notranslate"><span class="pre">I/O</span></code> запросов. <code class="docutils literal notranslate"><span class="pre">AIO</span></code> является обязательным в приложениях реального времени. С помощью <code class="docutils literal notranslate"><span class="pre">AIO</span></code> мы можем обработать несколько задач в одном потоке.</p>
+<p><img alt="1758001473170" src="../../_images/1758001473170.png" /></p>
+</section>
+<section id="zmq">
+<h2>Основы ZMQ<a class="headerlink" href="#zmq" title="Permalink to this heading"></a></h2>
+<p><strong>Простота</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">ZeroMQ</span></code> простая. Мы можем делать некоторые асинхронные операции ввода/вывода, также <code class="docutils literal notranslate"><span class="pre">ZeroMQ</span></code> может ставить в очередь сообщений сообщения из потока ввода/вывода. Потоки ввода/вывода в <code class="docutils literal notranslate"><span class="pre">ZeroMQ</span></code> работают асинхронно при общении с сетевым трафиком, поэтому они могут делать для вас и остальную работу. Если вы прежде работали с сокетами, то вы должны знать, что это весьма не просто. Тем не менее, <code class="docutils literal notranslate"><span class="pre">ZeroMQ</span></code> позволяет гораздо упростить работу с ними.</p>
+<p><strong>Производительность</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">ZeroMQ</span></code> быстрая. Веб-сайту Second Life удалось получить 13,4 микросекунды непрерывного времени ожидания и до 4 100 000 сообщений в секунду. <code class="docutils literal notranslate"><span class="pre">ZeroMQ</span></code> может использовать многоадресный транспортный протокол, который является эффективным методом для передачи данных в различных направлениях.</p>
+<p><strong>ZMQ_REP &amp;&amp; ZMQ_REQ</strong></p>
+<p>На данном этапе мы рассмотрим связку <code class="docutils literal notranslate"><span class="pre">клиент</span> <span class="pre">-</span> <span class="pre">сервер</span></code> при помощи схемы “<code class="docutils literal notranslate"><span class="pre">запрос</span> <span class="pre">-</span> <span class="pre">ответ</span></code>” или <code class="docutils literal notranslate"><span class="pre">ZMQ_REQ</span> <span class="pre">-</span> <span class="pre">ZMQ_REP</span></code>.</p>
+<p><img alt="1758001795757" src="../../_images/1758001795757.png" /></p>
+<p>Напишем простое клиент-серверное приложение на языке <code class="docutils literal notranslate"><span class="pre">Clang</span></code>:
+<strong>server</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;zmq.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zmq_ctx_new</span><span class="p">();</span>
+<span class="w">	</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">respond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zmq_socket</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">ZMQ_REP</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="n">zmq_bind</span><span class="p">(</span><span class="n">respond</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tcp://*:4040&quot;</span><span class="p">);</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Starting…</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="k">for</span><span class="p">(;;)</span><span class="w"> </span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">zmq_msg_t</span><span class="w"> </span><span class="n">request</span><span class="p">;</span>
+<span class="w">		</span><span class="n">zmq_msg_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">request</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">respond</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Received: hello</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">request</span><span class="p">);</span>
+<span class="w">		</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// sleep one second</span>
+<span class="w">		</span><span class="n">zmq_msg_t</span><span class="w"> </span><span class="n">reply</span><span class="p">;</span>
+<span class="w">		</span><span class="n">zmq_msg_init_size</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reply</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="s">&quot;world&quot;</span><span class="p">));</span>
+<span class="w">		</span><span class="n">memcpy</span><span class="p">(</span><span class="n">zmq_msg_data</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reply</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;world&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reply</span><span class="p">,</span><span class="w"> </span><span class="n">respond</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reply</span><span class="p">);</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="n">zmq_close</span><span class="p">(</span><span class="n">respond</span><span class="p">);</span>
+<span class="w">	</span><span class="n">zmq_ctx_destroy</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>client</strong></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;string.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unistd.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;zmq.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">	</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zmq_ctx_new</span><span class="p">();</span>
+<span class="w">	</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Client Starting….</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="kt">void</span><span class="o">*</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zmq_socket</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">ZMQ_REQ</span><span class="p">);</span>
+<span class="w">	</span><span class="n">zmq_connect</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;tcp://localhost:4040&quot;</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="kt">int</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="k">for</span><span class="p">(;;)</span><span class="w"> </span>
+<span class="w">	</span><span class="p">{</span>
+<span class="w">		</span><span class="n">zmq_msg_t</span><span class="w"> </span><span class="n">req</span><span class="p">;</span>
+<span class="w">		</span><span class="n">zmq_msg_init_size</span><span class="p">(</span><span class="o">&amp;</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">strlen</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">));</span>
+<span class="w">		</span><span class="n">memcpy</span><span class="p">(</span><span class="n">zmq_msg_data</span><span class="p">(</span><span class="o">&amp;</span><span class="n">req</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;hello&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">);</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Sending: hello - %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_send</span><span class="p">(</span><span class="o">&amp;</span><span class="n">req</span><span class="p">,</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">req</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_t</span><span class="w"> </span><span class="n">reply</span><span class="p">;</span>
+<span class="w">		</span><span class="n">zmq_msg_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reply</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_recv</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reply</span><span class="p">,</span><span class="w"> </span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">		</span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;Received: hello - %d</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<span class="w">		</span><span class="n">zmq_msg_close</span><span class="p">(</span><span class="o">&amp;</span><span class="n">reply</span><span class="p">);</span>
+<span class="w">		</span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">	</span><span class="p">}</span>
+<span class="w">	</span><span class="c1">// We never get here though.</span>
+<span class="w">	</span><span class="n">zmq_close</span><span class="p">(</span><span class="n">request</span><span class="p">);</span>
+<span class="w">	</span><span class="n">zmq_ctx_destroy</span><span class="p">(</span><span class="n">context</span><span class="p">);</span>
+<span class="w">	</span>
+<span class="w">	</span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Комментарии к <strong>серверной</strong> части:</p>
+<ol class="arabic simple">
+<li><p>Метод <code class="docutils literal notranslate"><span class="pre">zmq_ctx_new()</span></code> - создает новый контекст. Он является потоко-безопасным, так что контекст можно использовать в нескольких потоках;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zmq_socket(context,</span> <span class="pre">ZMQ_REP)</span></code> - создает новый сокет в определенном контексте. Сокеты ZeroMQ не являются потоко-безопасными, поэтому они должны использоваться только в том потоке, в котором они были созданы. Традиционные сокеты синхронные, в то время как у сокетов ZeroMQ есть возможность создавать одну очередь на стороне клиента, а другую на стороне сервера, асинхронно управляя паттерном запрос-ответ. ZeroMQ автоматически организует настройку соединения, повторное подключение, отключение и доставку контента;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zmq_bind(respond,</span> <span class="pre">&quot;tcp://*:4040&quot;)</span></code> - связывает сокет и блокирует порт <code class="docutils literal notranslate"><span class="pre">4040</span></code>, таким образом сервер начинает свою работу;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zmq_msg_recv(&amp;request,</span> <span class="pre">respond,</span> <span class="pre">0)</span></code> - получение сообщения от client;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zmq_msg_send(&amp;reply,</span> <span class="pre">respond,</span> <span class="pre">0)</span></code> - отправка ответа клиенту.</p></li>
+</ol>
+<p>Комментарии к <strong>клиентской</strong> части:</p>
+<ol class="arabic simple">
+<li><p>Метод <code class="docutils literal notranslate"><span class="pre">zmq_ctx_new()</span></code> - создает новый контекст. Он является потоко-безопасным, так что контекст можно использовать в нескольких потоках;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zmq_socket(context,</span> <span class="pre">ZMQ_REQ)</span></code> - создает новый сокет в определенном контексте. <code class="docutils literal notranslate"><span class="pre">ZMQ_REQ</span></code> - это метод запроса на передачу данных.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zmq_connect(request,</span> <span class="pre">&quot;tcp://localhost:4040&quot;)</span></code> - установка соединения с сервеной частью, запрос доступа на порт <code class="docutils literal notranslate"><span class="pre">4040</span></code> на <code class="docutils literal notranslate"><span class="pre">localhost</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zmq_msg_send(&amp;req,</span> <span class="pre">request,</span> <span class="pre">0)</span></code> - отправка сообщения;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zmq_msg_recv(&amp;reply,</span> <span class="pre">request,</span> <span class="pre">0)</span></code> - получение ответа от сервера.</p></li>
+</ol>
 </section>
 <section id="android-thread">
 <h2>Немного потоки в Android (Thread)<a class="headerlink" href="#android-thread" title="Permalink to this heading"></a></h2>
@@ -149,8 +260,8 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<section id="id1">
-<h3>Жизненный цикл потока<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<section id="id2">
+<h3>Жизненный цикл потока<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>При выполнении программы объект класса <code class="docutils literal notranslate"><span class="pre">Thread</span></code> может быть в одном из четырех основных состояний: <strong>«новый»</strong>, <strong>«работоспособный»</strong>, <strong>«неработоспособный»</strong> и <strong>«пассивный»</strong>. При создании потока он получает состояние «новый» (<code class="docutils literal notranslate"><span class="pre">NEW</span></code>) и не выполняется. Для перевода потока из состояния «новый» в состояние «работоспособный» (<code class="docutils literal notranslate"><span class="pre">RUNNABLE</span></code>) следует выполнить метод <code class="docutils literal notranslate"><span class="pre">start()</span></code>, который вызывает метод <code class="docutils literal notranslate"><span class="pre">run()</span></code> — основной метод потока.</p>
 <p>Поток может находиться в одном из состояний, соответствующих элементам статически вложенного перечисления <code class="docutils literal notranslate"><span class="pre">Thread.State</span></code>:</p>
 <ul class="simple">
@@ -162,8 +273,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">TERMINATED</span></code> — поток завершен.</p></li>
 </ul>
 </section>
-<section id="id2">
-<h3>Инициализация потока<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h3>Инициализация потока<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0.</span><span class="p">.</span><span class="m">10</span><span class="p">){</span>
 <span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello World!&quot;</span><span class="p">)</span>
@@ -207,7 +318,97 @@
   <figcaption> Синхронизация при изменении Build gradle for Module :app` </figcaption>
 </p> -->
 <p><strong>Клиент и Сервер</strong>
-Рассмотрим пример работы Клиента и Сервера в одном Acitvity:</p>
+Рассмотрим пример работы Клиента и Сервера в одном <code class="docutils literal notranslate"><span class="pre">Activity</span></code>. Для этого создадим новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, например, <code class="docutils literal notranslate"><span class="pre">SocketsActivity</span></code>, в котором определим фукнции работы клиента и сервера при помощи <code class="docutils literal notranslate"><span class="pre">ZMQ</span></code>.</p>
+<p><strong>Код onCreate()</strong>:
+В данном случае добавим одно <code class="docutils literal notranslate"><span class="pre">TextView</span></code> и <code class="docutils literal notranslate"><span class="pre">Handler</span></code> для связи потоков с основным потоком <code class="docutils literal notranslate"><span class="pre">UI</span> <span class="pre">Thread</span></code>.</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SocketsActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">log_tag</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;MY_LOG_TAG&quot;</span>
+
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">tvSockets</span><span class="p">:</span><span class="w"> </span><span class="n">TextView</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">textString</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span>
+<span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">handler</span><span class="p">:</span><span class="w"> </span><span class="n">Handler</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">        </span><span class="n">enableEdgeToEdge</span><span class="p">()</span>
+<span class="w">        </span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">activity_sockets</span><span class="p">)</span>
+<span class="w">        </span><span class="n">ViewCompat</span><span class="p">.</span><span class="na">setOnApplyWindowInsetsListener</span><span class="p">(</span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">main</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">insets</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">systemBars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insets</span><span class="p">.</span><span class="na">getInsets</span><span class="p">(</span><span class="n">WindowInsetsCompat</span><span class="p">.</span><span class="na">Type</span><span class="p">.</span><span class="na">systemBars</span><span class="p">())</span>
+<span class="w">            </span><span class="n">v</span><span class="p">.</span><span class="na">setPadding</span><span class="p">(</span><span class="n">systemBars</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">top</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">bottom</span><span class="p">)</span>
+<span class="w">            </span><span class="n">insets</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">tvSockets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">tvSockets</span><span class="p">)</span>
+<span class="w">        </span><span class="n">handler</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Handler</span><span class="p">(</span><span class="n">Looper</span><span class="p">.</span><span class="na">getMainLooper</span><span class="p">())</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Код функции server</strong>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">startServer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ZMQ</span><span class="p">.</span><span class="na">context</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ZContext</span><span class="p">().</span><span class="na">createSocket</span><span class="p">(</span><span class="n">SocketType</span><span class="p">.</span><span class="na">REP</span><span class="p">)</span>
+<span class="w">    </span><span class="n">socket</span><span class="p">.</span><span class="na">bind</span><span class="p">(</span><span class="s">&quot;tcp://*:2222&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Replace with your server&#39;s IP and port</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">counter</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">    </span><span class="c1">// В бесконечном цикле ожидаем &quot;привета&quot; от клиента и отвечаем ему, если нужно</span>
+<span class="w">    </span><span class="k">while</span><span class="p">(</span><span class="kc">true</span><span class="p">){</span>
+<span class="w">        </span><span class="n">counter</span><span class="o">++</span>
+<span class="w">        </span><span class="c1">// Получаем данные от Клиента</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">requestBytes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">.</span><span class="na">recv</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">String</span><span class="p">(</span><span class="n">requestBytes</span><span class="p">,</span><span class="w"> </span><span class="n">ZMQ</span><span class="p">.</span><span class="na">CHARSET</span><span class="p">)</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;[SERVER] Received request: [</span><span class="si">$</span><span class="n">request</span><span class="s">]&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="c1">// Здесь имитируется какая-то сложная работа</span>
+<span class="w">        </span><span class="n">handler</span><span class="p">.</span><span class="na">postDelayed</span><span class="p">({</span>
+<span class="w">            </span><span class="n">tvSockets</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Received MSG from Client = </span><span class="si">$</span><span class="n">counter</span><span class="s">&quot;</span>
+<span class="w">        </span><span class="p">},</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// Это безопасная работа с основным потоком UI Thread</span>
+<span class="w">        </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// Закончили очень сложную работу</span>
+
+<span class="w">        </span><span class="c1">// Подготавливаем и отправляем ответ Клиенту</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello from Android ZMQ Server!&quot;</span>
+<span class="w">        </span><span class="n">socket</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">toByteArray</span><span class="p">(</span><span class="n">ZMQ</span><span class="p">.</span><span class="na">CHARSET</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;[SERVER] Sent reply: [</span><span class="si">$</span><span class="n">response</span><span class="s">]&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Безопасно закрываем контекст и сокет.</span>
+<span class="w">    </span><span class="n">socket</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="w">    </span><span class="n">context</span><span class="p">.</span><span class="na">close</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Код функции client</strong>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">startClient</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ZMQ</span><span class="p">.</span><span class="na">context</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">socket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ZContext</span><span class="p">().</span><span class="na">createSocket</span><span class="p">(</span><span class="n">SocketType</span><span class="p">.</span><span class="na">REQ</span><span class="p">)</span>
+<span class="w">    </span><span class="n">socket</span><span class="p">.</span><span class="na">connect</span><span class="p">(</span><span class="s">&quot;tcp://localhost:2222&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Запрос на соединение с сервером</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">request</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello from Android client!&quot;</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0.</span><span class="p">.</span><span class="m">10</span><span class="p">){</span>
+<span class="w">        </span><span class="n">socket</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="na">toByteArray</span><span class="p">(</span><span class="n">ZMQ</span><span class="p">.</span><span class="na">CHARSET</span><span class="p">),</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">log_tag</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[CLIENT] SendT: </span><span class="si">$</span><span class="n">request</span><span class="s">&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">reply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">.</span><span class="na">recv</span><span class="p">(</span><span class="m">0</span><span class="p">)</span>
+<span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">log_tag</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;[CLIENT] Received: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="kt">String</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span><span class="w"> </span><span class="n">ZMQ</span><span class="p">.</span><span class="na">CHARSET</span><span class="p">))</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">socket</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+<span class="w">    </span><span class="n">context</span><span class="p">.</span><span class="na">close</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Код запуска двух потоков (клиента и сервера)</strong>:
+Запускать будем в методе <code class="docutils literal notranslate"><span class="pre">onResume()</span></code>, когда пользователь видит окно <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResume</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">runnableServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Runnable</span><span class="p">{</span><span class="n">startServer</span><span class="p">()}</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">threadServer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">runnableServer</span><span class="p">)</span>
+<span class="w">    </span><span class="n">threadServer</span><span class="p">.</span><span class="na">start</span><span class="p">()</span>
+
+<span class="w">    </span><span class="n">Thread</span><span class="p">.</span><span class="na">sleep</span><span class="p">(</span><span class="m">1000</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">runnableClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Runnable</span><span class="p">{</span><span class="n">startClient</span><span class="p">()}</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">threadClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Thread</span><span class="p">(</span><span class="n">runnableClient</span><span class="p">)</span>
+<span class="w">    </span><span class="n">threadClient</span><span class="p">.</span><span class="na">start</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 
