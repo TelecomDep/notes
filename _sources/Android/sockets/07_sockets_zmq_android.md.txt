@@ -59,6 +59,7 @@ threadServer.start()
 ```
 ### Подключение ZMQ (JeroMQ) в проект Android
 Для установки библиотеки [JeroMQ](https://zeromq.org/languages/java/) вам понадобится добавить зависимость в файл `Gradle Scripts` `->` `build.gradle.kts (Module :app)` (как показано на рисунке ниже):
+
 ![add_jeromq_build_gradle.png](add_jeromq_build_gradle.png)
 <!-- <p align="center">
   <img src="add_jeromq_build_gradle.png" width="450" title="hover text" alt="Alt text">
