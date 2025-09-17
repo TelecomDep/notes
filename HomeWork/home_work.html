@@ -231,17 +231,23 @@
 <li><p>Новый функционал должен находится в отдельной (от основной) ветке (создаем новую ветку (<code class="docutils literal notranslate"><span class="pre">branch</span></code>));</p></li>
 </ol>
 </li>
-<li><p>Наладить передачу данных от Вашего приложения (Android) на приложение-сервер на Вашем компьютере (или VPS, если имеется):
-2. <code class="docutils literal notranslate"><span class="pre">Сервер</span></code> (компьютер) - запустить серверную часть на базе языка <code class="docutils literal notranslate"><span class="pre">Python</span></code> + <code class="docutils literal notranslate"><span class="pre">ZMQ</span></code>;
-2. <code class="docutils literal notranslate"><span class="pre">Android</span></code> - выступает в роли клиента (на базе <code class="docutils literal notranslate"><span class="pre">ZMQ</span></code>), подключается к серверу;
-2. Ваш компьютер и телефон (<code class="docutils literal notranslate"><span class="pre">Android</span></code>) должны находится в одной сети (Wifi, USB, Internet (если есть белый <code class="docutils literal notranslate"><span class="pre">ip</span></code>-адрес));
-2. В роли данных со стороны <code class="docutils literal notranslate"><span class="pre">Android</span></code>-приложения выступает строка <code class="docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">from</span> <span class="pre">Andorid!&quot;</span></code>;
-2. Данные со стороны сервера - <code class="docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">from</span> <span class="pre">Server!&quot;</span></code>;
-2. <code class="docutils literal notranslate"><span class="pre">Серверная</span></code> часть <strong>ДОЛЖНА</strong> сохранить (в файл) каждый блок данных, пришедший со смартфона, и считать количество полученных пакетов.
-2. Серверная часть также должны иметь метод\функцию по выводу на экран (консоль) всех сохраненных данных;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Git</span></code>:
-3. <code class="docutils literal notranslate"><span class="pre">Android</span></code> - Сделать c merge request с новым функционалом;
-3. <code class="docutils literal notranslate"><span class="pre">Server</span></code> - добавить новый коммит, обновить удаленный репозиторий.</p></li>
+<li><p>Наладить передачу данных от Вашего приложения (Android) на приложение-сервер на Вашем компьютере (или VPS, если имеется):</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Сервер</span></code> (компьютер) - запустить серверную часть на базе языка <code class="docutils literal notranslate"><span class="pre">Python</span></code> + <code class="docutils literal notranslate"><span class="pre">ZMQ</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Android</span></code> - выступает в роли клиента (на базе <code class="docutils literal notranslate"><span class="pre">ZMQ</span></code>), подключается к серверу;</p></li>
+<li><p>Ваш компьютер и телефон (<code class="docutils literal notranslate"><span class="pre">Android</span></code>) должны находится в одной сети (Wifi, USB, Internet (если есть белый <code class="docutils literal notranslate"><span class="pre">ip</span></code>-адрес));</p></li>
+<li><p>В роли данных со стороны <code class="docutils literal notranslate"><span class="pre">Android</span></code>-приложения выступает строка <code class="docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">from</span> <span class="pre">Andorid!&quot;</span></code>;</p></li>
+<li><p>Данные со стороны сервера - <code class="docutils literal notranslate"><span class="pre">&quot;Hello</span> <span class="pre">from</span> <span class="pre">Server!&quot;</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Серверная</span></code> часть <strong>ДОЛЖНА</strong> сохранить (в файл) каждый блок данных, пришедший со смартфона, и считать количество полученных пакетов.</p></li>
+<li><p>Серверная часть также должны иметь метод\функцию по выводу на экран (консоль) всех сохраненных данных;</p></li>
+</ol>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Git</span></code>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Android</span></code> - Сделать c merge request с новым функционалом;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Server</span></code> - добавить новый коммит, обновить удаленный репозиторий.</p></li>
+</ol>
+</li>
 </ol>
 </section>
 </section>
