@@ -111,3 +111,22 @@
     1. `Android` - Сделать c merge request с новым функционалом;
     3. `Server` - добавить новый коммит, обновить удаленный репозиторий.
 
+
+### 7. Сериализация. Data-классы. Формирование JSON.
+
+1. В приложении `Android`, `Desktop-сервере` сформировать [Data-классы](https://metanit.com/kotlin/tutorial/4.12.php) для данных, которые будем передавать с между приложениями. Список данных:
+    1. [Location](https://developer.android.com/reference/android/location/Location): Latitude, Longitude, Altitude, Timestamp, Speed, Accuracy;
+    2. [CellInfoLte](https://developer.android.com/reference/android/telephony/CellInfoLte): CellIdentityLte, CellSignalStrengthLte;
+        1. CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;
+        5. CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;
+    3. [CellInfoGsm](https://developer.android.com/reference/android/telephony/CellInfoGsm): CellIdentityGSM, CellSignalStrengthGsm;
+        1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
+        6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
+    4. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
+        1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
+        7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
+2. Заполнить каждый `Data-класс` актуальными данными с мобильного телефона (`Пр. №3`, `Пр. №4`);
+3. Реализовать `Serialization` и преобразование в `Json`, созданных вами классов:
+    1. Структура на передачу **ДОЛЖНА** состоять из `Location` и одним из (или несколько, если позволяет производитель смартфона) объектов `CellInfo` (`GSM` или `LTE` или `NR`);
+4. С заранее заданной периодичностью (допустим, `1 секунда`) передавать, сформированную структуру `Json`, с мобильного устройства на сервер.
+5. На стороне сервера получать данные, выводить в терминал и сохранять данные в файл;

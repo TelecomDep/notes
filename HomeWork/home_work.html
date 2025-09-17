@@ -59,6 +59,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#python-clang">5. Реализация клиент-серверного приложения (Python\clang)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">6. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-json">7. Сериализация. Data-классы. Формирование JSON.</a></li>
 </ul>
 </li>
 </ul>
@@ -248,6 +249,42 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">Server</span></code> - добавить новый коммит, обновить удаленный репозиторий.</p></li>
 </ol>
 </li>
+</ol>
+</section>
+<section id="data-json">
+<h3>7. Сериализация. Data-классы. Формирование JSON.<a class="headerlink" href="#data-json" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>В приложении <code class="docutils literal notranslate"><span class="pre">Android</span></code>, <code class="docutils literal notranslate"><span class="pre">Desktop-сервере</span></code> сформировать <a class="reference external" href="https://metanit.com/kotlin/tutorial/4.12.php">Data-классы</a> для данных, которые будем передавать с между приложениями. Список данных:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location">Location</a>: Latitude, Longitude, Altitude, Timestamp, Speed, Accuracy;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoLte">CellInfoLte</a>: CellIdentityLte, CellSignalStrengthLte;</p>
+<ol class="arabic simple">
+<li><p>CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;</p></li>
+<li><p>CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;</p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoGsm">CellInfoGsm</a>: CellIdentityGSM, CellSignalStrengthGsm;</p>
+<ol class="arabic simple">
+<li><p>CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;</p></li>
+<li><p>CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;</p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoNr">CellInfoNr</a>: CellIdentityNr, CellSignalStrengthNr</p>
+<ol class="arabic simple">
+<li><p>CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;</p></li>
+<li><p>CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Заполнить каждый <code class="docutils literal notranslate"><span class="pre">Data-класс</span></code> актуальными данными с мобильного телефона (<code class="docutils literal notranslate"><span class="pre">Пр.</span> <span class="pre">№3</span></code>, <code class="docutils literal notranslate"><span class="pre">Пр.</span> <span class="pre">№4</span></code>);</p></li>
+<li><p>Реализовать <code class="docutils literal notranslate"><span class="pre">Serialization</span></code> и преобразование в <code class="docutils literal notranslate"><span class="pre">Json</span></code>, созданных вами классов:</p>
+<ol class="arabic simple">
+<li><p>Структура на передачу <strong>ДОЛЖНА</strong> состоять из <code class="docutils literal notranslate"><span class="pre">Location</span></code> и одним из (или несколько, если позволяет производитель смартфона) объектов <code class="docutils literal notranslate"><span class="pre">CellInfo</span></code> (<code class="docutils literal notranslate"><span class="pre">GSM</span></code> или <code class="docutils literal notranslate"><span class="pre">LTE</span></code> или <code class="docutils literal notranslate"><span class="pre">NR</span></code>);</p></li>
+</ol>
+</li>
+<li><p>С заранее заданной периодичностью (допустим, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">секунда</span></code>) передавать, сформированную структуру <code class="docutils literal notranslate"><span class="pre">Json</span></code>, с мобильного устройства на сервер.</p></li>
+<li><p>На стороне сервера получать данные, выводить в терминал и сохранять данные в файл;</p></li>
 </ol>
 </section>
 </section>
