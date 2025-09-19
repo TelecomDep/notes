@@ -244,9 +244,11 @@ jshell&gt;<span class="w"> </span>ClassLoader.getPlatformClassLoader<span class=
 <li><p><strong>Разрешение</strong> (<code class="docutils literal notranslate"><span class="pre">Resolution</span></code>).</p></li>
 </ol>
 <p><img alt="1758251764628" src="../_images/1758251764628.png" /></p>
-<p><code class="docutils literal notranslate"><span class="pre">Verification</span></code>: проверка правильности файла <code class="docutils literal notranslate"><span class="pre">.class</span></code>, т. е. проверяет, правильно ли отформатирован и сгенерирован этот файл компилятором. Если проверка не удалась, мы получим исключение времени выполнения <code class="docutils literal notranslate"><span class="pre">java.lang.VerifyError</span></code>. Это действие выполняется компонентом <code class="docutils literal notranslate"><span class="pre">ByteCodeVerifier</span></code>. После завершения этого действия файл класса готов к компиляции.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Preparation</span></code>: <code class="docutils literal notranslate"><span class="pre">JVM</span></code> <strong>выделяет память</strong> для статических переменных класса и инициализирует память значениями по умолчанию.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Resolution</span></code>: Это процесс замены символических ссылок типа прямыми ссылками. Это делается путем поиска в области метода, чтобы найти указанный объект.</p>
+<ol class="arabic simple">
+<li><p><strong>Verification</strong>: проверка правильности файла <code class="docutils literal notranslate"><span class="pre">.class</span></code>, т. е. проверяет, правильно ли отформатирован и сгенерирован этот файл компилятором. Если проверка не удалась, мы получим исключение времени выполнения <code class="docutils literal notranslate"><span class="pre">java.lang.VerifyError</span></code>. Это действие выполняется компонентом <code class="docutils literal notranslate"><span class="pre">ByteCodeVerifier</span></code>. После завершения этого действия файл класса готов к компиляции.</p></li>
+<li><p><strong>Preparation</strong>: <code class="docutils literal notranslate"><span class="pre">JVM</span></code> <strong>выделяет память</strong> для статических переменных класса и инициализирует память значениями по умолчанию.</p></li>
+<li><p><strong>Resolution</strong>: Это процесс замены символических ссылок типа прямыми ссылками. Это делается путем поиска в области метода, чтобы найти указанный объект.</p></li>
+</ol>
 </section>
 <section id="id3">
 <h4>Инициализация<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
