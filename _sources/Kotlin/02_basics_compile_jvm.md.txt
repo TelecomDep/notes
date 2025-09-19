@@ -239,16 +239,6 @@ public final class ApplicationKt {
     LOCALVARIABLE number_02 I L2 L6 1
     MAXSTACK = 2
     MAXLOCALS = 2
-
-  // access flags 0x1009
-  public static synthetic main([Ljava/lang/String;)V
-   L0
-    INVOKESTATIC ApplicationKt.main ()V
-    RETURN
-   L1
-    LOCALVARIABLE args [Ljava/lang/String; L0 L1 0
-    MAXSTACK = 0
-    MAXLOCALS = 1
 }
 ```
 
