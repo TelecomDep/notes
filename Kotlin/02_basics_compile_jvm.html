@@ -61,9 +61,12 @@
 <li class="toctree-l2"><a class="reference internal" href="01_install_first_program.html">Установка средств разработки</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Основы компиляции языков Kotlin и Java</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#java-jvm">Цели создания виртуальной машины Java (JVM)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#kotlin-jdk-java-development-kit">Архитектура взаимодействия Kotlin с JDK (Java Development Kit)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Байт-код</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Виртуальная машина Java (JVM)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#kotlin-jdk-java-development-kit">Архитектура взаимодействия Kotlin с JDK (Java Development Kit)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#java-virtual-machine">Java Virtual Machine</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#class-loader">Class Loader</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#jvm-runtime-memory">JVM Runtime Memory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Байт-код</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Виртуальная машина Java (JVM)</a></li>
 </ul>
 </li>
 </ul>
@@ -158,8 +161,110 @@
 </ol>
 </li>
 </ol>
+</section>
+<section id="java-virtual-machine">
+<h2>Java Virtual Machine<a class="headerlink" href="#java-virtual-machine" title="Permalink to this heading"></a></h2>
+<p>Виртуальная машина Java состоит из трех основных компонет:</p>
+<ol class="arabic simple">
+<li><p><strong>Загрузчик классов</strong> (<code class="docutils literal notranslate"><span class="pre">Class</span> <span class="pre">Loader</span></code>);</p></li>
+<li><p><strong>Область памяти JVM</strong> (<code class="docutils literal notranslate"><span class="pre">JVM</span> <span class="pre">Runtime</span> <span class="pre">Memory</span></code>);</p></li>
+<li><p><strong>Исполнительный механизм</strong> (<code class="docutils literal notranslate"><span class="pre">Execution</span> <span class="pre">Engine</span></code>)</p></li>
+</ol>
+<!-- ![1758248764001](image/02_basics_compile_jvm/1758248764001.png) -->
+<p><img alt="1758251160188" src="../_images/1758251160188.png" /></p>
+<section id="class-loader">
+<h3>Class Loader<a class="headerlink" href="#class-loader" title="Permalink to this heading"></a></h3>
+<p><a class="reference external" href="https://habr.com/ru/articles/748758/">Основной источник информации</a></p>
+<p>Но что на самом деле означает это JVM загружает? Спецификация <a class="reference external" href="https://docs.oracle.com/javase/specs/jls/se20/html/jls-12.html#jls-12.2">Java SE приводит</a> следующий комментарий:</p>
+<blockquote>
+<div><p>Loading refers to the process of finding the binary form of a class or interface with a particular name, perhaps by computing it on the fly, but more typically by retrieving a binary representation previously computed from source code by a Java compiler, and constructing, from that binary form, a Class object to represent the class or interface.</p>
+</div></blockquote>
+<p>Формулируя более простым языком, когда мы говорим о “загрузке класса”, мы имеем в виду:</p>
+<blockquote>
+<div><p>Процесс <strong>поиска</strong> соответствующего файла <code class="docutils literal notranslate"><span class="pre">.class</span></code> на диске, <strong>чтения</strong> его содержимого и <strong>передачи</strong> его в среду выполнения JVM, которая представляет собой определенную часть памяти машины, предназначенную для выполнения вашего приложения.</p>
+</div></blockquote>
+<p>В действительности, система загрузчиков классов не просто находит классы — она обеспечивает <code class="docutils literal notranslate"><span class="pre">целостность</span></code> и <code class="docutils literal notranslate"><span class="pre">безопасность</span></code> <code class="docutils literal notranslate"><span class="pre">Java</span></code>-приложения, соблюдая правила бинарной структуры и пространства имен среды выполнения Java.</p>
+<p>Загрузчик классов состоит из:</p>
+<ol class="arabic simple">
+<li><p><strong>Загрузка</strong> (<code class="docutils literal notranslate"><span class="pre">Loading</span></code>);</p></li>
+<li><p><strong>Линковка</strong> (<code class="docutils literal notranslate"><span class="pre">Linking</span></code>);</p></li>
+<li><p><strong>Инициализация</strong> (<code class="docutils literal notranslate"><span class="pre">Initialization</span></code>).</p></li>
+</ol>
+<p><img alt="1758251505135" src="../_images/1758251505135.png" /></p>
 <section id="id1">
-<h3>Байт-код<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<h4>Загрузка<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<p>Процесс начинается с того, что загрузчик класса (далее, ClassLoader) получает задание найти определенный класс, что может быть инициировано самой JVM, или вызвано командой в вашем коде. Задача же здесь заключается в том, чтобы взять полное имя класса (например, <code class="docutils literal notranslate"><span class="pre">java.lang.String</span></code>) и получить соответствующий файл класса (например, <code class="docutils literal notranslate"><span class="pre">String.class</span></code>) из его местоположения на диске —&gt; в память JVM.</p>
+<p><img alt="1758249388792" src="../_images/1758249388792.png" />
+Из <a class="reference external" href="https://habr.com/ru/articles/748758/">Источника</a>.</p>
+<p><strong>Boostrap ClassLoader</strong>
+<img alt="1758249523380" src="../_images/1758249523380.png" /></p>
+<p>Старейший представитель семейства, <code class="docutils literal notranslate"><span class="pre">Bootstrap</span> <span class="pre">ClassLoader</span></code>, отвечает за загрузку основных библиотек <code class="docutils literal notranslate"><span class="pre">Java</span></code>, расположенных в <code class="docutils literal notranslate"><span class="pre">java.base</span></code> модуле (<code class="docutils literal notranslate"><span class="pre">java.lang</span></code>, <code class="docutils literal notranslate"><span class="pre">java.util</span></code> и т.д.), необходимых для старта JVM.</p>
+<p>Обратя внимания на диаграмму можно заметить, что другие загрузчики классов написаны на ё (объекты <code class="docutils literal notranslate"><span class="pre">java.lang.ClassLoader</span></code>), что означает — их также необходимо загрузить в <code class="docutils literal notranslate"><span class="pre">JVM</span></code>! Эту задачу также выполняет <code class="docutils literal notranslate"><span class="pre">Bootstrap</span> <span class="pre">ClassLoader</span></code>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jshell&gt;<span class="w"> </span>System.out.println<span class="o">(</span>java.lang.ClassLoader.class.getClassLoader<span class="o">())</span><span class="p">;</span>
+&gt;&gt;<span class="w"> </span>null
+</pre></div>
+</div>
+<p><strong>Bootstrap ClassLoader</strong> также является <strong>единственным</strong> загрузчиком, <a class="reference external" href="https://docs.oracle.com/javase/specs/jvms/se20/html/jvms-5.html#jvms-5.3.1">явно описанным</a> в спецификации <code class="docutils literal notranslate"><span class="pre">Oracle</span></code>. Остальные зовутся “<code class="docutils literal notranslate"><span class="pre">User-defined</span></code>”, и оставляются на рассмотрение конкретных вендоров вирутальных машин.</p>
+<p><strong>Platform ClassLoader</strong></p>
+<p><img alt="1758250378332" src="../_images/1758250378332.png" /></p>
+<p>Документация Java SE 20 <a class="reference external" href="https://docs.oracle.com/en/java/javase/20/docs/api/java.base/java/lang/ClassLoader.html#builtinLoaders">говорит</a> о нем следующее:</p>
+<blockquote>
+<div><p>The platform class loader is responsible for loading the platform classes. Platform classes include Java SE platform APIs, their implementation classes, and JDK-specific run-time classes that are defined by the platform class loader or its ancestors. The platform class loader can be used as the parent of a ClassLoader instance.</p>
+</div></blockquote>
+<p>Но что отличает классы платформы от основных классов, загружаемых Bootstrap загрузчиком? Посмотрим, что он на самом деле загружает:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jshell&gt;<span class="w"> </span>ClassLoader.getPlatformClassLoader<span class="o">()</span>.getDefinedPackages<span class="o">()</span><span class="p">;</span>
+<span class="nv">$1</span><span class="w"> </span><span class="o">==</span>&gt;<span class="w"> </span>Package<span class="o">[</span><span class="m">0</span><span class="o">]</span><span class="w"> </span><span class="o">{</span><span class="w"> </span><span class="o">}</span><span class="w"> </span>//<span class="w"> </span>empty
+</pre></div>
+</div>
+<p>Получается, что в пустой Java-программе — <strong>абсолютно ничего</strong>! Теперь попробуем явно использовать класс из какого-нибудь стандартного пакета:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>jshell&gt;<span class="w"> </span>java.sql.Connection.class.getClassLoader<span class="o">()</span>
+<span class="nv">$2</span><span class="w"> </span><span class="o">==</span>&gt;<span class="w"> </span>jdk.internal.loader.ClassLoaders<span class="nv">$PlatformClassLoader</span>@27fa135a
+
+jshell&gt;<span class="w"> </span>ClassLoader.getPlatformClassLoader<span class="o">()</span>.getDefinedPackages<span class="o">()</span>
+<span class="nv">$3</span><span class="w"> </span><span class="o">==</span>&gt;<span class="w"> </span>Package<span class="o">[</span><span class="m">1</span><span class="o">]</span><span class="w"> </span><span class="o">{</span><span class="w"> </span>package<span class="w"> </span>java.sql<span class="w"> </span><span class="o">}</span>
+</pre></div>
+</div>
+<p>Получается, проще говоря, <code class="docutils literal notranslate"><span class="pre">Bootstrap</span></code> загружает основные классы <strong>необходимые для запуска JVM</strong>, а <code class="docutils literal notranslate"><span class="pre">Platform</span></code> — публичные типы системных модулей, которые <strong>могут понадобиться</strong>.</p>
+<p><strong>Application\System ClassLoader</strong>
+<img alt="1758250367576" src="../_images/1758250367576.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">Application</span> <span class="pre">ClassLoader</span></code>, также известный как системный загрузчик классов, пожалуй, самый <code class="docutils literal notranslate"><span class="pre">user-friendly</span></code> из всех. Именно этот загрузчик подгружает <strong>ваши собственные реализации</strong> и <strong>библиотеки зависимостей</strong>, которые вы передали <code class="docutils literal notranslate"><span class="pre">JVM</span></code> (явно или неявно) при старте приложения в качестве <code class="docutils literal notranslate"><span class="pre">-classpath</span> <span class="pre">(-cp)</span></code> параметра.</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(){</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">(){</span>
+<span class="w">      </span><span class="c1">// code</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h4>Линковка<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p><strong>Верификация</strong> (<code class="docutils literal notranslate"><span class="pre">Verification</span></code>);</p></li>
+<li><p><strong>Подготовка</strong> (<code class="docutils literal notranslate"><span class="pre">Preparation</span></code>);</p></li>
+<li><p><strong>Разрешение</strong> (<code class="docutils literal notranslate"><span class="pre">Resolution</span></code>).</p></li>
+</ol>
+<p><img alt="1758251764628" src="../_images/1758251764628.png" /></p>
+<p><code class="docutils literal notranslate"><span class="pre">Verification</span></code>: проверка правильности файла <code class="docutils literal notranslate"><span class="pre">.class</span></code>, т. е. проверяет, правильно ли отформатирован и сгенерирован этот файл компилятором. Если проверка не удалась, мы получим исключение времени выполнения <code class="docutils literal notranslate"><span class="pre">java.lang.VerifyError</span></code>. Это действие выполняется компонентом <code class="docutils literal notranslate"><span class="pre">ByteCodeVerifier</span></code>. После завершения этого действия файл класса готов к компиляции.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Preparation</span></code>: <code class="docutils literal notranslate"><span class="pre">JVM</span></code> <strong>выделяет память</strong> для статических переменных класса и инициализирует память значениями по умолчанию.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Resolution</span></code>: Это процесс замены символических ссылок типа прямыми ссылками. Это делается путем поиска в области метода, чтобы найти указанный объект.</p>
+</section>
+<section id="id3">
+<h4>Инициализация<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<p><img alt="1758251787007" src="../_images/1758251787007.png" /></p>
+<p>В данном случае происходит <strong>инициализация</strong> полученного объекта.</p>
+<p>Все эти этапы выполняются последовательно со следующими требованиями:</p>
+<ul class="simple">
+<li><p>Класс должен быть полностью загружен прежде, чем <strong>слинкован</strong>.</p></li>
+<li><p>Класс должен быть полностью <strong>проверен</strong> и <strong>подготовлен</strong> прежде, чем <strong>проинициализирован</strong>.</p></li>
+<li><p>Ошибки разрешения ссылок происходят во время выполнения программы, даже если были обнаружены на этапе линковки.</p></li>
+</ul>
+</section>
+</section>
+<section id="jvm-runtime-memory">
+<h3>JVM Runtime Memory<a class="headerlink" href="#jvm-runtime-memory" title="Permalink to this heading"></a></h3>
+</section>
+<section id="id4">
+<h3>Байт-код<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>Запустим <code class="docutils literal notranslate"><span class="pre">Intellij</span> <span class="pre">Idea</span></code>, создадим простой проект для демонстрации компиляции из <code class="docutils literal notranslate"><span class="pre">*.kt</span></code> в <code class="docutils literal notranslate"><span class="pre">*.class</span></code>.</p>
 <p>В созданном проекте откроем файл <code class="docutils literal notranslate"><span class="pre">/src/application.kt</span></code> (создается по умолчанию, если не менять настройки). Добавим немного кода:</p>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"> </span><span class="c1">// Точка входа в программу</span>
@@ -228,8 +333,8 @@
 <p>На данный момент не очень понятны команды <code class="docutils literal notranslate"><span class="pre">BIPUSH</span></code>, <code class="docutils literal notranslate"><span class="pre">ISTORE</span></code>, <code class="docutils literal notranslate"><span class="pre">ILOAD</span></code> и т.д.
 Для этого необходимо немного погрузиться в кухню <strong>Java Virtual Machine</strong>.</p>
 </section>
-<section id="id2">
-<h3>Виртуальная машина Java (JVM)<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id5">
+<h3>Виртуальная машина Java (JVM)<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <!-- ### Архитектура
 ### Архитектура
 ### Архитектура -->
