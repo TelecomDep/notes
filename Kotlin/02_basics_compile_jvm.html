@@ -262,6 +262,16 @@ jshell&gt;<span class="w"> </span>ClassLoader.getPlatformClassLoader<span class=
 </section>
 <section id="jvm-runtime-memory">
 <h3>JVM Runtime Memory<a class="headerlink" href="#jvm-runtime-memory" title="Permalink to this heading"></a></h3>
+<p><img alt="1758253064735" src="../_images/1758253064735.png" /></p>
+<ol class="arabic simple">
+<li><p><strong>Method Area</strong>  - В области Method area хранится скомпилированный код для каждой функции. Когда поток начинает выполнять функцию, в общем случае он получает инструкции из этой области.</p></li>
+<li><p><strong>Thread 1…N</strong> - Потоки строго выполняют предписанные им инструкции (<code class="docutils literal notranslate"><span class="pre">method</span> <span class="pre">area</span></code>), для этого у них есть <code class="docutils literal notranslate"><span class="pre">PC</span> <span class="pre">Register</span></code> и <code class="docutils literal notranslate"><span class="pre">JVM</span> <span class="pre">Stack</span></code>.</p></li>
+<li><p><strong>PC Register</strong> - <code class="docutils literal notranslate"><span class="pre">Program</span> <span class="pre">Counter</span> <span class="pre">Register</span></code> — счетчик команд нашего потока. Хранит в себе адрес выполняемой инструкции.</p></li>
+<li><p><strong>JVM Stack</strong> - Стек фреймов. Под каждую функцию выделяется фрейм, в рамках которого текущий поток работает с переменными и операндами.</p></li>
+<li><p><strong>Local Variables</strong> - Это массив локальных переменных (<code class="docutils literal notranslate"><span class="pre">local</span> <span class="pre">variable</span> <span class="pre">table</span></code>), который, как следует из названия, хранит значения, тип и область видимости локальных переменных.</p></li>
+<li><p><strong>Operand Stack</strong> - Operand stack хранит <strong>аргументы для инструкций</strong> JVM. Например, целочисленные значения для операции сложения, ссылки на объекты heap и т. п.</p></li>
+<li><p><strong>Heap</strong> - В рамках работы с фреймом мы оперируем <strong>ссылками на объекты</strong>, сами же <strong>объекты хранятся</strong> в <code class="docutils literal notranslate"><span class="pre">heap</span></code>. Важное отличие в том, что <code class="docutils literal notranslate"><span class="pre">фрейм</span> <span class="pre">принадлежит</span> <span class="pre">только</span> <span class="pre">одному</span> <span class="pre">потоку</span></code>, и локальные переменные «живут», пока жив фрейм (выполняется функция). А <code class="docutils literal notranslate"><span class="pre">heap</span></code> доступен и другим потокам, и живет до включения сборщика мусора.</p></li>
+</ol>
 </section>
 <section id="id4">
 <h3>Байт-код<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
