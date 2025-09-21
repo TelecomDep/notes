@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Основы Объектно-ориентированного программирования в Kotlin &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Android" href="../Android/android.html" />
+    <link rel="prev" title="Основы синтаксиса Kotlin" href="02_basic.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="kotlin.html">Kotlin</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="00_introduction.html">Введение в язык Kotlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_install_first_program.html">Установка средств разработки</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basics_compile_jvm.html">Основы компиляции языков Kotlin и Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_basic.html">Основы синтаксиса Kotlin</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Основы Объектно-ориентированного программирования в Kotlin</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Классы и объекты</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Конструкторы</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Первичный</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Вторичные</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Методы</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Наследование</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Интерфейсы</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="kotlin.html">Kotlin</a></li>
+      <li class="breadcrumb-item active">Основы Объектно-ориентированного программирования в Kotlin</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Kotlin/03_basic_oop.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="kotlin">
+<h1>Основы Объектно-ориентированного программирования в Kotlin<a class="headerlink" href="#kotlin" title="Permalink to this heading"></a></h1>
+<section id="id1">
+<h2>Классы и объекты<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Инициализация <strong>классов</strong> в языке Kotlin производится при помощи ключевого слова <code class="docutils literal notranslate"><span class="pre">class</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// внутренности Human&#39;a</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Объявление класса состоит из его <strong>имени</strong>, <strong>заголовка класса</strong> (задавая свойства класса, первичный конструктор и т.д.) и <strong>тела класса</strong>, заключенного в фигурные скобки <code class="docutils literal notranslate"><span class="pre">{}</span></code>.</p>
+<p>Класс также может быть пустым:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmptyHuman</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2>Конструкторы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>В Kotlin есть <strong>первичный</strong> (<code class="docutils literal notranslate"><span class="pre">primary</span> <span class="pre">constructor</span></code>) и один или несколько <strong>вторичных</strong> констукторов (<code class="docutils literal notranslate"><span class="pre">secondary</span> <span class="pre">constructor</span></code>).</p>
+<section id="id3">
+<h3>Первичный<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="w"> </span><span class="k">constructor</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Если primary <code class="docutils literal notranslate"><span class="pre">constructor</span></code> не имеет перед объявлением аннотаций или модификаторов видимости (<code class="docutils literal notranslate"><span class="pre">visibility</span> <span class="pre">modifiers</span></code>), можно опустить ключевое слово <code class="docutils literal notranslate"><span class="pre">constructor</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// Если есть модификатор доступа</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">HumanConstr</span><span class="w"> </span><span class="n">private</span><span class="w"> </span><span class="k">constructor</span><span class="w"> </span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="p">}</span>
+
+<span class="c1">// БЕЗ</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Нюансы primary constructor</strong>
+По умолчанию, он инициализирует <strong>только</strong> <code class="docutils literal notranslate"><span class="pre">объект</span> <span class="pre">класса</span></code> и его <code class="docutils literal notranslate"><span class="pre">свойства</span></code> (переменные класса). Если хотим что-то в виде <code class="docutils literal notranslate"><span class="pre">runnable</span></code>-функции, нужно добавить <code class="docutils literal notranslate"><span class="pre">init{}</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="w"> </span><span class="k">constructor</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+
+<span class="w">    </span><span class="k">init</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span><span class="p">.</span><span class="na">uppercase</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Вторичные<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>Если для класса определен первичный конструктор, то вторичный конструктор должен вызывать первичный с помощью ключевого слова <code class="docutils literal notranslate"><span class="pre">this</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">    </span><span class="k">constructor</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">addAge</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="k">this</span><span class="p">(</span><span class="n">addName</span><span class="p">){</span>
+<span class="w">        </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAge</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Вызываем стандартно:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"> </span><span class="c1">// Точка входа в программу</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">tom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Human</span><span class="p">(</span><span class="s">&quot;Tom&quot;</span><span class="p">)</span><span class="w">      </span><span class="c1">// Первичные конструктор</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">bob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Human</span><span class="p">(</span><span class="s">&quot;bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">  </span><span class="c1">// Вторичный конструктор</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">tom</span><span class="p">.</span><span class="na">name</span><span class="p">)</span>
+<span class="w">    </span><span class="n">println</span><span class="p">(</span><span class="n">bob</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">bob</span><span class="p">.</span><span class="na">age</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>Методы<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>Методы определяют поведение объектов данного класса. Такие функции еще называют <code class="docutils literal notranslate"><span class="pre">member</span> <span class="pre">functions</span></code> или функции-члены класса:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;hello&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">tom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Human</span><span class="p">(</span><span class="s">&quot;Tom&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="n">tom</span><span class="p">.</span><span class="na">sayHello</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id6">
+<h2>Наследование<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<p>В Kotlin можем унаследовать класс только от одного класса, <strong>множественное наследование не поддерживается</strong>.</p>
+<p>Все классы, созданные в Kotlin имеют по умолчанию свой родительский класс <code class="docutils literal notranslate"><span class="pre">Any</span></code> (<a class="reference external" href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-any/">root class</a>).
+Имеет в своем вооружении методы:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">fun</span><span class="w"> </span><span class="nf">equals</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="w"> </span><span class="kt">Any?</span><span class="p">):</span><span class="w"> </span><span class="kt">Boolean</span><span class="w">    </span><span class="c1">// Indicates whether some other object is &quot;equal to&quot; this one.</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">hashCode</span><span class="p">():</span><span class="w"> </span><span class="kt">Int</span><span class="w">                 </span><span class="c1">// Returns a hash code value for the object.</span>
+<span class="kd">fun</span><span class="w"> </span><span class="nf">toString</span><span class="p">():</span><span class="w"> </span><span class="kt">String</span><span class="w">              </span><span class="c1">// Returns a string representation of the object.</span>
+</pre></div>
+</div>
+<p><strong>По умолчанию</strong>, все классы - <code class="docutils literal notranslate"><span class="pre">final</span></code>, не могут быть унаследованы кем-то другим.
+Для реализации наследования необходимо добавить ключевое слово <code class="docutils literal notranslate"><span class="pre">open</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">HumanWithAge</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">addAge</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAge</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>При наследовании производный класс <strong>должен</strong> вызывать <code class="docutils literal notranslate"><span class="pre">первичный</span> <span class="pre">конструктор</span></code> (а если такого нет, то конструктор по умолчанию) <strong>родительского класса</strong>.</p>
+<p>Если дочерний класс не имеет <strong>НЕпустого</strong> первичного конструктора, тогда при вызове вторичного конструктора должен вызываться конструктор родительского класса через ключевое слово <code class="docutils literal notranslate"><span class="pre">super</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">HumanWithAge</span><span class="p">:</span><span class="w"> </span><span class="n">Human</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">    </span><span class="k">constructor</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">addAge</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="n">addName</span><span class="p">){</span>
+<span class="w">        </span><span class="n">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addAge</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Функции и свойства</strong></p>
+<p>По умолчанию, методы и свойства класса переходят по наследству:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">HumanWithAge</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">addAge</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">doNotSayHello</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;no&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span><span class="w"> </span><span class="c1">// Точка входа в программу</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">tom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Human</span><span class="p">(</span><span class="s">&quot;Tom&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">bob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HumanWithAge</span><span class="p">(</span><span class="s">&quot;bob&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)</span><span class="w">   </span><span class="c1">// Унаследованное свойство &quot;name&quot;</span>
+<span class="w">    </span><span class="n">tom</span><span class="p">.</span><span class="na">sayHello</span><span class="p">()</span>
+<span class="w">    </span><span class="n">bob</span><span class="p">.</span><span class="na">sayHello</span><span class="p">()</span><span class="w">                      </span><span class="c1">// Унаследованный метод</span>
+<span class="w">    </span><span class="n">bob</span><span class="p">.</span><span class="na">doNotSayHello</span><span class="p">()</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Чтобы функции и свойства родительского класа можно было <strong>переопределить</strong>, к ним применяется аннотация <code class="docutils literal notranslate"><span class="pre">open</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+
+<span class="w">    </span><span class="kd">open</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">HumanWithAge</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="n">addAge</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">):</span><span class="w"> </span><span class="n">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">age</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello from children&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Запрещаем переопределение методов</strong></p>
+<p>Для этого применяется ключевое слово <code class="docutils literal notranslate"><span class="pre">final</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">){</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">(){</span><span class="w">           </span><span class="c1">// Уже никто не сможет сделать override</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h2>Интерфейсы<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h2>
+<p><strong>Интерфейсы</strong> набор функциональности, который <strong>должен</strong> реализовать класс.
+Для определения интерфейса применяется ключевое слово <code class="docutils literal notranslate"><span class="pre">interface</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nc">Hellowable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Hellowable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Можно добавлять <strong>множество</strong> интерфейсов:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nc">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="kd">interface</span><span class="w"> </span><span class="nc">Hellowable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">()</span>
+<span class="p">}</span>
+<span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Hellowable</span><span class="p">,</span><span class="w"> </span><span class="n">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">sayHello</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;moving&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Реализация метода по умолчанию</strong></p>
+<p>Если в <strong>интерфейсе</strong> определен метод с <strong>реализацией по умолчанию</strong>, класс, использующий этот интерфейс <strong>не обязан</strong> переопределять у себя данный метод:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nc">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">()</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">stop</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;stoped&quot;</span><span class="p">)</span><span class="w">   </span><span class="c1">// Реализация по умолчанию</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;moving&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Свойства</strong></p>
+<p><strong>Интерфейс</strong> может определять <strong>свойства</strong> - им <strong>НЕ</strong> присваиваются значения. Класс же, который реализует интерфейс, также <strong>обязан</strong> реализовать эти свойства:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nc">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">speed</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;moving&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Также можем <strong>переопределить свойсва</strong> интерфейса в конструкторе класса:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nc">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">speed</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">direction</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">()</span>
+<span class="p">}</span>
+
+<span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">override</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">direction</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;moving&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Можно еще вызвать методы самого интерфейса:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span><span class="w"> </span><span class="nc">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">speed</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">direction</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span>
+<span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;move from Movable&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">open</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Human</span><span class="p">(</span><span class="n">addName</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span><span class="w"> </span><span class="kd">override</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">direction</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">)</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">Movable</span><span class="p">{</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">addName</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">move</span><span class="p">(){</span>
+<span class="w">        </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
+<span class="w">        </span><span class="n">println</span><span class="p">(</span><span class="s">&quot;moving&quot;</span><span class="p">)</span>
+<span class="w">        </span><span class="k">super</span><span class="o">&lt;</span><span class="n">Movable</span><span class="o">&gt;</span><span class="p">.</span><span class="na">move</span><span class="p">()</span><span class="w">  </span><span class="c1">// вот тут</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_basic.html" class="btn btn-neutral float-left" title="Основы синтаксиса Kotlin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Android/android.html" class="btn btn-neutral float-right" title="Android" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
