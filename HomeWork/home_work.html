@@ -52,8 +52,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#git">0. Ведение Git-репозитория (требования)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">1. Основы ООП. “Ходячий”</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">2. Наследование.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">2. Интерфейсы.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#android">Android</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id4">1. Разработка простейшего калькулятора</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">1. Разработка простейшего калькулятора</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mediaplayer">2. Разработать MediaPlayer для воспроизведения музыки</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#location">3. Местоположение смартфона. Location</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)</a></li>
@@ -152,12 +153,25 @@
 <li><p><a class="reference external" href="https://metanit.com/kotlin/tutorial/4.9.php">Наследование</a></p></li>
 <li><p><a class="reference external" href="https://medium.com/&#64;appdevinsights/kotlin-mutex-375bfe4330b0">Mutex</a></p></li>
 </ul>
-<!-- ## 1. Байт-код Kotlin + Java Virtual Machine -->
+</section>
+<section id="id4">
+<h2>2. Интерфейсы.<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Создать новую ветку для реализации “интерфейса”;</p></li>
+<li><p>Создать интерфейс <code class="docutils literal notranslate"><span class="pre">Movable</span></code> с шаблонами <code class="docutils literal notranslate"><span class="pre">свойств</span></code> (координаты, скорость и т.д.) и <code class="docutils literal notranslate"><span class="pre">методов</span></code> (метод <code class="docutils literal notranslate"><span class="pre">move()</span></code>), необходимых для реализации движения объектов;</p></li>
+<li><p>Провести рефакторинг текущей кодовой базы, в частности:</p>
+<ol class="arabic simple">
+<li><p>Разделить классы\интерфейсы на файлы (1 класс = 1 файл);</p></li>
+<li><p>Обновить описание проекта в README.md с информацией по каждому файлу.</p></li>
+</ol>
+</li>
+<li><p>Обновить удаленный репозиторий.</p></li>
+</ol>
 </section>
 <section id="android">
 <h2>Android<a class="headerlink" href="#android" title="Permalink to this heading"></a></h2>
-<section id="id4">
-<h3>1. Разработка простейшего калькулятора<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id5">
+<h3>1. Разработка простейшего калькулятора<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>Разработать простую версию калькулятора, используя <code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Button</span></code> и обработчик нажатия (<code class="docutils literal notranslate"><span class="pre">onClickListener</span></code>).</p>
 <p><strong>Требования к “калькулятору”</strong>:</p>
 <ol class="arabic simple">
