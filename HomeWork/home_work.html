@@ -52,15 +52,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#git">0. Ведение Git-репозитория (требования)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id2">1. Основы ООП. “Ходячий”</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id3">2. Наследование.</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#id4">2. Интерфейсы.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">3. Интерфейсы.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#android">Android</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id5">1. Разработка простейшего калькулятора</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mediaplayer">2. Разработать MediaPlayer для воспроизведения музыки</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#location">3. Местоположение смартфона. Location</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#python-clang">5. Реализация клиент-серверного приложения (Python\clang)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">6. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-json">7. Сериализация. Data-классы. Формирование JSON.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">4. Разработка простейшего калькулятора</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mediaplayer">5. Разработать MediaPlayer для воспроизведения музыки</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#location">6. Местоположение смартфона. Location</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-clang">8. Реализация клиент-серверного приложения (Python\clang)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">9. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-json">10. Сериализация. Data-классы. Формирование JSON.</a></li>
 </ul>
 </li>
 </ul>
@@ -155,7 +155,7 @@
 </ul>
 </section>
 <section id="id4">
-<h2>2. Интерфейсы.<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<h2>3. Интерфейсы.<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Создать новую ветку для реализации “интерфейса”;</p></li>
 <li><p>Создать интерфейс <code class="docutils literal notranslate"><span class="pre">Movable</span></code> с шаблонами <code class="docutils literal notranslate"><span class="pre">свойств</span></code> (координаты, скорость и т.д.) и <code class="docutils literal notranslate"><span class="pre">методов</span></code> (метод <code class="docutils literal notranslate"><span class="pre">move()</span></code>), необходимых для реализации движения объектов;</p></li>
@@ -171,7 +171,7 @@
 <section id="android">
 <h2>Android<a class="headerlink" href="#android" title="Permalink to this heading"></a></h2>
 <section id="id5">
-<h3>1. Разработка простейшего калькулятора<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<h3>4. Разработка простейшего калькулятора<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>Разработать простую версию калькулятора, используя <code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Button</span></code> и обработчик нажатия (<code class="docutils literal notranslate"><span class="pre">onClickListener</span></code>).</p>
 <p><strong>Требования к “калькулятору”</strong>:</p>
 <ol class="arabic simple">
@@ -184,7 +184,7 @@
 </ol>
 </section>
 <section id="mediaplayer">
-<h3>2. Разработать MediaPlayer для воспроизведения музыки<a class="headerlink" href="#mediaplayer" title="Permalink to this heading"></a></h3>
+<h3>5. Разработать MediaPlayer для воспроизведения музыки<a class="headerlink" href="#mediaplayer" title="Permalink to this heading"></a></h3>
 <p>Цель: Научиться работать с файлами внутренней (или внешней) памяти смартфона, в частности, со звуковыми “дорожками”. Исползование класса <code class="docutils literal notranslate"><span class="pre">MediaPlayer</span></code> поможет в создании “каркаса” для MP3-проигрователя.</p>
 <ol class="arabic simple">
 <li><p>Создать новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> для работы с <code class="docutils literal notranslate"><span class="pre">MediaPlayer</span></code>;</p></li>
@@ -195,7 +195,7 @@
 </ol>
 </section>
 <section id="location">
-<h3>3. Местоположение смартфона. Location<a class="headerlink" href="#location" title="Permalink to this heading"></a></h3>
+<h3>6. Местоположение смартфона. Location<a class="headerlink" href="#location" title="Permalink to this heading"></a></h3>
 <p>Цель: получить доступ к данным о местоположении Android-телефона и вывести на экран значения.</p>
 <ol class="arabic simple">
 <li><p>Создать <code class="docutils literal notranslate"><span class="pre">Activity</span></code> <strong>Location</strong>, в основном окне <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> добавить кнопку перехода в новую ‘Activity’;</p></li>
@@ -214,14 +214,14 @@
 </ol>
 </section>
 <section id="g-3g-4g-lte-5g-nr">
-<h3>4. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)<a class="headerlink" href="#g-3g-4g-lte-5g-nr" title="Permalink to this heading"></a></h3>
+<h3>7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)<a class="headerlink" href="#g-3g-4g-lte-5g-nr" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Создать новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, добавив кнопку перехода основном “окне” <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code>;</p></li>
 <li><p>При помощи класса <code class="docutils literal notranslate"><span class="pre">Telephony</span></code>;</p></li>
 </ol>
 </section>
 <section id="python-clang">
-<h3>5. Реализация клиент-серверного приложения (Python\clang)<a class="headerlink" href="#python-clang" title="Permalink to this heading"></a></h3>
+<h3>8. Реализация клиент-серверного приложения (Python\clang)<a class="headerlink" href="#python-clang" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Создать новый репозиторий в профиле <code class="docutils literal notranslate"><span class="pre">github</span></code> (для backend-сервера);</p></li>
 <li><p>В созданный репозиторий добавить Ваш проект <code class="docutils literal notranslate"><span class="pre">Android'a</span></code> как <code class="docutils literal notranslate"><span class="pre">submodule</span></code>;</p></li>
@@ -235,7 +235,7 @@
 </ol>
 </section>
 <section id="zmq-android-pc">
-<h3>6. Работа с сокетами (ZMQ). Передача данных от Android к PC<a class="headerlink" href="#zmq-android-pc" title="Permalink to this heading"></a></h3>
+<h3>9. Работа с сокетами (ZMQ). Передача данных от Android к PC<a class="headerlink" href="#zmq-android-pc" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>На базе <a class="reference external" href="https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/SocketsActivity.kt">примера</a> реализовать передачу данных внутри приложения <code class="docutils literal notranslate"><span class="pre">Android</span></code> (ваш предыдущий проект);</p></li>
 <li><p>Создать новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, в котором будет реализованы функции <code class="docutils literal notranslate"><span class="pre">клиента</span></code> и <code class="docutils literal notranslate"><span class="pre">сервера</span></code>;</p>
@@ -264,7 +264,7 @@
 </ol>
 </section>
 <section id="data-json">
-<h3>7. Сериализация. Data-классы. Формирование JSON.<a class="headerlink" href="#data-json" title="Permalink to this heading"></a></h3>
+<h3>10. Сериализация. Data-классы. Формирование JSON.<a class="headerlink" href="#data-json" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>В приложении <code class="docutils literal notranslate"><span class="pre">Android</span></code>, <code class="docutils literal notranslate"><span class="pre">Desktop-сервере</span></code> сформировать <a class="reference external" href="https://metanit.com/kotlin/tutorial/4.12.php">Data-классы</a> для данных, которые будем передавать с между приложениями. Список данных:</p>
 <ol class="arabic simple">
