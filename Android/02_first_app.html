@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2. Создание первого приложения (начало) &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Создание первого приложения (начало) &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Архитектура приложения" href="03_app_architecture.html" />
-    <link rel="prev" title="&lt;no title&gt;" href="01_install_android_studio.html" /> 
+    <link rel="next" title="4. Работа ViewGroup" href="04_view_group.html" />
+    <link rel="prev" title="Android" href="android.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,17 +61,24 @@
 <p class="caption" role="heading"><span class="caption-text">Android</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2. Создание первого приложения (начало)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#hello-world">Hello World</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Создаем проект</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Структура проекта</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#activity">Ползовательский интерфейс (первое Activity)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#kotlin">Управление виджетами из кода Kotlin (один из способов)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Создание первого приложения (начало)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#android-studio">Установка Android Studio</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Первый проект</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Структура проекта</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#androidmanifests-xml">AndroidManifests.xml</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#res">/res</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gradle">Gradle</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="03_app_architecture.html">3. Архитектура приложения</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#activity">Ползовательский интерфейс (первое Activity)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#view">View</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#kotlin">Управление виджетами из кода Kotlin (один из способов)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
@@ -99,7 +106,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="android.html">Android</a></li>
-      <li class="breadcrumb-item active">2. Создание первого приложения (начало)</li>
+      <li class="breadcrumb-item active">Создание первого приложения (начало)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Android/02_first_app.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -110,12 +117,12 @@
            <div itemprop="articleBody">
              
   <section id="id1">
-<h1>2. Создание первого приложения (начало)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
-<section id="hello-world">
-<h2>Hello World<a class="headerlink" href="#hello-world" title="Permalink to this heading"></a></h2>
+<h1>Создание первого приложения (начало)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="android-studio">
+<h2>Установка Android Studio<a class="headerlink" href="#android-studio" title="Permalink to this heading"></a></h2>
 <p>После установки <a class="reference external" href="https://developer.android.com/studio">Androi Studio</a> создадим свое первое приложение “Hello World”. В нем мы ознакомимся со структурой Android-проекта, основными элементами экрана UI (User Interface).</p>
 <section id="id2">
-<h3>Создаем проект<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<h3>Первый проект<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>Создадим первое приложение в виде <code class="docutils literal notranslate"><span class="pre">Empty</span> <span class="pre">Views</span> <span class="pre">Activity</span></code>:</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_new_project.PNG?raw=true" />
 Рис. 1. Окно создания приложения.</p>
@@ -133,8 +140,9 @@
 Рис. 3. Параметры проекта.</p>
 <p>В результате мы получим проект со всеми необходимыми элементами для <strong>сборки</strong>, <strong>компиляции</strong> и <strong>запуска</strong> первого приложения.</p>
 </section>
+</section>
 <section id="id3">
-<h3>Структура проекта<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<h2>Структура проекта<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <p>В открывшемся проекте мы увидмим структуру:</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_project_structure.PNG?raw=true" /></p>
 <p>Рис. 4. Стркутура проекта.</p>
@@ -150,7 +158,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">/Gradle</span> <span class="pre">Scripts</span></code>.</p></li>
 </ul>
 <section id="androidmanifests-xml">
-<h4>AndroidManifests.xml<a class="headerlink" href="#androidmanifests-xml" title="Permalink to this heading"></a></h4>
+<h3>AndroidManifests.xml<a class="headerlink" href="#androidmanifests-xml" title="Permalink to this heading"></a></h3>
 <p>Файл <code class="docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code> является одним из самых важных в Android проекте. В нем содержится информация о пакетах приложения, компонентах типа <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, <code class="docutils literal notranslate"><span class="pre">Service</span></code> и т.д..
 Файл <code class="docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code> выполняет следующие задачи:</p>
 <ul class="simple">
@@ -159,7 +167,7 @@
 </ul>
 </section>
 <section id="res">
-<h4>/res<a class="headerlink" href="#res" title="Permalink to this heading"></a></h4>
+<h3>/res<a class="headerlink" href="#res" title="Permalink to this heading"></a></h3>
 <p>В папке <code class="docutils literal notranslate"><span class="pre">/res</span></code> расположены все используемые приложением ресурсы, включая изображения, различные xml файлы, анимации, звуковые файлы и многие другие. Внутри папки <strong>res</strong> эти все ресурсы распределены по своим папкам:</p>
 <ul class="simple">
 <li><p>Папка  <code class="docutils literal notranslate"><span class="pre">/drawable</span></code> содержит файлы с изображениями, которые будет использоваться в приложении;</p></li>
@@ -170,12 +178,12 @@
 </ul>
 </section>
 <section id="gradle">
-<h4>Gradle<a class="headerlink" href="#gradle" title="Permalink to this heading"></a></h4>
+<h3>Gradle<a class="headerlink" href="#gradle" title="Permalink to this heading"></a></h3>
 <p>Скрипты Gradle используются для автоматизации сборки проекта. Android Studio выполняет сборку приложения в фоновом режиме без какого-либо вмешательства со стороны разработчика. Этот процесс сборки осуществляется с использованием системы Gradle — инструментария для автоматической сборки с помощью набора конфигурационных файлов. Gradle скрипты написаны на языке <code class="docutils literal notranslate"><span class="pre">groove</span></code>.</p>
 </section>
 </section>
 <section id="activity">
-<h3>Ползовательский интерфейс (первое Activity)<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h3>
+<h2>Ползовательский интерфейс (первое Activity)<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h2>
 <p>При создании первого приложения, вы могли увидеть интерфейс работы с <strong>“внешним видом”</strong> вашего Android-приложения.</p>
 <p>По умолчанию, файл <code class="docutils literal notranslate"><span class="pre">/layout/activity_main.xml</span></code> определяет разметку первой <code class="docutils literal notranslate"><span class="pre">&quot;страницы&quot;</span> <span class="pre">(activity)</span></code>, которую видит, с которой взаимодействует пользователь.</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_01_main_xml.PNG?raw=true" />
@@ -223,12 +231,11 @@
 </ul>
 <p>Виджеты представляют собой структурные элементы пользовательского интерфейса. Существую различные виджеты по своим функциям\свойствам: вывод текста на экран, ввод текста, нажатие кнопки и другие взаимодействия с пользователем. В примере выше <code class="docutils literal notranslate"><span class="pre">Button</span></code>, <code class="docutils literal notranslate"><span class="pre">TextView</span></code> - это лишь разновидности виджетов.</p>
 <section id="view">
-<h4>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h4>
+<h3>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h3>
 <p>Android SDK включает множество виджетов, которые являются дочерним классом класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. Таким образом, каждый виджет является экземпляром класса <code class="docutils literal notranslate"><span class="pre">View</span></code>, как и отражено на рисунке ниже.</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true" /></p>
 <p>Рис. 6. Иерархия класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. <a class="reference external" href="https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg">Источник изображения</a>.</p>
 <p>В нашем примере, на рис. 5 показан экран с виджетами <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">TextView</span></code> и <code class="docutils literal notranslate"><span class="pre">Button</span></code>, которые мы можем увидеть в иерархии родительского класса.</p>
-</section>
 <section id="id4">
 <h4>Атрибуты View<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
 <p>Атрибуты View помогают изменять вид элементов на экране. В качестве базовых атрибутов можно перечислить следующие:</p>
@@ -250,8 +257,9 @@
 <p>Если виджет содержится в <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>, он называется потомком (child) <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. Корневой элемент <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code> имеет двух потомков: <code class="docutils literal notranslate"><span class="pre">TextView</span></code> и другой элемент <code class="docutils literal notranslate"><span class="pre">Button</span></code>.</p>
 </section>
 </section>
+</section>
 <section id="kotlin">
-<h3>Управление виджетами из кода Kotlin (один из способов)<a class="headerlink" href="#kotlin" title="Permalink to this heading"></a></h3>
+<h2>Управление виджетами из кода Kotlin (один из способов)<a class="headerlink" href="#kotlin" title="Permalink to this heading"></a></h2>
 <p>По умолчанию, при создании проекта, мы получаем от Android Studio файлы <code class="docutils literal notranslate"><span class="pre">activity_main.xml</span></code> и <code class="docutils literal notranslate"><span class="pre">MainActivity.kt</span></code> (при создании проекта можно изменить название). В <code class="docutils literal notranslate"><span class="pre">.xml</span></code> файле мы уже определили элементы экрана: <code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Button</span></code>. Далее, нам нужно научиться взаимодействовать с ними.</p>
 <p>При создании первого приложения в <code class="docutils literal notranslate"><span class="pre">Android</span> <span class="pre">Studio</span></code> мы получаем код из <strong>листинга №2</strong>.
 Взаимодействие нашего кода и объектов интерфейса (определенных в файле <code class="docutils literal notranslate"><span class="pre">.xml</span></code>, далее компилируемые в объекты <code class="docutils literal notranslate"><span class="pre">View</span></code>).</p>
@@ -302,14 +310,13 @@
 </div>
 </section>
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="01_install_android_studio.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="03_app_architecture.html" class="btn btn-neutral float-right" title="3. Архитектура приложения" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="android.html" class="btn btn-neutral float-left" title="Android" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_view_group.html" class="btn btn-neutral float-right" title="4. Работа ViewGroup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

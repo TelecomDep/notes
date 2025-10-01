@@ -20,7 +20,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="01_install_android_studio.html" />
+    <link rel="next" title="Создание первого приложения (начало)" href="02_first_app.html" />
     <link rel="prev" title="Основы Объектно-ориентированного программирования в Kotlin" href="../Kotlin/03_basic_oop.html" /> 
 </head>
 
@@ -61,8 +61,7 @@
 <p class="caption" role="heading"><span class="caption-text">Android</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Android</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">2. Создание первого приложения (начало)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="03_app_architecture.html">3. Архитектура приложения</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
@@ -104,12 +103,41 @@
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Android</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="02_first_app.html">2. Создание первого приложения (начало)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="03_app_architecture.html">3. Архитектура приложения</a></li>
-<li class="toctree-l1"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
-<li class="toctree-l1"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html#android-studio">Установка Android Studio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html#id3">Структура проекта</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html#activity">Ползовательский интерфейс (первое Activity)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html#kotlin">Управление виджетами из кода Kotlin (один из способов)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#view">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#id1">ViewGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#xml">XML</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html#id5">Положение макета</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#view">View</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#id1">Создание нового Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#activity-intent">Переход между Activity (Intent, вкратце)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#views">Виджеты (Views)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#button">Button</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html#seekbar">SeekBar (Слайдер)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#id1">Основные функции сокетов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#sock-stream-vs-sock-dgram"><strong>SOCK_STREAM vs SOCK_DGRAM</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html#id1">Очередь сообщений</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html#zmq">Основы ZMQ</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html#android-thread">Немного потоки в Android (Thread)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html#zmq-jeromq-android">Подключение ZMQ (JeroMQ) в проект Android</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -119,7 +147,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../Kotlin/03_basic_oop.html" class="btn btn-neutral float-left" title="Основы Объектно-ориентированного программирования в Kotlin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="01_install_android_studio.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="02_first_app.html" class="btn btn-neutral float-right" title="Создание первого приложения (начало)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
