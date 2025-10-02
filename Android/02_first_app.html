@@ -64,13 +64,12 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Создание первого приложения (начало)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#android-studio">Установка Android Studio</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Первый проект</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Рабочее пространство разработчика</a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="app_structure.html">Структура проекта</a></li>
-<li class="toctree-l2"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
 </ul>
@@ -114,11 +113,11 @@
 <section id="id2">
 <h3>Первый проект<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>Создадим первое приложение в виде <code class="docutils literal notranslate"><span class="pre">Empty</span> <span class="pre">Views</span> <span class="pre">Activity</span></code>:</p>
-<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_new_project.PNG?raw=true" />
-Рис. 1. Окно создания приложения.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_new_project.PNG?raw=true" /></p>
+<p>Рис. 1. Окно создания приложения.</p>
 <p>Далее, выберем шаблон для первого приложнеия. Как говорилось выше, выберем <code class="docutils literal notranslate"><span class="pre">Empty</span> <span class="pre">Views</span> <span class="pre">Activity</span></code>.</p>
-<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_empty_activity_views.PNG?raw=true" />
-Рис. 2. Выбор <code class="docutils literal notranslate"><span class="pre">Empty</span> <span class="pre">Views</span> <span class="pre">Activity</span></code>.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_empty_activity_views.PNG?raw=true" /></p>
+<p>Рис. 2. Выбор <code class="docutils literal notranslate"><span class="pre">Empty</span> <span class="pre">Views</span> <span class="pre">Activity</span></code>.</p>
 <p>Нам предоставят возможность выбрать параметры проекта:</p>
 <ul class="simple">
 <li><p>Name - название вашего приложения;</p></li>
@@ -126,9 +125,31 @@
 <li><p>Minimum SDK - минимальная версия SDK (версия библиотек, используемых в проекте);</p></li>
 <li><p>Build language - язык системы сборки проекта.</p></li>
 </ul>
-<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_project_properties.PNG?raw=true" />
-Рис. 3. Параметры проекта.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_project_properties.PNG?raw=true" /></p>
+<p>Рис. 3. Параметры проекта.</p>
 <p>В результате мы получим проект со всеми необходимыми элементами для <strong>сборки</strong>, <strong>компиляции</strong> и <strong>запуска</strong> первого приложения.</p>
+</section>
+<section id="id3">
+<h3>Рабочее пространство разработчика<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p><img alt="1759422427188" src="../_images/1759422427188.png" /></p>
+<p>Рис. 4. Рабочее пространство Android Studio.</p>
+<p>На рисунке 4 показан пример окна Вашего первого приложения и <code class="docutils literal notranslate"><span class="pre">Layout</span> <span class="pre">Editor</span></code>. <code class="docutils literal notranslate"><span class="pre">Layout</span> <span class="pre">Editor</span></code> состоит из <code class="docutils literal notranslate"><span class="pre">Palette</span></code>, <code class="docutils literal notranslate"><span class="pre">Component</span> <span class="pre">Tree</span></code>, <code class="docutils literal notranslate"><span class="pre">Design</span> <span class="pre">Editor</span></code>  и <code class="docutils literal notranslate"><span class="pre">Attributes</span></code>.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Project</span> <span class="pre">window</span></code> - отображает структуру проекта;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Palette\Политра</span></code> - дает доступ к использованию компонентов и слоев (<code class="docutils literal notranslate"><span class="pre">layouts</span></code>) в текущее <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, например:  <code class="docutils literal notranslate"><span class="pre">TextViews</span></code>, <code class="docutils literal notranslate"><span class="pre">ImageViews</span></code>, и <code class="docutils literal notranslate"><span class="pre">Buttons</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Component</span> <span class="pre">Tree</span></code> - показывает иерархию <code class="docutils literal notranslate"><span class="pre">виджетов\</span> <span class="pre">views</span></code> для вашего <strong>Activity</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Design</span> <span class="pre">Editor</span></code> - визуальное представление вашего <strong>Activity</strong>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Attributes\Окно</span> <span class="pre">Атрибутов</span></code> - состоит из списка атрибутов выбранного компонента. Можно менять параметра атрибутов.</p></li>
+</ol>
+<p><strong>Запуск приложения</strong></p>
+<p><img alt="1759423678960" src="../_images/1759423678960.png" /></p>
+<p>Рис 6. Первый запуск приложения</p>
+<ol class="arabic simple">
+<li><p>Можно создать и запустить при помощи Эмуляторв (<code class="docutils literal notranslate"><span class="pre">Tools</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">Manager</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">a</span> <span class="pre">new</span> <span class="pre">device</span></code>);</p></li>
+<li><p>А можно запустить на Вашем смартфоне. Необходимо включить <code class="docutils literal notranslate"><span class="pre">режим</span> <span class="pre">разработчика</span></code> и возможность <code class="docutils literal notranslate"><span class="pre">отладки</span></code> (внутри режима разработчика).</p></li>
+</ol>
+<p><img alt="1759423888448" src="../_images/1759423888448.png" /></p>
+<p>Рис. 7. Пример окна создания эмулятора.</p>
 </section>
 </section>
 </section>
