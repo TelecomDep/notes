@@ -58,6 +58,115 @@ Android SDK включает множество виджетов, которые
 </manifest>
 ```
 
+### Атрибуты View
+
+Атрибуты View помогают изменять вид элементов на экране. В качестве базовых атрибутов можно перечислить следующие:
+- `id` - id объекта
+- `text` - текст
+- `visibility` - видимость объекта
+- `textSize` - размер текста
+- `paddingTop` - отступ контента от верхнего края прямоугольника
+- `layout_height/layout_width` - высота/ширина виджета
+- `layout_marginTop/layout_marginBottom/…` - отступы для различных сторон виджета
+
+### Иерархия представлений виджетов
+В качестве примера возьмем **Листинг 1**. Все виджеты в `Activity` входят в **иерархию представлений**. 
+
+
+```{mermaid}
+
+flowchart TD 
+    ConstraintLayout["`**ConstraintLayout**
+    xmlns:android=http..//schemas.android.com/apk/res/android
+    android:id=@+id/main
+    android:layout_width=match_parent
+    android:layout_height=match_parent
+    tools:context=.MainActivity`"]
+    TextView["`**TextView**
+    android:id=@+id/textView2
+    android:layout_width=wrap_content
+    android:layout_height=wrap_content
+    android:text=Hello World!
+    ...`"]
+    Button["`**Button**
+    android:id=@+id/go_to_second_activity
+    android:layout_width=wrap_content
+    android:layout_height=wrap_content
+    android:text=SecondActivity
+    ...`"]
+
+    style ConstraintLayout text-align:left
+    style TextView text-align:left
+    style Button text-align:left
+
+    ConstraintLayout --> TextView
+    ConstraintLayout --> Button
+```
+Рис. 3. Иерархия представлений виджетов и атрибутов `Activity`.
+
+Корневым элементом иерархии представлений в этом макете является элемент `ConstraintLayout`. В нем должно быть указано пространство имен XML ресурсов Android http://schemas.android.com/apk/res/android. `ConstraintLayout` наследует от дочернего класса `View` с именем `ViewGroup`. Виджет `ViewGroup` предназначен для хранения и размещения других виджетов. LinearLayout используется в тех случаях, когда вы хотите выстроить виджеты в один столбец или строку. Другие дочерние классы `ViewGroup` — `FrameLayout`, `TableLayout` и `RelativeLayout`.
+
+Если виджет содержится в `ViewGroup`, он называется потомком (child) `ViewGroup`. Корневой элемент `ConstraintLayout` имеет двух потомков: `TextView` и другой элемент `Button`. 
+
+## Управление виджетами из кода Kotlin (один из способов)
+
+По умолчанию, при создании проекта, мы получаем от Android Studio файлы `activity_main.xml` и `MainActivity.kt` (при создании проекта можно изменить название). В `.xml` файле мы уже определили элементы экрана: `TextView`, `Button`. Далее, нам нужно научиться взаимодействовать с ними. 
+
+При создании первого приложения в `Android Studio` мы получаем код из **листинга №2**.
+Взаимодействие нашего кода и объектов интерфейса (определенных в файле `.xml`, далее компилируемые в объекты `View`). 
+
+Для начала, `Activity` необходимо подружить с элементами в файле `.xml`. При создании проекта, по умолчанию в `Empty Views Acitvity`, ресурсы .xml загружаются автоматически:
+
+```kotlin
+setContentView(R.layout.activity_main) // activity_main.xml
+```
+
+Именно в этом моменте решается какой именно визуальный интерфейс будет иметь пользовательский интерфейс. В данном случае предоставляется **ресурс** `R.layout.activity_main`, что является файлом в папке `res/layout/activity_main.xml`.
+
+Из **листинга №1** можно заметить один важнй параметр элементов экрана -`"@+id`, идентификатор элемента. Данный идентификатор позволяет обращаться к элементу экрана, который определен в файле `.xml`. 
+
+Для получения элементов класса по `id` класс Activity имеет метод [`findViewById()`](https://developer.android.com/reference/android/view/View#findViewById(int)). 
+```
+Finds the first descendant view with the given ID, the view itself if the ID matches getId(), or null if the ID is invalid (< 0) or there is no matching view in the hierarchy.
+```
+В этот метод передается идентификатор ресурса в виде `R.id` - идентификатор элемента, который был создан с файле `.xml`. Также, необходимо привести возвращаемый тип данных (View) к нужному нам классу (`TextView`, `Button` или др.). 
+
+Листинг 3. MainActivity.kt (с добавлением виджетов)
+```kotlin
+class MainActivity : AppCompatActivity() {
+
+    // onCreate() – вызывается при первом создании Activity
+    override fun onCreate(savedInstanceState: Bundle?) {
+
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        // Инициализация переменных для элементов экрана.
+        var mTextView = findViewById<TextView>(R.id.textView2)
+        var bGoToSecondActivity = findViewById<Button>(R.id.go_to_second_activity)
+
+    }
+}
+```
+Таким образом, появляется возможность управлять элементами экрана из кода приложения.
+Например, можем поменять содержание текстового элемента (`TextView`):
+```kotlin
+mTextView.setText("Hello from code Kotlin!");
+```
+Аналогично, можно возпользоваться методом обработки нажатия на элемент `View`, используя метод `setOnClickListener`:
+
+```
+bGoToSecondActivity.setOnClickListener({
+            mTextView.setText("Hello from clicked Button!");
+        });
+```
+
 Где мы можем увидеть наше новое `Activity` в списке проекта.
 
 ## Переход между Activity (Intent, вкратце)
