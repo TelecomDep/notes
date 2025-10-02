@@ -62,15 +62,21 @@
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_structure.html">Структура проекта</a></li>
 <li class="toctree-l2"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">5. Работа виджетами из Activity</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#view">View</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Создание нового Activity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Создание нового Activity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Атрибуты View</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Иерархия представлений виджетов</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#kotlin">Управление виджетами из кода Kotlin (один из способов)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#activity-intent">Переход между Activity (Intent, вкратце)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#views">Виджеты (Views)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#findviewbyid">findViewById()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#textview">TextView</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Атрибуты</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Атрибуты</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#button">Button</a><ul>
@@ -167,6 +173,77 @@
 <span class="nt">&lt;/manifest&gt;</span>
 </pre></div>
 </div>
+<section id="id2">
+<h3>Атрибуты View<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>Атрибуты View помогают изменять вид элементов на экране. В качестве базовых атрибутов можно перечислить следующие:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> - id объекта</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> - текст</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">visibility</span></code> - видимость объекта</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">textSize</span></code> - размер текста</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">paddingTop</span></code> - отступ контента от верхнего края прямоугольника</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">layout_height/layout_width</span></code> - высота/ширина виджета</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">layout_marginTop/layout_marginBottom/…</span></code> - отступы для различных сторон виджета</p></li>
+</ul>
+</section>
+<section id="id3">
+<h3>Иерархия представлений виджетов<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>В качестве примера возьмем <strong>Листинг 1</strong>. Все виджеты в <code class="docutils literal notranslate"><span class="pre">Activity</span></code> входят в <strong>иерархию представлений</strong>.</p>
+<p>Рис. 3. Иерархия представлений виджетов и атрибутов <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p>Корневым элементом иерархии представлений в этом макете является элемент <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>. В нем должно быть указано пространство имен XML ресурсов Android http://schemas.android.com/apk/res/android. <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code> наследует от дочернего класса <code class="docutils literal notranslate"><span class="pre">View</span></code> с именем <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. Виджет <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> предназначен для хранения и размещения других виджетов. LinearLayout используется в тех случаях, когда вы хотите выстроить виджеты в один столбец или строку. Другие дочерние классы <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> — <code class="docutils literal notranslate"><span class="pre">FrameLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">TableLayout</span></code> и <code class="docutils literal notranslate"><span class="pre">RelativeLayout</span></code>.</p>
+<p>Если виджет содержится в <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>, он называется потомком (child) <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. Корневой элемент <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code> имеет двух потомков: <code class="docutils literal notranslate"><span class="pre">TextView</span></code> и другой элемент <code class="docutils literal notranslate"><span class="pre">Button</span></code>.</p>
+</section>
+</section>
+<section id="kotlin">
+<h2>Управление виджетами из кода Kotlin (один из способов)<a class="headerlink" href="#kotlin" title="Permalink to this heading"></a></h2>
+<p>По умолчанию, при создании проекта, мы получаем от Android Studio файлы <code class="docutils literal notranslate"><span class="pre">activity_main.xml</span></code> и <code class="docutils literal notranslate"><span class="pre">MainActivity.kt</span></code> (при создании проекта можно изменить название). В <code class="docutils literal notranslate"><span class="pre">.xml</span></code> файле мы уже определили элементы экрана: <code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Button</span></code>. Далее, нам нужно научиться взаимодействовать с ними.</p>
+<p>При создании первого приложения в <code class="docutils literal notranslate"><span class="pre">Android</span> <span class="pre">Studio</span></code> мы получаем код из <strong>листинга №2</strong>.
+Взаимодействие нашего кода и объектов интерфейса (определенных в файле <code class="docutils literal notranslate"><span class="pre">.xml</span></code>, далее компилируемые в объекты <code class="docutils literal notranslate"><span class="pre">View</span></code>).</p>
+<p>Для начала, <code class="docutils literal notranslate"><span class="pre">Activity</span></code> необходимо подружить с элементами в файле <code class="docutils literal notranslate"><span class="pre">.xml</span></code>. При создании проекта, по умолчанию в <code class="docutils literal notranslate"><span class="pre">Empty</span> <span class="pre">Views</span> <span class="pre">Acitvity</span></code>, ресурсы .xml загружаются автоматически:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">activity_main</span><span class="p">)</span><span class="w"> </span><span class="c1">// activity_main.xml</span>
+</pre></div>
+</div>
+<p>Именно в этом моменте решается какой именно визуальный интерфейс будет иметь пользовательский интерфейс. В данном случае предоставляется <strong>ресурс</strong> <code class="docutils literal notranslate"><span class="pre">R.layout.activity_main</span></code>, что является файлом в папке <code class="docutils literal notranslate"><span class="pre">res/layout/activity_main.xml</span></code>.</p>
+<p>Из <strong>листинга №1</strong> можно заметить один важнй параметр элементов экрана -<code class="docutils literal notranslate"><span class="pre">&quot;&#64;+id</span></code>, идентификатор элемента. Данный идентификатор позволяет обращаться к элементу экрана, который определен в файле <code class="docutils literal notranslate"><span class="pre">.xml</span></code>.</p>
+<p>Для получения элементов класса по <code class="docutils literal notranslate"><span class="pre">id</span></code> класс Activity имеет метод <a class="reference external" href="https://developer.android.com/reference/android/view/View#findViewById(int)"><code class="docutils literal notranslate"><span class="pre">findViewById()</span></code></a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Finds</span> <span class="n">the</span> <span class="n">first</span> <span class="n">descendant</span> <span class="n">view</span> <span class="k">with</span> <span class="n">the</span> <span class="n">given</span> <span class="n">ID</span><span class="p">,</span> <span class="n">the</span> <span class="n">view</span> <span class="n">itself</span> <span class="k">if</span> <span class="n">the</span> <span class="n">ID</span> <span class="n">matches</span> <span class="n">getId</span><span class="p">(),</span> <span class="ow">or</span> <span class="n">null</span> <span class="k">if</span> <span class="n">the</span> <span class="n">ID</span> <span class="ow">is</span> <span class="n">invalid</span> <span class="p">(</span><span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span> <span class="n">there</span> <span class="ow">is</span> <span class="n">no</span> <span class="n">matching</span> <span class="n">view</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">hierarchy</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>В этот метод передается идентификатор ресурса в виде <code class="docutils literal notranslate"><span class="pre">R.id</span></code> - идентификатор элемента, который был создан с файле <code class="docutils literal notranslate"><span class="pre">.xml</span></code>. Также, необходимо привести возвращаемый тип данных (View) к нужному нам классу (<code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Button</span></code> или др.).</p>
+<p>Листинг 3. MainActivity.kt (с добавлением виджетов)</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="c1">// onCreate() – вызывается при первом создании Activity</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">        </span><span class="n">enableEdgeToEdge</span><span class="p">()</span>
+<span class="w">        </span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">activity_main</span><span class="p">)</span>
+<span class="w">        </span><span class="n">ViewCompat</span><span class="p">.</span><span class="na">setOnApplyWindowInsetsListener</span><span class="p">(</span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">main</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">v</span><span class="p">,</span><span class="w"> </span><span class="n">insets</span><span class="w"> </span><span class="o">-&gt;</span>
+<span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">systemBars</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">insets</span><span class="p">.</span><span class="na">getInsets</span><span class="p">(</span><span class="n">WindowInsetsCompat</span><span class="p">.</span><span class="na">Type</span><span class="p">.</span><span class="na">systemBars</span><span class="p">())</span>
+<span class="w">            </span><span class="n">v</span><span class="p">.</span><span class="na">setPadding</span><span class="p">(</span><span class="n">systemBars</span><span class="p">.</span><span class="na">left</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">top</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">right</span><span class="p">,</span><span class="w"> </span><span class="n">systemBars</span><span class="p">.</span><span class="na">bottom</span><span class="p">)</span>
+<span class="w">            </span><span class="n">insets</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// Инициализация переменных для элементов экрана.</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">mTextView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="o">&lt;</span><span class="n">TextView</span><span class="o">&gt;</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">textView2</span><span class="p">)</span>
+<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nv">bGoToSecondActivity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="o">&lt;</span><span class="n">Button</span><span class="o">&gt;</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">go_to_second_activity</span><span class="p">)</span>
+
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Таким образом, появляется возможность управлять элементами экрана из кода приложения.
+Например, можем поменять содержание текстового элемента (<code class="docutils literal notranslate"><span class="pre">TextView</span></code>):</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">mTextView</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Hello from code Kotlin!&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Аналогично, можно возпользоваться методом обработки нажатия на элемент <code class="docutils literal notranslate"><span class="pre">View</span></code>, используя метод <code class="docutils literal notranslate"><span class="pre">setOnClickListener</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bGoToSecondActivity</span><span class="o">.</span><span class="n">setOnClickListener</span><span class="p">({</span>
+            <span class="n">mTextView</span><span class="o">.</span><span class="n">setText</span><span class="p">(</span><span class="s2">&quot;Hello from clicked Button!&quot;</span><span class="p">);</span>
+        <span class="p">});</span>
+</pre></div>
+</div>
 <p>Где мы можем увидеть наше новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> в списке проекта.</p>
 </section>
 <section id="activity-intent">
@@ -249,8 +326,8 @@ cls – The component class that is to be used for the intent.
 </pre></div>
 </div>
 </section>
-<section id="id2">
-<h3>Атрибуты<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id4">
+<h3>Атрибуты<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p><strong>Программное изменение текста</strong></p>
 <p>Программно можно изменить наполнение TextView при помощи метода класса: <code class="docutils literal notranslate"><span class="pre">setText(CharSequence</span> <span class="pre">text)</span></code>:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">tvView_01</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Hello from Code&quot;</span><span class="p">)</span>

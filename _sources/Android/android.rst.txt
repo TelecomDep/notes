@@ -6,6 +6,7 @@ Android
    :maxdepth: 2
 
    02_first_app
+   app_structure
    04_view_group
    05_widgets
    sockets/06_sockets_zmq

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Структура проекта &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="4. Работа ViewGroup" href="04_view_group.html" />
+    <link rel="prev" title="Создание первого приложения (начало)" href="02_first_app.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Структура проекта</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#androidmanifests-xml">AndroidManifests.xml</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#res">/res</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gradle">Gradle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#activity">Ползовательский интерфейс (первое Activity)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="04_view_group.html">4. Работа ViewGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
+      <li class="breadcrumb-item active">Структура проекта</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Android/app_structure.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Структура проекта<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>В открывшемся проекте мы увидмим структуру:</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_project_structure.PNG?raw=true" /></p>
+<p>Рис. 4. Стркутура проекта.</p>
+<p>Вкратце, проект состоит из нескольких важный директорий:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/app</span></code> включает в себя еще 3 директории:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/manifest</span></code> - содержит файлы конфигурации\манифеста приложения (ключевой файл в приложении Android);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/kotlin</span></code> + java - содержит исходный код приложения;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/res</span></code> - включает в себя файлы, используемые приложением Android (картинки, иконки, стили, музыка и т.д.);</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Gradle</span> <span class="pre">Scripts</span></code>.</p></li>
+</ul>
+<section id="androidmanifests-xml">
+<h2>AndroidManifests.xml<a class="headerlink" href="#androidmanifests-xml" title="Permalink to this heading"></a></h2>
+<p>Файл <code class="docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code> является одним из самых важных в Android проекте. В нем содержится информация о пакетах приложения, компонентах типа <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, <code class="docutils literal notranslate"><span class="pre">Service</span></code> и т.д..
+Файл <code class="docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code> выполняет следующие задачи:</p>
+<ul class="simple">
+<li><p>Предоставляет разрешения приложению на использование или доступ к другим компонентам системы.</p></li>
+<li><p>Определяет как будут запускаться, например, Activity (какие фильтры использовать).</p></li>
+</ul>
+</section>
+<section id="res">
+<h2>/res<a class="headerlink" href="#res" title="Permalink to this heading"></a></h2>
+<p>В папке <code class="docutils literal notranslate"><span class="pre">/res</span></code> расположены все используемые приложением ресурсы, включая изображения, различные xml файлы, анимации, звуковые файлы и многие другие. Внутри папки <strong>res</strong> эти все ресурсы распределены по своим папкам:</p>
+<ul class="simple">
+<li><p>Папка  <code class="docutils literal notranslate"><span class="pre">/drawable</span></code> содержит файлы с изображениями, которые будет использоваться в приложении;</p></li>
+<li><p>Папка <code class="docutils literal notranslate"><span class="pre">/layout</span></code> располагает xml файлами, которые используются для построения пользовательского интерфейса Android приложения;</p></li>
+<li><p>В папке <code class="docutils literal notranslate"><span class="pre">/menu</span></code> находятся xml файлы, используемые только для создания меню;</p></li>
+<li><p>В  <code class="docutils literal notranslate"><span class="pre">/mipmap</span></code> папке хранят только значки приложения. Любые другие drawable элементы должны быть размещены в своей папке;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/values</span></code> хранит те xml файлы, в которых определяются простые значения типа строк, массивов, целых чисел, размерностей, цветов и стилей.</p></li>
+</ul>
+</section>
+<section id="gradle">
+<h2>Gradle<a class="headerlink" href="#gradle" title="Permalink to this heading"></a></h2>
+<p>Скрипты Gradle используются для автоматизации сборки проекта. Android Studio выполняет сборку приложения в фоновом режиме без какого-либо вмешательства со стороны разработчика. Этот процесс сборки осуществляется с использованием системы Gradle — инструментария для автоматической сборки с помощью набора конфигурационных файлов. Gradle скрипты написаны на языке <code class="docutils literal notranslate"><span class="pre">groove</span></code>.</p>
+</section>
+<section id="activity">
+<h2>Ползовательский интерфейс (первое Activity)<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h2>
+<p>При создании первого приложения, вы могли увидеть интерфейс работы с <strong>“внешним видом”</strong> вашего Android-приложения.</p>
+<p>По умолчанию, файл <code class="docutils literal notranslate"><span class="pre">/layout/activity_main.xml</span></code> определяет разметку первой <code class="docutils literal notranslate"><span class="pre">&quot;страницы&quot;</span> <span class="pre">(activity)</span></code>, которую видит, с которой взаимодействует пользователь.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_01_main_xml.PNG?raw=true" />
+Рис. 5. Окно макета <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p>Листинг 1. <code class="docutils literal notranslate"><span class="pre">activity_main.xml</span></code></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
+<span class="nt">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<span class="w">    </span><span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+<span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+<span class="w">    </span><span class="na">android:id=</span><span class="s">&quot;@+id/main&quot;</span>
+<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;.MainActivity&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/textView2&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;Hello World!&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintHorizontal_bias=</span><span class="s">&quot;0.541&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintVertical_bias=</span><span class="s">&quot;0.398&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;Button</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/go_to_second_activity&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginTop=</span><span class="s">&quot;36dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginEnd=</span><span class="s">&quot;120dp&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;SecondActivity&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintTop_toBottomOf=</span><span class="s">&quot;@+id/textView2&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+
+<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
+</pre></div>
+</div>
+<p>Макет <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, по умолчанию, определяет два виджета (<code class="docutils literal notranslate"><span class="pre">widgets</span></code>):</p>
+<ul class="simple">
+<li><p>ConstraintLayout;</p></li>
+<li><p>TextView;</p></li>
+<li><p>p.s. Button (из примера выше) мы добавили <strong>после</strong> создания первого приложения.</p></li>
+</ul>
+<p>Виджеты представляют собой структурные элементы пользовательского интерфейса. Существую различные виджеты по своим функциям\свойствам: вывод текста на экран, ввод текста, нажатие кнопки и другие взаимодействия с пользователем. В примере выше <code class="docutils literal notranslate"><span class="pre">Button</span></code>, <code class="docutils literal notranslate"><span class="pre">TextView</span></code> - это лишь разновидности виджетов.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="02_first_app.html" class="btn btn-neutral float-left" title="Создание первого приложения (начало)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="04_view_group.html" class="btn btn-neutral float-right" title="4. Работа ViewGroup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
