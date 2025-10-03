@@ -20,7 +20,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Работа c сокетами (Sockets)." href="sockets/06_sockets_zmq.html" />
+    <link rel="next" title="Ползовательский интерфейс (первое Activity)" href="app_activity.html" />
     <link rel="prev" title="Создание первого приложения (начало)" href="02_first_app.html" /> 
 </head>
 
@@ -66,9 +66,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#androidmanifests-xml">AndroidManifests.xml</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#res">/res</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gradle">Gradle</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#activity">Ползовательский интерфейс (первое Activity)</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="app_activity.html">Ползовательский интерфейс (первое Activity)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
 </ul>
@@ -108,7 +108,7 @@
 <h1>Структура проекта<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <p>В открывшемся проекте мы увидмим структуру:</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_02_project_structure.PNG?raw=true" /></p>
-<p>Рис. 4. Стркутура проекта.</p>
+<p>Рис. 1. Стркутура проекта.</p>
 <p>Вкратце, проект состоит из нескольких важный директорий:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">/app</span></code> включает в себя еще 3 директории:</p>
@@ -118,7 +118,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">/res</span></code> - включает в себя файлы, используемые приложением Android (картинки, иконки, стили, музыка и т.д.);</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/Gradle</span> <span class="pre">Scripts</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/Gradle</span> <span class="pre">Scripts</span></code>- управляет сборкой, тестированиеи и внедрением вашего приложения.</p></li>
 </ul>
 <section id="androidmanifests-xml">
 <h2>AndroidManifests.xml<a class="headerlink" href="#androidmanifests-xml" title="Permalink to this heading"></a></h2>
@@ -144,55 +144,6 @@
 <h2>Gradle<a class="headerlink" href="#gradle" title="Permalink to this heading"></a></h2>
 <p>Скрипты Gradle используются для автоматизации сборки проекта. Android Studio выполняет сборку приложения в фоновом режиме без какого-либо вмешательства со стороны разработчика. Этот процесс сборки осуществляется с использованием системы Gradle — инструментария для автоматической сборки с помощью набора конфигурационных файлов. Gradle скрипты написаны на языке <code class="docutils literal notranslate"><span class="pre">groove</span></code>.</p>
 </section>
-<section id="activity">
-<h2>Ползовательский интерфейс (первое Activity)<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h2>
-<p>При создании первого приложения, вы могли увидеть интерфейс работы с <strong>“внешним видом”</strong> вашего Android-приложения.</p>
-<p>По умолчанию, файл <code class="docutils literal notranslate"><span class="pre">/layout/activity_main.xml</span></code> определяет разметку первой <code class="docutils literal notranslate"><span class="pre">&quot;страницы&quot;</span> <span class="pre">(activity)</span></code>, которую видит, с которой взаимодействует пользователь.</p>
-<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_01_main_xml.PNG?raw=true" />
-Рис. 5. Окно макета <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
-<p>Листинг 1. <code class="docutils literal notranslate"><span class="pre">activity_main.xml</span></code></p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-<span class="w">    </span><span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
-<span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
-<span class="w">    </span><span class="na">android:id=</span><span class="s">&quot;@+id/main&quot;</span>
-<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
-<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
-<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;.MainActivity&quot;</span><span class="nt">&gt;</span>
-
-<span class="w">    </span><span class="nt">&lt;TextView</span>
-<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/textView2&quot;</span>
-<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;Hello World!&quot;</span>
-<span class="w">        </span><span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&quot;parent&quot;</span>
-<span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
-<span class="w">        </span><span class="na">app:layout_constraintHorizontal_bias=</span><span class="s">&quot;0.541&quot;</span>
-<span class="w">        </span><span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&quot;parent&quot;</span>
-<span class="w">        </span><span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">&quot;parent&quot;</span>
-<span class="w">        </span><span class="na">app:layout_constraintVertical_bias=</span><span class="s">&quot;0.398&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-
-<span class="w">    </span><span class="nt">&lt;Button</span>
-<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/go_to_second_activity&quot;</span>
-<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
-<span class="w">        </span><span class="na">android:layout_marginTop=</span><span class="s">&quot;36dp&quot;</span>
-<span class="w">        </span><span class="na">android:layout_marginEnd=</span><span class="s">&quot;120dp&quot;</span>
-<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;SecondActivity&quot;</span>
-<span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
-<span class="w">        </span><span class="na">app:layout_constraintTop_toBottomOf=</span><span class="s">&quot;@+id/textView2&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-
-<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
-</pre></div>
-</div>
-<p>Макет <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, по умолчанию, определяет два виджета (<code class="docutils literal notranslate"><span class="pre">widgets</span></code>):</p>
-<ul class="simple">
-<li><p>ConstraintLayout;</p></li>
-<li><p>TextView;</p></li>
-<li><p>p.s. Button (из примера выше) мы добавили <strong>после</strong> создания первого приложения.</p></li>
-</ul>
-<p>Виджеты представляют собой структурные элементы пользовательского интерфейса. Существую различные виджеты по своим функциям\свойствам: вывод текста на экран, ввод текста, нажатие кнопки и другие взаимодействия с пользователем. В примере выше <code class="docutils literal notranslate"><span class="pre">Button</span></code>, <code class="docutils literal notranslate"><span class="pre">TextView</span></code> - это лишь разновидности виджетов.</p>
-</section>
 </section>
 
 
@@ -200,7 +151,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="02_first_app.html" class="btn btn-neutral float-left" title="Создание первого приложения (начало)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="sockets/06_sockets_zmq.html" class="btn btn-neutral float-right" title="6. Работа c сокетами (Sockets)." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="app_activity.html" class="btn btn-neutral float-right" title="Ползовательский интерфейс (первое Activity)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

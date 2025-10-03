@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ползовательский интерфейс (первое Activity) &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Работа c сокетами (Sockets)." href="sockets/06_sockets_zmq.html" />
+    <link rel="prev" title="Структура проекта" href="app_structure.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_structure.html">Структура проекта</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ползовательский интерфейс (первое Activity)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Размеры виджетов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#viewgroups">ViewGroups</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Иерархия виджетов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Идентификаторы виджетов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Класс Activity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
+      <li class="breadcrumb-item active">Ползовательский интерфейс (первое Activity)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Android/app_activity.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="activity">
+<h1>Ползовательский интерфейс (первое Activity)<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h1>
+<p>При создании первого приложения, вы могли увидеть интерфейс работы с <strong>“внешним видом”</strong> вашего Android-приложения.</p>
+<p>По умолчанию, файл <code class="docutils literal notranslate"><span class="pre">/layout/activity_main.xml</span></code> определяет разметку первой <code class="docutils literal notranslate"><span class="pre">&quot;страницы&quot;</span> <span class="pre">(activity)</span></code>, которую видит, с которой взаимодействует пользователь.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_01_main_xml.PNG?raw=true" />
+Рис. 2. Окно макета <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p>Помимо использования <code class="docutils literal notranslate"><span class="pre">Palette\Политры</span></code> для добавления новых виджетов, можно также добавлять новые и менять свойства существующих виджетов (<code class="docutils literal notranslate"><span class="pre">View</span></code>), используя <code class="docutils literal notranslate"><span class="pre">XML</span></code>-редактор.</p>
+<p>Листинг 1. <code class="docutils literal notranslate"><span class="pre">activity_main.xml</span></code></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    ...
+    ...
+    tools:context=&quot;.MainActivity&quot;&gt;
+
+    &lt;TextView
+        android:id=&quot;@+id/textView2&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello World!&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot; /&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/go_to_second_activity&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;SecondActivity&quot;/&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+</pre></div>
+</div>
+<p>Макет <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, по умолчанию, определяет два виджета (<code class="docutils literal notranslate"><span class="pre">widgets</span></code>):</p>
+<ul class="simple">
+<li><p>ConstraintLayout;</p></li>
+<li><p>TextView;</p></li>
+<li><p>p.s. Button (из примера выше) мы добавили <strong>после</strong> создания первого приложения.</p></li>
+</ul>
+<p>Виджеты представляют собой структурные элементы пользовательского интерфейса. Существую различные виджеты по своим функциям\свойствам: вывод текста на экран, ввод текста, нажатие кнопки и другие взаимодействия с пользователем. В примере выше <code class="docutils literal notranslate"><span class="pre">Button</span></code>, <code class="docutils literal notranslate"><span class="pre">TextView</span></code> - это лишь разновидности виджетов.</p>
+<section id="id1">
+<h2>Размеры виджетов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p><img alt="1759457139024" src="../_images/1759457139024.png" /></p>
+<p>Рис.3. Пример <code class="docutils literal notranslate"><span class="pre">TextView</span></code>.</p>
+<p>В Android есть несколько способов задать <strong>размеры</strong> виджета по <strong>высоте</strong> и <strong>ширине</strong> на экране.</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">wrap_content</span></code> - использует только необходимое количество “места” относительно содержимого внутри виджета. Допустим, если хотим использовать размер <code class="docutils literal notranslate"><span class="pre">View</span></code> только на <strong>размер текста</strong> внутри него;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">match_parent</span></code> - наследует значение родительского виджета\группы виджетов;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fixed</span> <span class="pre">value</span></code> (<strong>db</strong> - <code class="docutils literal notranslate"><span class="pre">density-independent</span> <span class="pre">pixel</span></code>) - фиксированное значение <strong>почти в пикселях</strong>.</p></li>
+</ol>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>android:layout_width=&quot;wrap_content&quot;<span class="w"> </span>
+android:layout_width=&quot;match_parent&quot;
+android:layout_width=&quot;48dp&quot;
+</pre></div>
+</div>
+</section>
+<section id="viewgroups">
+<h2>ViewGroups<a class="headerlink" href="#viewgroups" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> - это некий контейнер, в котором распологаются все элементы экрана (<code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Buttons</span></code>, <code class="docutils literal notranslate"><span class="pre">Scroll</span></code>, <code class="docutils literal notranslate"><span class="pre">ImageView</span></code>, <code class="docutils literal notranslate"><span class="pre">Fragment</span></code>, и т.д.).</p>
+<p><img alt="1759458451802" src="../_images/1759458451802.png" /></p>
+<p>Рис. 4. Виды <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>.</p>
+<p>Если необходимо отобразить несколько элементов на экране, используйте <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> также контролирует как будут располагаться виджеты внутри контейнера.</p>
+<p>Является родительским (<code class="docutils literal notranslate"><span class="pre">parent</span></code>) для всех виджетов внутри, а сами виджеты называются дочерними (<code class="docutils literal notranslate"><span class="pre">child</span></code>).</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">FrameLayout</span></code> - если хотите использовать только один виджет внутри контейнера (часто используется для <strong>Всплывающих окон</strong>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LinearLayout</span></code> - складывает виджеты один за другим в колону по <strong>горизонтали</strong> или по <strong>вертикали</strong>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code> - более “свободный” вид помпановки, можно создавать сложные интерфейсы. Android - рекомендует именно его к использованию.</p></li>
+</ol>
+<p><strong>FrameLayout</strong></p>
+<p><img alt="1759458840594" src="../_images/1759458840594.png" />
+Рис. 5. Пример <code class="docutils literal notranslate"><span class="pre">FrameLayout</span></code>.</p>
+<p><strong>LinearLayout</strong></p>
+<p><img alt="1759458856431" src="../_images/1759458856431.png" />
+Рис. 6. Пример <code class="docutils literal notranslate"><span class="pre">LinearLayout</span></code>.</p>
+</section>
+<section id="id2">
+<h2>Иерархия виджетов<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Помимо просто виджетов (<code class="docutils literal notranslate"><span class="pre">Views</span></code>) <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> также может содержать в себе другие <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. Это создает некую иерархию виджетов, которые зависят от родительского <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>.</p>
+<p><img alt="1759459003514" src="../_images/1759459003514.png" /></p>
+<p>Рис. 7. Пример отображения иерархии виджетов.</p>
+</section>
+<section id="id3">
+<h2>Идентификаторы виджетов<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>Каждый элемент <code class="docutils literal notranslate"><span class="pre">res</span></code> - ресурсов Android имеет свой уникальный <code class="docutils literal notranslate"><span class="pre">resource</span> <span class="pre">ID</span></code> для доступа к элементу.</p>
+</section>
+<section id="id4">
+<h2>Класс Activity<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app_structure.html" class="btn btn-neutral float-left" title="Структура проекта" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sockets/06_sockets_zmq.html" class="btn btn-neutral float-right" title="6. Работа c сокетами (Sockets)." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
