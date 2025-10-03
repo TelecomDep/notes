@@ -27,6 +27,8 @@
 
 5. [Android official site](https://developer.android.com/develop) - the **core** for every object, class, feature in Android developement. It provides  code samples, guides and (most important) API reference you need to build your app.
 
+6. [Рекомендации по наименованию RESурсов](https://ahex.co/naming-conventions-in-android/) - хорошие рекоменадции по неймингу (`naming`).
+
 
 ## Git
 

@@ -67,8 +67,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">Размеры виджетов</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#viewgroups">ViewGroups</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Иерархия виджетов</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id3">Идентификаторы виджетов</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Класс Activity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-id">Идентификаторы виджетов (Resource ID)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Класс Activity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#textview-buttons">Взаимодействие с виджетами (TextView, Buttons)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
@@ -111,7 +114,7 @@
 <p>При создании первого приложения, вы могли увидеть интерфейс работы с <strong>“внешним видом”</strong> вашего Android-приложения.</p>
 <p>По умолчанию, файл <code class="docutils literal notranslate"><span class="pre">/layout/activity_main.xml</span></code> определяет разметку первой <code class="docutils literal notranslate"><span class="pre">&quot;страницы&quot;</span> <span class="pre">(activity)</span></code>, которую видит, с которой взаимодействует пользователь.</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_01_main_xml.PNG?raw=true" />
-Рис. 2. Окно макета <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+Рис. 1. Окно макета <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
 <p>Помимо использования <code class="docutils literal notranslate"><span class="pre">Palette\Политры</span></code> для добавления новых виджетов, можно также добавлять новые и менять свойства существующих виджетов (<code class="docutils literal notranslate"><span class="pre">View</span></code>), используя <code class="docutils literal notranslate"><span class="pre">XML</span></code>-редактор.</p>
 <p>Листинг 1. <code class="docutils literal notranslate"><span class="pre">activity_main.xml</span></code></p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
@@ -147,7 +150,7 @@
 <section id="id1">
 <h2>Размеры виджетов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p><img alt="1759457139024" src="../_images/1759457139024.png" /></p>
-<p>Рис.3. Пример <code class="docutils literal notranslate"><span class="pre">TextView</span></code>.</p>
+<p>Рис.2. Пример <code class="docutils literal notranslate"><span class="pre">TextView</span></code>.</p>
 <p>В Android есть несколько способов задать <strong>размеры</strong> виджета по <strong>высоте</strong> и <strong>ширине</strong> на экране.</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">wrap_content</span></code> - использует только необходимое количество “места” относительно содержимого внутри виджета. Допустим, если хотим использовать размер <code class="docutils literal notranslate"><span class="pre">View</span></code> только на <strong>размер текста</strong> внутри него;</p></li>
@@ -164,7 +167,7 @@ android:layout_width=&quot;48dp&quot;
 <h2>ViewGroups<a class="headerlink" href="#viewgroups" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> - это некий контейнер, в котором распологаются все элементы экрана (<code class="docutils literal notranslate"><span class="pre">TextView</span></code>, <code class="docutils literal notranslate"><span class="pre">Buttons</span></code>, <code class="docutils literal notranslate"><span class="pre">Scroll</span></code>, <code class="docutils literal notranslate"><span class="pre">ImageView</span></code>, <code class="docutils literal notranslate"><span class="pre">Fragment</span></code>, и т.д.).</p>
 <p><img alt="1759458451802" src="../_images/1759458451802.png" /></p>
-<p>Рис. 4. Виды <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>.</p>
+<p>Рис. 3. Виды <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>.</p>
 <p>Если необходимо отобразить несколько элементов на экране, используйте <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> также контролирует как будут располагаться виджеты внутри контейнера.</p>
 <p>Является родительским (<code class="docutils literal notranslate"><span class="pre">parent</span></code>) для всех виджетов внутри, а сами виджеты называются дочерними (<code class="docutils literal notranslate"><span class="pre">child</span></code>).</p>
 <ol class="arabic simple">
@@ -174,23 +177,120 @@ android:layout_width=&quot;48dp&quot;
 </ol>
 <p><strong>FrameLayout</strong></p>
 <p><img alt="1759458840594" src="../_images/1759458840594.png" />
-Рис. 5. Пример <code class="docutils literal notranslate"><span class="pre">FrameLayout</span></code>.</p>
+Рис. 4. Пример <code class="docutils literal notranslate"><span class="pre">FrameLayout</span></code>.</p>
 <p><strong>LinearLayout</strong></p>
 <p><img alt="1759458856431" src="../_images/1759458856431.png" />
-Рис. 6. Пример <code class="docutils literal notranslate"><span class="pre">LinearLayout</span></code>.</p>
+Рис. 5. Пример <code class="docutils literal notranslate"><span class="pre">LinearLayout</span></code>.</p>
 </section>
 <section id="id2">
 <h2>Иерархия виджетов<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <p>Помимо просто виджетов (<code class="docutils literal notranslate"><span class="pre">Views</span></code>) <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> также может содержать в себе другие <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. Это создает некую иерархию виджетов, которые зависят от родительского <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>.</p>
 <p><img alt="1759459003514" src="../_images/1759459003514.png" /></p>
-<p>Рис. 7. Пример отображения иерархии виджетов.</p>
+<p>Рис. 6. Пример отображения иерархии виджетов.</p>
+</section>
+<section id="resource-id">
+<h2>Идентификаторы виджетов (Resource ID)<a class="headerlink" href="#resource-id" title="Permalink to this heading"></a></h2>
+<p>Вернемся немного к структуре проекта, в честности к директории <code class="docutils literal notranslate"><span class="pre">res</span></code>:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>app
+├── manifests
+│   └── AndroidManifets.xml
+├── kotlin+java
+|   └── MainActivity.kt
+├── res
+│   ├── drawable/
+│   ├── layout/
+│   ├── mipmap/
+|   ├── values/
+|   └── xml/
+└── Gradkle Scripts/
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Каждый элемент <code class="docutils literal notranslate"><span class="pre">res</span></code> - ресурсов Android имеет свой уникальный <code class="docutils literal notranslate"><span class="pre">resource</span> <span class="pre">ID</span></code> для доступа к элементу.</p></li>
+<li><p>Важно отметить, что именование ресурсов осуществляется по принципу: <code class="docutils literal notranslate"><span class="pre">lowercase</span></code> и <code class="docutils literal notranslate"><span class="pre">underscores</span></code> (например <code class="docutils literal notranslate"><span class="pre">activity_main.xml</span></code>).</p></li>
+<li><p>Доступ к конкретному объекту ресурсов осуществляется по шаблону: <code class="docutils literal notranslate"><span class="pre">R.&lt;resource_type&gt;.&lt;resource_name&gt;</span></code>.</p></li>
+</ol>
+<p>Пример выделения идентификатора виджету:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>&lt;TextView
+    android:id=&quot;@+id/textView&quot;
+    ...
+    ...
+    android:text=&quot;Hello World!&quot;
+    ...                         /&gt;
+</pre></div>
+</div>
+<p>Соответственно, доступ из кода Kotlin мы можем получить по (практически) прямой ссылке: <code class="docutils literal notranslate"><span class="pre">R.id.textView</span></code>.</p>
 </section>
 <section id="id3">
-<h2>Идентификаторы виджетов<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
-<p>Каждый элемент <code class="docutils literal notranslate"><span class="pre">res</span></code> - ресурсов Android имеет свой уникальный <code class="docutils literal notranslate"><span class="pre">resource</span> <span class="pre">ID</span></code> для доступа к элементу.</p>
+<h2>Класс Activity<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>Открывая первое, созданное по умолчанию (или Вами), мы увидим точку входа в программу в таком виде:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MainActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">        </span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">activity_main</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Как схематично выглядит запуск Activity (или первый экран Вашего приложения):</p>
+<p><img alt="1759463735692" src="../_images/1759463735692.png" /></p>
+<p>Рис. 7. Грубая схема работы <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p>Вместо запуска, <em>как обычно происходит в большинстве программ</em>, функции <code class="docutils literal notranslate"><span class="pre">main()</span></code> приложение Android стартует Ваше приложение через <code class="docutils literal notranslate"><span class="pre">класс</span> <span class="pre">Activity</span></code>.</p>
+<p>Как только пользователь нажимает на иконку приложения, Android открывает его, запуская основное <code class="docutils literal notranslate"><span class="pre">Activity</span></code> (можно увидеть свойство в <code class="docutils literal notranslate"><span class="pre">Manifets-файле</span></code> вашего проекта). В частности, метод (более правильно его назвать <code class="docutils literal notranslate"><span class="pre">callback</span></code>) <code class="docutils literal notranslate"><span class="pre">onCreate()</span></code> вызывается первым. Этот метод является одним из <a class="reference external" href="https://developer.android.com/guide/components/activities/activity-lifecycle">нескольких</a> в среде Android. Приложение продолжает свою работу до момента его завершения (системой или пользователем).</p>
+<p>Далее, происходит обработка файла /layout/activity_main.xml и его отображение на экране.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="o">.</span><span class="n">layout</span><span class="o">.</span><span class="n">activity_main</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Этот процесс называется <a class="reference external" href="https://developer.android.com/reference/android/app/Activity#setContentView(int)">LayoutInflation</a>.</p>
+<p><img alt="1759464649869" src="../_images/1759464649869.png" /></p>
+<p>Рис. 8. Схематично про LayoutInflater.</p>
+<section id="textview-buttons">
+<h3>Взаимодействие с виджетами (TextView, Buttons)<a class="headerlink" href="#textview-buttons" title="Permalink to this heading"></a></h3>
+<p><strong>TextView</strong>
+Для поиска (из кода Kotlin) конкретного виджета используется метод <code class="docutils literal notranslate"><span class="pre">findViewByid()</span></code>, например:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/hello_world_text_view&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;Hello World!&quot;</span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">    </span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">activity_main</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">tvHelloWorld</span><span class="p">:</span><span class="w"> </span><span class="n">TextView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">hello_world_text_view</span><span class="p">)</span>
+<span class="w">    </span><span class="n">tvHelloWorld</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello From onCreate()&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>В данном случае, мы заменили текст элемента с идентификатором <code class="docutils literal notranslate"><span class="pre">&quot;&#64;+id/hello_world_text_view&quot;</span></code> при запуске <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+<p><strong>Button</strong></p>
+<p>Пример обработки нажатия на кнопку и обновления текста внутри <code class="docutils literal notranslate"><span class="pre">TextView</span></code>.</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>    &lt;Button
+        android:id=&quot;@+id/button1&quot;
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        ...
+        android:text=&quot;Button&quot;
+        ...                 /&gt;
+</pre></div>
+</div>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">)</span>
+<span class="w">    </span><span class="n">setContentView</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">activity_main</span><span class="p">)</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">tvHelloWorld</span><span class="p">:</span><span class="w"> </span><span class="n">TextView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">hello_world_text_view</span><span class="p">)</span>
+<span class="w">    </span><span class="n">tvHelloWorld</span><span class="p">.</span><span class="na">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;Hello From onCreate()&quot;</span>
+
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nv">bText</span><span class="p">:</span><span class="w"> </span><span class="n">Button</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">button1</span><span class="p">)</span>
+<span class="w">    </span><span class="n">bText</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">({</span>
+<span class="w">        </span><span class="n">tvHelloWorld</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Hello From Button&quot;</span><span class="p">)</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
-<section id="id4">
-<h2>Класс Activity<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
