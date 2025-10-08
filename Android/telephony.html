@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Получение данных о сетях мобильной связи (2/3/4/5G) &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. Работа c сокетами (Sockets)." href="sockets/06_sockets_zmq.html" />
+    <link rel="prev" title="Ползовательский интерфейс (первое Activity)" href="app_activity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_structure.html">Структура проекта</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_activity.html">Ползовательский интерфейс (первое Activity)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Получение данных о сетях мобильной связи (2/3/4/5G)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#telephonymanager">Класс TelephonyManager</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
+      <li class="breadcrumb-item active">Получение данных о сетях мобильной связи (2/3/4/5G)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Android/telephony.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="g">
+<h1>Получение данных о сетях мобильной связи (2/3/4/5G)<a class="headerlink" href="#g" title="Permalink to this heading"></a></h1>
+<section id="telephonymanager">
+<h2>Класс TelephonyManager<a class="headerlink" href="#telephonymanager" title="Permalink to this heading"></a></h2>
+<p>Для получения доступа к информации о сетях мобильной связи потребуются <code class="docutils literal notranslate"><span class="pre">разрешения\permissions</span></code>:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_FINE_LOCATION&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.READ_PHONE_STATE&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p>Получение разрешений:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResume</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ContextCompat</span><span class="p">.</span><span class="na">checkSelfPermission</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">android</span><span class="p">.</span><span class="na">Manifest</span><span class="p">.</span><span class="na">permission</span><span class="p">.</span><span class="na">READ_PHONE_STATE</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">PackageManager</span><span class="p">.</span><span class="na">PERMISSION_GRANTED</span><span class="w"> </span><span class="o">||</span>
+<span class="w">        </span><span class="n">ContextCompat</span><span class="p">.</span><span class="na">checkSelfPermission</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">android</span><span class="p">.</span><span class="na">Manifest</span><span class="p">.</span><span class="na">permission</span><span class="p">.</span><span class="na">ACCESS_COARSE_LOCATION</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">PackageManager</span><span class="p">.</span><span class="na">PERMISSION_GRANTED</span>
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Нет разрешений READ_PHONE_STATE или ACCESS_COARSE_LOCATION для получения cell info&quot;</span><span class="p">)</span>
+
+<span class="w">        </span><span class="n">ActivityCompat</span><span class="p">.</span><span class="na">requestPermissions</span><span class="p">(</span>
+<span class="w">            </span><span class="k">this</span><span class="p">,</span>
+<span class="w">            </span><span class="n">arrayOf</span><span class="p">(</span><span class="n">android</span><span class="p">.</span><span class="na">Manifest</span><span class="p">.</span><span class="na">permission</span><span class="p">.</span><span class="na">READ_PHONE_STATE</span><span class="p">,</span>
+<span class="w">                </span><span class="n">android</span><span class="p">.</span><span class="na">Manifest</span><span class="p">.</span><span class="na">permission</span><span class="p">.</span><span class="na">ACCESS_COARSE_LOCATION</span><span class="p">),</span>
+<span class="w">                </span><span class="m">1</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="c1">// Тут будет получение информации о сетях мобильной связи</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Работа с классом <code class="docutils literal notranslate"><span class="pre">TelephonyManager</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="c1">// Необходимые модули</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">android.content.Context</span>
+<span class="k">import</span><span class="w"> </span><span class="nn">android.telephony.TelephonyManager</span>
+
+<span class="p">...</span>
+<span class="p">...</span>
+<span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onResume</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="na">onResume</span><span class="p">()</span>
+<span class="w">    </span><span class="c1">// Здесь получали разрешения, см. код выше</span>
+<span class="w">    </span><span class="p">...</span>
+
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">telephonyManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="na">TELEPHONY_SERVICE</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">TelephonyManager</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">cellInfoList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">telephonyManager</span><span class="p">.</span><span class="na">allCellInfo</span>
+<span class="w">    </span><span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">cellInfoList</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// Выведем все в строку</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>В результате получаем в <code class="docutils literal notranslate"><span class="pre">logcat</span></code> строку:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>CellInfoLte:<span class="o">{</span><span class="nv">mRegistered</span><span class="o">=</span>YES<span class="w"> </span><span class="nv">mTimeStamp</span><span class="o">=</span>225071574392525ns<span class="w"> </span><span class="nv">mCellConnectionStatus</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>
+<span class="w">                </span>CellIdentityLte:<span class="o">{</span><span class="w"> </span>
+<span class="w">                    </span><span class="nv">mCi</span><span class="o">=</span><span class="m">176224801</span><span class="w"> </span><span class="nv">mPci</span><span class="o">=</span><span class="m">386</span><span class="w"> </span><span class="nv">mTac</span><span class="o">=</span><span class="m">15401</span><span class="w"> </span><span class="nv">mEarfcn</span><span class="o">=</span><span class="m">1626</span><span class="w"> </span><span class="nv">mBands</span><span class="o">=[</span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="nv">mBandwidth</span><span class="o">=</span><span class="m">15000</span><span class="w"> </span><span class="nv">mMcc</span><span class="o">=</span><span class="m">250</span><span class="w"> </span><span class="nv">mMnc</span><span class="o">=</span><span class="m">01</span><span class="w"> </span><span class="nv">mAlphaLong</span><span class="o">=</span>MTS<span class="w"> </span>RUS<span class="w"> </span><span class="nv">mAlphaShort</span><span class="o">=</span>MTS<span class="w"> </span>RUS<span class="w"> </span><span class="nv">mAdditionalPlmns</span><span class="o">={}</span><span class="w"> </span><span class="nv">mCsgInfo</span><span class="o">=</span>null
+<span class="w">                </span><span class="o">}</span><span class="w"> </span>
+<span class="w">                </span>CellSignalStrengthLte:<span class="w"> </span><span class="nv">rssi</span><span class="o">=</span><span class="m">2147483647</span><span class="w"> </span><span class="nv">rsrp</span><span class="o">=</span>-96<span class="w"> </span><span class="nv">rsrq</span><span class="o">=</span>-15<span class="w"> </span><span class="nv">rssnr</span><span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="nv">cqiTableIndex</span><span class="o">=</span><span class="m">2147483647</span><span class="w"> </span><span class="nv">cqi</span><span class="o">=</span><span class="m">2147483647</span><span class="w"> </span><span class="nv">ta</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">level</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">parametersUseForLevel</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>
+<span class="w">                </span>android.telephony.CellConfigLte<span class="w"> </span>:<span class="o">{</span><span class="w"> </span><span class="nv">isEndcAvailable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="o">}}]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app_activity.html" class="btn btn-neutral float-left" title="Ползовательский интерфейс (первое Activity)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="sockets/06_sockets_zmq.html" class="btn btn-neutral float-right" title="6. Работа c сокетами (Sockets)." accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
