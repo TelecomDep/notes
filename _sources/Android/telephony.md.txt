@@ -4,6 +4,7 @@
 
 Для получения доступа к информации о сетях мобильной связи потребуются `разрешения\permissions`:
 
+**AndroidManifest.xml**
 ```xml
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
