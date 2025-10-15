@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Методическое пособие по JavaScript и React &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Полезные ссылки" href="../References/usefull_links.html" />
+    <link rel="prev" title="React" href="react.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="react.html">React</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Методическое пособие по JavaScript и React</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Оглавление</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Введение</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i-javascript">Часть I: JavaScript</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Основы синтаксиса</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Основы синтаксиса</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id9">Объекты и массивы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id12">Асинхронность</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ii-react">Часть II: React</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#react">Введение в React</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id15">Компоненты</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">Хуки</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id19">Роутинг</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#vite">Сборщик Vite</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id21">Аналогия:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#es-modules">1. Нативные ES Modules в разработке:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id25">Простая аналогия:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#esbuild">2. Esbuild для трансформаций</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#react-vite">Создание React приложения с Vite</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id27">Ключевые файлы:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#index-html-html">1. index.html (Корневой HTML):</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#main-jsx">2. main.jsx (Точка входа):</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#app-jsx">3. App.jsx (Основной компонент)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#package-json">4. Скрипты Package.json</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vite-vite-config-js">5. Настройка Vite (vite.config.js)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="react.html">React</a></li>
+      <li class="breadcrumb-item active">Методическое пособие по JavaScript и React</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/React/web_introduction.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="javascript-react">
+<h1>Методическое пособие по JavaScript и React<a class="headerlink" href="#javascript-react" title="Permalink to this heading"></a></h1>
+<section id="id1">
+<h2>Оглавление<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#%D0%B2%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5"><span class="xref myst">Введение</span></a></p></li>
+<li><p><a class="reference internal" href="#%D1%87%D0%B0%D1%81%D1%82%D1%8C-i-javascript"><span class="xref myst">Часть I: JavaScript</span></a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D1%8B-%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81%D0%B0"><span class="xref myst">Основы синтаксиса</span></a></p></li>
+<li><p><a class="reference internal" href="#%D1%84%D1%83%D0%BD%D0%BA%D1%86%D0%B8%D0%B8"><span class="xref myst">Функции</span></a></p></li>
+<li><p><a class="reference internal" href="#%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%8B-%D0%B8-%D0%BC%D0%B0%D1%81%D1%81%D0%B8%D0%B2%D1%8B"><span class="xref myst">Объекты и массивы</span></a></p></li>
+<li><p><a class="reference internal" href="#%D0%B0%D1%81%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%BD%D0%BE%D1%81%D1%82%D1%8C"><span class="xref myst">Асинхронность</span></a></p></li>
+<li><p><a class="reference internal" href="#%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D1%8B-%D0%B2%D0%B7%D0%B0%D0%B8%D0%BC%D0%BE%D0%B4%D0%B5%D0%B9%D1%81%D1%82%D0%B2%D0%B8%D1%8F-%D1%81-dom"><span class="xref myst">Примеры взаимодействия с DOM</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#%D1%87%D0%B0%D1%81%D1%82%D1%8C-ii-react"><span class="xref myst">Часть II: React</span></a></p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#%D0%B2%D0%B2%D0%B5%D0%B4%D0%B5%D0%BD%D0%B8%D0%B5-%D0%B2-react"><span class="xref myst">Введение в React</span></a></p></li>
+<li><p><a class="reference internal" href="#%D0%BA%D0%BE%D0%BC%D0%BF%D0%BE%D0%BD%D0%B5%D0%BD%D1%82%D1%8B"><span class="xref myst">Компоненты</span></a></p></li>
+<li><p><a class="reference internal" href="#%D1%85%D1%83%D0%BA%D0%B8"><span class="xref myst">Хуки</span></a></p></li>
+<li><p><a class="reference internal" href="#%D1%80%D0%BE%D1%83%D1%82%D0%B8%D0%BD%D0%B3"><span class="xref myst">Роутинг</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#%D0%BF%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B5-%D0%B7%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F"><span class="xref myst">Практические задания</span></a></p></li>
+<li><p><a class="reference internal" href="#%D0%B4%D0%BE%D0%BF%D0%BE%D0%BB%D0%BD%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D1%8B%D0%B5-%D1%80%D0%B5%D1%81%D1%83%D1%80%D1%81%D1%8B"><span class="xref myst">Дополнительные ресурсы</span></a></p></li>
+<li><p><a class="reference internal" href="#%D1%81%D0%B1%D0%BE%D1%80%D1%89%D0%B8%D0%BA-vite"><span class="xref myst">Сборщик VIte</span></a></p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>Введение<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Это методическое пособие предназначено для изучения основ JavaScript и библиотеки React. Предполагается, что читатель знаком с базовыми понятиями веб-разработки (HTML, CSS).</p>
+</section>
+<hr class="docutils" />
+<section id="i-javascript">
+<h2>Часть I: JavaScript<a class="headerlink" href="#i-javascript" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h3>Основы синтаксиса<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<section id="id4">
+<h4>Переменные<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Объявление переменных</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;John&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// может быть изменено</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25</span><span class="p">;</span><span class="w"> </span><span class="c1">// не может быть изменено</span>
+<span class="kd">var</span><span class="w"> </span><span class="nx">oldWay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="p">;</span><span class="w"> </span><span class="c1">// устаревший способ</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h4>Типы данных<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Примитивные типы</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello&quot;</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">42</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="kr">boolean</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">nullValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">undefinedValue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">undefined</span><span class="p">;</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">symbol</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Symbol</span><span class="p">(</span><span class="s2">&quot;id&quot;</span><span class="p">);</span>
+
+<span class="c1">// Объекты</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">key</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;value&quot;</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h4>Операторы<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Арифметические</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 8</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">difference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w"> </span><span class="c1">// 2</span>
+
+<span class="c1">// Сравнение</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;5&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// true (нестрогое)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="mf">5</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;5&quot;</span><span class="p">);</span><span class="w"> </span><span class="c1">// false (строгое)</span>
+
+<span class="c1">// Логические</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// false</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="kc">true</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span><span class="w"> </span><span class="c1">// true</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id7">
+<h3>Основы синтаксиса<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<section id="function-declaration">
+<h4>Function Declaration<a class="headerlink" href="#function-declaration" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="function-expression">
+<h4>Function Expression<a class="headerlink" href="#function-expression" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">greet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h4>Стрелочные функции<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">greet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Сокращенная форма</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">x</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Главные отличия:</p>
+<ol class="arabic simple">
+<li><p>Function Declaration</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Можно вызвать ДО объявления</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// &quot;Hello, Alice!&quot;</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">greet</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Function Expression</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Вызов ДО объявления вызовет ошибку</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// ReferenceError: Cannot access &#39;greet&#39; before initialization</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">greet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Стрелочные функции</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Тоже ошибка - ведут себя как const</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">greet</span><span class="p">(</span><span class="s2">&quot;Alice&quot;</span><span class="p">));</span><span class="w"> </span><span class="c1">// ReferenceError</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">greet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nx">name</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">!`</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Также есть различия в контексте (this), в аргументах и в использовании в качестве конструктора, если интересно про это можете сами почитать подробнее.</p>
+</section>
+</section>
+<section id="id9">
+<h3>Объекты и массивы<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h3>
+<section id="id10">
+<h4>Работа с объектами<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">person</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">name</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">age</span><span class="o">:</span><span class="w"> </span><span class="mf">30</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">greet</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Hello, I&#39;m </span><span class="si">${</span><span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sb">`</span><span class="p">);</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">};</span>
+
+<span class="c1">// Деструктуризация</span>
+<span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">name</span><span class="p">,</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">person</span><span class="p">;</span>
+
+<span class="c1">// Spread оператор</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">updatedPerson</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">person</span><span class="p">,</span><span class="w"> </span><span class="nx">city</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Moscow&quot;</span><span class="w"> </span><span class="p">};</span>
+</pre></div>
+</div>
+<p>Как работает деструктуризация</p>
+<ol class="arabic simple">
+<li><p>JavaScript смотрит на объект person</p></li>
+<li><p>Ищет свойства с именами name и age</p></li>
+<li><p>Создает новые переменные name и age</p></li>
+<li><p>Копирует значения из соответствующих свойств объекта</p></li>
+</ol>
+<p>Что происходит в spread операторе</p>
+<ol class="arabic simple">
+<li><p>…person - “распаковывает” все свойства объекта person</p></li>
+<li><p>Создается новый объект, куда копируются все свойства из person</p></li>
+<li><p>Добавляется новое свойство city: “Moscow”</p></li>
+<li><p>Если бы в person уже было свойство city, оно бы перезаписалось</p></li>
+</ol>
+</section>
+<section id="id11">
+<h4>Работа с массивами<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">];</span>
+
+<span class="c1">// Методы массивов</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">doubled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">even</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">acc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Метод map() - Создает новый массив, применяя функцию к каждому элементу исходного массива.</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Пример</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">doubled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">map</span><span class="p">((</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span>
+
+<span class="c1">// Пошагово что происходит:</span>
+<span class="c1">// 1. num = 1 → return 1 * 2 = 2</span>
+<span class="c1">// 2. num = 2 → return 2 * 2 = 4</span>
+<span class="c1">// 3. num = 3 → return 3 * 2 = 6</span>
+<span class="c1">// 4. num = 4 → return 4 * 2 = 8</span>
+<span class="c1">// 5. num = 5 → return 5 * 2 = 10</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">doubled</span><span class="p">);</span><span class="w"> </span><span class="c1">// [2, 4, 6, 8, 10]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numbers</span><span class="p">);</span><span class="w"> </span><span class="c1">// [1, 2, 3, 4, 5] - исходный массив не изменился!</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Метод filter() - Создает новый массив с элементами, которые прошли проверку (вернули true).</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Пример</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">even</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">filter</span><span class="p">((</span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+
+<span class="c1">// Пошагово что происходит:</span>
+<span class="c1">// 1. num = 1 → 1 % 2 === 0? false → исключаем</span>
+<span class="c1">// 2. num = 2 → 2 % 2 === 0? true → оставляем</span>
+<span class="c1">// 3. num = 3 → 3 % 2 === 0? false → исключаем</span>
+<span class="c1">// 4. num = 4 → 4 % 2 === 0? true → оставляем</span>
+<span class="c1">// 5. num = 5 → 5 % 2 === 0? false → исключаем</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">even</span><span class="p">);</span><span class="w"> </span><span class="c1">// [2, 4]</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numbers</span><span class="p">);</span><span class="w"> </span><span class="c1">// [1, 2, 3, 4, 5] - исходный массив не изменился!</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Метод reduce() - Преобразует массив в единственное значение, последовательно обрабатывая каждый элемент.</p></li>
+</ol>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Пример</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acc</span><span class="p">,</span><span class="w"> </span><span class="nx">num</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">acc</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">num</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">);</span>
+
+<span class="c1">// Пошагово что происходит:</span>
+<span class="c1">// Начальное значение acc = 0</span>
+<span class="c1">// 1. acc = 0, num = 1 → return 0 + 1 = 1</span>
+<span class="c1">// 2. acc = 1, num = 2 → return 1 + 2 = 3</span>
+<span class="c1">// 3. acc = 3, num = 3 → return 3 + 3 = 6</span>
+<span class="c1">// 4. acc = 6, num = 4 → return 6 + 4 = 10</span>
+<span class="c1">// 5. acc = 10, num = 5 → return 10 + 5 = 15</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">);</span><span class="w"> </span><span class="c1">// 15</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id12">
+<h3>Асинхронность<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h3>
+<section id="callbacks">
+<h4>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">(</span><span class="nx">callback</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">callback</span><span class="p">(</span><span class="s2">&quot;Data received&quot;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nx">fetchData</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>Callback (функция обратного вызова) - это функция, которая передается в другую функцию как аргумент и выполняется после завершения какой-либо операции.</p>
+</section>
+<section id="promises">
+<h4>Promises<a class="headerlink" href="#promises" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nb">Promise</span><span class="p">((</span><span class="nx">resolve</span><span class="p">,</span><span class="w"> </span><span class="nx">reject</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">setTimeout</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">resolve</span><span class="p">(</span><span class="s2">&quot;Data received&quot;</span><span class="p">);</span>
+<span class="w">      </span><span class="c1">// или reject(&quot;Error message&quot;);</span>
+<span class="w">    </span><span class="p">},</span><span class="w"> </span><span class="mf">1000</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
+
+<span class="nx">fetchData</span><span class="p">()</span>
+<span class="w">  </span><span class="p">.</span><span class="nx">then</span><span class="p">((</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">))</span>
+<span class="w">  </span><span class="p">.</span><span class="k">catch</span><span class="p">((</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Promise - это объект, который представляет результат асинхронной операции. У него есть 3 состояния:</p>
+<ol class="arabic simple">
+<li><p>pending (ожидание)</p></li>
+<li><p>fulfilled (выполнено успешно)</p></li>
+<li><p>rejected (выполнено с ошибкой)</p></li>
+</ol>
+</section>
+<section id="async-await">
+<h4>Async/await<a class="headerlink" href="#async-await" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">async</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="nx">getData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetchData</span><span class="p">();</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Async/await - это синтаксический сахар над Promises, который позволяет писать асинхронный код так, как будто он синхронный.</p>
+<p>Про Promise и Async/await можно написать очень много, если интересно, то можно изучить самим</p>
+</section>
+<section id="dom">
+<h4>Примеры взаимодействия с DOM<a class="headerlink" href="#dom" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// Получение элементов</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">element</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s2">&quot;myId&quot;</span><span class="p">);</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">elements</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;.myClass&quot;</span><span class="p">);</span>
+
+<span class="c1">// Создание элементов</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">newDiv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;div&quot;</span><span class="p">);</span>
+<span class="nx">newDiv</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Hello World&quot;</span><span class="p">;</span>
+
+<span class="c1">// Добавление в DOM</span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">newDiv</span><span class="p">);</span>
+
+<span class="c1">// Обработка событий</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;click&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Element clicked!&quot;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>DOM (Document Object Model) - это программный интерфейс для HTML и XML документов. Он представляет структуру документа в виде дерева объектов, которые можно изменять с помощью JavaScript.</p>
+</section>
+<section id="id13">
+<h4>Как устроен DOM (дерево):<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>text
+Document (корень)
+  ↓
+&lt;html&gt;
+  ├── &lt;head&gt;
+  │     ├── &lt;title&gt;
+  │     └── ...
+  └── &lt;body&gt;
+        ├── &lt;h1 id=&quot;header&quot;&gt;
+        ├── &lt;div class=&quot;content&quot;&gt;
+        │     └── &lt;p&gt;
+        └── ...
+</pre></div>
+</div>
+<p>Каждый элемент становится узлом (node) в дереве:</p>
+<ul class="simple">
+<li><p>Element nodes - теги (div, p, h1)</p></li>
+<li><p>Text nodes - текстовое содержимое</p></li>
+<li><p>Attribute nodes - атрибуты (id, class)</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="ii-react">
+<h2>Часть II: React<a class="headerlink" href="#ii-react" title="Permalink to this heading"></a></h2>
+<section id="react">
+<h3>Введение в React<a class="headerlink" href="#react" title="Permalink to this heading"></a></h3>
+<p>React — это JavaScript-библиотека для создания пользовательских интерфейсов.</p>
+<section id="id14">
+<h4>Создание приложения<a class="headerlink" href="#id14" title="Permalink to this heading"></a></h4>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">npx</span> <span class="n">create</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">my</span><span class="o">-</span><span class="n">app</span>
+<span class="n">cd</span> <span class="n">my</span><span class="o">-</span><span class="n">app</span>
+<span class="n">npm</span> <span class="n">start</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id15">
+<h3>Компоненты<a class="headerlink" href="#id15" title="Permalink to this heading"></a></h3>
+<section id="id16">
+<h4>Функциональные компоненты<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>// Welcome.jsx
+import React from &quot;react&quot;;
+
+function Welcome(props) {
+  return &lt;h1&gt;Hello, {props.name}!&lt;/h1&gt;;
+}
+
+export default Welcome;
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h4>Использование компонентов<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>// App.jsx
+import React from &quot;react&quot;;
+import Welcome from &quot;./Welcome&quot;;
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;Welcome name=&quot;Alice&quot; /&gt;
+      &lt;Welcome name=&quot;Bob&quot; /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id18">
+<h3>Хуки<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
+<section id="usestate">
+<h4>useState<a class="headerlink" href="#usestate" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import React, { useState } from &quot;react&quot;;
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;Count: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+</pre></div>
+</div>
+<p>useState - это хук React, который позволяет добавлять состояние в функциональные компоненты. До появления хуков состояние могло быть только в классовых компонентах.</p>
+<ul class="simple">
+<li><p>useState(0) инициализирует состояние значением 0</p></li>
+<li><p>Возвращает массив [currentValue, setterFunction]</p></li>
+<li><p>Деструктуризация создает переменные count и setCount</p></li>
+<li><p>count содержит текущее значение состояния</p></li>
+<li><p>setCount - функция для обновления состояния</p></li>
+</ul>
+</section>
+<section id="useeffect">
+<h4>useEffect<a class="headerlink" href="#useeffect" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import React, { useState, useEffect } from &quot;react&quot;;
+
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+
+  useEffect(() =&gt; {
+    // Загрузка данных при изменении userId
+    fetch(`/api/users/${userId}`)
+      .then((response) =&gt; response.json())
+      .then((data) =&gt; setUser(data));
+  }, [userId]); // Зависимости
+
+  if (!user) return &lt;div&gt;Loading...&lt;/div&gt;;
+
+  return &lt;div&gt;{user.name}&lt;/div&gt;;
+}
+</pre></div>
+</div>
+<p>useEffect - это хук, который позволяет выполнять побочные эффекты в функциональных компонентах. Он заменяет методы жизненного цикла в классовых компонентах.</p>
+<ul class="simple">
+<li><p>Эффект выполняется после каждого рендера, где userId изменился</p></li>
+<li><p>Делает запрос к API когда userId меняется</p></li>
+<li><p>Обновляет состояние user когда данные приходят</p></li>
+<li><p>Вызывает ререндер компонента с новыми данными</p></li>
+</ul>
+</section>
+</section>
+<section id="id19">
+<h3>Роутинг<a class="headerlink" href="#id19" title="Permalink to this heading"></a></h3>
+<section id="react-router">
+<h4>Установка React Router<a class="headerlink" href="#react-router" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">npm</span><span class="w"> </span><span class="nx">install</span><span class="w"> </span><span class="nx">react</span><span class="o">-</span><span class="nx">router</span><span class="o">-</span><span class="nx">dom</span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h4>Настройка маршрутов<a class="headerlink" href="#id20" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import React from &quot;react&quot;;
+import { BrowserRouter as Router, Routes, Route, Link } from &quot;react-router-dom&quot;;
+import Home from &quot;./Home&quot;;
+import About from &quot;./About&quot;;
+import Contact from &quot;./Contact&quot;;
+
+function App() {
+  return (
+    &lt;Router&gt;
+      &lt;nav&gt;
+        &lt;Link to=&quot;/&quot;&gt;Home&lt;/Link&gt;
+        &lt;Link to=&quot;/about&quot;&gt;About&lt;/Link&gt;
+        &lt;Link to=&quot;/contact&quot;&gt;Contact&lt;/Link&gt;
+      &lt;/nav&gt;
+
+      &lt;Routes&gt;
+        &lt;Route path=&quot;/&quot; element={&lt;Home /&gt;} /&gt;
+        &lt;Route path=&quot;/about&quot; element={&lt;About /&gt;} /&gt;
+        &lt;Route path=&quot;/contact&quot; element={&lt;Contact /&gt;} /&gt;
+      &lt;/Routes&gt;
+    &lt;/Router&gt;
+  );
+}
+</pre></div>
+</div>
+<p>Более крутой пример:</p>
+</section>
+<section id="routes-tsx">
+<h4>Routes.tsx:<a class="headerlink" href="#routes-tsx" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">lazy</span><span class="p">,</span><span class="w"> </span><span class="nx">useEffect</span><span class="p">,</span><span class="w"> </span><span class="nx">useState</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span>
+<span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">RouteProps</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s1">&#39;react-router-dom&#39;</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">Page1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lazy</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">  </span><span class="k">import</span><span class="p">(</span><span class="s1">&#39;~/pages/Page1&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">module</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="nx">module</span><span class="p">.</span><span class="nx">PageFirst</span>
+<span class="w">  </span><span class="p">}))</span>
+<span class="p">)</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">Page2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lazy</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">  </span><span class="k">import</span><span class="p">(</span><span class="s1">&#39;~/pages/Page2&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">module</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="nx">module</span><span class="p">.</span><span class="nx">PageSecond</span>
+<span class="w">  </span><span class="p">}))</span>
+<span class="p">)</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">Page3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lazy</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span>
+<span class="w">  </span><span class="k">import</span><span class="p">(</span><span class="s1">&#39;~/pages/Page3&#39;</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="nx">module</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span><span class="w"> </span><span class="nx">module</span><span class="p">.</span><span class="nx">PageThird</span>
+<span class="w">  </span><span class="p">}))</span>
+<span class="p">)</span>
+
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">AppRoutes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">PAGE1</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;page1&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">PAGE2</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;page2&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">PAGE3</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;page3&#39;</span><span class="p">,</span>
+<span class="p">}</span><span class="w"> </span><span class="kr">as</span><span class="w"> </span><span class="kd">const</span>
+
+<span class="k">export</span><span class="w"> </span><span class="nx">type</span><span class="w"> </span><span class="nx">AppRoutesT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="ow">typeof</span><span class="w"> </span><span class="nx">AppRoutes</span><span class="p">)[</span><span class="nx">keyof</span><span class="w"> </span><span class="ow">typeof</span><span class="w"> </span><span class="nx">AppRoutes</span><span class="p">]</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">RoutePath</span><span class="o">:</span><span class="w"> </span><span class="nx">Record</span><span class="o">&lt;</span><span class="nx">AppRoutesT</span><span class="p">,</span><span class="w"> </span><span class="nx">string</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">[</span><span class="nx">AppRoutes</span><span class="p">.</span><span class="nx">PAGE1</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/page1&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">[</span><span class="nx">AppRoutes</span><span class="p">.</span><span class="nx">PAGE2</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/page2&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">[</span><span class="nx">AppRoutes</span><span class="p">.</span><span class="nx">PAGE3</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;/page3&#39;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">routeConfig</span><span class="o">:</span><span class="w"> </span><span class="nx">Record</span><span class="o">&lt;</span><span class="nx">AppRoutesT</span><span class="p">,</span><span class="w"> </span><span class="nx">RouteProps</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">[</span><span class="nx">AppRoutes</span><span class="p">.</span><span class="nx">PAGE1</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="nx">RoutePath</span><span class="p">.</span><span class="nx">page1</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">element</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">PageFirst</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">[</span><span class="nx">AppRoutes</span><span class="p">.</span><span class="nx">PAGE2</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="nx">RoutePath</span><span class="p">.</span><span class="nx">page2</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">element</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">PageSecond</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="p">[</span><span class="nx">AppRoutes</span><span class="p">.</span><span class="nx">PAGE3</span><span class="p">]</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="nx">RoutePath</span><span class="p">.</span><span class="nx">page3</span><span class="p">,</span>
+<span class="w">    </span><span class="nx">element</span><span class="o">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nx">PageThird</span><span class="w"> </span><span class="o">/&gt;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="app-router-tsx">
+<h4>app-router.tsx:<a class="headerlink" href="#app-router-tsx" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import { memo, useCallback } from &quot;react&quot;;
+import { Suspense } from &quot;react&quot;;
+import { Route, RouteProps, Routes } from &quot;react-router-dom&quot;;
+
+import { routeConfig } from &quot;~/shared/config/routes/Routes&quot;;
+
+export const AppRouter = memo(() =&gt; {
+  const renderWithWrapper = useCallback(
+    ({ path, element }: RouteProps) =&gt; (
+      &lt;Route key={path} path={path} element={element} /&gt;
+    ),
+    []
+  );
+
+  return (
+    &lt;Suspense fallback={&lt;div&gt;Загрузка...&lt;/div&gt;}&gt;
+      {&quot; &quot;}
+      &lt;Routes&gt;{Object.values(routeConfig).map(renderWithWrapper)}&lt;/Routes&gt;
+    &lt;/Suspense&gt;
+  );
+});
+</pre></div>
+</div>
+<p>Потом вызываете AppRouter в вашем главном файле (обычно main.tsx/App.tsx)</p>
+</section>
+</section>
+</section>
+<section id="vite">
+<h2>Сборщик Vite<a class="headerlink" href="#vite" title="Permalink to this heading"></a></h2>
+<p><strong>Сборщик модулей (Module Bundler)</strong> - это инструмент, который берет различные модули JavaScript и их зависимости, и объединяет их в один или несколько оптимизированных файлов, готовых для использования в браузере.</p>
+<section id="id21">
+<h3>Аналогия:<a class="headerlink" href="#id21" title="Permalink to this heading"></a></h3>
+<p>Представьте, что у вас есть:</p>
+<ul class="simple">
+<li><p><strong>Модули</strong> - отдельные коробки с кодом (файлы .js, .jsx, .ts)</p></li>
+<li><p><strong>Зависимости</strong> - связи между коробками (import/export)</p></li>
+<li><p><strong>Сборщик</strong> - грузовик, который упаковывает все коробки в один контейнер</p></li>
+</ul>
+<p>Исходные файлы → Обход зависимостей → Компиляция → Оптимизация → Бандл</p>
+<p>Этапы традиционной сборки:</p>
+<ul class="simple">
+<li><p>Entry Point - начальный файл</p></li>
+<li><p>Dependency Graph - построение графа зависимостей</p></li>
+<li><p>Transformation - компиляция (JSX → JS, Sass → CSS)</p></li>
+<li><p>Bundling - объединение в бандлы</p></li>
+<li><p>Optimization - оптимизация, сжатие</p></li>
+<li><p>Output - финальные файлы</p></li>
+</ul>
+<section id="id22">
+<h4>Проблемы традиционных сборщиков:<a class="headerlink" href="#id22" title="Permalink to this heading"></a></h4>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span># Медленный запуск в development
+npm start    # Может занимать 10-60 секунд!
+
+# Медленный Hot Module Replacement (HMR)
+# Изменение файла → пересборка → 1-5 секунд ожидания
+
+# Сложная конфигурация
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h4>Vite<a class="headerlink" href="#id23" title="Permalink to this heading"></a></h4>
+<p>Vite (франц. “быстрый”, произносится “вит”) - это современный сборщик, который решает проблемы традиционных инструментов за счет использования нативных ES модулей.</p>
+<p>Ключевая идея Vite:</p>
+<p>Разделение сборки на две части:</p>
+<ul class="simple">
+<li><p>Development - использует нативные ES модули браузера</p></li>
+<li><p>Production - использует оптимизированную сборку Rollup</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Development Mode:
+Браузер ← HTTP ← Vite Dev Server ← ES Modules
+
+Production Mode:
+Браузер ← Оптимизированные файлы ← Rollup сборка
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h4>Что помогает Vite достигать больших скоростей<a class="headerlink" href="#id24" title="Permalink to this heading"></a></h4>
+</section>
+</section>
+<section id="es-modules">
+<h3>1. Нативные ES Modules в разработке:<a class="headerlink" href="#es-modules" title="Permalink to this heading"></a></h3>
+<p>Традиционный подход</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Все</span> <span class="n">файлы</span> <span class="n">компилируются</span> <span class="n">в</span> <span class="n">один</span> <span class="n">бандл</span> <span class="n">ДО</span> <span class="n">запуска</span>
+<span class="o">//</span> <span class="n">Большое</span> <span class="n">время</span> <span class="n">ожидания</span> <span class="n">при</span> <span class="n">старте</span>
+</pre></div>
+</div>
+<p>Vite подход:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Браузер</span> <span class="n">загружает</span> <span class="n">модули</span> <span class="n">напрямую</span> <span class="n">через</span> <span class="n">HTTP</span>
+<span class="o">&lt;</span><span class="n">script</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;module&quot;</span> <span class="n">src</span><span class="o">=</span><span class="s2">&quot;/src/main.jsx&quot;</span><span class="o">&gt;&lt;/</span><span class="n">script</span><span class="o">&gt;</span>
+
+<span class="o">//</span> <span class="n">Vite</span> <span class="n">сервер</span> <span class="n">преобразует</span> <span class="n">модули</span> <span class="n">на</span> <span class="n">лету</span>
+<span class="o">//</span> <span class="n">Только</span> <span class="n">по</span> <span class="n">запросу</span> <span class="n">браузера</span>
+</pre></div>
+</div>
+<p><strong>ES Modules</strong> (ECMAScript Modules) - это официальная, стандартизированная система модулей в JavaScript, которая позволяет разбивать код на отдельные файлы и организовывать зависимости между ними.</p>
+</section>
+<section id="id25">
+<h3>Простая аналогия:<a class="headerlink" href="#id25" title="Permalink to this heading"></a></h3>
+<p>Представьте книгу:</p>
+<ul class="simple">
+<li><p><strong>Без модулей</strong> - одна большая глава (1000 страниц)</p></li>
+<li><p><strong>С модулями</strong> - много глав с оглавлением (импорты/экспорты)</p></li>
+</ul>
+</section>
+<section id="esbuild">
+<h3>2. Esbuild для трансформаций<a class="headerlink" href="#esbuild" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>В 10-100x быстрее чем Babel</p></li>
+<li><p>Мгновенная компиляция TypeScript, JSX</p></li>
+</ul>
+<section id="id26">
+<h4>Пример запуска сервера разработки:<a class="headerlink" href="#id26" title="Permalink to this heading"></a></h4>
+<p>Стандартный вариант:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ npm start
+# Compiling...
+# Compiled successfully in 15.3s
+</pre></div>
+</div>
+<p>Vite:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ npm run dev
+# Vite dev server running in 347ms
+# Ready in 500ms
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="react-vite">
+<h2>Создание React приложения с Vite<a class="headerlink" href="#react-vite" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Инициализация проекта</span>
+<span class="n">npm</span> <span class="n">create</span> <span class="n">vite</span><span class="nd">@latest</span>
+
+<span class="c1"># 2. Интерактивный выбор:</span>
+<span class="c1"># ✔ Project name: … my-react-app</span>
+<span class="c1"># ✔ Select a framework: › React</span>
+<span class="c1"># ✔ Select a variant: › JavaScript + SWC</span>
+
+<span class="c1"># 3. Установка зависимостей</span>
+<span class="n">cd</span> <span class="n">my</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">app</span>
+<span class="n">npm</span> <span class="n">install</span>
+
+<span class="c1"># 4. Запуск development сервера</span>
+<span class="n">npm</span> <span class="n">run</span> <span class="n">dev</span>
+
+<span class="c1"># 5. Открыть в браузере</span>
+<span class="c1"># → http://localhost:5173/</span>
+</pre></div>
+</div>
+<p>Структура получившегося проекта:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my-react-app/
+├── node_modules/
+├── public/
+│   └── vite.svg
+├── src/
+│   ├── assets/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   ├── main.jsx
+│   └── components/
+├── index.html
+├── package.json
+├── vite.config.js
+└── README.md
+</pre></div>
+</div>
+<section id="id27">
+<h3>Ключевые файлы:<a class="headerlink" href="#id27" title="Permalink to this heading"></a></h3>
+</section>
+<section id="index-html-html">
+<h3>1. index.html (Корневой HTML):<a class="headerlink" href="#index-html-html" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot; /&gt;
+    &lt;link rel=&quot;icon&quot; type=&quot;image/svg+xml&quot; href=&quot;/vite.svg&quot; /&gt;
+    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot; /&gt;
+    &lt;title&gt;Vite + React&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+    &lt;script type=&quot;module&quot; src=&quot;/src/main.jsx&quot;&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre></div>
+</div>
+</section>
+<section id="main-jsx">
+<h3>2. main.jsx (Точка входа):<a class="headerlink" href="#main-jsx" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import React from &quot;react&quot;;
+import ReactDOM from &quot;react-dom/client&quot;;
+import App from &quot;./App.jsx&quot;;
+import &quot;./index.css&quot;;
+
+ReactDOM.createRoot(document.getElementById(&quot;root&quot;)).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;
+);
+</pre></div>
+</div>
+</section>
+<section id="app-jsx">
+<h3>3. App.jsx (Основной компонент)<a class="headerlink" href="#app-jsx" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import { useState } from &quot;react&quot;;
+import reactLogo from &quot;./assets/react.svg&quot;;
+import viteLogo from &quot;/vite.svg&quot;;
+import &quot;./App.css&quot;;
+
+function App() {
+  const [count, setCount] = useState(0);
+
+  return (
+    &lt;&gt;
+      &lt;div&gt;
+        &lt;a href=&quot;https://vitejs.dev&quot; target=&quot;_blank&quot;&gt;
+          &lt;img src={viteLogo} className=&quot;logo&quot; alt=&quot;Vite logo&quot; /&gt;
+        &lt;/a&gt;
+        &lt;a href=&quot;https://react.dev&quot; target=&quot;_blank&quot;&gt;
+          &lt;img src={reactLogo} className=&quot;logo react&quot; alt=&quot;React logo&quot; /&gt;
+        &lt;/a&gt;
+      &lt;/div&gt;
+      &lt;h1&gt;Vite + React&lt;/h1&gt;
+      &lt;div className=&quot;card&quot;&gt;
+        &lt;button onClick={() =&gt; setCount((count) =&gt; count + 1)}&gt;
+          count is {count}
+        &lt;/button&gt;
+        &lt;p&gt;
+          Edit &lt;code&gt;src/App.jsx&lt;/code&gt; and save to test HMR
+        &lt;/p&gt;
+      &lt;/div&gt;
+      &lt;p className=&quot;read-the-docs&quot;&gt;
+        Click on the Vite and React logos to learn more
+      &lt;/p&gt;
+    &lt;/&gt;
+  );
+}
+
+export default App;
+</pre></div>
+</div>
+</section>
+<section id="package-json">
+<h3>4. Скрипты Package.json<a class="headerlink" href="#package-json" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">  </span><span class="s2">&quot;scripts&quot;</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="s2">&quot;dev&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;vite&quot;</span><span class="p">,</span><span class="w">           </span><span class="c1">// Сервер разработки</span>
+<span class="w">    </span><span class="s2">&quot;build&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;vite build&quot;</span><span class="p">,</span><span class="w">   </span><span class="c1">// Сборка для production</span>
+<span class="w">    </span><span class="s2">&quot;lint&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="s2">&quot;preview&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;vite preview&quot;</span><span class="w"> </span><span class="c1">// Предпросмотр production сборки</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="vite-vite-config-js">
+<h3>5. Настройка Vite (vite.config.js)<a class="headerlink" href="#vite-vite-config-js" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">defineConfig</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;vite&quot;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="nx">react</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@vitejs/plugin-react&quot;</span><span class="p">;</span>
+
+<span class="c1">// https://vitejs.dev/config/</span>
+<span class="k">export</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="nx">defineConfig</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">plugins</span><span class="o">:</span><span class="w"> </span><span class="p">[</span><span class="nx">react</span><span class="p">()],</span>
+<span class="w">  </span><span class="nx">server</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">port</span><span class="o">:</span><span class="w"> </span><span class="mf">3000</span><span class="p">,</span><span class="w"> </span><span class="c1">// Порт разработки</span>
+<span class="w">    </span><span class="nx">open</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Автоматически открывать браузер</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">build</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">outDir</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;dist&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// Папка для сборки</span>
+<span class="w">    </span><span class="nx">sourcemap</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Карты исходного кода</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="react.html" class="btn btn-neutral float-left" title="React" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../References/usefull_links.html" class="btn btn-neutral float-right" title="Полезные ссылки" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

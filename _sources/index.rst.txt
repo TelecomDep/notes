@@ -42,6 +42,15 @@ Introduction
    Android/android
 
 .. raw:: latex
+   \chapter{React}
+
+.. toctree::
+   :caption: React
+   :maxdepth: 1
+
+   React/react
+
+.. raw:: latex
    \chapter{Полезные ссылки}
 
 .. toctree::

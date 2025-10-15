@@ -18,14 +18,38 @@
 Все Android-виджеты измеряются в относительных величинах (`dp`). 
 
 $$
-\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
+dp = \frac{width_{pixels} * 160}{density_{screen}} \text{, где}
 $$
 
-Alternatively, using the math directive:
+$160 - \text{средняя плотность пикселей (baseline density)};$
+$ width_{pixels} - \text{ширина экрана, например 1920x800, 800 - ширина};$
+$density_{screen} - \text{плотность пикселей}.$
+
+
+<!-- Alternatively, using the math directive:
 ````{math}
 a^2 + b^2 = c^2
-````
+```` -->
+
+
 
 ![1760497657503](image/app_layout/1760497657503.png)
 
 Рис. 3. Наглядный пример отображения плотности пикселей (`PPI`).
+
+Таблица. 1. 
+| Density qualifier     | DPI estimate [`dpi`]      | Description   |
+| --------              | -------                   | -------       |
+| `ldpi`                | ~120                      |   low-density                |
+| `mdpi`                | ~160                      |   medium-density (`baseline`)                |
+| `hdpi`                | ~240                      |   high-density                |
+| `xhdpi`               | ~320                      |   extra-high-density                |
+| `xxhdpi`              | ~480                      |   extra-extra-high-density                |
+| `xxxhdpi`             | ~640                      |   extra-extra-extra-high-density                |
+| `nodpi`               | -                         |   Не зависят от плотности.                 |
+| `tvdpi`               | ~213                      |                   |
+
+
+![1760500976124](image/app_layout/1760500976124.png)
+
+Рис. 4. Пример одинакового размера экрана, но разной плотностью пикселей.
