@@ -17,26 +17,13 @@
 Данный параметр учитывает плотность пикселей (`Pixel per Inch` - `PPI`) экрана или `screen density`.
 Все Android-виджеты измеряются в относительных величинах (`dp`). 
 
-$$
+````{math}
 dp = \frac{width_{pixels} * 160}{density_{screen}}
-$$
+````
 
 - `160` - средняя плотность пикселей (**baseline density**);
 - `width_pixels` - ширина экрана, например **1920x800**, 800 - ширина;
 - `density_screen` - плотность пикселей.
-
-
-Alternatively, using the math directive:
-````{math}
-a^2 + b^2 = c^2
-````
-
-Alternatively, using the math directive:
-````{math}
-dp = \frac{width_{pixels} * 160}{density_{screen}}
-````
-
-
 
 ![1760497657503](image/app_layout/1760497657503.png)
 
