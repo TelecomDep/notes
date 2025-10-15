@@ -37,17 +37,16 @@ a^2 + b^2 = c^2
 
 Рис. 3. Наглядный пример отображения плотности пикселей (`PPI`).
 
-Таблица. 1. 
-| Density qualifier     | DPI estimate [`dpi`]      | Description   |
-| --------              | -------                   | -------       |
-| `ldpi`                | ~120                      |   low-density                |
-| `mdpi`                | ~160                      |   medium-density (`baseline`)                |
-| `hdpi`                | ~240                      |   high-density                |
-| `xhdpi`               | ~320                      |   extra-high-density                |
-| `xxhdpi`              | ~480                      |   extra-extra-high-density                |
-| `xxxhdpi`             | ~640                      |   extra-extra-extra-high-density                |
-| `nodpi`               | -                         |   Не зависят от плотности.                 |
-| `tvdpi`               | ~213                      |                   |
+Таблица. 1. Разделение на группы по параметру `DPI`.
+| Density qualifier     | DPI estimate [`dpi`]      | Description                       |
+| --------              | -------                   | -------                           |
+| `ldpi`                | ~120                      |   low-density                     |
+| `mdpi`                | ~160                      |   medium-density (`baseline`)     |
+| `hdpi`                | ~240                      |   high-density                    |
+| `xhdpi`               | ~320                      |   extra-high-density              |
+| `xxhdpi`              | ~480                      |   extra-extra-high-density        |
+| `xxxhdpi`             | ~640                      |   extra-extra-extra-high-density  |
+| `nodpi`               | -                         |   Не зависят от плотности.        |
 
 
 ![1760500976124](image/app_layout/1760500976124.png)

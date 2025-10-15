@@ -3,6 +3,6 @@ React
 
 .. toctree::
    :caption: React
-   :maxdepth: 2
+   :maxdepth: 1
 
    web_introduction
