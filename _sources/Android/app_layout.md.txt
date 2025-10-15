@@ -26,10 +26,15 @@ $$
 - `density_screen` - плотность пикселей.
 
 
-<!-- Alternatively, using the math directive:
+Alternatively, using the math directive:
 ````{math}
 a^2 + b^2 = c^2
-```` -->
+````
+
+Alternatively, using the math directive:
+````{math}
+dp = \frac{width_{pixels} * 160}{density_{screen}}
+````
 
 
 
