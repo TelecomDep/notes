@@ -66,6 +66,7 @@
 <li class="toctree-l2"><a class="reference internal" href="app_activity.html">Ползовательский интерфейс (первое Activity)</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Макеты элементов пользовательского интерфейса (Layout)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#density-independent-pixel-dp">Density-independent pixel (dp)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rendering">Процесс отображения (Rendering) виджетов</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
@@ -112,27 +113,32 @@
 <h1>Макеты элементов пользовательского интерфейса (Layout)<a class="headerlink" href="#layout" title="Permalink to this heading"></a></h1>
 <p>Одной из проблем при разработки приложения является адаптация элементов экрана (пользовательского интерфейса) под устройства с разными характеристиками экранов.</p>
 <p><img alt="1760496730343" src="../_images/1760496730343.png" /></p>
-<p>Рис. 1. Различные размеры экранов устройств Android.</p>
+<p><strong>Рис. 1.</strong> Различные размеры экранов устройств Android.</p>
 <section id="density-independent-pixel-dp">
 <h2>Density-independent pixel (dp)<a class="headerlink" href="#density-independent-pixel-dp" title="Permalink to this heading"></a></h2>
 <p>Относительный параметр (<strong>не зависящий от плотности экрана пиксель</strong>) был введен во избежании проблем с компановкой элементов внутри разного размера экранов пользовательского оборудования.</p>
 <p><img alt="1760497331837" src="../_images/1760497331837.png" /></p>
-<p>Рис. 2. Размеры ширины и высоты <code class="docutils literal notranslate"><span class="pre">TextView</span></code> в <code class="docutils literal notranslate"><span class="pre">dp</span></code>.</p>
+<p><strong>Рис. 2.</strong> Размеры ширины и высоты <code class="docutils literal notranslate"><span class="pre">TextView</span></code> в <code class="docutils literal notranslate"><span class="pre">dp</span></code>.</p>
 <p>Данный параметр учитывает плотность пикселей (<code class="docutils literal notranslate"><span class="pre">Pixel</span> <span class="pre">per</span> <span class="pre">Inch</span></code> - <code class="docutils literal notranslate"><span class="pre">PPI</span></code>) экрана или <code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">density</span></code>.
 Все Android-виджеты измеряются в относительных величинах (<code class="docutils literal notranslate"><span class="pre">dp</span></code>).</p>
 <p>$$
-dp = \frac{width_{pixels} * 160}{density_{screen}} \text{, где}
+dp = \frac{width_{pixels} * 160}{density_{screen}}
 $$</p>
-<p>$160 - \text{средняя плотность пикселей (baseline density)};$
-$ width_{pixels} - \text{ширина экрана, например 1920x800, 800 - ширина};$
-$density_{screen} - \text{плотность пикселей}.$</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">160</span></code> - средняя плотность пикселей (<strong>baseline density</strong>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width_pixels</span></code> - ширина экрана, например <strong>1920x800</strong>, 800 - ширина;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">density_screen</span></code> - плотность пикселей.</p></li>
+</ul>
 <!-- Alternatively, using the math directive:
 ````{math}
 a^2 + b^2 = c^2
 ```` -->
 <p><img alt="1760497657503" src="../_images/1760497657503.png" /></p>
-<p>Рис. 3. Наглядный пример отображения плотности пикселей (<code class="docutils literal notranslate"><span class="pre">PPI</span></code>).</p>
-<p>Таблица. 1. Разделение на группы по параметру <code class="docutils literal notranslate"><span class="pre">DPI</span></code>.</p>
+<p><strong>Рис. 3.</strong> Наглядный пример отображения плотности пикселей (<code class="docutils literal notranslate"><span class="pre">PPI</span></code>).</p>
+<p><img alt="1760500976124" src="../_images/1760500976124.png" /></p>
+<p><strong>Рис. 4.</strong> Пример одинакового размера экрана, но разной плотностью пикселей.</p>
+<p>Чтобы обеспечить хорошее качество изображений на устройствах с разной плотностью пикселей, предоставьте в приложении <strong>несколько</strong> версий каждого растрового изображения — по одной для каждого диапазона плотности с соответствующим разрешением. В противном случае <code class="docutils literal notranslate"><span class="pre">Android</span></code> придётся масштабировать растровое изображение так, чтобы оно занимало одинаковое видимое пространство на каждом экране, что приведёт <strong>к появлению артефактов масштабирования</strong>, таких как <strong>размытие</strong>.</p>
+<p><strong>Таблица. 1.</strong> Разделение на группы по параметру <code class="docutils literal notranslate"><span class="pre">DPI</span></code>.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Density qualifier</p></th>
@@ -171,8 +177,34 @@ a^2 + b^2 = c^2
 </tr>
 </tbody>
 </table>
-<p><img alt="1760500976124" src="../_images/1760500976124.png" /></p>
-<p>Рис. 4. Пример одинакового размера экрана, но разной плотностью пикселей.</p>
+<p>Ниже показан пример нескольких версий растрового изображения.</p>
+<p><img alt="1760508822835" src="../_images/1760508822835.png" /></p>
+<p><strong>Рис. 5.</strong> Несколько изображений под каждую группу <code class="docutils literal notranslate"><span class="pre">DPI</span></code>.</p>
+<p>В ресурсах проекта (директория <code class="docutils literal notranslate"><span class="pre">res/</span></code>) файлы должны находится в своих <code class="docutils literal notranslate"><span class="pre">dpi</span></code>-группах:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>res/
+<span class="w">  </span>drawable-xxxhdpi/
+<span class="w">    </span>awesome_image.png
+<span class="w">  </span>drawable-xxhdpi/
+<span class="w">    </span>awesome_image.png
+<span class="w">  </span>drawable-xhdpi/
+<span class="w">    </span>awesome_image.png
+<span class="w">  </span>drawable-hdpi/
+<span class="w">    </span>awesome_image.png
+<span class="w">  </span>drawable-mdpi/
+<span class="w">    </span>awesome_image.png
+</pre></div>
+</div>
+</section>
+<section id="rendering">
+<h2>Процесс отображения (Rendering) виджетов<a class="headerlink" href="#rendering" title="Permalink to this heading"></a></h2>
+<p>Перед тем как <code class="docutils literal notranslate"><span class="pre">Android</span></code>-приложение покажет вам свое первое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, выполняется еще несколько основных функций\методов работы с изображением:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Measure</span></code> - вычисление точного местоположения каждого виджета на экране;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Layout</span></code> - выравнивание виджетов относительно “макета\компановки” (<code class="docutils literal notranslate"><span class="pre">layout</span> <span class="pre">manager</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Draw</span></code> - отрисовка\рендер изображения.</p></li>
+</ol>
+<p><img alt="1760509581710" src="../_images/1760509581710.png" /></p>
+<p><strong>Рис. 6.</strong> Android View rendering cycle.</p>
 </section>
 </section>
 
