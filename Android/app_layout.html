@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Android &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Макеты элементов пользовательского интерфейса (Layout) &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
@@ -17,11 +17,12 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Создание первого приложения (начало)" href="02_first_app.html" />
-    <link rel="prev" title="Основы Объектно-ориентированного программирования в Kotlin" href="../Kotlin/03_basic_oop.html" /> 
+    <link rel="next" title="Получение данных о сетях мобильной связи (2/3/4/5G)" href="telephony.html" />
+    <link rel="prev" title="Ползовательский интерфейс (первое Activity)" href="app_activity.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,11 +61,14 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Android</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Android</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app_structure.html">Структура проекта</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app_activity.html">Ползовательский интерфейс (первое Activity)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_layout.html">Макеты элементов пользовательского интерфейса (Layout)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Макеты элементов пользовательского интерфейса (Layout)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#density-independent-pixel-dp">Density-independent pixel (dp)</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
@@ -90,9 +94,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Android</li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
+      <li class="breadcrumb-item active">Макеты элементов пользовательского интерфейса (Layout)</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/Android/android.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/Android/app_layout.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -100,59 +105,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="android">
-<h1>Android<a class="headerlink" href="#android" title="Permalink to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Android</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="02_first_app.html#android-studio">Установка Android Studio</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="app_structure.html">Структура проекта</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="app_structure.html#androidmanifests-xml">AndroidManifests.xml</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_structure.html#res">/res</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_structure.html#gradle">Gradle</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="app_activity.html">Ползовательский интерфейс (первое Activity)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="app_activity.html#id1">Размеры виджетов</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_activity.html#viewgroups">ViewGroups</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_activity.html#id2">Иерархия виджетов</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_activity.html#resource-id">Идентификаторы виджетов (Resource ID)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="app_activity.html#id3">Класс Activity</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="app_layout.html">Макеты элементов пользовательского интерфейса (Layout)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="app_layout.html#density-independent-pixel-dp">Density-independent pixel (dp)</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="telephony.html#telephonymanager">Класс TelephonyManager</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#id1">Основные функции сокетов</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html#sock-stream-vs-sock-dgram"><strong>SOCK_STREAM vs SOCK_DGRAM</strong></a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html#id1">Очередь сообщений</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html#zmq">Основы ZMQ</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html#android-thread">Немного потоки в Android (Thread)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html#zmq-jeromq-android">Подключение ZMQ (JeroMQ) в проект Android</a></li>
-</ul>
-</li>
-</ul>
-</div>
+  <section id="layout">
+<h1>Макеты элементов пользовательского интерфейса (Layout)<a class="headerlink" href="#layout" title="Permalink to this heading"></a></h1>
+<p>Одной из проблем при разработки приложения является адаптация элементов экрана (пользовательского интерфейса) под устройства с разными характеристиками экранов.</p>
+<p><img alt="1760496730343" src="../_images/1760496730343.png" /></p>
+<p>Рис. 1. Различные размеры экранов устройств Android.</p>
+<section id="density-independent-pixel-dp">
+<h2>Density-independent pixel (dp)<a class="headerlink" href="#density-independent-pixel-dp" title="Permalink to this heading"></a></h2>
+<p>Относительный параметр (<strong>не зависящий от плотности экрана пиксель</strong>) был введен во избежании проблем с компановкой элементов внутри разного размера экранов пользовательского оборудования.</p>
+<p><img alt="1760497331837" src="../_images/1760497331837.png" /></p>
+<p>Рис. 2. Размеры ширины и высоты <code class="docutils literal notranslate"><span class="pre">TextView</span></code> в <code class="docutils literal notranslate"><span class="pre">dp</span></code>.</p>
+<p>Данный параметр учитывает плотность пикселей (<code class="docutils literal notranslate"><span class="pre">Pixel</span> <span class="pre">per</span> <span class="pre">Inch</span></code> - <code class="docutils literal notranslate"><span class="pre">PPI</span></code>) экрана или <code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">density</span></code>.
+Все Android-виджеты измеряются в относительных величинах (<code class="docutils literal notranslate"><span class="pre">dp</span></code>).</p>
+<p>$$
+\int_0^\infty e^{-x^2} dx = \frac{\sqrt{\pi}}{2}
+$$</p>
+<p>Alternatively, using the math directive:</p>
+<div class="math notranslate nohighlight">
+\[a^2 + b^2 = c^2\]</div>
+<p><img alt="1760497657503" src="../_images/1760497657503.png" /></p>
+<p>Рис. 3. Наглядный пример отображения плотности пикселей (<code class="docutils literal notranslate"><span class="pre">PPI</span></code>).</p>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Kotlin/03_basic_oop.html" class="btn btn-neutral float-left" title="Основы Объектно-ориентированного программирования в Kotlin" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="02_first_app.html" class="btn btn-neutral float-right" title="Создание первого приложения (начало)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="app_activity.html" class="btn btn-neutral float-left" title="Ползовательский интерфейс (первое Activity)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="telephony.html" class="btn btn-neutral float-right" title="Получение данных о сетях мобильной связи (2/3/4/5G)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
