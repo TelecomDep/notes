@@ -68,6 +68,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Макеты элементов пользовательского интерфейса (Layout)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#density-independent-pixel-dp">Density-independent pixel (dp)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rendering">Процесс отображения (Rendering) виджетов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#view">View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constraint-layout">Constraint Layout</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
@@ -115,11 +117,18 @@
 <p>Одной из проблем при разработки приложения является адаптация элементов экрана (пользовательского интерфейса) под устройства с разными характеристиками экранов.</p>
 <p><img alt="1760496730343" src="../_images/1760496730343.png" /></p>
 <p><strong>Рис. 1.</strong> Различные размеры экранов устройств Android.</p>
+<p>Что такое <code class="docutils literal notranslate"><span class="pre">px</span></code>, думаю, тоже понятно. Если у вас есть устройство с экраном шириной <code class="docutils literal notranslate"><span class="pre">480</span> <span class="pre">px</span></code> и вы создали кнопку шириной <code class="docutils literal notranslate"><span class="pre">240</span> <span class="pre">px</span></code>, то эта кнопка займет в ширину ровно пол-экрана. Но если вы откроете ваше приложение на устройстве с экраном с меньшим разрешением, то соотношение  изменится, например:</p>
+<ul class="simple">
+<li><p>если разрешение <code class="docutils literal notranslate"><span class="pre">320х240</span></code>, ширина экрана = <code class="docutils literal notranslate"><span class="pre">240</span> <span class="pre">px</span></code>. Кнопка займет уже не пол-экрана в ширину, а весь экран</p></li>
+<li><p>если же разрешение <code class="docutils literal notranslate"><span class="pre">1280х800</span></code>, ширина = <code class="docutils literal notranslate"><span class="pre">800</span> <span class="pre">px</span></code>. Кнопка опять же будет занимать в ширину не пол-экрана, а чуть меньше трети</p></li>
+</ul>
+<p><img alt="1760584374419" src="../_images/1760584374419.png" /></p>
+<p><strong>Рис. 2.</strong> Различные размеры экранов устройств Android.</p>
 <section id="density-independent-pixel-dp">
 <h2>Density-independent pixel (dp)<a class="headerlink" href="#density-independent-pixel-dp" title="Permalink to this heading"></a></h2>
 <p>Относительный параметр (<strong>не зависящий от плотности экрана пиксель</strong>) был введен во избежании проблем с компановкой элементов внутри разного размера экранов пользовательского оборудования.</p>
 <p><img alt="1760497331837" src="../_images/1760497331837.png" /></p>
-<p><strong>Рис. 2.</strong> Размеры ширины и высоты <code class="docutils literal notranslate"><span class="pre">TextView</span></code> в <code class="docutils literal notranslate"><span class="pre">dp</span></code>.</p>
+<p><strong>Рис. 3.</strong> Размеры ширины и высоты <code class="docutils literal notranslate"><span class="pre">TextView</span></code> в <code class="docutils literal notranslate"><span class="pre">dp</span></code>.</p>
 <p>Данный параметр учитывает плотность пикселей (<code class="docutils literal notranslate"><span class="pre">Pixel</span> <span class="pre">per</span> <span class="pre">Inch</span></code> - <code class="docutils literal notranslate"><span class="pre">PPI</span></code>) экрана или <code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">density</span></code>.
 Все Android-виджеты измеряются в относительных величинах (<code class="docutils literal notranslate"><span class="pre">dp</span></code>).</p>
 <div class="math notranslate nohighlight">
@@ -130,9 +139,10 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">density_screen</span></code> - плотность пикселей.</p></li>
 </ul>
 <p><img alt="1760497657503" src="../_images/1760497657503.png" /></p>
-<p><strong>Рис. 3.</strong> Наглядный пример отображения плотности пикселей (<code class="docutils literal notranslate"><span class="pre">PPI</span></code>).</p>
-<p><img alt="1760500976124" src="../_images/1760500976124.png" /></p>
-<p><strong>Рис. 4.</strong> Пример одинакового размера экрана, но разной плотностью пикселей.</p>
+<p><strong>Рис. 4.</strong> Наглядный пример отображения плотности пикселей (<code class="docutils literal notranslate"><span class="pre">PPI</span></code>).</p>
+<!-- ![1760500976124](image/app_layout/1760500976124.png)
+
+**Рис. 5.** Пример одинакового размера экрана, но разной плотностью пикселей. -->
 <p>Чтобы обеспечить хорошее качество изображений на устройствах с разной плотностью пикселей, предоставьте в приложении <strong>несколько</strong> версий каждого растрового изображения — по одной для каждого диапазона плотности с соответствующим разрешением. В противном случае <code class="docutils literal notranslate"><span class="pre">Android</span></code> придётся масштабировать растровое изображение так, чтобы оно занимало одинаковое видимое пространство на каждом экране, что приведёт <strong>к появлению артефактов масштабирования</strong>, таких как <strong>размытие</strong>.</p>
 <p><strong>Таблица. 1.</strong> Разделение на группы по параметру <code class="docutils literal notranslate"><span class="pre">DPI</span></code>.</p>
 <table class="docutils align-default">
@@ -144,27 +154,27 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldpi</span></code></p></td>
-<td><p>~120</p></td>
+<td><p>~120   (x0.75)</p></td>
 <td><p>low-density</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mdpi</span></code></p></td>
-<td><p>~160</p></td>
+<td><p>~160   (x0.1)</p></td>
 <td><p>medium-density (<code class="docutils literal notranslate"><span class="pre">baseline</span></code>)</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hdpi</span></code></p></td>
-<td><p>~240</p></td>
+<td><p>~240   (x1.5)</p></td>
 <td><p>high-density</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xhdpi</span></code></p></td>
-<td><p>~320</p></td>
+<td><p>~320   (x2)</p></td>
 <td><p>extra-high-density</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xxhdpi</span></code></p></td>
-<td><p>~480</p></td>
+<td><p>~480   (x3)</p></td>
 <td><p>extra-extra-high-density</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xxxhdpi</span></code></p></td>
-<td><p>~640</p></td>
+<td><p>~640   (x4)</p></td>
 <td><p>extra-extra-extra-high-density</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nodpi</span></code></p></td>
@@ -173,9 +183,13 @@
 </tr>
 </tbody>
 </table>
+<p>Т.е. когда для экрана стоит режим mdpi, то <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">dp</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">px</span></code>. Т.е. кнопка шириной <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">dp</span></code> будет выглядеть также как и кнопка шириной <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">px</span></code>.</p>
+<p>Если, например, у нас экран с низким разрешением, то используется режим <code class="docutils literal notranslate"><span class="pre">ldpi.</span></code> В этом случае <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">dp</span> <span class="pre">=</span> <span class="pre">0,75</span> <span class="pre">px</span></code>. Т.е. кнопка шириной <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">dp</span></code> будет выглядеть так же как кнопка шириной <code class="docutils literal notranslate"><span class="pre">75</span> <span class="pre">px</span></code>.</p>
+<p>Если у нас экран с высоким разрешением, то используется режим <code class="docutils literal notranslate"><span class="pre">hdpi</span></code> или <code class="docutils literal notranslate"><span class="pre">xhdpi</span></code>. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">dp</span> <span class="pre">=</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">px</span></code> или <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">px</span></code>. И кнопка шириной <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">dp</span></code> будет выглядеть так же как кнопка шириной <code class="docutils literal notranslate"><span class="pre">150</span> <span class="pre">px</span></code> или <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">px</span></code>.</p>
+<p>Т.е. при различных разрешениях используются различные Density режимы, которые позволяют приложениям масштабироваться и выглядеть если не одинаково, то, по крайне мере, похоже на всех экранах.</p>
 <p>Ниже показан пример нескольких версий растрового изображения.</p>
 <p><img alt="1760508822835" src="../_images/1760508822835.png" /></p>
-<p><strong>Рис. 5.</strong> Несколько изображений под каждую группу <code class="docutils literal notranslate"><span class="pre">DPI</span></code>.</p>
+<p><strong>Рис. 6.</strong> Несколько изображений под каждую группу <code class="docutils literal notranslate"><span class="pre">DPI</span></code>.</p>
 <p>В ресурсах проекта (директория <code class="docutils literal notranslate"><span class="pre">res/</span></code>) файлы должны находится в своих <code class="docutils literal notranslate"><span class="pre">dpi</span></code>-группах:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>res/
 <span class="w">  </span>drawable-xxxhdpi/
@@ -200,7 +214,19 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">Draw</span></code> - отрисовка\рендер изображения.</p></li>
 </ol>
 <p><img alt="1760509581710" src="../_images/1760509581710.png" /></p>
-<p><strong>Рис. 6.</strong> Android View rendering cycle.</p>
+<p><strong>Рис. 7.</strong> Android View rendering cycle.</p>
+</section>
+<section id="view">
+<h2>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h2>
+<p>Android SDK включает множество виджетов, которые являются дочерним классом класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. Таким образом, каждый виджет является экземпляром класса <code class="docutils literal notranslate"><span class="pre">View</span></code>, как и отражено на рисунке ниже.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true" /></p>
+<p><strong>Рис. 8.</strong> Иерархия класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. <a class="reference external" href="https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg">Источник изображения</a>.</p>
+</section>
+<section id="constraint-layout">
+<h2>Constraint Layout<a class="headerlink" href="#constraint-layout" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Constraint</span></code> - если коротко, это некие ограничения свойств виджета (или <code class="docutils literal notranslate"><span class="pre">view</span></code>).</p>
+<p><img alt="1760585911561" src="../_images/1760585911561.png" /></p>
+<p><strong>Рис. 9.</strong> Пример ограничений элементов <code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">С</span></code>.</p>
 </section>
 </section>
 
