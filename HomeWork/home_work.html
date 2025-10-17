@@ -211,7 +211,7 @@
 │   ├── mipmap/
 |   ├── values/
 |   └── xml/
-└── Gradkle Scripts/
+└── Gradle Scripts/
 </pre></div>
 </div>
 </section>
@@ -222,6 +222,7 @@
 <li><p>Функционал калькулятора из <code class="docutils literal notranslate"><span class="pre">ПР4</span></code> перенести на новое (необходимо создать)  новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>;</p></li>
 <li><p>Реализовать метод перехода из <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> в другие при помощи кнопок.</p></li>
 </ol>
+<p><strong>Пример</strong> перехода но другое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> при нажатии на кнопку <code class="docutils literal notranslate"><span class="pre">bGoToPlayerActivity</span></code>:</p>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">bGoToPlayerActivity</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">({</span>
 <span class="w">        </span><span class="c1">// Создаем Intent для класса MediaPlayerActivity - это MediaPlayerActivity.kt</span>
 <span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">randomIntent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">MediaPlayerActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
