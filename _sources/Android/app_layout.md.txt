@@ -104,11 +104,69 @@ Android SDK включает множество виджетов, которые
 
 ## Constraint Layout
 
-`Constraint` - если коротко, это некие ограничения свойств виджета (или `view`). 
+`Constraint` - если коротко, это некие ограничения свойств виджета (или `view`) внутри `constraint layout`. 
 
 ![1760585911561](image/app_layout/1760585911561.png)
 
 **Рис. 9.** Пример ограничений элементов `B` и `С`.
+
+Например, можно задать относительную (к родительскому `layout`) позицию виджета:
+
+```xml
+app:layout_constraintBottom_toBottomOf="parent"
+app:layout_constraintEnd_toEndOf="parent"
+app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toTopOf="parent">
+```
+Получим относительное положение виджета (на `16 dp`) к краям `ConstraintLayout`:
+
+![1760674810398](image/app_layout/1760674810398.png)
+
+В данном случае происходит следующее: "`TextView` выравнивает свою верхнюю границу к верхней части `ConstraintLayout` на 16 dp, а левую границу к левой части `ConstraintLayout`".
+
+
+Существует несколько относительных позиций `ConstraintLayout`:
+
+
+![1760675170776](image/app_layout/1760675170776.png)
+
+**Рис. 10.** Top, Bottom, Baseline. 
+
+Где `baseline` - это нижняя граница текста внутри `TextView`.
+
+
+![1760675184696](image/app_layout/1760675184696.png)
+
+**Рис. 10.** Left, Right. 
+
+### Пример Constraing Layout
+
+```xml
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/back_to_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MediaPlayerActivity">
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="324dp"
+        android:text="TextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+
+
+
+
+
 
 
 

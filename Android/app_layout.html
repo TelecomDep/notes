@@ -21,7 +21,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Получение данных о сетях мобильной связи (2/3/4/5G)" href="telephony.html" />
+    <link rel="next" title="5. Работа виджетами из Activity" href="05_widgets.html" />
     <link rel="prev" title="Ползовательский интерфейс (первое Activity)" href="app_activity.html" /> 
 </head>
 
@@ -69,9 +69,13 @@
 <li class="toctree-l3"><a class="reference internal" href="#density-independent-pixel-dp">Density-independent pixel (dp)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rendering">Процесс отображения (Rendering) виджетов</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#view">View</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#constraint-layout">Constraint Layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constraint-layout">Constraint Layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#constraing-layout">Пример Constraing Layout</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html">5. Работа виджетами из Activity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
@@ -224,9 +228,48 @@
 </section>
 <section id="constraint-layout">
 <h2>Constraint Layout<a class="headerlink" href="#constraint-layout" title="Permalink to this heading"></a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">Constraint</span></code> - если коротко, это некие ограничения свойств виджета (или <code class="docutils literal notranslate"><span class="pre">view</span></code>).</p>
+<p><code class="docutils literal notranslate"><span class="pre">Constraint</span></code> - если коротко, это некие ограничения свойств виджета (или <code class="docutils literal notranslate"><span class="pre">view</span></code>) внутри <code class="docutils literal notranslate"><span class="pre">constraint</span> <span class="pre">layout</span></code>.</p>
 <p><img alt="1760585911561" src="../_images/1760585911561.png" /></p>
 <p><strong>Рис. 9.</strong> Пример ограничений элементов <code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">С</span></code>.</p>
+<p>Например, можно задать относительную (к родительскому <code class="docutils literal notranslate"><span class="pre">layout</span></code>) позицию виджета:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+app:layout_constraintStart_toStartOf=&quot;parent&quot;
+app:layout_constraintTop_toTopOf=&quot;parent&quot;&gt;
+</pre></div>
+</div>
+<p>Получим относительное положение виджета (на <code class="docutils literal notranslate"><span class="pre">16</span> <span class="pre">dp</span></code>) к краям <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>:</p>
+<p><img alt="1760674810398" src="../_images/1760674810398.png" /></p>
+<p>В данном случае происходит следующее: “<code class="docutils literal notranslate"><span class="pre">TextView</span></code> выравнивает свою верхнюю границу к верхней части <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code> на 16 dp, а левую границу к левой части <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>”.</p>
+<p>Существует несколько относительных позиций <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>:</p>
+<p><img alt="1760675170776" src="../_images/1760675170776.png" /></p>
+<p><strong>Рис. 10.</strong> Top, Bottom, Baseline.</p>
+<p>Где <code class="docutils literal notranslate"><span class="pre">baseline</span></code> - это нижняя граница текста внутри <code class="docutils literal notranslate"><span class="pre">TextView</span></code>.</p>
+<p><img alt="1760675184696" src="../_images/1760675184696.png" /></p>
+<p><strong>Рис. 10.</strong> Left, Right.</p>
+<section id="constraing-layout">
+<h3>Пример Constraing Layout<a class="headerlink" href="#constraing-layout" title="Permalink to this heading"></a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<span class="w">    </span><span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+<span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+<span class="w">    </span><span class="na">android:id=</span><span class="s">&quot;@+id/back_to_main&quot;</span>
+<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;.activities.MediaPlayerActivity&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/textView3&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginTop=</span><span class="s">&quot;324dp&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;TextView&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">&quot;parent&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -235,7 +278,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="app_activity.html" class="btn btn-neutral float-left" title="Ползовательский интерфейс (первое Activity)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="telephony.html" class="btn btn-neutral float-right" title="Получение данных о сетях мобильной связи (2/3/4/5G)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="05_widgets.html" class="btn btn-neutral float-right" title="5. Работа виджетами из Activity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
