@@ -9,6 +9,7 @@ Android
    app_structure
    app_activity
    app_layout
+   05_widgets
    telephony
    sockets/06_sockets_zmq
    sockets/07_sockets_zmq_android
