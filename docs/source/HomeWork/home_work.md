@@ -82,6 +82,25 @@ app
 └── Gradkle Scripts/
 ```
 
+### 4.5. Рефакторинг. Разделение по Activities.
+
+1. Из `MainActivity` необходимо создать некий `hub`, в котором будут отображаться кнопки перехода на другие `Activity`;
+2. Функционал калькулятора из `ПР4` перенести на новое (необходимо создать)  новое `Activity`;
+3. Реализовать метод перехода из `MainActivity` в другие при помощи кнопок.
+
+```kotlin
+bGoToPlayerActivity.setOnClickListener({
+        // Создаем Intent для класса MediaPlayerActivity - это MediaPlayerActivity.kt
+        val randomIntent = Intent(this, MediaPlayerActivity::class.java)
+        // Переходим в в другое Activity
+        startActivity(randomIntent)
+    });
+```
+
+**Пример** `MainActivity`
+
+![1760687685394](image/home_work/1760687685394.png)
+
 ### 5. Разработать MediaPlayer для воспроизведения музыки
 
 Цель: Научиться работать с файлами внутренней (или внешней) памяти смартфона, в частности, со звуковыми "дорожками". Исползование класса `MediaPlayer` поможет в создании "каркаса" для MP3-проигрователя. 
