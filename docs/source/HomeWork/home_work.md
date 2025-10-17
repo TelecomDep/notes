@@ -79,7 +79,7 @@ app
 │   ├── mipmap/
 |   ├── values/
 |   └── xml/
-└── Gradkle Scripts/
+└── Gradle Scripts/
 ```
 
 ### 4.5. Рефакторинг. Разделение по Activities.
@@ -88,6 +88,7 @@ app
 2. Функционал калькулятора из `ПР4` перенести на новое (необходимо создать)  новое `Activity`;
 3. Реализовать метод перехода из `MainActivity` в другие при помощи кнопок.
 
+**Пример** перехода но другое `Activity` при нажатии на кнопку `bGoToPlayerActivity`:
 ```kotlin
 bGoToPlayerActivity.setOnClickListener({
         // Создаем Intent для класса MediaPlayerActivity - это MediaPlayerActivity.kt
