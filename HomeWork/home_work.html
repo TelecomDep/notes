@@ -55,6 +55,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#id4">3. Интерфейсы.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#android">Android</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id5">4. Разработка простейшего калькулятора</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#activities">4.5. Рефакторинг. Разделение по Activities.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mediaplayer">5. Разработать MediaPlayer для воспроизведения музыки</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#location">6. Местоположение смартфона. Location</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)</a></li>
@@ -213,6 +214,24 @@
 └── Gradkle Scripts/
 </pre></div>
 </div>
+</section>
+<section id="activities">
+<h3>4.5. Рефакторинг. Разделение по Activities.<a class="headerlink" href="#activities" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Из <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> необходимо создать некий <code class="docutils literal notranslate"><span class="pre">hub</span></code>, в котором будут отображаться кнопки перехода на другие <code class="docutils literal notranslate"><span class="pre">Activity</span></code>;</p></li>
+<li><p>Функционал калькулятора из <code class="docutils literal notranslate"><span class="pre">ПР4</span></code> перенести на новое (необходимо создать)  новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>;</p></li>
+<li><p>Реализовать метод перехода из <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code> в другие при помощи кнопок.</p></li>
+</ol>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">bGoToPlayerActivity</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">({</span>
+<span class="w">        </span><span class="c1">// Создаем Intent для класса MediaPlayerActivity - это MediaPlayerActivity.kt</span>
+<span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">randomIntent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">MediaPlayerActivity</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+<span class="w">        </span><span class="c1">// Переходим в в другое Activity</span>
+<span class="w">        </span><span class="n">startActivity</span><span class="p">(</span><span class="n">randomIntent</span><span class="p">)</span>
+<span class="w">    </span><span class="p">});</span>
+</pre></div>
+</div>
+<p><strong>Пример</strong> <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code></p>
+<p><img alt="1760687685394" src="../_images/1760687685394.png" /></p>
 </section>
 <section id="mediaplayer">
 <h3>5. Разработать MediaPlayer для воспроизведения музыки<a class="headerlink" href="#mediaplayer" title="Permalink to this heading"></a></h3>
