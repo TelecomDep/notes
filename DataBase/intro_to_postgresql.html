@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>&lt;no title&gt; &mdash; Telecom Notes 0.1 documentation</title>
+  <title>PostgreSQL (Основы) &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="React" href="../React/react.html" />
-    <link rel="prev" title="PostgreSQL (Основы)" href="introduction.html" /> 
+    <link rel="next" title="Создание базы данных" href="work_with_database.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -63,8 +63,23 @@
 <li class="toctree-l1"><a class="reference internal" href="../Android/android.html">Android</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="database.html">PostgreSQL</a></li>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="database.html">PostgreSQL</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PostgreSQL (Основы)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Установка</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#ubuntu">Ubuntu</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Подключение к СУБД</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#psql">psql</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pgadmin">pgAdmin</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="work_with_database.html">Создание базы данных</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">React</span></p>
 <ul>
@@ -90,7 +105,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="database.html">PostgreSQL</a></li>
-      <li class="breadcrumb-item active">&lt;no title&gt;</li>
+      <li class="breadcrumb-item active">PostgreSQL (Основы)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/DataBase/intro_to_postgresql.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,13 +115,116 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  
+  <section id="postgresql">
+<h1>PostgreSQL (Основы)<a class="headerlink" href="#postgresql" title="Permalink to this heading"></a></h1>
+<section id="id1">
+<h2>Установка<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Устанивливаем с <a class="reference external" href="https://www.postgresql.org/download/">официального сайта</a>.</p>
+<section id="ubuntu">
+<h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this heading"></a></h3>
+<p><strong>Ubuntu</strong> поддерживает приложение <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> в виде “<strong>установочных</strong>” пакетов. Есть возможность установить разные версии.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>postgresql
+</pre></div>
+</div>
+<p>После установки желательно проверить запущен ли сервис postgresql:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>service<span class="w"> </span>postgresql<span class="w"> </span>status
+</pre></div>
+</div>
+<p>Должны увидеть:</p>
+<p><img alt="1760861601308" src="../_images/1760861601308.png" /></p>
+<p>Управлять работой сервиса можно при помощи команд:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>service<span class="w"> </span>postgresql<span class="w"> </span>start<span class="w">       </span><span class="c1"># запуск</span>
+sudo<span class="w"> </span>service<span class="w"> </span>postgresql<span class="w"> </span>restart<span class="w">     </span><span class="c1"># перезапуск</span>
+sudo<span class="w"> </span>service<span class="w"> </span>postgresql<span class="w"> </span>stop<span class="w">        </span><span class="c1"># остановка</span>
+</pre></div>
+</div>
+<p><strong>Важно отметить</strong>, что <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> позволяет, так называемый, <code class="docutils literal notranslate"><span class="pre">peer</span></code> - доступ. Это позволяет получать доступ к <code class="docutils literal notranslate"><span class="pre">СУБД</span></code> от Вашего пользователя (под которым приложение было установлено).</p>
+<p>При установке на ваш компьютер, приложение, по умолчанию, создаст пользователя <code class="docutils literal notranslate"><span class="pre">postgres</span></code> (без пароля, но имеющего доступ к серверу <strong>СУБД</strong>).</p>
+<p>Первым делом, нужно задать пароль для пользователя, чтобы в дальнейшем мы могли работать с <code class="docutils literal notranslate"><span class="pre">СУБД</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Подключаемся к СУБД под <code class="docutils literal notranslate"><span class="pre">sudo</span></code> с флагом <code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">&lt;имя</span> <span class="pre">пользователя&gt;</span></code>:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span><span class="c1"># postgres - пользователь, который был создан по умолчанию</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Мы увидим новую консоль <code class="docutils literal notranslate"><span class="pre">psql</span></code>:</p></li>
+</ol>
+<p><img alt="1760804468263" src="../_images/1760804468263.png" /></p>
+<p>Далее меняем пароль для пользователя <code class="docutils literal notranslate"><span class="pre">postgres</span></code> командой:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="se">\p</span>assword<span class="w"> </span>postgres
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Работает!</span></code></p>
+<!-- **Из важного** (важно для доступа):
+
+1. Вводим и запоминаем пароль;
+![1760719893966](image/introduction/1760719893966.png)
+
+2. Запоминаем номер порта, по которуму будем осуществлять доступ к базе данных;
+![1760719963121](image/introduction/1760719963121.png)
+
+3. Остальное - **по умолчанию**.
+
+`Ура, установили!` -->
+</section>
+</section>
+<section id="id2">
+<h2>Подключение к СУБД<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Работать с системой управления базой данных можно при помощи приложений:</p>
+<p><img alt="1760722464959" src="../_images/1760722464959.png" /></p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">psql</span></code> - нативная консоль;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pgAdmin</span></code> - <a class="reference external" href="https://www.pgadmin.org/">Open-source приложение</a> по управлению <code class="docutils literal notranslate"><span class="pre">PostgreSQl</span></code> при помощи графической оболочки;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DBeaver</span></code> - аналогично второму варианту, <a class="reference external" href="https://dbeaver.io/">ссылка</a>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Navicat</span></code> - тоже <a class="reference external" href="https://www.navicat.com/ru/">визуальный интерфейс</a> для управления СУБД.</p></li>
+</ol>
+<section id="psql">
+<h3>psql<a class="headerlink" href="#psql" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">psql</span></code> - это нативный метод взаимодействия с <strong>СУБД</strong>. Устанавливается по умолчанию.</p>
+<p>При помощи консоли происходит взаимодействие с сервером PostgreSQL.
+<code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">&lt;user_name&gt;</span> </code>- это имя пользователя.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>-u<span class="w"> </span>postgres<span class="w"> </span>psql<span class="w"> </span>
+</pre></div>
+</div>
+</section>
+<section id="pgadmin">
+<h3>pgAdmin<a class="headerlink" href="#pgadmin" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h4>Установка pgAdmin<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Установка открытого ключа для репозитория</span>
+curl<span class="w"> </span>-fsS<span class="w"> </span>https://www.pgadmin.org/static/packages_pgadmin_org.pub<span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>gpg<span class="w"> </span>--dearmor<span class="w"> </span>-o<span class="w"> </span>/usr/share/keyrings/packages-pgadmin-org.gpg
+
+<span class="c1"># Создаем файл конфигурации репозитория</span>
+sudo<span class="w"> </span>sh<span class="w"> </span>-c<span class="w"> </span><span class="s1">&#39;echo &quot;deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/$(lsb_release -cs) pgadmin4 main&quot; &gt; /etc/apt/sources.list.d/pgadmin4.list &amp;&amp; apt update&#39;</span>
+
+<span class="c1">#</span>
+<span class="c1"># Установка pgAdmin</span>
+<span class="c1">#</span>
+
+<span class="c1"># Install for both desktop and web modes:</span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>pgadmin4
+
+<span class="c1"># Install for web mode only: </span>
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>pgadmin4-web<span class="w"> </span>
+
+<span class="c1"># Настройка, если хотим работать в вебе pgadmin4-web:</span>
+sudo<span class="w"> </span>/usr/pgadmin4/bin/setup-web.sh
+</pre></div>
+</div>
+<p>В результате, после настройки setup-web запуститься сервер pgAdmin по адресу: <code class="docutils literal notranslate"><span class="pre">https://127.0.0.1/pgadmin4</span></code> (вход по <code class="docutils literal notranslate"><span class="pre">email</span></code> + <code class="docutils literal notranslate"><span class="pre">пароль</span></code>, введенный при <strong>установке</strong>):</p>
+<p><img alt="1760861338204" src="../_images/1760861338204.png" /></p>
+</section>
+</section>
+</section>
+</section>
+
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="introduction.html" class="btn btn-neutral float-left" title="PostgreSQL (Основы)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../React/react.html" class="btn btn-neutral float-right" title="React" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="introduction.html" class="btn btn-neutral float-left" title="&lt;no title&gt;" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="work_with_database.html" class="btn btn-neutral float-right" title="Создание базы данных" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

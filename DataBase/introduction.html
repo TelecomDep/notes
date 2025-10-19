@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PostgreSQL (Основы) &mdash; Telecom Notes 0.1 documentation</title>
+  <title>&lt;no title&gt; &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
@@ -20,7 +20,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="&lt;no title&gt;" href="intro_to_postgresql.html" />
+    <link rel="next" title="PostgreSQL (Основы)" href="intro_to_postgresql.html" />
     <link rel="prev" title="PostgreSQL" href="database.html" /> 
 </head>
 
@@ -63,19 +63,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../Android/android.html">Android</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="database.html">PostgreSQL</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">PostgreSQL (Основы)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Установка</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Подключение к СУБД</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#psql">psql - консоль</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#pgadmin">pgAdmin</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="database.html">PostgreSQL</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">React</span></p>
 <ul>
@@ -101,7 +90,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="database.html">PostgreSQL</a></li>
-      <li class="breadcrumb-item active">PostgreSQL (Основы)</li>
+      <li class="breadcrumb-item active">&lt;no title&gt;</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/DataBase/introduction.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -111,48 +100,13 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="postgresql">
-<h1>PostgreSQL (Основы)<a class="headerlink" href="#postgresql" title="Permalink to this heading"></a></h1>
-<section id="id1">
-<h2>Установка<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<p>Устанивливаем с <a class="reference external" href="https://www.postgresql.org/download/">официального сайта</a>. Делаем все по инструкции программы.</p>
-<p><strong>Из важного</strong> (важно для доступа):</p>
-<ol class="arabic simple">
-<li><p>Вводим и запоминаем пароль;
-<img alt="1760719893966" src="../_images/1760719893966.png" /></p></li>
-<li><p>Запоминаем номер порта, по которуму будем осуществлять доступ к базе данных;
-<img alt="1760719963121" src="../_images/1760719963121.png" /></p></li>
-<li><p>Остальное - <strong>по умолчанию</strong>.</p></li>
-</ol>
-<p><code class="docutils literal notranslate"><span class="pre">Ура,</span> <span class="pre">установили!</span></code></p>
-</section>
-<section id="id2">
-<h2>Подключение к СУБД<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
-<p>Работать с системой управления базой данных можно при помощи приложений:</p>
-<p><img alt="1760722464959" src="../_images/1760722464959.png" /></p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">psql</span></code> - нативная консоль;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pgAdmin</span></code> - <a class="reference external" href="https://www.pgadmin.org/">Open-source приложение</a> по управлению <code class="docutils literal notranslate"><span class="pre">PostgreSQl</span></code>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DBeaver</span></code> - аналогично второму варианту, <a class="reference external" href="https://dbeaver.io/">ссылка</a>;</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Navicat</span></code> - тоже <a class="reference external" href="https://www.navicat.com/ru/">визуальный интерфейс</a> для управления СУБД.</p></li>
-</ol>
-<section id="psql">
-<h3>psql - консоль<a class="headerlink" href="#psql" title="Permalink to this heading"></a></h3>
-<p>После установки полного пакета (если устанавливаем <code class="docutils literal notranslate"><span class="pre">по</span> <span class="pre">умолчанию</span></code>) <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code> установится также приложение <code class="docutils literal notranslate"><span class="pre">psql</span></code>.</p>
-<p><img alt="1760722878615" src="../_images/1760722878615.png" /></p>
-</section>
-<section id="pgadmin">
-<h3>pgAdmin<a class="headerlink" href="#pgadmin" title="Permalink to this heading"></a></h3>
-</section>
-</section>
-</section>
-
+  
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="database.html" class="btn btn-neutral float-left" title="PostgreSQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="intro_to_postgresql.html" class="btn btn-neutral float-right" title="&lt;no title&gt;" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="intro_to_postgresql.html" class="btn btn-neutral float-right" title="PostgreSQL (Основы)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
