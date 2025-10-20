@@ -8,7 +8,19 @@
 
 **Ubuntu** поддерживает приложение `postgresql` в виде "**установочных**" пакетов. Есть возможность установить разные версии.
 ```bash
-sudo apt-get install postgresql
+sudo apt-get install postgresql # по умолчанию установится 14 версия
+```
+
+**ЕСЛИ** хотим **более новую версию**:
+
+```bash
+sudo apt install -y postgresql-common
+sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+sudo apt update
+```
+
+```bash
+sudo apt install postgresql-18
 ```
 
 После установки желательно проверить запущен ли сервис postgresql:

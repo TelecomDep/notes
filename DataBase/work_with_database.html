@@ -67,8 +67,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="database.html">PostgreSQL</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="intro_to_postgresql.html">PostgreSQL (Основы)</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Создание базы данных</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Подключение к базе данных (первая таблица)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#postgresql">Типы данных в PostgreSQL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Подключение к базе данных (первая таблица)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Создание таблицы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Внесение данных в таблицу</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Получение данных из таблицы</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -133,8 +137,9 @@ create<span class="w"> </span>database<span class="w"> </span>test_db_from_psql<
 </pre></div>
 </div>
 <p><img alt="1760863640863" src="../_images/1760863640863.png" /></p>
-<p><strong>Создание таблицы</strong>
-Для примера, создади таблицу <code class="docutils literal notranslate"><span class="pre">user_equipment</span></code> со столбцами об информации о его местоположении:</p>
+<section id="id3">
+<h3>Создание таблицы<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>Для примера, создади таблицу <code class="docutils literal notranslate"><span class="pre">user_equipment</span></code> со столбцами об информации о его местоположении:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>create<span class="w"> </span>table<span class="w"> </span>user_equipment<span class="w"> </span><span class="o">(</span>Id<span class="w"> </span>serial<span class="w"> </span>primary<span class="w"> </span>key,<span class="w"> </span>Imei<span class="w"> </span>integer,<span class="w"> </span>Lat<span class="w"> </span>real,<span class="w"> </span>Lon<span class="w"> </span>real,<span class="w"> </span>Alt<span class="w"> </span>real,<span class="w"> </span>Timestamp<span class="w"> </span>bigint<span class="o">)</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -147,14 +152,24 @@ create<span class="w"> </span>database<span class="w"> </span>test_db_from_psql<
 <li><p><code class="docutils literal notranslate"><span class="pre">Alt</span></code> <code class="docutils literal notranslate"><span class="pre">real</span></code>;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Timestamp</span></code> <code class="docutils literal notranslate"><span class="pre">bigint</span></code>.</p></li>
 </ul>
+</section>
+<section id="id4">
+<h3>Внесение данных в таблицу<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>Для примера добавим в нашу таблицу некоторые значения в след. формате:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>insert<span class="w"> </span>into<span class="w"> </span>user_equipment<span class="w"> </span><span class="o">(</span>Imei,<span class="w"> </span>Lat,<span class="w"> </span>Lon,<span class="w"> </span>Alt,<span class="w"> </span>Timestamp<span class="o">)</span><span class="w"> </span>values<span class="w"> </span><span class="o">(</span><span class="m">1234</span>,<span class="w"> </span><span class="m">82</span>.5559,<span class="w"> </span><span class="m">52</span>.433332,<span class="w"> </span><span class="m">235</span>.0,<span class="w"> </span><span class="m">123408283</span><span class="o">)</span><span class="p">;</span>
 </pre></div>
 </div>
 <p><img alt="1760865203525" src="../_images/1760865203525.png" /></p>
 </section>
-<section id="postgresql">
-<h2>Типы данных в PostgreSQL<a class="headerlink" href="#postgresql" title="Permalink to this heading"></a></h2>
+<section id="id5">
+<h3>Получение данных из таблицы<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<p>Короткий пример по получению данных из таблицы:</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">user_equipment</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Покажет нам всю информацию, находящуюся в таблице:</p>
+<p><img alt="1760887971715" src="DataBase/image/work_with_database/1760887971715.png" /></p>
+</section>
 </section>
 </section>
 

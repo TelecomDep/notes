@@ -123,7 +123,16 @@
 <section id="ubuntu">
 <h3>Ubuntu<a class="headerlink" href="#ubuntu" title="Permalink to this heading"></a></h3>
 <p><strong>Ubuntu</strong> поддерживает приложение <code class="docutils literal notranslate"><span class="pre">postgresql</span></code> в виде “<strong>установочных</strong>” пакетов. Есть возможность установить разные версии.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>postgresql
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>postgresql<span class="w"> </span><span class="c1"># по умолчанию установится 14 версия</span>
+</pre></div>
+</div>
+<p><strong>ЕСЛИ</strong> хотим <strong>более новую версию</strong>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>postgresql-common
+sudo<span class="w"> </span>/usr/share/postgresql-common/pgdg/apt.postgresql.org.sh
+sudo<span class="w"> </span>apt<span class="w"> </span>update
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>postgresql-18
 </pre></div>
 </div>
 <p>После установки желательно проверить запущен ли сервис postgresql:</p>

@@ -32,7 +32,7 @@ create database test_db_from_psql;
 ```
 ![1760863640863](image/work_with_database/1760863640863.png)
 
-**Создание таблицы**
+### Создание таблицы
 Для примера, создади таблицу `user_equipment` со столбцами об информации о его местоположении:
 
 ```bash
@@ -48,6 +48,7 @@ create table user_equipment (Id serial primary key, Imei integer, Lat real, Lon 
 - `Alt` `real`;
 - `Timestamp` `bigint`. 
 
+### Внесение данных в таблицу
 Для примера добавим в нашу таблицу некоторые значения в след. формате:
 
 ```bash
@@ -56,9 +57,18 @@ insert into user_equipment (Imei, Lat, Lon, Alt, Timestamp) values (1234, 82.555
 
 ![1760865203525](image/work_with_database/1760865203525.png)
 
+### Получение данных из таблицы
 
+Короткий пример по получению данных из таблицы:
 
-## Типы данных в PostgreSQL
+```psql
+select * from user_equipment;
+```
+
+Покажет нам всю информацию, находящуюся в таблице:
+
+![1760887971715](image/work_with_database/1760887971715.png)
+
 
 
 
