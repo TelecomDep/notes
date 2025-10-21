@@ -31,9 +31,15 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'myst_parser',
+    'sphinxcontrib.plantuml',
 ]
 
 
+myst_enable_extensions = [
+  'colon_fence',
+  'attrs_block',
+  # ... other extensions
+]
 
 # -- Project information
 
