@@ -116,10 +116,35 @@
              
   <section id="id1">
 <h1>Базы данных<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>Базы данных (далее <code class="docutils literal notranslate"><span class="pre">БД</span></code>) - это одна из основных (главных) сущностей информационных систем организаций и предприятий. <code class="docutils literal notranslate"><span class="pre">БД</span></code> представляет из себя набор совместно используемых логически связанных данных, также описание этих данных (<strong>метаданные</strong>).</p>
+<p>Данные внутри <code class="docutils literal notranslate"><span class="pre">БД</span></code> могут быть структурированы по-разному - зависит от <strong>модели данных</strong>.</p>
 <section id="id2">
 <h2>Виды баз данных<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <section id="id3">
 <h3>Реляционные базы данных<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>Реляционные базы данных строятся на <strong>реляционной модели</strong> данных. От слова <strong>relation</strong> - <strong>отношение</strong>, которое точно описывает внутреннюю структуру <code class="docutils literal notranslate"><span class="pre">БД</span></code>, но обычно такие базы данных называют <strong>табличными</strong>.</p>
+<p><strong>Таблицы</strong> (<code class="docutils literal notranslate"><span class="pre">relation</span></code>) состоит из <strong>кортежей</strong> (строк), которые имеют однотипные <em>атрибуты</em> (столбцы). При этом один или несколько атрибутов считаются <strong>первичным ключом</strong>, который <strong>ДОЛЖЕН</strong> быть <strong>уникальным</strong> для всех <strong>кортежей</strong> (строк) в этой таблице.</p>
+<p>&#64;startuml
+skinparam DefaultFontName Source Code Pro
+skinparam DefaultFontSize 15
+skinparam RankSep 50</p>
+<p>package “eCommerce” {
+node “High Level Components” {
+component ProductCatalog
+}</p>
+<p>node “Abstractions” {
+component ProductFactory
+}</p>
+<p>node “Low Level Components” {
+component SQLProductRepository
+}</p>
+<p>ProductCatalog ..&gt; ProductFactory: depends on
+ProductFactory ..&gt; SQLProductRepository: depends on
+}
+&#64;enduml</p>
+<section id="sql-structured-query-language">
+<h4>SQL - Structured Query Language<a class="headerlink" href="#sql-structured-query-language" title="Permalink to this heading"></a></h4>
+</section>
 </section>
 </section>
 </section>
