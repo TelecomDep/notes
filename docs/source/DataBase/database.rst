@@ -3,7 +3,7 @@ PostgreSQL
 
 .. toctree::
    :caption: PostgreSQL
-   :maxdepth: 2
+   :maxdepth: 1
 
 
    introduction
