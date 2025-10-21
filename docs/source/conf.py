@@ -30,9 +30,12 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
+    'sphinx.ext.graphviz',
     'myst_parser',
     'sphinxcontrib.plantuml',
 ]
+
+plantuml = 'java -jar ../utils/plantuml.jar'
 
 myst_enable_extensions = [
   'colon_fence',
