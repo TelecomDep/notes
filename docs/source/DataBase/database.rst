@@ -12,3 +12,4 @@ PostgreSQL
    data_types
    sql_synax
    python_psql
+   test_uml
