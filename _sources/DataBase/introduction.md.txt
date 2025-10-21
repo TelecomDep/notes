@@ -11,5 +11,19 @@
 
 **Таблицы** (`relation`) состоит из **кортежей** (строк), которые имеют однотипные *атрибуты* (столбцы). При этом один или несколько атрибутов считаются **первичным ключом**, который **ДОЛЖЕН** быть **уникальным** для всех **кортежей** (строк) в этой таблице.
 
+```plantuml
+Bob -> Alice : hello
+```
 
+```{uml}
+Bob -> Alice : hello
+```
+
+@startuml
+skinparam DefaultFontName Source Code Pro
+skinparam DefaultFontSize 15
+
+... diagram code ...
+
+@enduml
 #### SQL - Structured Query Language
