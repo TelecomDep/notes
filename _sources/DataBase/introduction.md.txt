@@ -11,27 +11,11 @@
 
 **Таблицы** (`relation`) состоит из **кортежей** (строк), которые имеют однотипные *атрибуты* (столбцы). При этом один или несколько атрибутов считаются **первичным ключом**, который **ДОЛЖЕН** быть **уникальным** для всех **кортежей** (строк) в этой таблице.
 
-@startuml
-skinparam DefaultFontName Source Code Pro
-skinparam DefaultFontSize 15
-skinparam RankSep 50
+.. plantuml::
 
-package "eCommerce" {
-  node "High Level Components" {
-    component ProductCatalog
-  }
+    @startuml
+    Alice -> Bob: test
+    @enduml
 
-  node "Abstractions" {
-    component ProductFactory
-  }
-
-  node "Low Level Components" {
-    component SQLProductRepository
-  }
-
-  ProductCatalog ..> ProductFactory: depends on
-  ProductFactory ..> SQLProductRepository: depends on
-}
-@enduml
 
 #### SQL - Structured Query Language
