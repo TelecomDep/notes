@@ -35,12 +35,6 @@ extensions = [
 ]
 
 
-myst_enable_extensions = [
-  'colon_fence',
-  'attrs_block',
-  # ... other extensions
-]
-
 # -- Project information
 
 project = 'Telecom Notes'
