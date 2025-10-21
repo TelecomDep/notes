@@ -19,4 +19,12 @@ Bob -> Alice : hello
 Bob -> Alice : hello
 ```
 
+@startuml
+skinparam DefaultFontName Source Code Pro
+skinparam DefaultFontSize 15
+
+... diagram code ...
+
+@enduml
+
 #### SQL - Structured Query Language
