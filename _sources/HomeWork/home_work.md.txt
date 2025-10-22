@@ -181,7 +181,7 @@ bGoToPlayerActivity.setOnClickListener({
         1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
         6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
     4. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
-        1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
+        1. CellIdentityNr: Band, NCI, PCI, Nrarfcn, TAC, MCC, MNC;
         7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
 2. Заполнить каждый `Data-класс` актуальными данными с мобильного телефона (`Пр. №3`, `Пр. №4`);
 3. Реализовать [Serialization](https://kotlinlang.org/docs/serialization.html#serialize-and-deserialize-json) и преобразование в `Json`, созданных вами классов:
@@ -201,4 +201,27 @@ bGoToPlayerActivity.setOnClickListener({
 4. Реализовать отображение данных о местоположении (в реальном времени) на стороне `backend-сервера`:
     1. Используем библиотеку `matplotlib`;
     2. Данные забираем из базы данных.
+
+Итого, "**бэкэнд-севрер**" будет выглядеть (схематично, без `потоков`, `data-классов` и **прочей красоты**) след. образом:
+
+```python
+import psycopg2
+import zmq
+
+conn = psycopg2.connect(dbname="test_db_from_psql", host="localhost", user="postgres", password="postgres1234", port="5432")
+
+context = zmq.Context()
+socket = context.socket(zmq.REP)
+socket.bind("tcp://*:5555")
+
+while True:
+    message = socket.recv() # Здесь получили данные от Android-приложения
+    # Здесь записали в таблицу
+    cursor.execute("INSERT INTO user_equipment (Imei, Lat, Lon, Alt, Timestamp) values (333, 84.5559, 51.433332, 225.0, 1233408283)") 
+    conn.commit() # на самом деле ЗДЕСЬ.
+
+
+cursor.close() # закрываем курсор
+conn.close() 
+```
 
