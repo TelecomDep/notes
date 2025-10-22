@@ -28,3 +28,5 @@
 `Foreign key` – это столбец в таблице, который содержит `primary key` другой таблицы.
 
 #### SQL - Structured Query Language
+
+Для взаимодействия с реляционными базами данных чаще всего используется язык `SQL` (`Structured Query Language`). 
