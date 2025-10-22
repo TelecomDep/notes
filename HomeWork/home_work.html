@@ -63,6 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#python-clang">8. Реализация клиент-серверного приложения (Python\clang)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">9. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#data-json">10. Сериализация. Data-классы. Формирование JSON.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgresql-backend">11. PostgreSQL. База данных (на стороне backend)</a></li>
 </ul>
 </li>
 </ul>
@@ -353,6 +354,25 @@
 </li>
 <li><p>С заранее заданной периодичностью (допустим, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">секунда</span></code>) передавать, сформированную структуру <code class="docutils literal notranslate"><span class="pre">Json</span></code>, с мобильного устройства на сервер.</p></li>
 <li><p>На стороне сервера получать данные, выводить в терминал и сохранять данные в файл;</p></li>
+</ol>
+</section>
+<section id="postgresql-backend">
+<h3>11. PostgreSQL. База данных (на стороне backend)<a class="headerlink" href="#postgresql-backend" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Создать базу данных при помощи средств <strong>СУБД</strong> (например, <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code>) для храрения информации, полученной в <code class="docutils literal notranslate"><span class="pre">Пр.</span> <span class="pre">№10</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Создать базу данных при помощи psql-консоли (как <a class="reference external" href="https://telecomdep.github.io/notes/DataBase/work_with_database.html">здесь</a>);</p></li>
+<li><p>Создать таблицу, содержащую все необходимые атрибуты (<strong>столбцы</strong>), исходя из <code class="docutils literal notranslate"><span class="pre">Пр.</span> <span class="pre">№10</span></code>;</p></li>
+</ol>
+</li>
+<li><p>Добавить функцию работы backend-сервера с <strong>СУБД</strong> (PostgreSQL, например, как <a class="reference external" href="https://telecomdep.github.io/notes/DataBase/python_psql.html">тут</a>);</p></li>
+<li><p>При каждом получении данных с <code class="docutils literal notranslate"><span class="pre">Android</span></code>-телефона, Ваш <code class="docutils literal notranslate"><span class="pre">backend-сервер</span></code> должен сохранять информацию в базе данных (используем <strong>SQL-команду</strong> <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>);</p></li>
+<li><p>Реализовать отображение данных о местоположении (в реальном времени) на стороне <code class="docutils literal notranslate"><span class="pre">backend-сервера</span></code>:</p>
+<ol class="arabic simple">
+<li><p>Используем библиотеку <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>;</p></li>
+<li><p>Данные забираем из базы данных.</p></li>
+</ol>
+</li>
 </ol>
 </section>
 </section>
