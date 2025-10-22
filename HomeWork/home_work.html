@@ -274,7 +274,29 @@
 <h3>7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)<a class="headerlink" href="#g-3g-4g-lte-5g-nr" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Создать новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, добавив кнопку перехода основном “окне” <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code>;</p></li>
-<li><p>При помощи класса <code class="docutils literal notranslate"><span class="pre">Telephony</span></code>;</p></li>
+<li><p>При помощи класса <code class="docutils literal notranslate"><span class="pre">Telephony</span></code> получаем информацию о сетях мобильной связи:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoLte">CellInfoLte</a>: CellIdentityLte, CellSignalStrengthLte;</p>
+<ol class="arabic simple">
+<li><p>CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;</p></li>
+<li><p>CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;</p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoGsm">CellInfoGsm</a>: CellIdentityGSM, CellSignalStrengthGsm;</p>
+<ol class="arabic simple">
+<li><p>CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;</p></li>
+<li><p>CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;</p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoNr">CellInfoNr</a>: CellIdentityNr, CellSignalStrengthNr</p>
+<ol class="arabic simple">
+<li><p>CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;</p></li>
+<li><p>CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Ссылка на <a class="reference external" href="https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt">пример получения данных</a>.</p></li>
 </ol>
 </section>
 <section id="python-clang">

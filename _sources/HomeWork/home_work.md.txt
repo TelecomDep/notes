@@ -129,7 +129,17 @@ bGoToPlayerActivity.setOnClickListener({
 ### 7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)
 
 1.  Создать новое `Activity`, добавив кнопку перехода основном "окне" `MainActivity`;
-2. При помощи класса `Telephony`;
+2. При помощи класса `Telephony` получаем информацию о сетях мобильной связи:
+    1. [CellInfoLte](https://developer.android.com/reference/android/telephony/CellInfoLte): CellIdentityLte, CellSignalStrengthLte;
+        1. CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;
+        5. CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;
+    2. [CellInfoGsm](https://developer.android.com/reference/android/telephony/CellInfoGsm): CellIdentityGSM, CellSignalStrengthGsm;
+        1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
+        6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
+    3. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
+        1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
+        7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
+3. Ссылка на [пример получения данных](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt). 
 
 ### 8. Реализация клиент-серверного приложения (Python\clang)
 1. Создать новый репозиторий в профиле `github` (для backend-сервера);
