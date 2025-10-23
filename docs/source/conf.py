@@ -32,6 +32,7 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.graphviz',
     'myst_parser',
+    'sphinxcontrib.exceltable',
 ]
 
 # -- Project information
