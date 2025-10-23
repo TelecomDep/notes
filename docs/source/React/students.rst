@@ -4,7 +4,7 @@ Students
 
 
 .. exceltable:: Table Caption
-   :file: sdr_club_2025.xlsx
+   :file: sdr_club_2025.xls
    :sheet: Лист1
    :header: 1
    :selection: A1:B10
