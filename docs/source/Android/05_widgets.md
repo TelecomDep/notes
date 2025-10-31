@@ -1,4 +1,4 @@
-# 5. Работа виджетами из Activity
+# Работа виджетами из Activity
 Снова про `root` класс для всех виджетов. 
 ## View
 Android SDK включает множество виджетов, которые являются дочерним классом класса `View`. Таким образом, каждый виджет является экземпляром класса `View`, как и отражено на рисунке ниже. 
@@ -8,7 +8,14 @@ Android SDK включает множество виджетов, которые
 Рис. 1. Иерархия класса `View`. [Источник изображения](https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg).
 
 
-## Создание нового Activity
+**Основные Операции с View**
+
+1. **Set Properties** - можем задать свойства для каждого объекта класса View и его наследников;
+2. **Set focus** - "фокусировка" объекта, например, если нужно ввести текст в нужное вам `TextView`;
+3. **Set up Listeners** - "навесить" слушателя (`интерфейс`) для выполнения необходимых функций\действий при взаимодействии с объектом;
+4. **Set Visibility** - спрятать или показать объект.
+
+<!-- ## Создание нового Activity
 
 Для начала, создадим новое `Activity`, в котором будем создавать виджеты и работать из `Activity`.
 
@@ -56,57 +63,24 @@ Android SDK включает множество виджетов, которые
     </application>
 
 </manifest>
-```
+``` -->
 
-### Атрибуты View
+### Атрибуты (Properties)
 
 Атрибуты View помогают изменять вид элементов на экране. В качестве базовых атрибутов можно перечислить следующие:
-- `id` - id объекта
-- `text` - текст
-- `visibility` - видимость объекта
-- `textSize` - размер текста
-- `paddingTop` - отступ контента от верхнего края прямоугольника
-- `layout_height/layout_width` - высота/ширина виджета
-- `layout_marginTop/layout_marginBottom/…` - отступы для различных сторон виджета
-
-### Иерархия представлений виджетов
-В качестве примера возьмем **Листинг 1**. Все виджеты в `Activity` входят в **иерархию представлений**. 
+- `id` - id объекта;
+- `text` - текст;
+- `visibility` - видимость объекта;
+- `textSize` - размер текста;
+- `paddingTop` - отступ контента от верхнего края прямоугольника;
+- `layout_height/layout_width` - высота/ширина виджета;
+- `layout_marginTop/layout_marginBottom/…` - отступы для различных сторон виджета;
+- `background color` - задать цвет фона `view`.
 
 
-```{mermaid}
+<!-- Корневым элементом иерархии представлений в этом макете является элемент `ConstraintLayout`. В нем должно быть указано пространство имен XML ресурсов Android http://schemas.android.com/apk/res/android. `ConstraintLayout` наследует от дочернего класса `View` с именем `ViewGroup`. Виджет `ViewGroup` предназначен для хранения и размещения других виджетов. LinearLayout используется в тех случаях, когда вы хотите выстроить виджеты в один столбец или строку. Другие дочерние классы `ViewGroup` — `FrameLayout`, `TableLayout` и `RelativeLayout`.
 
-flowchart TD 
-    ConstraintLayout["`**ConstraintLayout**
-    xmlns:android=http..//schemas.android.com/apk/res/android
-    android:id=@+id/main
-    android:layout_width=match_parent
-    android:layout_height=match_parent
-    tools:context=.MainActivity`"]
-    TextView["`**TextView**
-    android:id=@+id/textView2
-    android:layout_width=wrap_content
-    android:layout_height=wrap_content
-    android:text=Hello World!
-    ...`"]
-    Button["`**Button**
-    android:id=@+id/go_to_second_activity
-    android:layout_width=wrap_content
-    android:layout_height=wrap_content
-    android:text=SecondActivity
-    ...`"]
-
-    style ConstraintLayout text-align:left
-    style TextView text-align:left
-    style Button text-align:left
-
-    ConstraintLayout --> TextView
-    ConstraintLayout --> Button
-```
-Рис. 3. Иерархия представлений виджетов и атрибутов `Activity`.
-
-Корневым элементом иерархии представлений в этом макете является элемент `ConstraintLayout`. В нем должно быть указано пространство имен XML ресурсов Android http://schemas.android.com/apk/res/android. `ConstraintLayout` наследует от дочернего класса `View` с именем `ViewGroup`. Виджет `ViewGroup` предназначен для хранения и размещения других виджетов. LinearLayout используется в тех случаях, когда вы хотите выстроить виджеты в один столбец или строку. Другие дочерние классы `ViewGroup` — `FrameLayout`, `TableLayout` и `RelativeLayout`.
-
-Если виджет содержится в `ViewGroup`, он называется потомком (child) `ViewGroup`. Корневой элемент `ConstraintLayout` имеет двух потомков: `TextView` и другой элемент `Button`. 
+Если виджет содержится в `ViewGroup`, он называется потомком (child) `ViewGroup`. Корневой элемент `ConstraintLayout` имеет двух потомков: `TextView` и другой элемент `Button`. -->
 
 ## Управление виджетами из кода Kotlin (один из способов)
 
@@ -261,7 +235,9 @@ cls – The component class that is to be used for the intent.
 private lateinit var tvView_01: TextView
 tvView_01 = findViewById(R.id.textView)
 ```
-### Атрибуты
+#### Атрибуты
+Список основных атрибутов:
+||
 
 **Программное изменение текста**
 
@@ -319,7 +295,7 @@ tvView_01.setOnClickListener({
 ![alt text](https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/widgets/set_onclick_listener.PNG?raw=true )
 
 
-## Button
+### Button
 
 Наследуется от `TextView`и является базовым классом для класса `СompoundButton`. От класса `CompoundButton` в свою очередь, наследуются такие элементы как `CheckBox`, `ToggleButton` и `RadioButton`. В Android для кнопки используется класс `android.widget.Button`. На кнопке располагается текст и на кнопку нужно нажать, чтобы получить результат.
 
@@ -340,7 +316,7 @@ tvView_01.setOnClickListener({
 ```
 **Три способа обработать нажатие на кнопку**
 
-### Первый, атрибут - onClick
+#### Первый, атрибут - onClick
 
 Добавляем указатель на нашу функцию обработки нажатия на кнопку в атрибуты `Button`:
 ```xml
@@ -354,7 +330,7 @@ fun customOnClick(v: View?){
 }
 ```
 
-### Второй, метод - setOnClickListener()
+#### Второй, метод - setOnClickListener()
 
 В данном случае можно задать обработку нажатия для конкретной кнопки отдельно:
 ```Kotlin
@@ -364,7 +340,7 @@ bExample2.setOnClickListener({
 ```
 
 
-### Третий, интерфейс - OnClickListener()
+#### Третий, интерфейс - OnClickListener()
 
 В этом случае необходимо сначала добавить интерфейс `View.OnClickListener` к текущему классу, затем `override` метод обработки нажатий `onClick` для всех кнопок текущего класса `Activity`:
 
@@ -387,4 +363,75 @@ bExample3.setOnClickListener(this)
 ![alt text](https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/widgets/buttons.PNG?raw=true )
 
 
-## SeekBar (Слайдер)
+### SeekBar (Слайдер)
+
+### ListView
+
+Для визуализации списка элементов на экране нам понадобится класс (или его наследники) `android.widget.AdapterView` (наследники: `ListView`, `GridView`, `Spinner` и т.д.).
+
+![1761877535959](image/05_widgets/1761877535959.png)
+
+Для связывания списка `ListView` понадобится "помощник", который создать отдельное `TextView` для каждого элемента списка данных, предоставленных обычным массивом (`arrayOf`). Соответственно, для корректного отображения списка элементов экрана необходимо 3 компонента:
+1. Класс `ListView`\`GridView`;
+2. `AdapterView` (наследник: `ArrayAdapter`);
+3. **Источник данных** - `Array` (или что-то другое).
+
+<!-- При работе со списками мы имеем дело с тремя компонентами. Во-первых, это визуальный элемент или виджет, который на экране представляет список (`ListView`, `GridView`) и который отображает данные. Во-вторых, это источник данных - массив, объект ArrayList, база данных и т.д., в котором находятся сами отображаемые данные. И в-третьих, это адаптер - специальный компонент, который связывает источник данных с виджетом списка. -->
+
+**ArrayAdapter**
+Для отображения списка элементов на экране потребуется класс `ArrayAdapter`, который, в свою очередь, связывает массив данных с набором элементов TextView, из которых, к примеру, может состоять `ListView`. В данном случае `ArrayAdapter` вызовет метод у каждого элемента массива `.toString()`, а затем выполнит к элементу `TextView` метод `.setText()`, отобразив значение массива на `TextView`.
+
+**Пример**
+
+**XML**
+```xml
+    <ListView
+        android:id="@+id/myFirstListView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0" />
+```
+
+**Kotlin**
+```kotlin
+private lateinit var lvMyList: ListView
+override fun onCreate(savedInstanceState: Bundle?) {
+    ...
+    lvMyList = findViewById(R.id.myFirstListView)
+    val my_array = arrayOf(
+            "1", "2", "10", "Привет", "HelloWorld", "Stroka"
+        )
+    val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_list_item_1, my_array
+        )
+    lvMyList.adapter = adapter
+
+}
+```
+При создании ArrayAdapter использовали конструктор `public ArrayAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull T[] objects)`, где:
+- **context** The current context;
+- **resource** The resource ID for a layout file containing a layout to use when instantiating views;
+- **objects** The objects to represent in the ListView.
+
+В нашем случае это:
+ - **this** : текущий объект класса `Activity`;
+ - **android.R.layout.simple_list_item_1** - файл разметки списка **по умолчанию**.Он находится в папке `Android SDK` по пути `platforms/[android-номер_версии]/data/res/layout`;
+ - **my_array** - массив из строковых значений, который мы хотим отобразить на экране.
+ 
+` lvMyList.adapter = adapter` - это связывание `ArrayAdapter` с `ListView`.
+
+**Обработчик нажатия** на элемент `ListView`:
+```
+lvMyList.setOnItemClickListener(OnItemClickListener { parent, view, position, id ->
+            view.setBackgroundColor(Color.rgb(255, 22, 10))
+        })
+```
+В итоге, **получили**:
+
+![1761878990149](image/05_widgets/1761878990149.png)
