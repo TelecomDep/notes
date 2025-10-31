@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>5. Работа виджетами из Activity &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Работа виджетами из Activity &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
@@ -66,11 +66,9 @@
 <li class="toctree-l2"><a class="reference internal" href="app_structure.html">Структура проекта</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app_activity.html">Ползовательский интерфейс (первое Activity)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="app_layout.html">Макеты элементов пользовательского интерфейса (Layout)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">5. Работа виджетами из Activity</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#view">View</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Создание нового Activity</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Атрибуты View</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Иерархия представлений виджетов</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Работа виджетами из Activity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#view">View</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#properties">Атрибуты (Properties)</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#kotlin">Управление виджетами из кода Kotlin (один из способов)</a></li>
@@ -78,16 +76,11 @@
 <li class="toctree-l3"><a class="reference internal" href="#views">Виджеты (Views)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#findviewbyid">findViewById()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#textview">TextView</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Атрибуты</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#button">Button</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#seekbar">SeekBar (Слайдер)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#listview">ListView</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#button">Button</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#onclick">Первый, атрибут - onClick</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#setonclicklistener">Второй, метод - setOnClickListener()</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#onclicklistener">Третий, интерфейс - OnClickListener()</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#seekbar">SeekBar (Слайдер)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
@@ -124,7 +117,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="android.html">Android</a></li>
-      <li class="breadcrumb-item active">5. Работа виджетами из Activity</li>
+      <li class="breadcrumb-item active">Работа виджетами из Activity</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/Android/05_widgets.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -135,74 +128,85 @@
            <div itemprop="articleBody">
              
   <section id="activity">
-<h1>5. Работа виджетами из Activity<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h1>
+<h1>Работа виджетами из Activity<a class="headerlink" href="#activity" title="Permalink to this heading"></a></h1>
 <p>Снова про <code class="docutils literal notranslate"><span class="pre">root</span></code> класс для всех виджетов.</p>
 <section id="view">
 <h2>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h2>
 <p>Android SDK включает множество виджетов, которые являются дочерним классом класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. Таким образом, каждый виджет является экземпляром класса <code class="docutils literal notranslate"><span class="pre">View</span></code>, как и отражено на рисунке ниже.</p>
 <p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true" /></p>
 <p>Рис. 1. Иерархия класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. <a class="reference external" href="https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg">Источник изображения</a>.</p>
-</section>
-<section id="id1">
-<h2>Создание нового Activity<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
-<p>Для начала, создадим новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, в котором будем создавать виджеты и работать из <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
-<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_05_create_new_activity.png?raw=true" /></p>
-<p>Рис. 2. Создание нового <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
-<p>Далее, вам откроется окно с настройками нового <code class="docutils literal notranslate"><span class="pre">Activity</span></code>. Необходимо ввести имя и поставить галочку на автоматическое создание файла <code class="docutils literal notranslate"><span class="pre">layout</span></code> для <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
-<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_05_create_new_activity_naming.PNG?raw=true" /></p>
-<p>Рис. 3. Настройка нового <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
-<p>Замем вы увидите изменения в структуре проекта: добавится файл с кодом <code class="docutils literal notranslate"><span class="pre">имя_класса.kt</span></code>, появится к нему файл <code class="docutils literal notranslate"><span class="pre">имя_layout.xml</span></code>. Также, не мало важным является добавление <code class="docutils literal notranslate"><span class="pre">Activity</span></code> в файл <code class="docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code>, который является <strong>основой</strong> вашего проекта.</p>
-<p>Содержание файла <code class="docutils literal notranslate"><span class="pre">AndroidManifest.xml</span></code>:</p>
-<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;</span>
-<span class="nt">&lt;manifest</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
-<span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span><span class="nt">&gt;</span>
+<p><strong>Основные Операции с View</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Set Properties</strong> - можем задать свойства для каждого объекта класса View и его наследников;</p></li>
+<li><p><strong>Set focus</strong> - “фокусировка” объекта, например, если нужно ввести текст в нужное вам <code class="docutils literal notranslate"><span class="pre">TextView</span></code>;</p></li>
+<li><p><strong>Set up Listeners</strong> - “навесить” слушателя (<code class="docutils literal notranslate"><span class="pre">интерфейс</span></code>) для выполнения необходимых функций\действий при взаимодействии с объектом;</p></li>
+<li><p><strong>Set Visibility</strong> - спрятать или показать объект.</p></li>
+</ol>
+<!-- ## Создание нового Activity
 
-<span class="w">    </span><span class="nt">&lt;application</span>
-<span class="w">        </span><span class="na">android:allowBackup=</span><span class="s">&quot;true&quot;</span>
-<span class="w">        </span><span class="na">android:dataExtractionRules=</span><span class="s">&quot;@xml/data_extraction_rules&quot;</span>
-<span class="w">        </span><span class="na">android:fullBackupContent=</span><span class="s">&quot;@xml/backup_rules&quot;</span>
-<span class="w">        </span><span class="na">android:icon=</span><span class="s">&quot;@mipmap/ic_launcher&quot;</span>
-<span class="w">        </span><span class="na">android:label=</span><span class="s">&quot;@string/app_name&quot;</span>
-<span class="w">        </span><span class="na">android:roundIcon=</span><span class="s">&quot;@mipmap/ic_launcher_round&quot;</span>
-<span class="w">        </span><span class="na">android:supportsRtl=</span><span class="s">&quot;true&quot;</span>
-<span class="w">        </span><span class="na">android:theme=</span><span class="s">&quot;@style/Theme.Android_notes&quot;</span>
-<span class="w">        </span><span class="na">tools:targetApi=</span><span class="s">&quot;31&quot;</span><span class="nt">&gt;</span>
-<span class="w">        </span><span class="nt">&lt;activity</span>
-<span class="w">            </span><span class="na">android:name=</span><span class="s">&quot;.activities.ViewExamples&quot;</span>
-<span class="w">            </span><span class="na">android:exported=</span><span class="s">&quot;false&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">        </span><span class="nt">&lt;activity</span>
-<span class="w">            </span><span class="na">android:name=</span><span class="s">&quot;.MainActivity&quot;</span>
-<span class="w">            </span><span class="na">android:exported=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
-<span class="w">            </span><span class="nt">&lt;intent-filter&gt;</span>
-<span class="w">                </span><span class="nt">&lt;action</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.action.MAIN&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+Для начала, создадим новое `Activity`, в котором будем создавать виджеты и работать из `Activity`.
 
-<span class="w">                </span><span class="nt">&lt;category</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.intent.category.LAUNCHER&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
-<span class="w">            </span><span class="nt">&lt;/intent-filter&gt;</span>
-<span class="w">        </span><span class="nt">&lt;/activity&gt;</span>
-<span class="w">    </span><span class="nt">&lt;/application&gt;</span>
+![alt text](https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_05_create_new_activity.png?raw=true )
 
-<span class="nt">&lt;/manifest&gt;</span>
-</pre></div>
-</div>
-<section id="id2">
-<h3>Атрибуты View<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+Рис. 2. Создание нового `Activity`.
+
+Далее, вам откроется окно с настройками нового `Activity`. Необходимо ввести имя и поставить галочку на автоматическое создание файла `layout` для `Activity`.
+
+![alt text](https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/basic_05_create_new_activity_naming.PNG?raw=true )
+
+Рис. 3. Настройка нового `Activity`.
+
+Замем вы увидите изменения в структуре проекта: добавится файл с кодом `имя_класса.kt`, появится к нему файл `имя_layout.xml`. Также, не мало важным является добавление `Activity` в файл `AndroidManifest.xml`, который является **основой** вашего проекта.
+
+Содержание файла `AndroidManifest.xml`:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Android_notes"
+        tools:targetApi="31">
+        <activity
+            android:name=".activities.ViewExamples"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
+``` -->
+<section id="properties">
+<h3>Атрибуты (Properties)<a class="headerlink" href="#properties" title="Permalink to this heading"></a></h3>
 <p>Атрибуты View помогают изменять вид элементов на экране. В качестве базовых атрибутов можно перечислить следующие:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> - id объекта</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> - текст</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">visibility</span></code> - видимость объекта</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">textSize</span></code> - размер текста</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">paddingTop</span></code> - отступ контента от верхнего края прямоугольника</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">layout_height/layout_width</span></code> - высота/ширина виджета</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">layout_marginTop/layout_marginBottom/…</span></code> - отступы для различных сторон виджета</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code> - id объекта;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">text</span></code> - текст;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">visibility</span></code> - видимость объекта;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">textSize</span></code> - размер текста;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">paddingTop</span></code> - отступ контента от верхнего края прямоугольника;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">layout_height/layout_width</span></code> - высота/ширина виджета;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">layout_marginTop/layout_marginBottom/…</span></code> - отступы для различных сторон виджета;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">background</span> <span class="pre">color</span></code> - задать цвет фона <code class="docutils literal notranslate"><span class="pre">view</span></code>.</p></li>
 </ul>
-</section>
-<section id="id3">
-<h3>Иерархия представлений виджетов<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
-<p>В качестве примера возьмем <strong>Листинг 1</strong>. Все виджеты в <code class="docutils literal notranslate"><span class="pre">Activity</span></code> входят в <strong>иерархию представлений</strong>.</p>
-<p>Рис. 3. Иерархия представлений виджетов и атрибутов <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
-<p>Корневым элементом иерархии представлений в этом макете является элемент <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>. В нем должно быть указано пространство имен XML ресурсов Android http://schemas.android.com/apk/res/android. <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code> наследует от дочернего класса <code class="docutils literal notranslate"><span class="pre">View</span></code> с именем <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. Виджет <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> предназначен для хранения и размещения других виджетов. LinearLayout используется в тех случаях, когда вы хотите выстроить виджеты в один столбец или строку. Другие дочерние классы <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code> — <code class="docutils literal notranslate"><span class="pre">FrameLayout</span></code>, <code class="docutils literal notranslate"><span class="pre">TableLayout</span></code> и <code class="docutils literal notranslate"><span class="pre">RelativeLayout</span></code>.</p>
-<p>Если виджет содержится в <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>, он называется потомком (child) <code class="docutils literal notranslate"><span class="pre">ViewGroup</span></code>. Корневой элемент <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code> имеет двух потомков: <code class="docutils literal notranslate"><span class="pre">TextView</span></code> и другой элемент <code class="docutils literal notranslate"><span class="pre">Button</span></code>.</p>
+<!-- Корневым элементом иерархии представлений в этом макете является элемент `ConstraintLayout`. В нем должно быть указано пространство имен XML ресурсов Android http://schemas.android.com/apk/res/android. `ConstraintLayout` наследует от дочернего класса `View` с именем `ViewGroup`. Виджет `ViewGroup` предназначен для хранения и размещения других виджетов. LinearLayout используется в тех случаях, когда вы хотите выстроить виджеты в один столбец или строку. Другие дочерние классы `ViewGroup` — `FrameLayout`, `TableLayout` и `RelativeLayout`.
+
+Если виджет содержится в `ViewGroup`, он называется потомком (child) `ViewGroup`. Корневой элемент `ConstraintLayout` имеет двух потомков: `TextView` и другой элемент `Button`. -->
 </section>
 </section>
 <section id="kotlin">
@@ -336,9 +340,10 @@ cls – The component class that is to be used for the intent.
 <span class="n">tvView_01</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">textView</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="id4">
-<h3>Атрибуты<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id1">
+<h4>Атрибуты<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
+<p>Список основных атрибутов:
+||</p>
 <p><strong>Программное изменение текста</strong></p>
 <p>Программно можно изменить наполнение TextView при помощи метода класса: <code class="docutils literal notranslate"><span class="pre">setText(CharSequence</span> <span class="pre">text)</span></code>:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">tvView_01</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;Hello from Code&quot;</span><span class="p">)</span>
@@ -385,7 +390,7 @@ cls – The component class that is to be used for the intent.
 </section>
 </section>
 <section id="button">
-<h2>Button<a class="headerlink" href="#button" title="Permalink to this heading"></a></h2>
+<h3>Button<a class="headerlink" href="#button" title="Permalink to this heading"></a></h3>
 <p>Наследуется от <code class="docutils literal notranslate"><span class="pre">TextView</span></code>и является базовым классом для класса <code class="docutils literal notranslate"><span class="pre">СompoundButton</span></code>. От класса <code class="docutils literal notranslate"><span class="pre">CompoundButton</span></code> в свою очередь, наследуются такие элементы как <code class="docutils literal notranslate"><span class="pre">CheckBox</span></code>, <code class="docutils literal notranslate"><span class="pre">ToggleButton</span></code> и <code class="docutils literal notranslate"><span class="pre">RadioButton</span></code>. В Android для кнопки используется класс <code class="docutils literal notranslate"><span class="pre">android.widget.Button</span></code>. На кнопке располагается текст и на кнопку нужно нажать, чтобы получить результат.</p>
 <p><strong>Инициализация</strong></p>
 <p>В рамках <code class="docutils literal notranslate"><span class="pre">.xml-layout</span></code>’а добавляем след. образом:</p>
@@ -402,7 +407,7 @@ cls – The component class that is to be used for the intent.
 </div>
 <p><strong>Три способа обработать нажатие на кнопку</strong></p>
 <section id="onclick">
-<h3>Первый, атрибут - onClick<a class="headerlink" href="#onclick" title="Permalink to this heading"></a></h3>
+<h4>Первый, атрибут - onClick<a class="headerlink" href="#onclick" title="Permalink to this heading"></a></h4>
 <p>Добавляем указатель на нашу функцию обработки нажатия на кнопку в атрибуты <code class="docutils literal notranslate"><span class="pre">Button</span></code>:</p>
 <div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>android:onClick=&quot;customOnClick&quot;
 </pre></div>
@@ -415,7 +420,7 @@ cls – The component class that is to be used for the intent.
 </div>
 </section>
 <section id="setonclicklistener">
-<h3>Второй, метод - setOnClickListener()<a class="headerlink" href="#setonclicklistener" title="Permalink to this heading"></a></h3>
+<h4>Второй, метод - setOnClickListener()<a class="headerlink" href="#setonclicklistener" title="Permalink to this heading"></a></h4>
 <p>В данном случае можно задать обработку нажатия для конкретной кнопки отдельно:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">bExample2</span><span class="p">.</span><span class="na">setOnClickListener</span><span class="p">({</span>
 <span class="w">    </span><span class="n">bExample2</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="s">&quot;2nd method&quot;</span><span class="p">)</span>
@@ -424,7 +429,7 @@ cls – The component class that is to be used for the intent.
 </div>
 </section>
 <section id="onclicklistener">
-<h3>Третий, интерфейс - OnClickListener()<a class="headerlink" href="#onclicklistener" title="Permalink to this heading"></a></h3>
+<h4>Третий, интерфейс - OnClickListener()<a class="headerlink" href="#onclicklistener" title="Permalink to this heading"></a></h4>
 <p>В этом случае необходимо сначала добавить интерфейс <code class="docutils literal notranslate"><span class="pre">View.OnClickListener</span></code> к текущему классу, затем <code class="docutils literal notranslate"><span class="pre">override</span></code> метод обработки нажатий <code class="docutils literal notranslate"><span class="pre">onClick</span></code> для всех кнопок текущего класса <code class="docutils literal notranslate"><span class="pre">Activity</span></code>:</p>
 <div class="highlight-Kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ViewExamples</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">(),</span><span class="w"> </span><span class="n">View</span><span class="p">.</span><span class="na">OnClickListener</span><span class="w"> </span><span class="p">{</span>
 
@@ -444,7 +449,74 @@ cls – The component class that is to be used for the intent.
 </section>
 </section>
 <section id="seekbar">
-<h2>SeekBar (Слайдер)<a class="headerlink" href="#seekbar" title="Permalink to this heading"></a></h2>
+<h3>SeekBar (Слайдер)<a class="headerlink" href="#seekbar" title="Permalink to this heading"></a></h3>
+</section>
+<section id="listview">
+<h3>ListView<a class="headerlink" href="#listview" title="Permalink to this heading"></a></h3>
+<p>Для визуализации списка элементов на экране нам понадобится класс (или его наследники) <code class="docutils literal notranslate"><span class="pre">android.widget.AdapterView</span></code> (наследники: <code class="docutils literal notranslate"><span class="pre">ListView</span></code>, <code class="docutils literal notranslate"><span class="pre">GridView</span></code>, <code class="docutils literal notranslate"><span class="pre">Spinner</span></code> и т.д.).</p>
+<p><img alt="1761877535959" src="../_images/1761877535959.png" /></p>
+<p>Для связывания списка <code class="docutils literal notranslate"><span class="pre">ListView</span></code> понадобится “помощник”, который создать отдельное <code class="docutils literal notranslate"><span class="pre">TextView</span></code> для каждого элемента списка данных, предоставленных обычным массивом (<code class="docutils literal notranslate"><span class="pre">arrayOf</span></code>). Соответственно, для корректного отображения списка элементов экрана необходимо 3 компонента:</p>
+<ol class="arabic simple">
+<li><p>Класс <code class="docutils literal notranslate"><span class="pre">ListView</span></code>`GridView`;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">AdapterView</span></code> (наследник: <code class="docutils literal notranslate"><span class="pre">ArrayAdapter</span></code>);</p></li>
+<li><p><strong>Источник данных</strong> - <code class="docutils literal notranslate"><span class="pre">Array</span></code> (или что-то другое).</p></li>
+</ol>
+<!-- При работе со списками мы имеем дело с тремя компонентами. Во-первых, это визуальный элемент или виджет, который на экране представляет список (`ListView`, `GridView`) и который отображает данные. Во-вторых, это источник данных - массив, объект ArrayList, база данных и т.д., в котором находятся сами отображаемые данные. И в-третьих, это адаптер - специальный компонент, который связывает источник данных с виджетом списка. -->
+<p><strong>ArrayAdapter</strong>
+Для отображения списка элементов на экране потребуется класс <code class="docutils literal notranslate"><span class="pre">ArrayAdapter</span></code>, который, в свою очередь, связывает массив данных с набором элементов TextView, из которых, к примеру, может состоять <code class="docutils literal notranslate"><span class="pre">ListView</span></code>. В данном случае <code class="docutils literal notranslate"><span class="pre">ArrayAdapter</span></code> вызовет метод у каждого элемента массива <code class="docutils literal notranslate"><span class="pre">.toString()</span></code>, а затем выполнит к элементу <code class="docutils literal notranslate"><span class="pre">TextView</span></code> метод <code class="docutils literal notranslate"><span class="pre">.setText()</span></code>, отобразив значение массива на <code class="docutils literal notranslate"><span class="pre">TextView</span></code>.</p>
+<p><strong>Пример</strong></p>
+<p><strong>XML</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;ListView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/myFirstListView&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;0dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;0dp&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintHorizontal_bias=</span><span class="s">&quot;1.0&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintTop_toBottomOf=</span><span class="s">&quot;@+id/textView&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintVertical_bias=</span><span class="s">&quot;0.0&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p><strong>Kotlin</strong></p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">lvMyList</span><span class="p">:</span><span class="w"> </span><span class="n">ListView</span>
+<span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">lvMyList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">myFirstListView</span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">my_array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">arrayOf</span><span class="p">(</span>
+<span class="w">            </span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;10&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Привет&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;HelloWorld&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Stroka&quot;</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ArrayAdapter</span><span class="p">(</span>
+<span class="w">            </span><span class="k">this</span><span class="p">,</span>
+<span class="w">            </span><span class="n">android</span><span class="p">.</span><span class="na">R</span><span class="p">.</span><span class="na">layout</span><span class="p">.</span><span class="na">simple_list_item_1</span><span class="p">,</span><span class="w"> </span><span class="n">my_array</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">    </span><span class="n">lvMyList</span><span class="p">.</span><span class="na">adapter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">adapter</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>При создании ArrayAdapter использовали конструктор <code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">ArrayAdapter(&#64;NonNull</span> <span class="pre">Context</span> <span class="pre">context,</span> <span class="pre">&#64;LayoutRes</span> <span class="pre">int</span> <span class="pre">resource,</span> <span class="pre">&#64;NonNull</span> <span class="pre">T[]</span> <span class="pre">objects)</span></code>, где:</p>
+<ul class="simple">
+<li><p><strong>context</strong> The current context;</p></li>
+<li><p><strong>resource</strong> The resource ID for a layout file containing a layout to use when instantiating views;</p></li>
+<li><p><strong>objects</strong> The objects to represent in the ListView.</p></li>
+</ul>
+<p>В нашем случае это:</p>
+<ul class="simple">
+<li><p><strong>this</strong> : текущий объект класса <code class="docutils literal notranslate"><span class="pre">Activity</span></code>;</p></li>
+<li><p><strong>android.R.layout.simple_list_item_1</strong> - файл разметки списка <strong>по умолчанию</strong>.Он находится в папке <code class="docutils literal notranslate"><span class="pre">Android</span> <span class="pre">SDK</span></code> по пути <code class="docutils literal notranslate"><span class="pre">platforms/[android-номер_версии]/data/res/layout</span></code>;</p></li>
+<li><p><strong>my_array</strong> - массив из строковых значений, который мы хотим отобразить на экране.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"> <span class="pre">lvMyList.adapter</span> <span class="pre">=</span> <span class="pre">adapter</span></code> - это связывание <code class="docutils literal notranslate"><span class="pre">ArrayAdapter</span></code> с <code class="docutils literal notranslate"><span class="pre">ListView</span></code>.</p>
+<p><strong>Обработчик нажатия</strong> на элемент <code class="docutils literal notranslate"><span class="pre">ListView</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lvMyList</span><span class="o">.</span><span class="n">setOnItemClickListener</span><span class="p">(</span><span class="n">OnItemClickListener</span> <span class="p">{</span> <span class="n">parent</span><span class="p">,</span> <span class="n">view</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="nb">id</span> <span class="o">-&gt;</span>
+            <span class="n">view</span><span class="o">.</span><span class="n">setBackgroundColor</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">rgb</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+        <span class="p">})</span>
+</pre></div>
+</div>
+<p>В итоге, <strong>получили</strong>:</p>
+<p><img alt="1761878990149" src="../_images/1761878990149.png" /></p>
+</section>
 </section>
 </section>
 
