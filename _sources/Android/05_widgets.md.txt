@@ -365,6 +365,66 @@ bExample3.setOnClickListener(this)
 
 ### SeekBar (Слайдер)
 
+**Основные Атрибуты**:
+1. `android:max`: устанавливает максимальное значение;
+2. `android:min`: устанавливает минимальное значение;
+3. `android:progress`: устанавливает текущее значение, которое находится в диапазоне между минимальным и максимальным.
+
+**Список доступных методов**:
+
+1. `void setProgress(int progress)`: устанавливает текущее значение ползунка;
+1. `void setMin(int min)`: устанавливает минимальное значение;
+1. `void setMax(int max)`: устанавливает максимальное значение;
+1. `void incrementProgressBy(int diff)`: увеличивает текущее значение на diff;
+1. `int getMax()`: возвращает максимальное значение;
+1. `int getMin()`: возвращает минимальное значение;
+1. `int getProgress()`: возвращает текущее значение;
+1. `void setOnSeekBarChangeListener(SeekBar.OnSeekBarChangeListener l)`: устанавливает слушателя изменения значения в `SeekBar`.
+
+**Пример**
+
+**XML**
+```xml
+    <SeekBar
+        android:id="@+id/seekBarTest"
+        android:layout_width="192dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="81dp"
+        android:layout_marginBottom="316dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+```
+
+**Kotlin**
+```kotlin
+...
+private lateinit var sbMySeekBar: SeekBar
+...
+override fun onCreate(savedInstanceState: Bundle?) {
+    ...
+    
+    sbMySeekBar = findViewById(R.id.seekBarTest)
+    sbMySeekBar.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
+        override fun onProgressChanged(seekBar: SeekBar, progress: Int, fromUser: Boolean) {
+            tvView_01.setText(progress.toString())
+        }
+
+        override fun onStartTrackingTouch(seekBar: SeekBar) {
+        }
+
+        override fun onStopTrackingTouch(seekBar: SeekBar) {
+        }
+    })
+
+}
+```
+В данном случае, при перемещении "**ползунка**" выводится текущее значение в `TextView`, которое было создано ранее.
+
+**Итого**:
+
+![1761880368412](image/05_widgets/1761880368412.png)
+
+
 ### ListView
 
 Для визуализации списка элементов на экране нам понадобится класс (или его наследники) `android.widget.AdapterView` (наследники: `ListView`, `GridView`, `Spinner` и т.д.).

@@ -450,6 +450,61 @@ cls – The component class that is to be used for the intent.
 </section>
 <section id="seekbar">
 <h3>SeekBar (Слайдер)<a class="headerlink" href="#seekbar" title="Permalink to this heading"></a></h3>
+<p><strong>Основные Атрибуты</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">android:max</span></code>: устанавливает максимальное значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">android:min</span></code>: устанавливает минимальное значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">android:progress</span></code>: устанавливает текущее значение, которое находится в диапазоне между минимальным и максимальным.</p></li>
+</ol>
+<p><strong>Список доступных методов</strong>:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">setProgress(int</span> <span class="pre">progress)</span></code>: устанавливает текущее значение ползунка;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">setMin(int</span> <span class="pre">min)</span></code>: устанавливает минимальное значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">setMax(int</span> <span class="pre">max)</span></code>: устанавливает максимальное значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">incrementProgressBy(int</span> <span class="pre">diff)</span></code>: увеличивает текущее значение на diff;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">getMax()</span></code>: возвращает максимальное значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">getMin()</span></code>: возвращает минимальное значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">getProgress()</span></code>: возвращает текущее значение;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">setOnSeekBarChangeListener(SeekBar.OnSeekBarChangeListener</span> <span class="pre">l)</span></code>: устанавливает слушателя изменения значения в <code class="docutils literal notranslate"><span class="pre">SeekBar</span></code>.</p></li>
+</ol>
+<p><strong>Пример</strong></p>
+<p><strong>XML</strong></p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nt">&lt;SeekBar</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/seekBarTest&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;192dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;18dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginStart=</span><span class="s">&quot;81dp&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginBottom=</span><span class="s">&quot;316dp&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintBottom_toBottomOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&quot;parent&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</pre></div>
+</div>
+<p><strong>Kotlin</strong></p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="kd">private</span><span class="w"> </span><span class="kd">lateinit</span><span class="w"> </span><span class="kd">var</span><span class="w"> </span><span class="nv">sbMySeekBar</span><span class="p">:</span><span class="w"> </span><span class="n">SeekBar</span>
+<span class="p">...</span>
+<span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onCreate</span><span class="p">(</span><span class="n">savedInstanceState</span><span class="p">:</span><span class="w"> </span><span class="n">Bundle?)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">sbMySeekBar</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findViewById</span><span class="p">(</span><span class="n">R</span><span class="p">.</span><span class="na">id</span><span class="p">.</span><span class="na">seekBarTest</span><span class="p">)</span>
+<span class="w">    </span><span class="n">sbMySeekBar</span><span class="p">.</span><span class="na">setOnSeekBarChangeListener</span><span class="p">(</span><span class="k">object</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="nc">OnSeekBarChangeListener</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onProgressChanged</span><span class="p">(</span><span class="n">seekBar</span><span class="p">:</span><span class="w"> </span><span class="n">SeekBar</span><span class="p">,</span><span class="w"> </span><span class="n">progress</span><span class="p">:</span><span class="w"> </span><span class="kt">Int</span><span class="p">,</span><span class="w"> </span><span class="n">fromUser</span><span class="p">:</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">tvView_01</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">progress</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onStartTrackingTouch</span><span class="p">(</span><span class="n">seekBar</span><span class="p">:</span><span class="w"> </span><span class="n">SeekBar</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onStopTrackingTouch</span><span class="p">(</span><span class="n">seekBar</span><span class="p">:</span><span class="w"> </span><span class="n">SeekBar</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">})</span>
+
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>В данном случае, при перемещении “<strong>ползунка</strong>” выводится текущее значение в <code class="docutils literal notranslate"><span class="pre">TextView</span></code>, которое было создано ранее.</p>
+<p><strong>Итого</strong>:</p>
+<p><img alt="1761880368412" src="../_images/1761880368412.png" /></p>
 </section>
 <section id="listview">
 <h3>ListView<a class="headerlink" href="#listview" title="Permalink to this heading"></a></h3>
