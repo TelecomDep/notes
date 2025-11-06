@@ -114,6 +114,7 @@ bGoToPlayerActivity.setOnClickListener({
 
 ### 6. Местоположение смартфона. Location
  Цель: получить доступ к данным о местоположении Android-телефона и вывести на экран значения.
+ За основу можно взять [пример](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/LocationActivity.kt).
 
  1. Создать `Activity` **Location**, в основном окне `MainActivity` добавить кнопку перехода в новую 'Activity';
  2. Получить доступ к классу [Location](https://developer.android.com/reference/android/location/Location) при помощи **permissions**: `ACCESS_FINE_LOCATION`, `ACCESS_COARSE_LOCATION`;
