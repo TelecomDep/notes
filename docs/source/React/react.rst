@@ -6,4 +6,5 @@ React
    :maxdepth: 1
 
    web_introduction
-   students
+   Map
+   
