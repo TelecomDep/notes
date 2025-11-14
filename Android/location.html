@@ -69,10 +69,7 @@
 <li class="toctree-l2"><a class="reference internal" href="05_widgets.html">Работа виджетами из Activity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="context.html">Context. Что это? Зачем это? Как работает?</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Получение данных о местоположении смартфона (Location)</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#locationmanager">Класс LocationManager</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id1">Включено ли определение местоположения?</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#locationmanager">Класс LocationManager</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
@@ -121,6 +118,7 @@
              
   <section id="location">
 <h1>Получение данных о местоположении смартфона (Location)<a class="headerlink" href="#location" title="Permalink to this heading"></a></h1>
+<p><strong>Полный пример</strong> <a class="reference external" href="https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/LocationActivity.kt">здесь</a>.</p>
 <section id="locationmanager">
 <h2>Класс LocationManager<a class="headerlink" href="#locationmanager" title="Permalink to this heading"></a></h2>
 <p>Для получения доступа к информации о коортинатах LLA (Latitude, Longitude, Altitude) <code class="docutils literal notranslate"><span class="pre">разрешения\permissions</span></code>:</p>
@@ -166,15 +164,45 @@ class LocationActivity : LocationListener, AppCompatActivity()  {
 }
 </pre></div>
 </div>
-<section id="id1">
-<h3>Включено ли определение местоположения?<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
-<p>Проверка, включена ли функция определения местоположения вашего телефона. Проверяем при помощи инициализированного ранее объекта <code class="docutils literal notranslate"><span class="pre">locationManager</span></code>:</p>
+<p><strong>Включено ли определение местоположения?</strong>
+Проверка, включена ли функция определения местоположения вашего телефона. Проверяем при помощи инициализированного ранее объекта <code class="docutils literal notranslate"><span class="pre">locationManager</span></code>:</p>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">isLocationEnabled</span><span class="p">():</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">{</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">locationManager</span><span class="p">.</span><span class="na">isProviderEnabled</span><span class="p">(</span><span class="n">LocationManager</span><span class="p">.</span><span class="na">GPS_PROVIDER</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">locationManager</span><span class="p">.</span><span class="na">isProviderEnabled</span><span class="p">(</span><span class="n">LocationManager</span><span class="p">.</span><span class="na">NETWORK_PROVIDER</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
+<p><strong>Запрос разрешений на получения доступа к определению местоположения смартфона</strong></p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">requestPermissions</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ActivityCompat</span><span class="p">.</span><span class="na">requestPermissions</span><span class="p">(</span>
+<span class="w">        </span><span class="k">this</span><span class="p">,</span>
+<span class="w">        </span><span class="n">arrayOf</span><span class="p">(</span><span class="n">android</span><span class="p">.</span><span class="na">Manifest</span><span class="p">.</span><span class="na">permission</span><span class="p">.</span><span class="na">ACCESS_COARSE_LOCATION</span><span class="p">,</span>
+<span class="w">            </span><span class="n">android</span><span class="p">.</span><span class="na">Manifest</span><span class="p">.</span><span class="na">permission</span><span class="p">.</span><span class="na">ACCESS_FINE_LOCATION</span><span class="p">),</span>
+<span class="w">        </span><span class="n">PERMISSION_REQUEST_ACCESS_LOCATION</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Проверка, выданы ли разрешения</strong></p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">checkPermissions</span><span class="p">():</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="w"> </span><span class="n">ActivityCompat</span><span class="p">.</span><span class="na">checkSelfPermission</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">android</span><span class="p">.</span><span class="na">Manifest</span><span class="p">.</span><span class="na">permission</span><span class="p">.</span><span class="na">ACCESS_COARSE_LOCATION</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PackageManager</span><span class="p">.</span><span class="na">PERMISSION_GRANTED</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">        </span><span class="n">ActivityCompat</span><span class="p">.</span><span class="na">checkSelfPermission</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">android</span><span class="p">.</span><span class="na">Manifest</span><span class="p">.</span><span class="na">permission</span><span class="p">.</span><span class="na">ACCESS_FINE_LOCATION</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PackageManager</span><span class="p">.</span><span class="na">PERMISSION_GRANTED</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Задаем условие обновления местопложения</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locationManager</span><span class="o">.</span><span class="n">requestLocationUpdates</span><span class="p">(</span>
+                    <span class="n">LocationManager</span><span class="o">.</span><span class="n">GPS_PROVIDER</span><span class="p">,</span>
+                    <span class="mi">1000</span><span class="n">L</span><span class="p">,</span>
+                    <span class="mi">1</span><span class="n">f</span><span class="p">,</span>
+                    <span class="n">this</span>
+                <span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
