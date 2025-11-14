@@ -11,7 +11,10 @@
 <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 ```
 
+Получаем доступ к `LocationManager`:
 
+This class provides access to the system location services. These services allow applications to obtain periodic updates of the device's geographical location, or to be notified when the device enters the proximity of a given geographical location.
+[оригинал](https://developer.android.com/reference/android/location/LocationManager)
 
 ```kotlin
 // другие импорты
@@ -51,6 +54,7 @@ class LocationActivity : LocationListener, AppCompatActivity()  {
 ```
 
 **Включено ли определение местоположения?**
+
 Проверка, включена ли функция определения местоположения вашего телефона. Проверяем при помощи инициализированного ранее объекта `locationManager`:
 ```kotlin
 private fun isLocationEnabled(): Boolean{
@@ -85,11 +89,11 @@ private fun checkPermissions(): Boolean{
 ```
 
 **Задаем условие обновления местопложения**
-```
+```kotlin
 locationManager.requestLocationUpdates(
-                    LocationManager.GPS_PROVIDER,
-                    1000L,
-                    1f,
-                    this
-                )
+                LocationManager.GPS_PROVIDER,
+                1000L,
+                1f,
+                this
+            )
 ```

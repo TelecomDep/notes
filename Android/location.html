@@ -128,6 +128,9 @@
 <span class="nt">&lt;uses-permission</span><span class="w"> </span><span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_BACKGROUND_LOCATION&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </pre></div>
 </div>
+<p>Получаем доступ к <code class="docutils literal notranslate"><span class="pre">LocationManager</span></code>:</p>
+<p>This class provides access to the system location services. These services allow applications to obtain periodic updates of the device’s geographical location, or to be notified when the device enters the proximity of a given geographical location.
+<a class="reference external" href="https://developer.android.com/reference/android/location/LocationManager">оригинал</a></p>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span>// другие импорты
 import android.location.Location
 import android.location.LocationListener
@@ -164,8 +167,8 @@ class LocationActivity : LocationListener, AppCompatActivity()  {
 }
 </pre></div>
 </div>
-<p><strong>Включено ли определение местоположения?</strong>
-Проверка, включена ли функция определения местоположения вашего телефона. Проверяем при помощи инициализированного ранее объекта <code class="docutils literal notranslate"><span class="pre">locationManager</span></code>:</p>
+<p><strong>Включено ли определение местоположения?</strong></p>
+<p>Проверка, включена ли функция определения местоположения вашего телефона. Проверяем при помощи инициализированного ранее объекта <code class="docutils literal notranslate"><span class="pre">locationManager</span></code>:</p>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">isLocationEnabled</span><span class="p">():</span><span class="w"> </span><span class="kt">Boolean</span><span class="p">{</span>
 <span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">locationManager</span><span class="p">.</span><span class="na">isProviderEnabled</span><span class="p">(</span><span class="n">LocationManager</span><span class="p">.</span><span class="na">GPS_PROVIDER</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">locationManager</span><span class="p">.</span><span class="na">isProviderEnabled</span><span class="p">(</span><span class="n">LocationManager</span><span class="p">.</span><span class="na">NETWORK_PROVIDER</span><span class="p">)</span>
 <span class="p">}</span>
@@ -195,12 +198,12 @@ class LocationActivity : LocationListener, AppCompatActivity()  {
 </pre></div>
 </div>
 <p><strong>Задаем условие обновления местопложения</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">locationManager</span><span class="o">.</span><span class="n">requestLocationUpdates</span><span class="p">(</span>
-                    <span class="n">LocationManager</span><span class="o">.</span><span class="n">GPS_PROVIDER</span><span class="p">,</span>
-                    <span class="mi">1000</span><span class="n">L</span><span class="p">,</span>
-                    <span class="mi">1</span><span class="n">f</span><span class="p">,</span>
-                    <span class="n">this</span>
-                <span class="p">)</span>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">locationManager</span><span class="p">.</span><span class="na">requestLocationUpdates</span><span class="p">(</span>
+<span class="w">                </span><span class="n">LocationManager</span><span class="p">.</span><span class="na">GPS_PROVIDER</span><span class="p">,</span>
+<span class="w">                </span><span class="m">1000L</span><span class="p">,</span>
+<span class="w">                </span><span class="m">1f</span><span class="p">,</span>
+<span class="w">                </span><span class="k">this</span>
+<span class="w">            </span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
