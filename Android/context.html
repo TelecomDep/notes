@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Context. Что это? Зачем это? Как работает? &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Получение данных о местоположении смартфона (Location)" href="location.html" />
+    <link rel="prev" title="Работа виджетами из Activity" href="05_widgets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_structure.html">Структура проекта</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_activity.html">Ползовательский интерфейс (первое Activity)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_layout.html">Макеты элементов пользовательского интерфейса (Layout)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html">Работа виджетами из Activity</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Context. Что это? Зачем это? Как работает?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#application-activity-context">Application, Activity Context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Системные сервисы</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="location.html">Получение данных о местоположении смартфона (Location)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">6. Работа c сокетами (Sockets).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">7. Библиотека Zero MQ (Android)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../React/react.html">React</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
+      <li class="breadcrumb-item active">Context. Что это? Зачем это? Как работает?</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Android/context.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="context">
+<h1>Context. Что это? Зачем это? Как работает?<a class="headerlink" href="#context" title="Permalink to this heading"></a></h1>
+<p>Во первых, согласно <a class="reference external" href="https://developer.android.com/reference/android/content/Context">документации</a>, Context - это <strong>интерфейс</strong> к глобальной информации о вашем <strong>приложении</strong>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">public</span> <span class="n">abstract</span> <span class="k">class</span><span class="w"> </span><span class="nc">Context</span>
+<span class="n">extends</span> <span class="n">Object</span>
+</pre></div>
+</div>
+<p>Он является <strong>абстрактным</strong> классом, реализация которого предоставляется системой <strong>Android</strong>. Предоставляет доступ к базовым функциям приложения:</p>
+<ul class="simple">
+<li><p>ресурсам (<code class="docutils literal notranslate"><span class="pre">getString()</span></code>, <code class="docutils literal notranslate"><span class="pre">getDrawable()</span></code>)</p></li>
+<li><p><strong>системным сервисам</strong> (<code class="docutils literal notranslate"><span class="pre">getSystemService()</span></code>)</p></li>
+<li><p>файловой системе (<code class="docutils literal notranslate"><span class="pre">getFilesDir()</span></code>)</p></li>
+<li><p><strong>запуску компонентов</strong> (<code class="docutils literal notranslate"><span class="pre">startActivity()</span></code>,<code class="docutils literal notranslate"> <span class="pre">startService()</span></code>)</p></li>
+</ul>
+<p><strong>Пример:</strong>
+Мы уже работали с <code class="docutils literal notranslate"><span class="pre">Context'ом</span></code> в рамках перехода в новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> при помощи <code class="docutils literal notranslate"><span class="pre">Intent</span></code>:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">randomIntent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Intent</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">ViewExamples</span><span class="o">::</span><span class="n">class</span><span class="p">.</span><span class="na">java</span><span class="p">)</span>
+<span class="n">startActivity</span><span class="p">(</span><span class="n">randomIntent</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>В нашем случае, мы буде обращаться к контексту при получении объектов-менеджеров для получения данных о местоположении устройства, получении информации о сетях мобильной связи и т.д.</p>
+<section id="application-activity-context">
+<h2>Application, Activity Context<a class="headerlink" href="#application-activity-context" title="Permalink to this heading"></a></h2>
+<p>Основные виды <code class="docutils literal notranslate"><span class="pre">Context</span></code> в <code class="docutils literal notranslate"><span class="pre">Android</span></code> с которыми мы будем работать:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Вид</p></th>
+<th class="head"><p>Описание</p></th>
+<th class="head"><p>Где используется</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ApplicationContext</span></code></p></td>
+<td><p>Живёт всё время жизни <strong>процесса</strong></p></td>
+<td><p>Работа с синглтонами, фоновыми задачами</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Activity</span></code></p></td>
+<td><p>Контекст, привязанный к Activity</p></td>
+<td><p>UI-операции, <code class="docutils literal notranslate"><span class="pre">startActivity()</span></code>, <code class="docutils literal notranslate"><span class="pre">Inflate</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Service</span></code></p></td>
+<td><p>Контекст сервиса</p></td>
+<td><p>Службы и системные вызовы</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">getBaseContext</span></code> (получить ссылку на базовый контекст)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getApplicationContext</span></code> (получить ссылку на объект приложения)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getContext</span></code> (внутри активности или сервиса получить ссылку на этот объект)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">this</span></code> (то же, что и getContext)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MainActivity.this</span></code> (внутри вложенного класса или метода получить ссылку на объект MainActivity)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getActivity</span></code> (внутри фрагмента получить ссылку на объект родительской активности)</p></li>
+</ul>
+<!-- getApplicationContext () returns the application context of the entire application life cycle,when application will destroy then it will destroy also.
+
+this the context returns the current context of the activity, belong to the activity, the activity is destroyed then it will destroy also.but in your case it will refers to the Spinner instance because we are using this within onItemSelected(AdapterView<?>arg0, View arg1, int arg2, long arg3) method which is from Spinner class and Spinner inherit this method from AdapterView.OnItemSelectedListener interface
+
+getBaseContext() is the method of ContextWrapper. And ContextWrapper is, "Proxying implementation of Context that simply delegates all of its calls to another Context. Can be subclassed to modify behavior without changing the original Context." (as per javadocs).. -->
+<p><img alt="1763054946648" src="../_images/1763054946648.png" /></p>
+<p><strong>Контекст приложения</strong>
+Это <code class="docutils literal notranslate"><span class="pre">singleton</span></code>-экземпляр (единственный на всё приложение), и к нему можно получить доступ через функцию <code class="docutils literal notranslate"><span class="pre">getApplicationContext()</span></code>.</p>
+<ul class="simple">
+<li><p>Живёт столько, сколько живёт процесс;</p></li>
+<li><p>Безопасен для синглтонов, долгоживущих объектов;</p></li>
+<li><p>Нельзя использовать для UI-операций, которые зависят от темы или Window.</p></li>
+</ul>
+<p>Список методов <code class="docutils literal notranslate"><span class="pre">Application</span> <span class="pre">Context</span></code>:</p>
+<ul class="simple">
+<li><p>Load Resource Values;</p></li>
+<li><p>Start a Service;</p></li>
+<li><p>Bind to a Service;</p></li>
+<li><p>Send a Broadcast - отправить собщение во <strong>ВНЕ</strong> (Android, другие приложения и т.д.);</p></li>
+<li><p>Register BroadcastReceiver - получить собщения из ВНЕ.</p></li>
+</ul>
+<p><strong>Контекст Activity</strong></p>
+<ul class="simple">
+<li><p>Привязан к Activity, имеет доступ к теме, Window, LayoutInflater;</p></li>
+<li><p>Живет в своем жизненном цикле.</p></li>
+</ul>
+<p>Список методов <code class="docutils literal notranslate"><span class="pre">Activity</span> <span class="pre">Context</span></code>:</p>
+<ul class="simple">
+<li><p>Load Resource Values;</p></li>
+<li><p>Layout Inflation;</p></li>
+<li><p>Start an Activity;</p></li>
+<li><p>Show a Dialog;</p></li>
+<li><p>Start a Service;</p></li>
+<li><p>Bind to a Service;</p></li>
+<li><p>Send a Broadcast;</p></li>
+<li><p>Register BroadcastReceiver.</p></li>
+</ul>
+<!-- Ссылка на переданный объект будет работать, пока будет жить этот объект. Поэтому в качестве контекста важно передать такую ссылку, которая будет рабочей на всём протяжении работы вызываемого метода (чтобы избежать утечки памяти). -->
+<p><strong>Пример отображения ссылки на ApplicationContext и AcvitivyContext</strong>
+<img alt="1763055044946" src="../_images/1763055044946.png" /></p>
+<p><img alt="1763055071278" src="../_images/1763055071278.png" /></p>
+<p>Можно заметить, что в обоих Activity ссылка на один и тот же объект <code class="docutils literal notranslate"><span class="pre">android.app.Application&#64;bd90410</span></code>. <strong>НО</strong> у самих <code class="docutils literal notranslate"><span class="pre">Activity</span></code> контексты уже разные, отвечающие за работу каждого <code class="docutils literal notranslate"><span class="pre">Activity</span></code>.</p>
+</section>
+<section id="id1">
+<h2>Системные сервисы<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p><strong>Нужные нам Constants</strong></p>
+<p><strong>LOCATION_SERVICE</strong>
+Use with <code class="docutils literal notranslate"><span class="pre">getSystemService(java.lang.String)</span></code> to retrieve a <code class="docutils literal notranslate"><span class="pre">LocationManager</span></code> for controlling location updates.
+Например:</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="n">locationManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="na">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="na">LOCATION_SERVICE</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">LocationManager</span>
+<span class="p">...</span>
+<span class="c1">// Проверка разрешений</span>
+<span class="n">locationManager</span><span class="p">.</span><span class="na">requestLocationUpdates</span><span class="p">(</span>
+<span class="w">                    </span><span class="n">LocationManager</span><span class="p">.</span><span class="na">GPS_PROVIDER</span><span class="p">,</span>
+<span class="w">                    </span><span class="m">1000L</span><span class="p">,</span>
+<span class="w">                    </span><span class="m">1f</span><span class="p">,</span>
+<span class="w">                    </span><span class="k">this</span>
+<span class="w">                </span><span class="p">)</span>
+
+<span class="c1">// нужный нам callback</span>
+<span class="kd">override</span><span class="w"> </span><span class="kd">fun</span><span class="w"> </span><span class="nf">onLocationChanged</span><span class="p">(</span><span class="n">location</span><span class="p">:</span><span class="w"> </span><span class="n">Location</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">tvLat</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">location</span><span class="p">.</span><span class="na">latitude</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span>
+<span class="w">    </span><span class="n">tvLon</span><span class="p">.</span><span class="na">setText</span><span class="p">(</span><span class="n">location</span><span class="p">.</span><span class="na">longitude</span><span class="p">.</span><span class="na">toString</span><span class="p">())</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>TELEPHONY_SERVICE</strong>
+<code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">static</span> <span class="pre">final</span> <span class="pre">String</span> <span class="pre">TELEPHONY_SERVICE</span></code>
+Use with <code class="docutils literal notranslate"><span class="pre">getSystemService(java.lang.String)</span></code> to retrieve a <code class="docutils literal notranslate"><span class="pre">TelephonyManager</span></code> for handling management the telephony features of the device.</p>
+<div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">val</span><span class="w"> </span><span class="nv">telephonyManager</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getSystemService</span><span class="p">(</span><span class="n">Context</span><span class="p">.</span><span class="na">TELEPHONY_SERVICE</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">TelephonyManager</span>
+<span class="kd">val</span><span class="w"> </span><span class="nv">cellInfoList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">telephonyManager</span><span class="p">.</span><span class="na">allCellInfo</span>
+<span class="n">Log</span><span class="p">.</span><span class="na">d</span><span class="p">(</span><span class="n">TAG</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="si">${</span><span class="n">cellInfoList</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span><span class="si">}</span><span class="s">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>В результате получаем в <code class="docutils literal notranslate"><span class="pre">logcat</span></code> строку:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>CellInfoLte:<span class="o">{</span><span class="nv">mRegistered</span><span class="o">=</span>YES<span class="w"> </span><span class="nv">mTimeStamp</span><span class="o">=</span>225071574392525ns<span class="w"> </span><span class="nv">mCellConnectionStatus</span><span class="o">=</span><span class="m">1</span><span class="w"> </span>
+<span class="w">                </span>CellIdentityLte:<span class="o">{</span><span class="w"> </span>
+<span class="w">                    </span><span class="nv">mCi</span><span class="o">=</span><span class="m">176224801</span><span class="w"> </span><span class="nv">mPci</span><span class="o">=</span><span class="m">386</span><span class="w"> </span><span class="nv">mTac</span><span class="o">=</span><span class="m">15401</span><span class="w"> </span><span class="nv">mEarfcn</span><span class="o">=</span><span class="m">1626</span><span class="w"> </span><span class="nv">mBands</span><span class="o">=[</span><span class="m">3</span><span class="o">]</span><span class="w"> </span><span class="nv">mBandwidth</span><span class="o">=</span><span class="m">15000</span><span class="w"> </span><span class="nv">mMcc</span><span class="o">=</span><span class="m">250</span><span class="w"> </span><span class="nv">mMnc</span><span class="o">=</span><span class="m">01</span><span class="w"> </span><span class="nv">mAlphaLong</span><span class="o">=</span>MTS<span class="w"> </span>RUS<span class="w"> </span><span class="nv">mAlphaShort</span><span class="o">=</span>MTS<span class="w"> </span>RUS<span class="w"> </span><span class="nv">mAdditionalPlmns</span><span class="o">={}</span><span class="w"> </span><span class="nv">mCsgInfo</span><span class="o">=</span>null
+<span class="w">                </span><span class="o">}</span><span class="w"> </span>
+<span class="w">                </span>CellSignalStrengthLte:<span class="w"> </span><span class="nv">rssi</span><span class="o">=</span><span class="m">2147483647</span><span class="w"> </span><span class="nv">rsrp</span><span class="o">=</span>-96<span class="w"> </span><span class="nv">rsrq</span><span class="o">=</span>-15<span class="w"> </span><span class="nv">rssnr</span><span class="o">=</span><span class="m">10</span><span class="w"> </span><span class="nv">cqiTableIndex</span><span class="o">=</span><span class="m">2147483647</span><span class="w"> </span><span class="nv">cqi</span><span class="o">=</span><span class="m">2147483647</span><span class="w"> </span><span class="nv">ta</span><span class="o">=</span><span class="m">1</span><span class="w"> </span><span class="nv">level</span><span class="o">=</span><span class="m">2</span><span class="w"> </span><span class="nv">parametersUseForLevel</span><span class="o">=</span><span class="m">0</span><span class="w"> </span>
+<span class="w">                </span>android.telephony.CellConfigLte<span class="w"> </span>:<span class="o">{</span><span class="w"> </span><span class="nv">isEndcAvailable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="w"> </span><span class="o">}}]</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="05_widgets.html" class="btn btn-neutral float-left" title="Работа виджетами из Activity" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="location.html" class="btn btn-neutral float-right" title="Получение данных о местоположении смартфона (Location)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
