@@ -32,7 +32,6 @@ startActivity(randomIntent)
 |`Activity`|Контекст, привязанный к Activity|UI-операции, `startActivity()`, `Inflate`|
 |`Service`|Контекст сервиса|Службы и системные вызовы|
 
-- `getBaseContext` (получить ссылку на базовый контекст)
 - `getApplicationContext` (получить ссылку на объект приложения)
 - `getContext` (внутри активности или сервиса получить ссылку на этот объект)
 - `this` (то же, что и getContext)
