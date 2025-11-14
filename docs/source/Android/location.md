@@ -1,5 +1,5 @@
 # Получение данных о местоположении смартфона (Location)
-
+**Полный пример** [здесь](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/LocationActivity.kt).
 ## Класс LocationManager
 
 Для получения доступа к информации о коортинатах LLA (Latitude, Longitude, Altitude) `разрешения\permissions`:
@@ -50,10 +50,46 @@ class LocationActivity : LocationListener, AppCompatActivity()  {
 }
 ```
 
-### Включено ли определение местоположения?
+**Включено ли определение местоположения?**
 Проверка, включена ли функция определения местоположения вашего телефона. Проверяем при помощи инициализированного ранее объекта `locationManager`:
 ```kotlin
 private fun isLocationEnabled(): Boolean{
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
 }
+```
+
+**Запрос разрешений на получения доступа к определению местоположения смартфона**
+
+```kotlin
+private fun requestPermissions() {
+    ActivityCompat.requestPermissions(
+        this,
+        arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION,
+            android.Manifest.permission.ACCESS_FINE_LOCATION),
+        PERMISSION_REQUEST_ACCESS_LOCATION
+    )
+}
+```
+
+**Проверка, выданы ли разрешения**
+```kotlin
+private fun checkPermissions(): Boolean{
+    if( ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+        ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED )
+    {
+        return true
+    } else {
+        return false
+    }
+}
+```
+
+**Задаем условие обновления местопложения**
+```
+locationManager.requestLocationUpdates(
+                    LocationManager.GPS_PROVIDER,
+                    1000L,
+                    1f,
+                    this
+                )
 ```
