@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Маппим точки на карту &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Полезные ссылки" href="../References/usefull_links.html" />
+    <link rel="prev" title="Методическое пособие по JavaScript и React" href="web_introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="react.html">React</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="web_introduction.html">Методическое пособие по JavaScript и React</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Маппим точки на карту</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Предлагаемая архитектура:</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Пример файла апи</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#api-ts">api.ts:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Пример для локального использования</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#zustand">Пример сокета с использованием Zustand (хранилище)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#socket-provider-ts">socket-provider.ts:</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Пример файла реализации карты</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#map-tsx">map.tsx:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Как примерно должно выглядеть</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#deck-gl">Ссылка на документацию Deck.gl:</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#https-deck-gl-docs">https://deck.gl/docs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="react.html">React</a></li>
+      <li class="breadcrumb-item active">Маппим точки на карту</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/React/Map.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Маппим точки на карту<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="id2">
+<h2>Предлагаемая архитектура:<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Предлагаю для отображения точке на карте использовать апи запрос и стриминг точек в сокете. При первой инициализации карты (при первом отображении) отправляете апи запрос, который возвращает все точки на карте -&gt; отображаем их. Сразу после этого начинаем отображать точки, пришедшие из сокета</p>
+</section>
+<section id="id3">
+<h2>Пример файла апи<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<section id="api-ts">
+<h3>api.ts:<a class="headerlink" href="#api-ts" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="nx">axios</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">AxiosResponse</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;axios&quot;</span><span class="p">;</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">instance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">axios</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span>
+<span class="w">  </span><span class="nx">baseURL</span><span class="o">:</span><span class="w"> </span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VITE_API_URL</span><span class="p">,</span>
+<span class="p">});</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">api</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">async</span><span class="w"> </span><span class="nx">getMapData</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">instance</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="sb">`/api/map_data`</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">data</span><span class="p">;</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>для baseURL у вас должна быть переменная окружения (если используете сборщик VITE, то все переменные окружение должны начинаться с VITE_ ) в .env файле:</p>
+</section>
+<section id="id4">
+<h3>Пример для локального использования<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">VITE_API_URL</span><span class="o">=</span><span class="nx">http</span><span class="o">:</span><span class="c1">//localhost:5173</span>
+</pre></div>
+</div>
+<p>В результате baseURL будет иметь вид:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="nx">baseURL</span><span class="o">:</span><span class="w"> </span><span class="nx">http</span><span class="o">:</span><span class="c1">//localhost:5173//api/map_data</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="zustand">
+<h2>Пример сокета с использованием Zustand (хранилище)<a class="headerlink" href="#zustand" title="Permalink to this heading"></a></h2>
+<section id="socket-provider-ts">
+<h3>socket-provider.ts:<a class="headerlink" href="#socket-provider-ts" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kr">interface</span><span class="w"> </span><span class="nx">MapDataPoint</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">time</span><span class="o">:</span><span class="w"> </span><span class="nx">string</span>
+<span class="w">  </span><span class="nx">lat</span><span class="o">:</span><span class="w"> </span><span class="nx">number</span>
+<span class="w">  </span><span class="nx">lon</span><span class="o">:</span><span class="w"> </span><span class="nx">number</span>
+<span class="w">  </span><span class="nx">data</span><span class="o">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">rsrp</span><span class="o">:</span><span class="w"> </span><span class="nx">number</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useTrialsEventsPointsStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="o">&lt;</span><span class="p">{</span>
+<span class="w">  </span><span class="nx">trialsEventsPoints</span><span class="o">:</span><span class="w"> </span><span class="nx">MapDataPoint</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">  </span><span class="nx">setTrialsEventsPoints</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="nx">trialsEventsPoints</span><span class="o">:</span><span class="w"> </span><span class="nx">MapDataPoint</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span>
+<span class="p">}</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">set</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">  </span><span class="nx">trialsEventsPoints</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">setTrialsEventsPoints</span><span class="o">:</span><span class="w"> </span><span class="nx">trialsEventsPoints</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">set</span><span class="p">({</span><span class="w"> </span><span class="nx">trialsEventsPoints</span><span class="w"> </span><span class="p">})</span>
+<span class="p">}))</span>
+</pre></div>
+</div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">useTrialsEventsWebSocketStore</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">create</span><span class="o">&lt;</span><span class="p">{</span>
+<span class="w">  </span><span class="nx">trialsEventsSocket</span><span class="o">:</span><span class="w"> </span><span class="nx">WebSocket</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="kc">null</span>
+<span class="w">  </span><span class="nx">isTrialsEventsConnected</span><span class="o">:</span><span class="w"> </span><span class="kr">boolean</span>
+<span class="w">  </span><span class="nx">connectTrialsEvents</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span>
+<span class="w">  </span><span class="nx">disconnectTrialsEvents</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="ow">void</span>
+<span class="p">}</span><span class="o">&gt;</span><span class="p">(</span><span class="nx">set</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">({</span>
+<span class="w">  </span><span class="nx">trialsEventsSocket</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">isTrialsEventsConnected</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">  </span><span class="nx">connectTrialsEvents</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">isTrialsEventsConnected</span><span class="p">,</span><span class="w"> </span><span class="nx">disconnectTrialsEvents</span><span class="p">,</span><span class="w"> </span><span class="nx">trialsEventsSocket</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span>
+<span class="w">      </span><span class="nx">useTrialsEventsWebSocketStore</span><span class="p">.</span><span class="nx">getState</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">isTrialsEventsConnected</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">trialsEventsSocket</span><span class="o">?</span><span class="p">.</span><span class="nx">readyState</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">WebSocket</span><span class="p">.</span><span class="nx">OPEN</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Trials WebSocket already connected, skipping...&#39;</span><span class="p">)</span>
+<span class="w">      </span><span class="k">return</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">trialsEventsSocket</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">disconnectTrialsEvents</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">const</span><span class="w"> </span><span class="nx">trialsEventsSocket</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ow">new</span><span class="w"> </span><span class="nx">WebSocket</span><span class="p">(</span><span class="k">import</span><span class="p">.</span><span class="nx">meta</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">VITE_WS_TRIALS_EVENTS</span><span class="p">)</span>
+
+<span class="w">      </span><span class="nx">trialsEventsSocket</span><span class="p">.</span><span class="nx">onopen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Connected to Trials WebSocket&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">set</span><span class="p">({</span><span class="w"> </span><span class="nx">isTrialsEventsConnected</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">})</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">trialsEventsSocket</span><span class="p">.</span><span class="nx">onmessage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">event</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;PONG&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">return</span>
+
+<span class="w">        </span><span class="kd">const</span><span class="w"> </span><span class="nx">parsedData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">parsedData</span><span class="p">.</span><span class="nx">name</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;map_point&#39;</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">parsedData</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">//map_point - для пример, здесь должно быть название (name) ивента из вашего сокет соединения</span>
+<span class="w">          </span><span class="nx">useTrialsEventsPointsStore</span><span class="p">.</span><span class="nx">getState</span><span class="p">().</span><span class="nx">setTrialsEventsPoints</span><span class="p">(</span><span class="nx">parsedData</span><span class="p">.</span><span class="nx">data</span><span class="p">)</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">trialsEventsSocket</span><span class="p">.</span><span class="nx">onclose</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Disconnected from Trials WebSocket&#39;</span><span class="p">)</span>
+<span class="w">        </span><span class="nx">set</span><span class="p">({</span><span class="w"> </span><span class="nx">isTrialsEventsConnected</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="w"> </span><span class="p">})</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">trialsEventsSocket</span><span class="p">.</span><span class="nx">onerror</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Trials WebSocket error:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span>
+<span class="w">      </span><span class="p">}</span>
+
+<span class="w">      </span><span class="nx">set</span><span class="p">({</span><span class="w"> </span><span class="nx">trialsEventsSocket</span><span class="w"> </span><span class="p">})</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="nx">error</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s1">&#39;Failed to create Trials WebSocket connection:&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">error</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nx">disconnectTrialsEvents</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">trialsEventsSocket</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">useTrialsEventsWebSocketStore</span><span class="p">.</span><span class="nx">getState</span><span class="p">()</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">trialsEventsSocket</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nx">trialsEventsSocket</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="nx">set</span><span class="p">({</span>
+<span class="w">      </span><span class="nx">trialsEventsSocket</span><span class="o">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+<span class="w">      </span><span class="nx">isTrialsEventsConnected</span><span class="o">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">    </span><span class="p">})</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>Пример файла реализации карты<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<p>Так как нам необходимо отобразить точки, то выберем для этого соответствующий метод среди тех, которые нам предлагает Deck.gl. По названию не трудно определить, что это будет - ScatterplotLayer</p>
+<p>https://deck.gl/examples/scatterplot-layer</p>
+<p>Пример из документации:
+<img alt="alt text" src="../_images/image2.png" /></p>
+<section id="map-tsx">
+<h3>map.tsx:<a class="headerlink" href="#map-tsx" title="Permalink to this heading"></a></h3>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span>import { MapViewState } from &#39;@deck.gl/core&#39;
+import { ScatterplotLayer } from &#39;@deck.gl/layers&#39;
+import { DeckGL } from &#39;@deck.gl/react&#39;
+import { Map as MapLibreMap, NavigationControl } from &#39;react-map-gl/maplibre&#39;
+import { useEffect, useState } from &#39;react&#39;
+
+import * as styles from &#39;./map.style&#39;
+import { api } from &#39;~/shared/api/api&#39;
+import { useTrialsEventsWebSocketStore } from &#39;~/shared/sockets/socket-provider&#39;
+import { useTrialsEventsPointsStore } from &#39;~/shared/sockets/socket-provider&#39;
+
+export interface MapDataPoint {
+  time: string
+  lat: number
+  lon: number
+  data: {
+    rsrp: number | null
+  }
+}
+
+const INITIAL_VIEW_STATE: MapViewState = { // здесь инициализируем начальное положение карты, как вариант задаем все статикой, но можем спокойно брать лат,лон первой точки
+  longitude: 82.9346,
+  latitude: 55.0415,
+  zoom: 10
+}
+
+export const Map = () =&gt; {
+  const [mapData, setMapData] = useState&lt;MapDataPoint[]&gt;([])
+  const [layers, setLayers] = useState&lt;any[]&gt;([])
+
+  const { connectTrialsEvents, disconnectTrialsEvents } = useTrialsEventsWebSocketStore()
+  const { trialsEventsPoints } = useTrialsEventsPointsStore()
+
+  useEffect(() =&gt; {
+    const fetchMapData = async () =&gt; {
+      try {
+        const data = await api.getMapData() // получаем первоначальные данные
+        setMapData(data)
+
+        // Открываем сокет соединение только после успешного получения данных
+        connectTrialsEvents()
+      } catch (error) {
+        console.error(&#39;Ошибка загрузки данных карты:&#39;, error)
+      }
+    }
+
+    fetchMapData()
+
+    return () =&gt; {
+      disconnectTrialsEvents()
+    }
+  }, [connectTrialsEvents, disconnectTrialsEvents])
+
+  useEffect(() =&gt; {
+    if (trialsEventsPoints !== null) {
+      setMapData(prevData =&gt; [...prevData, trialsEventsPoints])
+    }
+  }, [trialsEventsPoints])
+
+  useEffect(() =&gt; {
+  if (mapData.length === 0) return
+
+  const scatterplotLayer = new ScatterplotLayer&lt;MapDataPoint&gt;({
+    id: &#39;rsrp-layer&#39;,
+    data: mapData,
+    pickable: true,
+    opacity: 0.8,
+    stroked: false,
+    filled: true,
+    radiusScale: 6,
+    radiusMinPixels: 4,
+    radiusMaxPixels: 4,
+    lineWidthMinPixels: 1,
+    getPosition: (d: MapDataPoint) =&gt; [d.lon, d.lat],
+    getFillColor: (d: MapDataPoint) =&gt; {
+      const rsrp = d.data.nof_pdsch
+
+      if (rsrp &lt; -112) {
+        return [255, 0, 0, 255] // красный
+      } else if (rsrp &gt;= -112 &amp;&amp; rsrp &lt; -100) {
+        return [255, 165, 0, 255] // оранжевый
+      } else if (rsrp &gt;= -100 &amp;&amp; rsrp &lt; -85) {
+        return [255, 255, 0, 255] // желтый
+      } else {
+        return [0, 255, 0, 255] // зеленый
+      }
+    },
+    getRadius: 5
+  })
+
+  setLayers([scatterplotLayer])
+}, [mapData])
+      // базовый стиль тайлов карты mapStyle (может не сработать), лучше воспользоваться специализированными сервисами, который предосталвяют тайлы например MapTiler
+  return (
+    &lt;div className={styles.mapContainer}&gt;
+      &lt;DeckGL
+        initialViewState={INITIAL_VIEW_STATE}
+        controller
+        layers={layers}
+      &gt;
+        &lt;MapLibreMap
+          mapStyle=&quot;https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json&quot;
+        &gt;
+          &lt;NavigationControl position=&#39;top-right&#39; /&gt;
+        &lt;/MapLibreMap&gt;
+      &lt;/DeckGL&gt;
+    &lt;/div&gt;
+  )
+}
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>Как примерно должно выглядеть<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<p><img alt="alt text" src="../_images/image.png" /></p>
+</section>
+<section id="deck-gl">
+<h3>Ссылка на документацию Deck.gl:<a class="headerlink" href="#deck-gl" title="Permalink to this heading"></a></h3>
+</section>
+<section id="https-deck-gl-docs">
+<h3>https://deck.gl/docs<a class="headerlink" href="#https-deck-gl-docs" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="web_introduction.html" class="btn btn-neutral float-left" title="Методическое пособие по JavaScript и React" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../References/usefull_links.html" class="btn btn-neutral float-right" title="Полезные ссылки" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
