@@ -15,6 +15,7 @@
 
 ## Android
 
+1. [ievetrov.ru](https://ievetrov.ru/android-roadmap/) - хороший roadmap, на который можно ориентироваться.
 1. [Roadmap.sh](https://roadmap.sh/android) (**версия для ознакомления с Android**) - посмотреть на общую картину изучения основ Android. 
 
 2. [Android-developer-roadmap](https://github.com/skydoves/android-developer-roadmap) - более расширенная версия карты изучения Android. 
