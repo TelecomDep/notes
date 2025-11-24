@@ -12,6 +12,7 @@ Android
    05_widgets
    context
    location
+   gps
    telephony
    sockets/06_sockets_zmq
    sockets/07_sockets_zmq_android
