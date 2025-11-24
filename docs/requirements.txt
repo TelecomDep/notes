@@ -8,4 +8,5 @@ sphinx-autobuild
 sphinxcontrib-osexample==0.1.1
 sphinxcontrib-exceltable
 nbsphinx
+pandoc
 ipykernel
