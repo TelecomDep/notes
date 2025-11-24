@@ -7,4 +7,4 @@ sphinxcontrib-googleanalytics
 sphinx-autobuild
 sphinxcontrib-osexample==0.1.1
 sphinxcontrib-exceltable
-myst-nb
+nbsphinx
