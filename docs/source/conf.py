@@ -20,6 +20,7 @@ sys.path.append('.')
 Tells Sphinx which extensions to use.
 """
 extensions = [
+    'jupyterbook_patches',
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
