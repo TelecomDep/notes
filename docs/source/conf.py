@@ -20,7 +20,7 @@ sys.path.append('.')
 Tells Sphinx which extensions to use.
 """
 extensions = [
-    'nbsphinx',
+    'myst_nb',
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
