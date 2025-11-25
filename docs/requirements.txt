@@ -7,7 +7,7 @@ sphinxcontrib-googleanalytics
 sphinx-autobuild
 sphinxcontrib-osexample==0.1.1
 sphinxcontrib-exceltable
-teachbooks # depends on jupyter-book
+#teachbooks # depends on jupyter-book
 jupyterbook-patches
 sphinx-image-inverter
 download_link_replacer
