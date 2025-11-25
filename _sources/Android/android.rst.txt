@@ -3,7 +3,7 @@ Android
 
 .. toctree::
    :caption: Android
-   :maxdepth: 2
+   :maxdepth: 1
 
    02_first_app
    app_structure

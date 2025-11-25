@@ -3,7 +3,7 @@ Kotlin
 
 .. toctree::
    :caption: Kotlin
-   :maxdepth: 2
+   :maxdepth: 1
 
 
    00_introduction
