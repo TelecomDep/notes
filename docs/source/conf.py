@@ -21,7 +21,6 @@ Tells Sphinx which extensions to use.
 """
 extensions = [
     'myst_nb',
-    'teachbooks_sphinx_tippy',
     'sphinxcontrib.mermaid',
     'sphinxcontrib.wavedrom',
     'sphinxcontrib.plantuml',
