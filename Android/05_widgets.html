@@ -7,6 +7,7 @@
   <title>Работа виджетами из Activity &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
       <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -18,6 +19,8 @@
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
         <script src="../_static/doctools.js?v=888ff710"></script>
         <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="https://wavedrom.com/skins/default.js"></script>
+        <script src="https://wavedrom.com/wavedrom.min.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -85,6 +88,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="context.html">Context. Что это? Зачем это? Как работает?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="location.html">Получение данных о местоположении смартфона (Location)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gps.html">GPS distance calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">Работа c сокетами (Sockets).</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">Библиотека Zero MQ (Android)</a></li>
@@ -265,7 +269,7 @@
 </section>
 <section id="activity-intent">
 <h2>Переход между Activity (Intent, вкратце)<a class="headerlink" href="#activity-intent" title="Permalink to this heading"></a></h2>
-<p>В рамках “удобства” по работе с несколькими <code class="docutils literal notranslate"><span class="pre">Activity</span></code> рассмотрим небольшой пример работы класса <a class="reference internal" href="#"><span class="xref myst">Intent</span></a></p>
+<p>В рамках “удобства” по работе с несколькими <code class="docutils literal notranslate"><span class="pre">Activity</span></code> рассмотрим небольшой пример работы класса <span class="xref myst">Intent</span></p>
 <p><code class="docutils literal notranslate"><span class="pre">Intent</span></code> — это абстрактное описание операции, которая должна быть выполнена. Его можно использовать с <a class="reference external" href="https://developer.android.com/reference/android/content/Context#startActivity(android.content.Intent)">startActivity</a> для запуска <a class="reference external" href="https://developer.android.com/reference/android/app/Activity">Activity</a>, <a class="reference external" href="https://developer.android.com/reference/android/content/Context#sendBroadcast(android.content.Intent)">broadcastIntent</a> для отправки его любым заинтересованным компонентам <a class="reference external" href="https://developer.android.com/reference/android/content/BroadcastReceiver">BroadcastReceiver</a> и <a class="reference external" href="https://developer.android.com/reference/android/content/Context#startService(android.content.Intent)">Context.startService(Intent)</a> или <a class="reference external" href="https://developer.android.com/reference/android/content/Context#bindService(android.content.Intent,%20android.content.Context.BindServiceFlags,%20java.util.concurrent.Executor,%20android.content.ServiceConnection)">Context.bindService(Intent, BindServiceFlags, Executor, ServiceConnection)</a> для связи с фоновой службой <a class="reference external" href="https://developer.android.com/reference/android/app/Service">Service</a>.</p>
 <p>Для начала, нам понадобится только метод <code class="docutils literal notranslate"><span class="pre">startActivity()</span></code>. Добавим переход на другое <code class="docutils literal notranslate"><span class="pre">Activity</span></code> при помощи <code class="docutils literal notranslate"><span class="pre">Button</span></code> во время нажатия (<code class="docutils literal notranslate"><span class="pre">setOnClickListener</span></code>).
 Добавим кнопку в файле <code class="docutils literal notranslate"><span class="pre">activity_имя.xml</span></code>:</p>
@@ -577,6 +581,12 @@ cls – The component class that is to be used for the intent.
 </section>
 </section>
 
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
 
            </div>
           </div>
