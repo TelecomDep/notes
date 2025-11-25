@@ -20,6 +20,19 @@ sys.path.append('.')
 Tells Sphinx which extensions to use.
 """
 extensions = [
+    'sphinx.ext.imgconverter',
+    'jupyterbook_patches',
+    'download_link_replacer',
+    'sphinx.ext.extlinks',
+    'sphinx_image_inverter',
+    'sphinx_iframes',
+    'sphinx_exercise',
+    'teachbooks_sphinx_tippy',
+    'sphinxcontrib.mermaid',
+    'sphinxcontrib.wavedrom',
+    'sphinxcontrib.plantuml',
+    'sphinxcontrib.tikz',
+    'sphinxcontrib.blockdiag',
     'sphinx.ext.duration',
     'sphinx.ext.doctest',
     'sphinx.ext.autodoc',
