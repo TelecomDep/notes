@@ -38,7 +38,6 @@ extensions = [
     'sphinx.ext.mathjax',
     'sphinx.ext.ifconfig',
     'sphinx.ext.graphviz',
-    'myst_parser',
     'sphinxcontrib.exceltable',
 ]
 
