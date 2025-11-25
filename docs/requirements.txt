@@ -7,18 +7,9 @@ sphinxcontrib-googleanalytics
 sphinx-autobuild
 sphinxcontrib-osexample==0.1.1
 sphinxcontrib-exceltable
-#teachbooks # depends on jupyter-book
-jupyterbook-patches
-sphinx-image-inverter
-download_link_replacer
-sphinx-exercise
-teachbooks-sphinx-tippy
-sphinx-iframes
 sphinxcontrib-mermaid
 sphinxcontrib-wavedrom
 sphinxcontrib-plantuml
 sphinxcontrib-blockdiag
 sphinxcontrib-tikz
-sphinx-thebe
-
-# git+https://github.com/TeachBooks/Sphinx-Thebe
+myst-nb
