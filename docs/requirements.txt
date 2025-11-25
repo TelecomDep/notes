@@ -19,5 +19,6 @@ sphinxcontrib-wavedrom
 sphinxcontrib-plantuml
 sphinxcontrib-blockdiag
 sphinxcontrib-tikz
+sphinx-thebe
 
-git+https://github.com/TeachBooks/Sphinx-Thebe
+# git+https://github.com/TeachBooks/Sphinx-Thebe
