@@ -236,17 +236,17 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Socket</p></td>
-<td><p>Создать новый сокет и вернуть файловый дескриптор</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">socket()</span></code></p></td>
+<td><p>Создает новый сокет заданного типа и возвращает файловый дескриптор</p></td>
 </tr>
-<tr class="row-odd"><td><p>Send</p></td>
-<td><p>Отправить данные по сети</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">send()</span></code></p></td>
+<td><p>Отправить</p></td>
 </tr>
-<tr class="row-even"><td><p>Receive</p></td>
-<td><p>Получить данные из сети</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">recv()</span></code></p></td>
+<td><p>Получить</p></td>
 </tr>
-<tr class="row-odd"><td><p>Close</p></td>
-<td><p>Закрыть соединение</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">close()</span></code></p></td>
+<td><p>Закрыть соединение (в случае <code class="docutils literal notranslate"><span class="pre">TCP</span></code>) и высвобождение системных ресурсов, выделенных ранее</p></td>
 </tr>
 <tr class="row-even"><td><p></p></td>
 <td><p></p></td>
@@ -254,13 +254,13 @@
 <tr class="row-odd"><td><p><strong>Серверные</strong></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-even"><td><p>Bind</p></td>
-<td><p>Связать сокет с IP-адресом и портом</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">bind()</span></code></p></td>
+<td><p>Связывает созданный ранее <code class="docutils literal notranslate"><span class="pre">socket()</span></code> с IP-адресом и портом</p></td>
 </tr>
-<tr class="row-odd"><td><p>Listen</p></td>
-<td><p>Объявить о желании принимать соединения. Слушает порт и ждет когда будет установлено соединение</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">listen()</span></code></p></td>
+<td><p>Ожидает установления TCP соединения</p></td>
 </tr>
-<tr class="row-even"><td><p>Accept</p></td>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">accept()</span></code></p></td>
 <td><p>Принять запрос на установку соединения</p></td>
 </tr>
 <tr class="row-odd"><td><p></p></td>
@@ -269,8 +269,8 @@
 <tr class="row-even"><td><p><strong>Клиентские</strong></p></td>
 <td><p></p></td>
 </tr>
-<tr class="row-odd"><td><p>Connect</p></td>
-<td><p>Установить соединение</p></td>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">connect()</span></code></p></td>
+<td><p>Установить соединение, используя <strong>свободный</strong> локальный порт.</p></td>
 </tr>
 </tbody>
 </table>
@@ -658,8 +658,7 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 <span class="w">    </span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span>
 <span class="w">    </span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">// Convert IPv4 and IPv6 addresses from text to binary</span>
-<span class="w">    </span><span class="c1">// form</span>
+<span class="w">    </span><span class="c1">// Convert IPv4 and IPv6 addresses from text to binary form</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">inet_pton</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;127.0.0.1&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">)</span>
 <span class="w">        </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">printf</span><span class="p">(</span>
