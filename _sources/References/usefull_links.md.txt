@@ -55,5 +55,5 @@
 ## SDR
 
 1. Youtube№1 - https://www.youtube.com/watch?v=h_7d-m1ehoY
-2. 
+2. [How to Get Phase From a Signal (Using I/Q Sampling)](https://www.youtube.com/watch?v=Ev3lZClnLhQ)
 
