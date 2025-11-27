@@ -1,4 +1,4 @@
-# Работа c сокетами (Sockets).
+# Работа c сокетами Беркли (Sockets).
 
 Короткая выжимка из этих предыдущих лекций:
 
@@ -20,7 +20,70 @@
 
 ![28-1920x814.webp](28-1920x814.webp)
 
+## Заголовочные файлы
+
+Программная библиотека сокетов Беркли включает в себя множество связанных заголовочных файлов.
+
+- `<sys/socket.h>` -  Базовые функции сокетов BSD и структуры данных.
+- `<netinet/in.h>` -  Семейства адресов/протоколов PF_INET и PF_INET6. Широко используются в сети Интернет, включают в себя IP-адреса, а также номера портов TCP и UDP.
+- `<sys/un.h>` -  Семейство адресов PF_UNIX/PF_LOCAL. Используется для локального взаимодействия между программами, запущенными на одном компьютере. В компьютерных сетях не применяется.
+- `<arpa/inet.h>` -  Функции для работы с числовыми IP-адресами.
+- `<netdb.h>` -  Функции для преобразования протокольных имен и имен хостов в числовые адреса. Используются локальные данные аналогично DNS.
+
+## Структуры
+
+- `sockaddr` — обобщённая структура адреса, к которой, в зависимости от используемого семейства протоколов, приводится соответствующая структура, например:
+```c
+struct sockaddr_in stSockAddr;
+...
+bind(SocketFD,(const struct sockaddr *)&stSockAddr, sizeof(struct sockaddr_in));
+```
+- `sockaddr_in`  
+- `sockaddr_in6`
+- `in_addr`
+- `in6_addr`
+
+#### sockaddr_in
+
+Посмотреть можно [здесь](https://man.archlinux.org/man/sockaddr_in.3type.en)
+```c
+#include <netinet/in.h>
+struct sockaddr_in {
+    sa_family_t     sin_family;     /* AF_INET */
+    in_port_t       sin_port;       /* Port number */
+    struct in_addr  sin_addr;       /* IPv4 address */
+};
+```
+Описывает сокет для работы с протоколами `IP`. Значение поля `sin_family` всегда равно `AF_INET`. Поле `sin_port` содержит номер порта который намерен занять процесс. Поле `sin_addr` содержит IP адрес к которому будет привязан сокет.
+
+#### in_addr
+
+```c
+struct in_addr {
+    in_addr_t s_addr;
+};
+```
+Структура `in_addr` содержит поле `s_addr`. Этому полю можно присвоить `32х` битное значение `IP адреса`. Для перевода адреса в целое число из строкового представления можно воспользоваться функцией `inet_addr`, которой в качестве аргумента передается указатель на строку содержащую IP адрес в виде четырех десятичных чисел разделенных точками. Можно, также, воспользоваться одной из следующих констант:
+```c
+INADDR_ANY //все адреса локального хоста (0.0.0.0);
+INADDR_LOOPBACK //адрес loopback интерфейса (127.0.0.1);
+INADDR_BROADCAST //широковещательный адрес (255.255.255.255).
+```
+
+При присвоении значений номеру порта и адресу следует учитывать, что порядок следования байтов на разных архитектурах различен. При передаче данных по сети общепринятым является представление чисел в формате `big-endian`, в котором самый старший байт целого числа имеет наименьший адрес, а самый младший байт имеет наибольший адрес. Компьютеры построенные на архитектуре `Intel x86` используют схему представления целых чисел `little-endian`, в которой наименьший адрес имеет самый младший байт, а наибольший адрес имеет самый старший байт. Для преобразования числа из той схемы которая используется на компьютере к той которая используется в сети, и наоборот, применяются функции:
+```c
+uint32_t htonl(uint32_t hostlong);
+uint16_t htons(uint16_t hostshort);
+uint32_t ntohl(uint32_t netlong);
+uint16_t ntohl(uint16_t netshort);
+```
+
+**Наглядный пример** разницы `Big-endian` и `little-endian` (прочитать: "Путешествия Гулливера").
+![1764212655102](image/06_sockets_zmq/1764212655102.png)
+
 ## Основные функции сокетов
+
+Подробнее можно посмотреть [Здесь](https://en.wikipedia.org/wiki/Berkeley_sockets#Protocol_and_address_families).
 
 | **Общие** |   |
 | --- | --- |
@@ -49,12 +112,33 @@
     - **AF_UNIX** для локальных сокетов (используя файл)
     - и т.д. (порядка **29-ти разновидностей** протоколов в Unix-like системах [1])
 2. **type**
-    - **SOCK_STREAM** (надёжная потокоориентированная служба (сервис) или потоковый сокет)
-    - **SOCK_DGRAM** (служба датаграмм или датаграммный сокет)
-    - **SOCK_RAW** (Сырой сокет — сырой протокол поверх сетевого уровня).
-3. **protocol**
-    
-Протоколы обозначаются символьными константами с префиксом **IPPROTO_*** (например, **IPPROTO_TCP** или **IPPROTO_UDP**). Допускается значение protocol=0 (протокол не указан), в этом случае используется значение по умолчанию для данного вида соединений.
+    - **SOCK_STREAM** - надёжная потокоориентированная служба (сервис) или потоковый сокет.
+    - **SOCK_DGRAM** - служба датаграмм или датаграммный сокет.
+    - **SOCK_RAW** - Сырой сокет — сырой протокол поверх сетевого уровня. Позволяющий собирать `TCP/IP`-пакеты, контролируя каждый бит заголовка и отправляя в сеть нестандартные пакеты.
+3. **protocol** - определяет используемый транспортный протокол. Самые распространённые — это `IPPROTO_TCP`, `IPPROTO_SCTP`, `IPPROTO_UDP`, `IPPROTO_DCCP`. Эти протоколы указаны в `<netinet/in.h>`. Значение «0» может быть использовано для выбора протокола по умолчанию из указанного семейства (domain) и типа (type).
+
+**Функция возвращает** `−1` в случае ошибки. Иначе, она возвращает целое число, представляющее присвоенный дескриптор.
+
+
+```
+╔═══════════╦══════════════════════════╗
+║           ║       Socket Type        ║
+║ Address   ╟────────────┬─────────────╢
+║ Family    ║ SOCK_DGRAM │ SOCK_STREAM ║ 
+╠═══════════╬════════════╪═════════════╣
+║ IPX/SPX   ║ SPX        │ IPX         ║
+║ NetBIOS   ║ NetBIOS    │ n/a         ║
+║ IPv4      ║ UDP        │ TCP         ║
+║ AppleTalk ║ DDP        │ ADSP        ║
+║ IPv6      ║ UDP        │ TCP         ║
+║ IrDA      ║ IrLMP      │ IrTTP       ║
+║ Bluetooth ║ ?          │ RFCOMM      ║
+╚═══════════╩════════════╧═════════════╝
+// Source - https://stackoverflow.com/a
+// Posted by Ian Boyd, modified by community. See post 'Timeline' for change history
+// Retrieved 2025-11-27, License - CC BY-SA 4.0
+```
+
 
 **С**
 
@@ -67,11 +151,11 @@ int socket(int domain, int type, int protocol);
 ...
 
 int main(){
-        struct sockaddr_in serv_addr;
-        ...
-        ...
-        // Создаем сокет
-        sockfd = socket(AF_INET, SOCK_STREAM, 0);
+    struct sockaddr_in serv_addr;
+    ...
+    ...
+    // Создаем файловый дескриптор
+    sockfd = socket(AF_INET, SOCK_STREAM, 0);
     // Указываем тип сокета Интернет
     bzero((char *) &serv_addr, sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
@@ -203,8 +287,8 @@ sock_obj.connect(server_address)
 #include <sys/types.h>
 #include <sys/socket.h>
 
-ssize_t send(int s, const void *buf, size_t len, int flags);
-ssize_t sendto(int  s, const void *buf, size_t len, int flags, const struct sockaddr *to, socklen_t tolen);
+size_t send(int s, const void *buf, size_t len, int flags);
+size_t sendto(int  s, const void *buf, size_t len, int flags, const struct sockaddr *to, socklen_t tolen);
 ```
 
 **Python**
@@ -217,7 +301,7 @@ sock_obj.send('Hello World!')
 sock_obj.sendto('Hello World!', (IP, PORT))
 ```
 
-### resv()
+### recv()
 
 **recv**, **recvfrom** - чтение данных из сокета.
 
@@ -227,8 +311,8 @@ sock_obj.sendto('Hello World!', (IP, PORT))
 #include <sys/types.h>
 #include <sys/socket.h>
 
-ssize_t recv(int s, void *buf, size_t len, int flags);
-ssize_t recvfrom(int s, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);
+size_t recv(int s, void *buf, size_t len, int flags);
+size_t recvfrom(int s, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);
 ```
 
 **Python**
@@ -240,7 +324,7 @@ data = conn.recv(BUFFER_SIZE)
 data, sender_addr = conn.recvfrom(BUFFER_SIZE)
 ```
 
-## **SOCK_STREAM vs SOCK_DGRAM**
+<!-- ## **SOCK_STREAM vs SOCK_DGRAM**
 
 | Потоковый (SOCK_STREAM) | Датаграммный(SOCK_DGRAM) |
 | --- | --- |
@@ -249,8 +333,9 @@ data, sender_addr = conn.recvfrom(BUFFER_SIZE)
 | Гарантирует порядок доставки пакетов | Нет в случае UDP |
 | Гарантирует целостность пакетов | Тоже |
 | Разбивает сообщение на пакеты | Нет |
-| Контролирует поток данных | Нет |
+| Контролирует поток данных | Нет | -->
 
+## Примеры 
 ### Клиент-серверная программа (Python)
 
 **TCP- Server**
