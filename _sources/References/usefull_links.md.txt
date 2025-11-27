@@ -48,5 +48,12 @@
 ## Sphinx
 ------------------
 
-1. Установка и работа с [Shinx документацией](https://www.sphinx-doc.org/en/master/tutorial/deploying.html#id5).
+1. Установка и работа с [Shinx документацией](https://www.sphinx-doc.org/en/master/tutorial/deploying.html#id5);
+2. Jupyter-notebook в вашем github.io [Myst-bn](https://myst-nb.readthedocs.io/en/v0.9.1/examples/interactive.html);
+
+
+## SDR
+
+1. Youtube№1 - https://www.youtube.com/watch?v=h_7d-m1ehoY
+2. 
 

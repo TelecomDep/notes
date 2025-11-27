@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Работа c сокетами (Sockets). &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Работа c сокетами Беркли (Sockets). &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -74,22 +74,28 @@
 <li class="toctree-l2"><a class="reference internal" href="../location.html">Получение данных о местоположении смартфона (Location)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../gps.html">GPS distance calculation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Работа c сокетами (Sockets).</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Основные функции сокетов</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Работа c сокетами Беркли (Sockets).</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Заголовочные файлы</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Структуры</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#sockaddr-in">sockaddr_in</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#in-addr">in_addr</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Основные функции сокетов</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#socket">socket()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bind">bind()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#listen">listen()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#accept">accept()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#connect">connect()</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Передача\прием данных</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Передача\прием данных</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#send">send()</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#resv">resv()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#recv">recv()</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#sock-stream-vs-sock-dgram"><strong>SOCK_STREAM vs SOCK_DGRAM</strong></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Примеры</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#python">Клиент-серверная программа (Python)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Клиент-серверная программа на СИ</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Список литературы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">Клиент-серверная программа на СИ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Список литературы</a></li>
 </ul>
 </li>
 </ul>
@@ -126,7 +132,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../android.html">Android</a></li>
-      <li class="breadcrumb-item active">Работа c сокетами (Sockets).</li>
+      <li class="breadcrumb-item active">Работа c сокетами Беркли (Sockets).</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/Android/sockets/06_sockets_zmq.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -137,7 +143,7 @@
            <div itemprop="articleBody">
              
   <section id="c-sockets">
-<h1>Работа c сокетами (Sockets).<a class="headerlink" href="#c-sockets" title="Permalink to this heading"></a></h1>
+<h1>Работа c сокетами Беркли (Sockets).<a class="headerlink" href="#c-sockets" title="Permalink to this heading"></a></h1>
 <p>Короткая выжимка из этих предыдущих лекций:</p>
 <ul class="simple">
 <li><p>У каждого компьютера в сети есть IP-адрес, даже если это просто локальная сеть.</p></li>
@@ -157,7 +163,72 @@
 </ul>
 <p><img alt="28-1920x814.webp" src="../../_images/28-1920x814.webp" /></p>
 <section id="id1">
-<h2>Основные функции сокетов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h2>Заголовочные файлы<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Программная библиотека сокетов Беркли включает в себя множество связанных заголовочных файлов.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;sys/socket.h&gt;</span></code> -  Базовые функции сокетов BSD и структуры данных.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;netinet/in.h&gt;</span></code> -  Семейства адресов/протоколов PF_INET и PF_INET6. Широко используются в сети Интернет, включают в себя IP-адреса, а также номера портов TCP и UDP.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;sys/un.h&gt;</span></code> -  Семейство адресов PF_UNIX/PF_LOCAL. Используется для локального взаимодействия между программами, запущенными на одном компьютере. В компьютерных сетях не применяется.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;arpa/inet.h&gt;</span></code> -  Функции для работы с числовыми IP-адресами.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&lt;netdb.h&gt;</span></code> -  Функции для преобразования протокольных имен и имен хостов в числовые адреса. Используются локальные данные аналогично DNS.</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>Структуры<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sockaddr</span></code> — обобщённая структура адреса, к которой, в зависимости от используемого семейства протоколов, приводится соответствующая структура, например:</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">stSockAddr</span><span class="p">;</span>
+<span class="p">...</span>
+<span class="n">bind</span><span class="p">(</span><span class="n">SocketFD</span><span class="p">,(</span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">stSockAddr</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="p">));</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">sockaddr_in</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sockaddr_in6</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_addr</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in6_addr</span></code></p></li>
+</ul>
+<section id="sockaddr-in">
+<h3>sockaddr_in<a class="headerlink" href="#sockaddr-in" title="Permalink to this heading"></a></h3>
+<p>Посмотреть можно <a class="reference external" href="https://man.archlinux.org/man/sockaddr_in.3type.en">здесь</a></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sa_family_t</span><span class="w">     </span><span class="n">sin_family</span><span class="p">;</span><span class="w">     </span><span class="cm">/* AF_INET */</span>
+<span class="w">    </span><span class="n">in_port_t</span><span class="w">       </span><span class="n">sin_port</span><span class="p">;</span><span class="w">       </span><span class="cm">/* Port number */</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">in_addr</span><span class="w">  </span><span class="n">sin_addr</span><span class="p">;</span><span class="w">       </span><span class="cm">/* IPv4 address */</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Описывает сокет для работы с протоколами <code class="docutils literal notranslate"><span class="pre">IP</span></code>. Значение поля <code class="docutils literal notranslate"><span class="pre">sin_family</span></code> всегда равно <code class="docutils literal notranslate"><span class="pre">AF_INET</span></code>. Поле <code class="docutils literal notranslate"><span class="pre">sin_port</span></code> содержит номер порта который намерен занять процесс. Поле <code class="docutils literal notranslate"><span class="pre">sin_addr</span></code> содержит IP адрес к которому будет привязан сокет.</p>
+</section>
+<section id="in-addr">
+<h3>in_addr<a class="headerlink" href="#in-addr" title="Permalink to this heading"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">in_addr</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">in_addr_t</span><span class="w"> </span><span class="n">s_addr</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+<p>Структура <code class="docutils literal notranslate"><span class="pre">in_addr</span></code> содержит поле <code class="docutils literal notranslate"><span class="pre">s_addr</span></code>. Этому полю можно присвоить <code class="docutils literal notranslate"><span class="pre">32х</span></code> битное значение <code class="docutils literal notranslate"><span class="pre">IP</span> <span class="pre">адреса</span></code>. Для перевода адреса в целое число из строкового представления можно воспользоваться функцией <code class="docutils literal notranslate"><span class="pre">inet_addr</span></code>, которой в качестве аргумента передается указатель на строку содержащую IP адрес в виде четырех десятичных чисел разделенных точками. Можно, также, воспользоваться одной из следующих констант:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">INADDR_ANY</span><span class="w"> </span><span class="c1">//все адреса локального хоста (0.0.0.0);</span>
+<span class="n">INADDR_LOOPBACK</span><span class="w"> </span><span class="c1">//адрес loopback интерфейса (127.0.0.1);</span>
+<span class="n">INADDR_BROADCAST</span><span class="w"> </span><span class="c1">//широковещательный адрес (255.255.255.255).</span>
+</pre></div>
+</div>
+<p>При присвоении значений номеру порта и адресу следует учитывать, что порядок следования байтов на разных архитектурах различен. При передаче данных по сети общепринятым является представление чисел в формате <code class="docutils literal notranslate"><span class="pre">big-endian</span></code>, в котором самый старший байт целого числа имеет наименьший адрес, а самый младший байт имеет наибольший адрес. Компьютеры построенные на архитектуре <code class="docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">x86</span></code> используют схему представления целых чисел <code class="docutils literal notranslate"><span class="pre">little-endian</span></code>, в которой наименьший адрес имеет самый младший байт, а наибольший адрес имеет самый старший байт. Для преобразования числа из той схемы которая используется на компьютере к той которая используется в сети, и наоборот, применяются функции:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">uint32_t</span><span class="w"> </span><span class="nf">htonl</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">hostlong</span><span class="p">);</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="nf">htons</span><span class="p">(</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">hostshort</span><span class="p">);</span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="nf">ntohl</span><span class="p">(</span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">netlong</span><span class="p">);</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="nf">ntohl</span><span class="p">(</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">netshort</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Наглядный пример</strong> разницы <code class="docutils literal notranslate"><span class="pre">Big-endian</span></code> и <code class="docutils literal notranslate"><span class="pre">little-endian</span></code> (прочитать: “Путешествия Гулливера”).
+<img alt="1764212655102" src="../../_images/1764212655102.png" /></p>
+</section>
+</section>
+<section id="id3">
+<h2>Основные функции сокетов<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>Подробнее можно посмотреть <a class="reference external" href="https://en.wikipedia.org/wiki/Berkeley_sockets#Protocol_and_address_families">Здесь</a>.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p><strong>Общие</strong></p></th>
@@ -217,14 +288,32 @@
 </li>
 <li><p><strong>type</strong></p>
 <ul class="simple">
-<li><p><strong>SOCK_STREAM</strong> (надёжная потокоориентированная служба (сервис) или потоковый сокет)</p></li>
-<li><p><strong>SOCK_DGRAM</strong> (служба датаграмм или датаграммный сокет)</p></li>
-<li><p><strong>SOCK_RAW</strong> (Сырой сокет — сырой протокол поверх сетевого уровня).</p></li>
+<li><p><strong>SOCK_STREAM</strong> - надёжная потокоориентированная служба (сервис) или потоковый сокет.</p></li>
+<li><p><strong>SOCK_DGRAM</strong> - служба датаграмм или датаграммный сокет.</p></li>
+<li><p><strong>SOCK_RAW</strong> - Сырой сокет — сырой протокол поверх сетевого уровня. Позволяющий собирать <code class="docutils literal notranslate"><span class="pre">TCP/IP</span></code>-пакеты, контролируя каждый бит заголовка и отправляя в сеть нестандартные пакеты.</p></li>
 </ul>
 </li>
-<li><p><strong>protocol</strong></p></li>
+<li><p><strong>protocol</strong> - определяет используемый транспортный протокол. Самые распространённые — это <code class="docutils literal notranslate"><span class="pre">IPPROTO_TCP</span></code>, <code class="docutils literal notranslate"><span class="pre">IPPROTO_SCTP</span></code>, <code class="docutils literal notranslate"><span class="pre">IPPROTO_UDP</span></code>, <code class="docutils literal notranslate"><span class="pre">IPPROTO_DCCP</span></code>. Эти протоколы указаны в <code class="docutils literal notranslate"><span class="pre">&lt;netinet/in.h&gt;</span></code>. Значение «0» может быть использовано для выбора протокола по умолчанию из указанного семейства (domain) и типа (type).</p></li>
 </ol>
-<p>Протоколы обозначаются символьными константами с префиксом <strong>IPPROTO_</strong>* (например, <strong>IPPROTO_TCP</strong> или <strong>IPPROTO_UDP</strong>). Допускается значение protocol=0 (протокол не указан), в этом случае используется значение по умолчанию для данного вида соединений.</p>
+<p><strong>Функция возвращает</strong> <code class="docutils literal notranslate"><span class="pre">−1</span></code> в случае ошибки. Иначе, она возвращает целое число, представляющее присвоенный дескриптор.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>╔═══════════╦══════════════════════════╗
+║           ║       Socket Type        ║
+║ Address   ╟────────────┬─────────────╢
+║ Family    ║ SOCK_DGRAM │ SOCK_STREAM ║ 
+╠═══════════╬════════════╪═════════════╣
+║ IPX/SPX   ║ SPX        │ IPX         ║
+║ NetBIOS   ║ NetBIOS    │ n/a         ║
+║ IPv4      ║ UDP        │ TCP         ║
+║ AppleTalk ║ DDP        │ ADSP        ║
+║ IPv6      ║ UDP        │ TCP         ║
+║ IrDA      ║ IrLMP      │ IrTTP       ║
+║ Bluetooth ║ ?          │ RFCOMM      ║
+╚═══════════╩════════════╧═════════════╝
+// Source - https://stackoverflow.com/a
+// Posted by Ian Boyd, modified by community. See post &#39;Timeline&#39; for change history
+// Retrieved 2025-11-27, License - CC BY-SA 4.0
+</pre></div>
+</div>
 <p><strong>С</strong></p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span>
@@ -234,11 +323,11 @@
 <span class="p">...</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="n">main</span><span class="p">(){</span>
-<span class="w">        </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">serv_addr</span><span class="p">;</span>
-<span class="w">        </span><span class="p">...</span>
-<span class="w">        </span><span class="p">...</span>
-<span class="w">        </span><span class="c1">// Создаем сокет</span>
-<span class="w">        </span><span class="n">sockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr_in</span><span class="w"> </span><span class="n">serv_addr</span><span class="p">;</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="c1">// Создаем файловый дескриптор</span>
+<span class="w">    </span><span class="n">sockfd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">socket</span><span class="p">(</span><span class="n">AF_INET</span><span class="p">,</span><span class="w"> </span><span class="n">SOCK_STREAM</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 <span class="w">    </span><span class="c1">// Указываем тип сокета Интернет</span>
 <span class="w">    </span><span class="n">bzero</span><span class="p">((</span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">serv_addr</span><span class="p">));</span>
 <span class="w">    </span><span class="n">serv_addr</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span>
@@ -331,8 +420,8 @@ sock_obj.connect(server_address)
 </pre></div>
 </div>
 </section>
-<section id="id2">
-<h3>Передача\прием данных<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id4">
+<h3>Передача\прием данных<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>Для передачи данных можно пользоваться стандартными функциями <strong>чтения/записи</strong> файлов <strong>read</strong> и <strong>write</strong>, но есть специальные функции для передачи данных через сокеты:</p>
 <ul class="simple">
 <li><p>send</p></li>
@@ -351,8 +440,8 @@ sock_obj.connect(server_address)
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span>
 
-<span class="kt">ssize_t</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">);</span>
-<span class="kt">ssize_t</span><span class="w"> </span><span class="nf">sendto</span><span class="p">(</span><span class="kt">int</span><span class="w">  </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">tolen</span><span class="p">);</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">send</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">);</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">sendto</span><span class="p">(</span><span class="kt">int</span><span class="w">  </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">tolen</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>Python</strong></p>
@@ -364,15 +453,15 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 </pre></div>
 </div>
 </section>
-<section id="resv">
-<h3>resv()<a class="headerlink" href="#resv" title="Permalink to this heading"></a></h3>
+<section id="recv">
+<h3>recv()<a class="headerlink" href="#recv" title="Permalink to this heading"></a></h3>
 <p><strong>recv</strong>, <strong>recvfrom</strong> - чтение данных из сокета.</p>
 <p><strong>C</strong></p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span>
 
-<span class="kt">ssize_t</span><span class="w"> </span><span class="nf">recv</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">);</span>
-<span class="kt">ssize_t</span><span class="w"> </span><span class="nf">recvfrom</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="o">*</span><span class="n">fromlen</span><span class="p">);</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">recv</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">);</span>
+<span class="kt">size_t</span><span class="w"> </span><span class="nf">recvfrom</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="o">*</span><span class="n">fromlen</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>Python</strong></p>
@@ -382,37 +471,20 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 <span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">sender_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="n">BUFFER_SIZE</span><span class="p">)</span>
 </pre></div>
 </div>
+<!-- ## **SOCK_STREAM vs SOCK_DGRAM**
+
+| Потоковый (SOCK_STREAM) | Датаграммный(SOCK_DGRAM) |
+| --- | --- |
+| Устанавливает соединение | Нет |
+| Гарантирует доставку данных | Нет в случае UDP |
+| Гарантирует порядок доставки пакетов | Нет в случае UDP |
+| Гарантирует целостность пакетов | Тоже |
+| Разбивает сообщение на пакеты | Нет |
+| Контролирует поток данных | Нет | -->
 </section>
 </section>
-<section id="sock-stream-vs-sock-dgram">
-<h2><strong>SOCK_STREAM vs SOCK_DGRAM</strong><a class="headerlink" href="#sock-stream-vs-sock-dgram" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Потоковый (SOCK_STREAM)</p></th>
-<th class="head"><p>Датаграммный(SOCK_DGRAM)</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Устанавливает соединение</p></td>
-<td><p>Нет</p></td>
-</tr>
-<tr class="row-odd"><td><p>Гарантирует доставку данных</p></td>
-<td><p>Нет в случае UDP</p></td>
-</tr>
-<tr class="row-even"><td><p>Гарантирует порядок доставки пакетов</p></td>
-<td><p>Нет в случае UDP</p></td>
-</tr>
-<tr class="row-odd"><td><p>Гарантирует целостность пакетов</p></td>
-<td><p>Тоже</p></td>
-</tr>
-<tr class="row-even"><td><p>Разбивает сообщение на пакеты</p></td>
-<td><p>Нет</p></td>
-</tr>
-<tr class="row-odd"><td><p>Контролирует поток данных</p></td>
-<td><p>Нет</p></td>
-</tr>
-</tbody>
-</table>
+<section id="id5">
+<h2>Примеры<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <section id="python">
 <h3>Клиент-серверная программа (Python)<a class="headerlink" href="#python" title="Permalink to this heading"></a></h3>
 <p><strong>TCP- Server</strong></p>
@@ -491,8 +563,8 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 </pre></div>
 </div>
 </section>
-<section id="id3">
-<h3>Клиент-серверная программа на СИ<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<section id="id6">
+<h3>Клиент-серверная программа на СИ<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
 <p><strong>Сервер</strong></p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
@@ -622,8 +694,8 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h3>Список литературы<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id7">
+<h3>Список литературы<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Linux manual - page address_families(7) (</strong><a class="reference external" href="https://man7.org/linux/man-pages/man7/address_families.7.html">https://man7.org/linux/man-pages/man7/address_families.7.html</a><strong>)</strong></p></li>
 <li></li>
