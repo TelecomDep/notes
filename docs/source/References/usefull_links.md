@@ -45,7 +45,7 @@
 
 1. [Readme.md](https://dillinger.io/) - приятное оформление README.md. Достаточно для (практически) любого репозитория.
 
-## Sphinx
+## Sphinxфф
 ------------------
 
 1. Установка и работа с [Shinx документацией](https://www.sphinx-doc.org/en/master/tutorial/deploying.html#id5);
