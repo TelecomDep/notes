@@ -83,19 +83,20 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Основные функции сокетов</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#socket">socket()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Файловый дескриптор</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#bind">bind()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#listen">listen()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#accept">accept()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#connect">connect()</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Передача\прием данных</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">Передача\прием данных</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#send">send()</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#recv">recv()</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Примеры</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Примеры</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#python">Клиент-серверная программа (Python)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id6">Клиент-серверная программа на СИ</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">Список литературы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Клиент-серверная программа на СИ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id8">Список литературы</a></li>
 </ul>
 </li>
 </ul>
@@ -346,6 +347,39 @@
 </pre></div>
 </div>
 </section>
+<section id="id4">
+<h3>Файловый дескриптор<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>Запустив программу с инициализацией сокета (возвращаемое значение - идентификатор файлового дескриптора) можно наблюдать появление нового файлового дескриптора для данного сокета.</p>
+<p><img alt="1764298032089" src="../../_images/1764298032089.png" />
+В данном случае скомпилированный бинарный файл имеет название <code class="docutils literal notranslate"><span class="pre">my_server</span></code>.
+Найти местоположение файловых дескрипторов для программы можно двумя командами:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>my_server<span class="w"> </span><span class="c1"># можно увидеть номер процесса вашей программы &lt;my_server&gt;</span>
+ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span class="w"> </span>процесса&gt;/fd/
+</pre></div>
+</div>
+<p>В директории <code class="docutils literal notranslate"><span class="pre">/proc</span></code> содержатся виртуальные файлы. Эти файлы перечислены в списке, но не существуют на диске, операционная система создает их “на лету”, когда вы пытаетесь прочитать их.
+Что внутри процесса?
+Директории с <strong>номерными именами</strong> представляют все текущие процессы. Когда процесс заканчивается, его субдиректория в директории <code class="docutils literal notranslate"><span class="pre">/proc</span></code> автоматически исчезает. Если вы откроете эти директории, пока они еще существуют, внутри вы обнаружите множество файлов, таких как:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">attr</span>             <span class="n">cpuset</span>   <span class="n">fdinfo</span>    <span class="n">mountstats</span>  <span class="n">stat</span>
+<span class="n">auxv</span>             <span class="n">cwd</span>      <span class="n">loginuid</span>  <span class="n">oom_adj</span>     <span class="n">statm</span>
+<span class="n">clear_refs</span>       <span class="n">environ</span>  <span class="n">maps</span>      <span class="n">oom_score</span>   <span class="n">status</span>
+<span class="n">cmdline</span>          <span class="n">exe</span>      <span class="n">mem</span>       <span class="n">root</span>        <span class="n">task</span>
+<span class="n">coredump_filter</span>  <span class="n">fd</span>       <span class="n">mounts</span>    <span class="n">smaps</span>       <span class="n">wchan</span>
+</pre></div>
+</div>
+<p>Наиболее важные файлы:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmdline</span></code>: Содержит команду, запустившую процесс, со всеми своими параметрами.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cwd</span></code>: Содержит симлинк на текущую работающую директорию (current working directory - CWD), ссылку на исполняемый файл процесса, и ссылку на его корневую директорию.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">environ</span></code>: Содержит все переменные среды окружения для данного процесса.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fd</span></code>: Содержит все файловые дескрипторы для данного процесса, показывая, какие файлы или устройства процесс задействует.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maps</span></code>, <code class="docutils literal notranslate"><span class="pre">statm</span></code>, and <code class="docutils literal notranslate"><span class="pre">mem</span></code>: Относятся к памяти задействованной в процессе.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stat</span></code> and <code class="docutils literal notranslate"><span class="pre">status</span></code>: Содержит информацию о статусе процесса.</p></li>
+</ul>
+<p><strong>Пример</strong>. Попробуем следующий эксперимент:
+<img alt="1764299555123" src="../../_images/1764299555123.png" /></p>
+<p>Что такое /dev/pts?</p>
+</section>
 <section id="bind">
 <h3>bind()<a class="headerlink" href="#bind" title="Permalink to this heading"></a></h3>
 <p>Связывает сокет с конкретным адресом. Когда сокет создается при помощи <code class="docutils literal notranslate"><span class="pre">socket()</span></code>, он ассоциируется с некоторым семейством адресов, но не с конкретным адресом. До того как сокет сможет принять входящие соединения, он должен быть связан с адресом. <code class="docutils literal notranslate"><span class="pre">bind()</span></code> принимает три аргумента:</p>
@@ -420,8 +454,8 @@ sock_obj.connect(server_address)
 </pre></div>
 </div>
 </section>
-<section id="id4">
-<h3>Передача\прием данных<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id5">
+<h3>Передача\прием данных<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
 <p>Для передачи данных можно пользоваться стандартными функциями <strong>чтения/записи</strong> файлов <strong>read</strong> и <strong>write</strong>, но есть специальные функции для передачи данных через сокеты:</p>
 <ul class="simple">
 <li><p>send</p></li>
@@ -483,8 +517,8 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 | Контролирует поток данных | Нет | -->
 </section>
 </section>
-<section id="id5">
-<h2>Примеры<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<section id="id6">
+<h2>Примеры<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 <section id="python">
 <h3>Клиент-серверная программа (Python)<a class="headerlink" href="#python" title="Permalink to this heading"></a></h3>
 <p><strong>TCP- Server</strong></p>
@@ -563,8 +597,8 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 </pre></div>
 </div>
 </section>
-<section id="id6">
-<h3>Клиент-серверная программа на СИ<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<section id="id7">
+<h3>Клиент-серверная программа на СИ<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <p><strong>Сервер</strong></p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;netinet/in.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
@@ -693,8 +727,8 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 </pre></div>
 </div>
 </section>
-<section id="id7">
-<h3>Список литературы<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<section id="id8">
+<h3>Список литературы<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p><strong>Linux manual - page address_families(7) (</strong><a class="reference external" href="https://man7.org/linux/man-pages/man7/address_families.7.html">https://man7.org/linux/man-pages/man7/address_families.7.html</a><strong>)</strong></p></li>
 <li></li>
