@@ -349,16 +349,29 @@
 </section>
 <section id="id4">
 <h3>Файловый дескриптор<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
-<p>Запустив программу с инициализацией сокета (возвращаемое значение - идентификатор файлового дескриптора) можно наблюдать появление нового файлового дескриптора для данного сокета.</p>
-<p><img alt="1764298032089" src="../../_images/1764298032089.png" />
-В данном случае скомпилированный бинарный файл имеет название <code class="docutils literal notranslate"><span class="pre">my_server</span></code>.
-Найти местоположение файловых дескрипторов для программы можно двумя командами:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>my_server<span class="w"> </span><span class="c1"># можно увидеть номер процесса вашей программы &lt;my_server&gt;</span>
-ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span class="w"> </span>процесса&gt;/fd/
-</pre></div>
-</div>
-<p>В директории <code class="docutils literal notranslate"><span class="pre">/proc</span></code> содержатся виртуальные файлы. Эти файлы перечислены в списке, но не существуют на диске, операционная система создает их “на лету”, когда вы пытаетесь прочитать их.
-Что внутри процесса?
+<p>В Linux библиотека libc открывает для каждого запущенного приложения(процесса) 3 файл дескриптора, с номерами 0,1,2. Больше информации вы можете найти  <a class="reference external" href="https://man7.org/linux/man-pages/man3/stdio.3.html">man stdio</a> и <a class="reference external" href="https://man7.org/linux/man-pages/man3/stdout.3.html">man stdout</a></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Файл</span> <span class="pre">дескриптор</span> <span class="pre">0</span></code> называется <code class="docutils literal notranslate"><span class="pre">STDIN</span></code> и ассоциируется с вводом данных у приложения</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Файл</span> <span class="pre">дескриптор</span> <span class="pre">1</span></code> называется <code class="docutils literal notranslate"><span class="pre">STDOUT</span></code> и используется приложениями для вывода данных, например командами print</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Файл</span> <span class="pre">дескриптор</span> <span class="pre">2</span></code> называется <code class="docutils literal notranslate"><span class="pre">STDERR</span></code> и используется приложениями для вывода данных, сообщающих об ошибке</p></li>
+</ul>
+<p><strong>Файловые дескрипторы процесса</strong>
+Каждый процесс в <code class="docutils literal notranslate"><span class="pre">Unix/Linux</span></code> имеет таблицу файловых дескрипторов, представляющую собой структуру, похожую на массив, в которой хранятся ссылки на <strong>файлы</strong> (файлы, сокеты и т. д.), открытые процессом. Эта таблица является <strong>локальной</strong> для процесса.</p>
+<p><strong>System File Table</strong>
+Системная таблица файлов — это структура данных ядра, которая содержит метаданные <strong>обо всех</strong> открытых файлах, включая информацию об их местоположении, режиме доступа, текущей позиции и т. д. Каждая запись в таблице файлов соответствует файловому дескриптору, предоставляя общую информацию для нескольких процессов.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Offset</span></code>: Current read/write position in the file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Access</span> <span class="pre">Mode</span></code>: Read, write, or read-write mode (e.g., O_RDONLY, O_WRONLY).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pointer</span> <span class="pre">to</span> <span class="pre">Inode</span></code>: Links the file table entry to the inode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Reference</span> <span class="pre">Count</span></code>: Tracks how many file descriptors or processes share this entry.</p></li>
+</ul>
+<p><strong>System Inode Table</strong>
+<code class="docutils literal notranslate"><span class="pre">inode</span></code> — это структура данных, которая содержит метаданные о файле, такие как его размер, разрешения, владелец, временные метки и указатели на блоки данных на диске.</p>
+<p><strong>Связь между Process FD table &lt;–&gt; System Table &lt;–&gt; Inode Table</strong>
+<img alt="1764302196682" src="Android/sockets/image/06_sockets_zmq/1764302196682.png" /></p>
+<p><strong>/proc</strong>
+В директории <code class="docutils literal notranslate"><span class="pre">/proc</span></code> содержатся виртуальные файлы. Эти файлы перечислены в списке, но не существуют на диске, операционная система создает их “на лету”, когда вы пытаетесь прочитать их.</p>
+<p><strong>Что внутри процесса?</strong>
 Директории с <strong>номерными именами</strong> представляют все текущие процессы. Когда процесс заканчивается, его субдиректория в директории <code class="docutils literal notranslate"><span class="pre">/proc</span></code> автоматически исчезает. Если вы откроете эти директории, пока они еще существуют, внутри вы обнаружите множество файлов, таких как:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">attr</span>             <span class="n">cpuset</span>   <span class="n">fdinfo</span>    <span class="n">mountstats</span>  <span class="n">stat</span>
 <span class="n">auxv</span>             <span class="n">cwd</span>      <span class="n">loginuid</span>  <span class="n">oom_adj</span>     <span class="n">statm</span>
@@ -376,9 +389,18 @@ ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span cl
 <li><p><code class="docutils literal notranslate"><span class="pre">maps</span></code>, <code class="docutils literal notranslate"><span class="pre">statm</span></code>, and <code class="docutils literal notranslate"><span class="pre">mem</span></code>: Относятся к памяти задействованной в процессе.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stat</span></code> and <code class="docutils literal notranslate"><span class="pre">status</span></code>: Содержит информацию о статусе процесса.</p></li>
 </ul>
-<p><strong>Пример</strong>. Попробуем следующий эксперимент:
+<p><strong>Пример</strong>
+Запустив программу с инициализацией сокета (возвращаемое значение - идентификатор файлового дескриптора) можно наблюдать появление нового файлового дескриптора для данного сокета.</p>
+<p><img alt="1764298032089" src="../../_images/1764298032089.png" />
+В данном случае скомпилированный бинарный файл имеет название <code class="docutils literal notranslate"><span class="pre">my_server</span></code>.
+Найти местоположение файловых дескрипторов для программы можно двумя командами:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>my_server<span class="w"> </span><span class="c1"># можно увидеть номер процесса вашей программы &lt;my_server&gt;</span>
+ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span class="w"> </span>процесса&gt;/fd/
+</pre></div>
+</div>
+<p>Попробуем следующий эксперимент:
 <img alt="1764299555123" src="../../_images/1764299555123.png" /></p>
-<p>Что такое /dev/pts?</p>
+<p>Что такое /dev/<a class="reference external" href="https://man7.org/linux/man-pages/man4/pts.4.html">pts</a>?</p>
 </section>
 <section id="bind">
 <h3>bind()<a class="headerlink" href="#bind" title="Permalink to this heading"></a></h3>
@@ -391,8 +413,14 @@ ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span cl
 <p><strong>С</strong></p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span>
+<span class="cp">#DEFINE PORT 55555</span>
 
-<span class="kt">int</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">my_addr</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">addrlen</span><span class="p">);</span>
+<span class="p">...</span>
+<span class="p">...</span>
+<span class="n">address</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span>
+<span class="n">address</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INADDR_ANY</span><span class="p">;</span>
+<span class="n">address</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">addrlen</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>Python</strong></p>
@@ -730,8 +758,11 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 <section id="id8">
 <h3>Список литературы<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
-<li><p><strong>Linux manual - page address_families(7) (</strong><a class="reference external" href="https://man7.org/linux/man-pages/man7/address_families.7.html">https://man7.org/linux/man-pages/man7/address_families.7.html</a><strong>)</strong></p></li>
-<li></li>
+<li><p><a class="reference external" href="https://man7.org/linux/man-pages/man7/address_families.7.html">Linux manual - page address_families(7)</a>;</p></li>
+</ol>
+<p>2.<a class="reference external" href="https://habr.com/ru/articles/471038/">Файл дескриптор в Linux с примерами файлов</a>;</p>
+<ol class="arabic simple" start="3">
+<li><p><a class="reference external" href="https://medium.com/&#64;tharinduimalka915/linux-file-descriptors-ec945fd36893">Medium - File Desctiptor info</a></p></li>
 </ol>
 </section>
 </section>

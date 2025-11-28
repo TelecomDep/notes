@@ -176,17 +176,33 @@ sock_obj = socket.socket()
 
 ### Файловый дескриптор
 
-Запустив программу с инициализацией сокета (возвращаемое значение - идентификатор файлового дескриптора) можно наблюдать появление нового файлового дескриптора для данного сокета.
+В Linux библиотека libc открывает для каждого запущенного приложения(процесса) 3 файл дескриптора, с номерами 0,1,2. Больше информации вы можете найти  [man stdio](https://man7.org/linux/man-pages/man3/stdio.3.html) и [man stdout](https://man7.org/linux/man-pages/man3/stdout.3.html)
 
-![1764298032089](image/06_sockets_zmq/1764298032089.png)
-В данном случае скомпилированный бинарный файл имеет название `my_server`.
-Найти местоположение файловых дескрипторов для программы можно двумя командами:
-```bash
-ps aux | grep -i my_server # можно увидеть номер процесса вашей программы <my_server>
-ls -l /proc/<номер процесса>/fd/
-```
+- `Файл дескриптор 0` называется `STDIN` и ассоциируется с вводом данных у приложения
+- `Файл дескриптор 1` называется `STDOUT` и используется приложениями для вывода данных, например командами print
+- `Файл дескриптор 2` называется `STDERR` и используется приложениями для вывода данных, сообщающих об ошибке
+
+**Файловые дескрипторы процесса**
+Каждый процесс в `Unix/Linux` имеет таблицу файловых дескрипторов, представляющую собой структуру, похожую на массив, в которой хранятся ссылки на **файлы** (файлы, сокеты и т. д.), открытые процессом. Эта таблица является **локальной** для процесса.
+
+
+**System File Table**
+Системная таблица файлов — это структура данных ядра, которая содержит метаданные **обо всех** открытых файлах, включая информацию об их местоположении, режиме доступа, текущей позиции и т. д. Каждая запись в таблице файлов соответствует файловому дескриптору, предоставляя общую информацию для нескольких процессов.
+- `File Offset`: Current read/write position in the file.
+- `Access Mode`: Read, write, or read-write mode (e.g., O_RDONLY, O_WRONLY).
+- `Pointer to Inode`: Links the file table entry to the inode.
+- `Reference Count`: Tracks how many file descriptors or processes share this entry.
+
+**System Inode Table**
+`inode` — это структура данных, которая содержит метаданные о файле, такие как его размер, разрешения, владелец, временные метки и указатели на блоки данных на диске.
+
+**Связь между Process FD table <--> System Table <--> Inode Table**
+![1764302196682](image/06_sockets_zmq/1764302196682.png)
+
+**/proc**
 В директории `/proc` содержатся виртуальные файлы. Эти файлы перечислены в списке, но не существуют на диске, операционная система создает их "на лету", когда вы пытаетесь прочитать их.
-Что внутри процесса?
+
+**Что внутри процесса?**
 Директории с **номерными именами** представляют все текущие процессы. Когда процесс заканчивается, его субдиректория в директории `/proc` автоматически исчезает. Если вы откроете эти директории, пока они еще существуют, внутри вы обнаружите множество файлов, таких как:
 ```
 attr             cpuset   fdinfo    mountstats  stat
@@ -204,10 +220,22 @@ coredump_filter  fd       mounts    smaps       wchan
 - `maps`, `statm`, and `mem`: Относятся к памяти задействованной в процессе.
 - `stat` and `status`: Содержит информацию о статусе процесса.
 
-**Пример**. Попробуем следующий эксперимент:
+
+**Пример**
+Запустив программу с инициализацией сокета (возвращаемое значение - идентификатор файлового дескриптора) можно наблюдать появление нового файлового дескриптора для данного сокета.
+
+![1764298032089](image/06_sockets_zmq/1764298032089.png)
+В данном случае скомпилированный бинарный файл имеет название `my_server`.
+Найти местоположение файловых дескрипторов для программы можно двумя командами:
+```bash
+ps aux | grep -i my_server # можно увидеть номер процесса вашей программы <my_server>
+ls -l /proc/<номер процесса>/fd/
+```
+
+Попробуем следующий эксперимент:
 ![1764299555123](image/06_sockets_zmq/1764299555123.png)
 
-Что такое /dev/pts?
+Что такое /dev/[pts](https://man7.org/linux/man-pages/man4/pts.4.html)?
 
 ### bind()
 
@@ -222,8 +250,14 @@ coredump_filter  fd       mounts    smaps       wchan
 ```c
 #include <sys/types.h>
 #include <sys/socket.h>
+#DEFINE PORT 55555
 
-int bind(int sockfd, const struct sockaddr *my_addr, socklen_t addrlen);
+...
+...
+address.sin_family = AF_INET;
+address.sin_addr.s_addr = INADDR_ANY;
+address.sin_port = htons(PORT);
+int bind(int sockfd, (struct sockaddr*)&address, socklen_t addrlen);
 ```
 
 **Python**
@@ -589,5 +623,8 @@ gcc client.c -o clientgcc server.c -o server
 
 ### Список литературы
 
-1. **Linux manual - page address_families(7) (**[https://man7.org/linux/man-pages/man7/address_families.7.html](https://man7.org/linux/man-pages/man7/address_families.7.html)**)**
-2.
+1. [Linux manual - page address_families(7)](https://man7.org/linux/man-pages/man7/address_families.7.html);
+
+2.[Файл дескриптор в Linux с примерами файлов](https://habr.com/ru/articles/471038/);
+
+3. [Medium - File Desctiptor info](https://medium.com/@tharinduimalka915/linux-file-descriptors-ec945fd36893)
