@@ -628,3 +628,5 @@ gcc client.c -o clientgcc server.c -o server
 2.[Файл дескриптор в Linux с примерами файлов](https://habr.com/ru/articles/471038/);
 
 3. [Medium - File Desctiptor info](https://medium.com/@tharinduimalka915/linux-file-descriptors-ec945fd36893)
+
+4. [Linux File Descriptors [In-Depth Tutorial]](https://www.golinuxcloud.com/linux-file-descriptors/)
