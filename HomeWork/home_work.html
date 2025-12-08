@@ -306,6 +306,12 @@
 <span class="mf">4.</span> <span class="n">Supp</span> <span class="o">-</span> <span class="n">вспомогательные</span> <span class="n">фукнции</span><span class="p">,</span> <span class="n">например</span><span class="p">,</span> <span class="n">чтение</span> <span class="n">из</span> <span class="n">файла</span><span class="p">,</span> <span class="n">запись</span> <span class="n">в</span> <span class="n">файл</span> <span class="n">и</span> <span class="n">т</span><span class="o">.</span><span class="n">д</span><span class="o">.</span>
 </pre></div>
 </div>
+<p><strong>Вопросы к защите</strong></p>
+<ol class="arabic simple">
+<li><p>Что такое <code class="docutils literal notranslate"><span class="pre">Latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">Longitude</span></code>, <code class="docutils literal notranslate"><span class="pre">Altitude</span></code>? В чем измеряется? Если ли ограничение значений? Если да, от чего зависит?</p></li>
+<li><p>Что такое <code class="docutils literal notranslate"><span class="pre">Unix</span> <span class="pre">Epoch</span> <span class="pre">Time</span></code>?</p></li>
+<li><p>Как считается время в мобильных телефонах? Есть ли разница с вычислением времени на спутниках? Какая точность измерений?</p></li>
+</ol>
 </section>
 <section id="g-3g-4g-lte-5g-nr">
 <h3>7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)<a class="headerlink" href="#g-3g-4g-lte-5g-nr" title="Permalink to this heading"></a></h3>
@@ -348,6 +354,15 @@
 <li><p>Добавить еще один файл в <code class="docutils literal notranslate"><span class="pre">examples/</span></code>: <code class="docutils literal notranslate"><span class="pre">client.c</span></code> или <code class="docutils literal notranslate"><span class="pre">server.c</span></code>;</p></li>
 <li><p>Реализовать соединение и передачу данных между примером на языке <code class="docutils literal notranslate"><span class="pre">Python</span></code> и примером на языке <code class="docutils literal notranslate"><span class="pre">СИ</span></code>;</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> &amp;&amp; <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span></code>.</p></li>
+</ol>
+<p><strong>Вопросы к защите</strong></p>
+<ol class="arabic simple">
+<li><p>Что такое сокет (с точки зрения операционной системы)?</p></li>
+<li><p>Из чего состоит сокет (в сетевой части)?</p></li>
+<li><p>Для чего нужны функции <code class="docutils literal notranslate"><span class="pre">accept()</span></code>, <code class="docutils literal notranslate"><span class="pre">listen()</span></code>, <code class="docutils literal notranslate"><span class="pre">bind()</span></code>? Что выполняет каждая функция?</p></li>
+<li><p>Что такое файловый дескриптор? Как он связан с текущим процессом? Как он связан с операционной системой?</p></li>
+<li><p>Из чего состоит информация о <strong>файлах</strong> с точки зрения операционной системы?</p></li>
+<li><p>Расскажите что происходит при установлении TCP-соединения в вашей программе (анализируя <code class="docutils literal notranslate"><span class="pre">Wireshark</span></code>)?</p></li>
 </ol>
 </section>
 <section id="zmq-android-pc">
@@ -413,6 +428,11 @@
 </li>
 <li><p>С заранее заданной периодичностью (допустим, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">секунда</span></code>) передавать, сформированную структуру <code class="docutils literal notranslate"><span class="pre">Json</span></code>, с мобильного устройства на сервер.</p></li>
 <li><p>На стороне сервера получать данные, выводить в терминал и сохранять данные в файл;</p></li>
+<li><p>Обновить <code class="docutils literal notranslate"><span class="pre">README.md</span></code>-файл (в репозитории <code class="docutils literal notranslate"><span class="pre">backend</span></code>’а) с описанием вашего проекта. Описание должно состоять из:
+6.1 Схемы архитектуры программного комплекса (клиент-серверного приложения). Начинаем с получения <code class="docutils literal notranslate"><span class="pre">Location</span></code> (6 практика), заканчиваем 10 практикой (можно нарисовать в <strong>Draw.io</strong>,<strong>MS Visio</strong>, и <strong>т.д.</strong>);
+6.2 Описания <code class="docutils literal notranslate"><span class="pre">DTO</span></code> (<code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Transfer</span> <span class="pre">Object</span></code>), которыми обмениваются сервер и клиент;
+6.2 Описания архитектуры клиента (<code class="docutils literal notranslate"><span class="pre">Android</span></code>): структура проекта (файловая система), структура с точки зрения работы потоков (<code class="docutils literal notranslate"><span class="pre">Thread</span></code>), <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>’ы соединения с сервером;
+6.3. Описания архитектуры сервера (<code class="docutils literal notranslate"><span class="pre">Python\Clang</span></code>): структура проекта (файловая система), структура с точки зрения работы потоков (<code class="docutils literal notranslate"><span class="pre">Thread</span></code>), <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>’ы сервара (все сетевые соединения).</p></li>
 </ol>
 </section>
 <section id="postgresql-backend">
