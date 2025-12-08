@@ -113,6 +113,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../React/react.html">React</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../os/os.html">Операционные системы</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../References/usefull_links.html">Полезные ссылки</a></li>
@@ -411,23 +415,16 @@ ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span cl
 <li><p><strong>addrlen</strong> — поле <code class="docutils literal notranslate"><span class="pre">socklen_t</span></code>, представляющее длину структуры <code class="docutils literal notranslate"><span class="pre">sockaddr</span></code>.</p></li>
 </ol>
 <p><strong>С</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/types.h&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span>
-<span class="cp">#DEFINE PORT 55555</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">my_addr</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">addrlen</span><span class="p">);</span>
+</pre></div>
+</div>
+<!-- **Python**
 
-<span class="p">...</span>
-<span class="p">...</span>
-<span class="n">address</span><span class="p">.</span><span class="n">sin_family</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AF_INET</span><span class="p">;</span>
-<span class="n">address</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">INADDR_ANY</span><span class="p">;</span>
-<span class="n">address</span><span class="p">.</span><span class="n">sin_port</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">htons</span><span class="p">(</span><span class="n">PORT</span><span class="p">);</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">bind</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">address</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">addrlen</span><span class="p">);</span>
-</pre></div>
-</div>
-<p><strong>Python</strong></p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">server_address</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">8080</span><span class="p">)</span>
-<span class="n">sock_obj</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">server_address</span><span class="p">)</span>  <span class="c1"># Привязка адреса и порта к сокету.</span>
-</pre></div>
-</div>
+```python
+server_address = ('localhost', 8080)
+sock_obj.bind(server_address)  # Привязка адреса и порта к сокету.
+``` -->
 </section>
 <section id="listen">
 <h3>listen()<a class="headerlink" href="#listen" title="Permalink to this heading"></a></h3>
@@ -437,14 +434,14 @@ ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span cl
 <li><p><strong>backlog</strong> — целое число, означающее число установленных соединений, которые могут быть обработаны в любой момент времени (<code class="docutils literal notranslate"><span class="pre">размер</span> <span class="pre">очереди</span></code>). Операционная система обычно ставит его равным максимальному значению.</p></li>
 </ol>
 <p><strong>C</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;sys/socket.h&gt;</span>
-<span class="kt">int</span><span class="w"> </span><span class="nf">listen</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">backlog</span><span class="p">);</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="nf">listen</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">backlog</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>Python</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>sock_obj.listen(5)  # Ждем соединение клиента.
-</pre></div>
-</div>
+<!-- **Python**
+
+```c
+sock_obj.listen(5)  # Ждем соединение клиента.
+``` -->
 </section>
 <section id="accept">
 <h3>accept()<a class="headerlink" href="#accept" title="Permalink to this heading"></a></h3>
@@ -460,10 +457,11 @@ ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span cl
 <span class="kt">int</span><span class="w"> </span><span class="nf">accept</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">cliaddr</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="o">*</span><span class="n">addrlen</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>Python</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>conn, addr = sock_obj.accept()  # Установление соединения с клиентом.
-</pre></div>
-</div>
+<!-- **Python**
+
+```c
+conn, addr = sock_obj.accept()  # Установление соединения с клиентом.
+``` -->
 </section>
 <section id="connect">
 <h3>connect()<a class="headerlink" href="#connect" title="Permalink to this heading"></a></h3>
@@ -476,11 +474,12 @@ ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span cl
 <span class="kt">int</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">sockfd</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">serv_addr</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">addrlen</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>Python</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>server_address = (&#39;192.168.1.100&#39;, 8080)
+<!-- **Python**
+
+```c
+server_address = ('192.168.1.100', 8080)
 sock_obj.connect(server_address)
-</pre></div>
-</div>
+``` -->
 </section>
 <section id="id5">
 <h3>Передача\прием данных<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
@@ -506,14 +505,15 @@ sock_obj.connect(server_address)
 <span class="kt">size_t</span><span class="w"> </span><span class="nf">sendto</span><span class="p">(</span><span class="kt">int</span><span class="w">  </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="n">tolen</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>Python</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>IP = &#39;192.168.1.100&#39;
+<!-- **Python**
+
+```c
+IP = '192.168.1.100'
 PORT = 8080
 
-sock_obj.send(&#39;Hello World!&#39;)
-sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
-</pre></div>
-</div>
+sock_obj.send('Hello World!')
+sock_obj.sendto('Hello World!', (IP, PORT))
+``` -->
 </section>
 <section id="recv">
 <h3>recv()<a class="headerlink" href="#recv" title="Permalink to this heading"></a></h3>
@@ -526,13 +526,14 @@ sock_obj.sendto(&#39;Hello World!&#39;, (IP, PORT))
 <span class="kt">size_t</span><span class="w"> </span><span class="nf">recvfrom</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">len</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">flags</span><span class="p">,</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">sockaddr</span><span class="w"> </span><span class="o">*</span><span class="n">from</span><span class="p">,</span><span class="w"> </span><span class="kt">socklen_t</span><span class="w"> </span><span class="o">*</span><span class="n">fromlen</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>Python</strong></p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">BUFFER_SIZE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1024</span>
+<!-- **Python**
 
-<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">.</span><span class="n">recv</span><span class="p">(</span><span class="n">BUFFER_SIZE</span><span class="p">)</span>
-<span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="n">sender_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">conn</span><span class="p">.</span><span class="n">recvfrom</span><span class="p">(</span><span class="n">BUFFER_SIZE</span><span class="p">)</span>
-</pre></div>
-</div>
+```c
+BUFFER_SIZE = 1024
+
+data = conn.recv(BUFFER_SIZE)
+data, sender_addr = conn.recvfrom(BUFFER_SIZE)
+``` -->
 <!-- ## **SOCK_STREAM vs SOCK_DGRAM**
 
 | Потоковый (SOCK_STREAM) | Датаграммный(SOCK_DGRAM) |

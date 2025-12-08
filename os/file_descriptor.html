@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Файловый дескриптор &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="https://wavedrom.com/skins/default.js"></script>
+        <script src="https://wavedrom.com/wavedrom.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Полезные ссылки" href="../References/usefull_links.html" />
+    <link rel="prev" title="Операционные системы" href="os.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Kotlin</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Kotlin/kotlin.html">Kotlin</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../React/react.html">React</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="os.html">Операционные системы</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Файловый дескриптор</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="os.html">Операционные системы</a></li>
+      <li class="breadcrumb-item active">Файловый дескриптор</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/os/file_descriptor.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Файловый дескриптор<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>В Linux библиотека libc открывает для каждого запущенного приложения(процесса) 3 файл дескриптора, с номерами 0,1,2. Больше информации вы можете найти  <a class="reference external" href="https://man7.org/linux/man-pages/man3/stdio.3.html">man stdio</a> и <a class="reference external" href="https://man7.org/linux/man-pages/man3/stdout.3.html">man stdout</a></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Файл</span> <span class="pre">дескриптор</span> <span class="pre">0</span></code> называется <code class="docutils literal notranslate"><span class="pre">STDIN</span></code> и ассоциируется с вводом данных у приложения</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Файл</span> <span class="pre">дескриптор</span> <span class="pre">1</span></code> называется <code class="docutils literal notranslate"><span class="pre">STDOUT</span></code> и используется приложениями для вывода данных, например командами print</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Файл</span> <span class="pre">дескриптор</span> <span class="pre">2</span></code> называется <code class="docutils literal notranslate"><span class="pre">STDERR</span></code> и используется приложениями для вывода данных, сообщающих об ошибке</p></li>
+</ul>
+<p><strong>Файловые дескрипторы процесса</strong>
+Каждый процесс в <code class="docutils literal notranslate"><span class="pre">Unix/Linux</span></code> имеет таблицу файловых дескрипторов, представляющую собой структуру, похожую на массив, в которой хранятся ссылки на <strong>файлы</strong> (файлы, сокеты и т. д.), открытые процессом. Эта таблица является <strong>локальной</strong> для процесса.</p>
+<p><strong>System File Table</strong>
+Системная таблица файлов — это структура данных ядра, которая содержит метаданные <strong>обо всех</strong> открытых файлах, включая информацию об их местоположении, режиме доступа, текущей позиции и т. д. Каждая запись в таблице файлов соответствует файловому дескриптору, предоставляя общую информацию для нескольких процессов.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Offset</span></code>: Current read/write position in the file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Access</span> <span class="pre">Mode</span></code>: Read, write, or read-write mode (e.g., O_RDONLY, O_WRONLY).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Pointer</span> <span class="pre">to</span> <span class="pre">Inode</span></code>: Links the file table entry to the inode.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Reference</span> <span class="pre">Count</span></code>: Tracks how many file descriptors or processes share this entry.</p></li>
+</ul>
+<p><strong>System Inode Table</strong>
+<code class="docutils literal notranslate"><span class="pre">inode</span></code> — это структура данных, которая содержит метаданные о файле, такие как его размер, разрешения, владелец, временные метки и указатели на блоки данных на диске.</p>
+<p><strong>Связь между Process FD table &lt;–&gt; System Table &lt;–&gt; Inode Table</strong>
+<img alt="1764302196682" src="../_images/1764302196682.png" /></p>
+<p><strong>/proc</strong>
+В директории <code class="docutils literal notranslate"><span class="pre">/proc</span></code> содержатся виртуальные файлы. Эти файлы перечислены в списке, но не существуют на диске, операционная система создает их “на лету”, когда вы пытаетесь прочитать их.</p>
+<p><strong>Что внутри процесса?</strong>
+Директории с <strong>номерными именами</strong> представляют все текущие процессы. Когда процесс заканчивается, его субдиректория в директории <code class="docutils literal notranslate"><span class="pre">/proc</span></code> автоматически исчезает. Если вы откроете эти директории, пока они еще существуют, внутри вы обнаружите множество файлов, таких как:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">attr</span>             <span class="n">cpuset</span>   <span class="n">fdinfo</span>    <span class="n">mountstats</span>  <span class="n">stat</span>
+<span class="n">auxv</span>             <span class="n">cwd</span>      <span class="n">loginuid</span>  <span class="n">oom_adj</span>     <span class="n">statm</span>
+<span class="n">clear_refs</span>       <span class="n">environ</span>  <span class="n">maps</span>      <span class="n">oom_score</span>   <span class="n">status</span>
+<span class="n">cmdline</span>          <span class="n">exe</span>      <span class="n">mem</span>       <span class="n">root</span>        <span class="n">task</span>
+<span class="n">coredump_filter</span>  <span class="n">fd</span>       <span class="n">mounts</span>    <span class="n">smaps</span>       <span class="n">wchan</span>
+</pre></div>
+</div>
+<p>Наиболее важные файлы:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmdline</span></code>: Содержит команду, запустившую процесс, со всеми своими параметрами.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cwd</span></code>: Содержит симлинк на текущую работающую директорию (current working directory - CWD), ссылку на исполняемый файл процесса, и ссылку на его корневую директорию.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">environ</span></code>: Содержит все переменные среды окружения для данного процесса.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fd</span></code>: Содержит все файловые дескрипторы для данного процесса, показывая, какие файлы или устройства процесс задействует.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maps</span></code>, <code class="docutils literal notranslate"><span class="pre">statm</span></code>, and <code class="docutils literal notranslate"><span class="pre">mem</span></code>: Относятся к памяти задействованной в процессе.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stat</span></code> and <code class="docutils literal notranslate"><span class="pre">status</span></code>: Содержит информацию о статусе процесса.</p></li>
+</ul>
+<p><strong>Пример</strong>
+Запустив программу с инициализацией сокета (возвращаемое значение - идентификатор файлового дескриптора) можно наблюдать появление нового файлового дескриптора для данного сокета.</p>
+<p><img alt="1764298032089" src="../_images/1764298032089.png" />
+В данном случае скомпилированный бинарный файл имеет название <code class="docutils literal notranslate"><span class="pre">my_server</span></code>.
+Найти местоположение файловых дескрипторов для программы можно двумя командами:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ps<span class="w"> </span>aux<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-i<span class="w"> </span>my_server<span class="w"> </span><span class="c1"># можно увидеть номер процесса вашей программы &lt;my_server&gt;</span>
+ls<span class="w"> </span>-l<span class="w"> </span>/proc/&lt;номер<span class="w"> </span>процесса&gt;/fd/
+</pre></div>
+</div>
+<p>Попробуем следующий эксперимент:
+<img alt="1764299555123" src="../_images/1764299555123.png" /></p>
+<p>Что такое /dev/<a class="reference external" href="https://man7.org/linux/man-pages/man4/pts.4.html">pts</a>?</p>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="os.html" class="btn btn-neutral float-left" title="Операционные системы" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../References/usefull_links.html" class="btn btn-neutral float-right" title="Полезные ссылки" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

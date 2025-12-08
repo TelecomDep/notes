@@ -57,6 +57,14 @@ Introduction
 
    React/react
 
+.. raw:: latex
+   \chapter{Операционные системы}
+.. toctree::
+   :caption: ОС
+   :maxdepth: 1
+
+   os/os
+
 
 .. raw:: latex
    \chapter{Полезные ссылки}
