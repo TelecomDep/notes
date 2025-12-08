@@ -248,24 +248,16 @@ ls -l /proc/<номер процесса>/fd/
 **С**
 
 ```c
-#include <sys/types.h>
-#include <sys/socket.h>
-#DEFINE PORT 55555
 
-...
-...
-address.sin_family = AF_INET;
-address.sin_addr.s_addr = INADDR_ANY;
-address.sin_port = htons(PORT);
-int bind(int sockfd, (struct sockaddr*)&address, socklen_t addrlen);
+int bind(int sockfd, const struct sockaddr *my_addr, socklen_t addrlen);
 ```
 
-**Python**
+<!-- **Python**
 
 ```python
 server_address = ('localhost', 8080)
 sock_obj.bind(server_address)  # Привязка адреса и порта к сокету.
-```
+``` -->
 
 ### listen()
 
@@ -277,15 +269,14 @@ sock_obj.bind(server_address)  # Привязка адреса и порта к 
 **C**
 
 ```c
-#include <sys/socket.h>
 int listen(int sockfd, int backlog);
 ```
 
-**Python**
+<!-- **Python**
 
 ```c
 sock_obj.listen(5)  # Ждем соединение клиента.
-```
+``` -->
 
 ### accept()
 
@@ -303,11 +294,11 @@ sock_obj.listen(5)  # Ждем соединение клиента.
 int accept(int sockfd, struct sockaddr *cliaddr, socklen_t *addrlen);
 ```
 
-**Python**
+<!-- **Python**
 
 ```c
 conn, addr = sock_obj.accept()  # Установление соединения с клиентом.
-```
+``` -->
 
 ### connect()
 
@@ -325,12 +316,12 @@ conn, addr = sock_obj.accept()  # Установление соединения 
 int connect(int sockfd, const struct sockaddr *serv_addr, socklen_t addrlen);
 ```
 
-**Python**
+<!-- **Python**
 
 ```c
 server_address = ('192.168.1.100', 8080)
 sock_obj.connect(server_address)
-```
+``` -->
 
 ### Передача\прием данных
 
@@ -359,7 +350,7 @@ size_t send(int s, const void *buf, size_t len, int flags);
 size_t sendto(int  s, const void *buf, size_t len, int flags, const struct sockaddr *to, socklen_t tolen);
 ```
 
-**Python**
+<!-- **Python**
 
 ```c
 IP = '192.168.1.100'
@@ -367,7 +358,7 @@ PORT = 8080
 
 sock_obj.send('Hello World!')
 sock_obj.sendto('Hello World!', (IP, PORT))
-```
+``` -->
 
 ### recv()
 
@@ -383,14 +374,14 @@ size_t recv(int s, void *buf, size_t len, int flags);
 size_t recvfrom(int s, void *buf, size_t len, int flags, struct sockaddr *from, socklen_t *fromlen);
 ```
 
-**Python**
+<!-- **Python**
 
 ```c
 BUFFER_SIZE = 1024
 
 data = conn.recv(BUFFER_SIZE)
 data, sender_addr = conn.recvfrom(BUFFER_SIZE)
-```
+``` -->
 
 <!-- ## **SOCK_STREAM vs SOCK_DGRAM**
 
