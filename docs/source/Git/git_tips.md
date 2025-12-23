@@ -199,6 +199,18 @@ git config --global --replace-all user.name "new name"
 git commit --amend --author="John Doe <john@doe.org>"
 ```
 
+### Проблема с обновлением подмодулей (submodule update)
+
+Нашел [здесь](https://stackoverflow.com/questions/1030169/pull-latest-changes-for-all-git-submodules).
+
+If it's the first time you check-out a repo you need to use **--init** first:
+
+```git submodule update --init --recursive```
+For **git 1.8.2** or above, the option --remote was added to support updating to latest tips of remote branches:
+
+```git submodule update --recursive --remote```
+
+
 ## Список Литературы
 
 [1] Краткое видео по основам работы с Git - [https://www.youtube.com/watch?v=SWYqp7iY_Tc](https://www.youtube.com/watch?v=SWYqp7iY_Tc)
