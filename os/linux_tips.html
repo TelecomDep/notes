@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Операционные системы &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Grub (while booting) &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Grub (while booting)" href="linux_tips.html" />
-    <link rel="prev" title="Маппим точки на карту" href="../React/Map.html" /> 
+    <link rel="next" title="Файловый дескриптор" href="file_descriptor.html" />
+    <link rel="prev" title="Операционные системы" href="os.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -76,8 +76,8 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">ОС</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Операционные системы</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="linux_tips.html">Grub (while booting)</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="os.html">Операционные системы</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Grub (while booting)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="file_descriptor.html">Файловый дескриптор</a></li>
 </ul>
 </li>
@@ -101,9 +101,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Операционные системы</li>
+          <li class="breadcrumb-item"><a href="os.html">Операционные системы</a></li>
+      <li class="breadcrumb-item active">Grub (while booting)</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/os/os.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/os/linux_tips.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -111,15 +112,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1>Операционные системы<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="linux_tips.html">Grub (while booting)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="file_descriptor.html">Файловый дескриптор</a></li>
-</ul>
+  <section id="grub-while-booting">
+<h1>Grub (while booting)<a class="headerlink" href="#grub-while-booting" title="Permalink to this heading"></a></h1>
+<p>Нашел <a class="reference external" href="https://unix.stackexchange.com/questions/329926/grub-starts-in-command-line-after-reboot/330852#330852">здесь</a>.
+Cause: boot process can’t find the root partition</p>
+<p>Please type ls This will show all partitions, and then type individual</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span><span class="o">(</span>hd0,1<span class="o">)</span>/
+ls<span class="w"> </span><span class="o">(</span>hd0,2<span class="o">)</span>/<span class="w"> </span>
+</pre></div>
 </div>
+<p>до тех пор пока не найдем что-то похожее на:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">(</span>hd0,1<span class="o">)</span>/boot/grub<span class="w">   </span>OR<span class="w"> </span><span class="o">(</span>hd0,1<span class="o">)</span>/grub
+
+<span class="c1"># или это</span>
+
+<span class="o">(</span>hd0,1<span class="o">)</span>/efi/boot/grub<span class="w"> </span>OR<span class="w"> </span><span class="o">(</span>hd0,1<span class="o">)</span>/efi/grub
+</pre></div>
+</div>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="nv">prefix</span><span class="o">=(</span>hd0,1<span class="o">)</span>/grub
+
+<span class="c1"># или </span>
+
+<span class="nb">set</span><span class="w"> </span><span class="nv">prefix</span><span class="o">=(</span>hd0,1<span class="o">)</span>/boot/grub
+</pre></div>
+</div>
+<p>Продолжаем:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">set</span><span class="w"> </span><span class="nv">root</span><span class="o">=(</span>hd0,1<span class="o">)</span>
+insmod<span class="w"> </span>linux
+insmod<span class="w"> </span>normal
+normal
+</pre></div>
+</div>
+<p>Готово!</p>
 </section>
 
     <script type="text/javascript">
@@ -132,8 +156,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../React/Map.html" class="btn btn-neutral float-left" title="Маппим точки на карту" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="linux_tips.html" class="btn btn-neutral float-right" title="Grub (while booting)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="os.html" class="btn btn-neutral float-left" title="Операционные системы" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="file_descriptor.html" class="btn btn-neutral float-right" title="Файловый дескриптор" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

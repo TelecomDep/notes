@@ -71,6 +71,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#vs-code">Объединение нескольких последних коммитов в один (VS Code)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">Изменить имя пользователя</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id7">Изменить имя автора последнего commit’а</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#submodule-update">Проблема с обновлением подмодулей (submodule update)</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#id8">Список Литературы</a></li>
@@ -311,6 +312,14 @@ squash<span class="w"> </span>239a638f<span class="w"> </span>Работает<s
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="n">git</span><span class="w"> </span><span class="n">commit</span><span class="w"> </span><span class="o">--</span><span class="n">amend</span><span class="w"> </span><span class="o">--</span><span class="n">author</span><span class="o">=</span><span class="s">&quot;John Doe &lt;john@doe.org&gt;&quot;</span>
 </pre></div>
 </div>
+</section>
+<section id="submodule-update">
+<h3>Проблема с обновлением подмодулей (submodule update)<a class="headerlink" href="#submodule-update" title="Permalink to this heading"></a></h3>
+<p>Нашел <a class="reference external" href="https://stackoverflow.com/questions/1030169/pull-latest-changes-for-all-git-submodules">здесь</a>.</p>
+<p>If it’s the first time you check-out a repo you need to use <strong>–init</strong> first:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--init</span> <span class="pre">--recursive</span></code>
+For <strong>git 1.8.2</strong> or above, the option –remote was added to support updating to latest tips of remote branches:</p>
+<p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--recursive</span> <span class="pre">--remote</span></code></p>
 </section>
 </section>
 <section id="id8">
