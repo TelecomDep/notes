@@ -203,12 +203,25 @@ git commit --amend --author="John Doe <john@doe.org>"
 
 Нашел [здесь](https://stackoverflow.com/questions/1030169/pull-latest-changes-for-all-git-submodules).
 
+
+**Обновляем все модули**
+
 If it's the first time you check-out a repo you need to use **--init** first:
 
 ```git submodule update --init --recursive```
 For **git 1.8.2** or above, the option --remote was added to support updating to latest tips of remote branches:
 
 ```git submodule update --recursive --remote```
+
+**Частный случай**
+
+Если нужно обновить конкретный `submodule`:
+
+```bash
+git submodule update --remote <path to the submodule>
+
+# например: git submodule update --remote thirdparty/module_name
+```
 
 
 ## Список Литературы
