@@ -316,10 +316,18 @@ squash<span class="w"> </span>239a638f<span class="w"> </span>Работает<s
 <section id="submodule-update">
 <h3>Проблема с обновлением подмодулей (submodule update)<a class="headerlink" href="#submodule-update" title="Permalink to this heading"></a></h3>
 <p>Нашел <a class="reference external" href="https://stackoverflow.com/questions/1030169/pull-latest-changes-for-all-git-submodules">здесь</a>.</p>
+<p><strong>Обновляем все модули</strong></p>
 <p>If it’s the first time you check-out a repo you need to use <strong>–init</strong> first:</p>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--init</span> <span class="pre">--recursive</span></code>
 For <strong>git 1.8.2</strong> or above, the option –remote was added to support updating to latest tips of remote branches:</p>
 <p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">update</span> <span class="pre">--recursive</span> <span class="pre">--remote</span></code></p>
+<p><strong>Частный случай</strong></p>
+<p>Если нужно обновить конкретный <code class="docutils literal notranslate"><span class="pre">submodule</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--remote<span class="w"> </span>&lt;path<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>submodule&gt;
+
+<span class="c1"># например: git submodule update --remote thirdparty/module_name</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="id8">
