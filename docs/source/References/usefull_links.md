@@ -30,6 +30,17 @@
 
 6. [Рекомендации по наименованию RESурсов](https://ahex.co/naming-conventions-in-android/) - хорошие рекоменадции по неймингу (`naming`).
 
+## CXX
+
+**GUI**
+1. [Qt](https://www.qt.io/) - довольно мощный инструмент для разработки графического интерфейса на С++.
+
+2. [Imgui](https://github.com/ocornut/imgui) - довольно популярная и легковесная библиотека для разработки визуального интерфейса на С++. С открытым исходным кодом.
+
+3. [ImStudio](raais.github.io/ImStudio) - быстрое и удобное создание форм (layout'ов) на базе `Imgui`.
+
+**Основы С++**
+1. 
 
 ## Git
 
@@ -45,7 +56,7 @@
 
 1. [Readme.md](https://dillinger.io/) - приятное оформление README.md. Достаточно для (практически) любого репозитория.
 
-## Sphinxфф
+## Sphinx
 ------------------
 
 1. Установка и работа с [Shinx документацией](https://www.sphinx-doc.org/en/master/tutorial/deploying.html#id5);
