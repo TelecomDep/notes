@@ -49,7 +49,6 @@ Introduction
    CXX/cxx
 
 
-
 .. raw:: latex
    \chapter{PostgreSQL}
 .. toctree::
