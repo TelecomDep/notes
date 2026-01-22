@@ -5,4 +5,5 @@
    :caption: CXX
    :maxdepth: 1
 
-   Qt/qt_introduction
+    Qt/qt_install
+    Qt/qt_introduction
