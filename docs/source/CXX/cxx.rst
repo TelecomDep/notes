@@ -2,7 +2,7 @@
 ============
 
 .. toctree::
-   :caption: CXX
+   :caption: Qt
    :maxdepth: 1
 
     Qt/qt_install
