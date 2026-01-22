@@ -39,6 +39,7 @@
 
 3. [ImStudio](raais.github.io/ImStudio) - быстрое и удобное создание форм (layout'ов) на базе `Imgui`.
 
+4. [libpqxx](https://github.com/jtv/libpqxx) - библиотека для работы с `PostgreSQL`.
 **Основы С++**
 1. 
 
