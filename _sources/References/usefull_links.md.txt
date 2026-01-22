@@ -40,6 +40,12 @@
 3. [ImStudio](raais.github.io/ImStudio) - быстрое и удобное создание форм (layout'ов) на базе `Imgui`.
 
 4. [libpqxx](https://github.com/jtv/libpqxx) - библиотека для работы с `PostgreSQL`.
+
+**Imgui**
+
+1. [implot_demos](https://github.com/Flinterpop/implot_demos) - хорошие примеры с картами.
+
+
 **Основы С++**
 1. 
 
