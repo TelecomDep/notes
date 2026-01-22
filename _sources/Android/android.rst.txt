@@ -22,7 +22,6 @@ Android
    :maxdepth: 1
 
    location
-   gps
    telephony
 
 .. toctree::
