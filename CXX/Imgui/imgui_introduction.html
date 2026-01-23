@@ -71,7 +71,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../cxx.html">Немного про C++</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Dear ImGui</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Dear ImGui</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sdl-and-opengl">SDL and OpenGL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#immediate-mode-gui">Особенности Immediate Mode GUI</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -120,6 +124,24 @@
   <section id="dear-imgui">
 <h1>Dear ImGui<a class="headerlink" href="#dear-imgui" title="Permalink to this heading"></a></h1>
 <p>Начнем с тех кто использует библиотеку <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Software-using-Dear-ImGui">Dear Imgui</a>.</p>
+<section id="sdl-and-opengl">
+<h2>SDL and OpenGL<a class="headerlink" href="#sdl-and-opengl" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SDL2</span></code> - это <a class="reference external" href="https://www.libsdl.org/">Simple DirectMedia Layer</a>, то, что обычно называют “фреймворком”.
+SDL упрощает обработку ввода, работу с <strong>окнами</strong>, <strong>аудио</strong> и тому подобное (хотя он также может делать какую-то очень базовую графику).
+Он позаботятся о загрузке текстур и ресурсов, отрисовке на экране, воспроизведении аудио и т. д. Но им не хватает игрового шаблона, который есть у полноценного движка: например, <strong>коллизий</strong>, <strong>физики</strong>, <strong>управления сценой</strong> и т. д.</p>
+<p><code class="docutils literal notranslate"><span class="pre">OpenGL</span></code> - это <a class="reference external" href="https://www.opengl.org/">Open Graphics Library</a> 3d графический API, он упрощает сложный рендеринг при использовании видеокарты. У видеокарт разные инструкции, поэтому он, по сути, преобразует то, что вы хотите нарисовать на экране, во что-то, что видеокарта может понять. <code class="docutils literal notranslate"><span class="pre">OpenGL</span></code>, <code class="docutils literal notranslate"><span class="pre">DirectX</span></code> и <code class="docutils literal notranslate"><span class="pre">Vulkan</span></code> - это большие графические <code class="docutils literal notranslate"><span class="pre">API</span></code> для работы с видеокартой.</p>
+</section>
+<section id="immediate-mode-gui">
+<h2>Особенности Immediate Mode GUI<a class="headerlink" href="#immediate-mode-gui" title="Permalink to this heading"></a></h2>
+<p>Основными особенностями можно назвать:</p>
+<ul class="simple">
+<li><p>Интерфейс <code class="docutils literal notranslate"><span class="pre">ImGui</span></code> вызывается в <strong>цикле</strong>, каждая итерация цикла считается одним кадром.</p></li>
+<li><p>Перед началом кадра библиотека должна получить все данные касательно положения мыши, нажатых клавиш и прочих вводных.</p></li>
+<li><p>Затем вызывается функция, в которой пользователь библиотеки получает структуру ui, рисует свой интерфейс. В этот момент библиотека в реальном времени формирует все виджеты, для каждого виджета определяет попала ли на него мышь, и формирует вершины и треугольники, которые потом будут рисоваться.</p></li>
+<li><p>Теперь библиотека возвращает все сформированные <strong>mesh’и</strong> и отдаёт их на рисование <strong>бэкенду</strong>. Он рисует это на экран.</p></li>
+<li><p>И так повторяется <strong>60 кадров</strong> в секунду (или <strong>больше</strong>).</p></li>
+</ul>
+</section>
 </section>
 
     <script type="text/javascript">
