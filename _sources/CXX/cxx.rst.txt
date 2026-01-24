@@ -13,3 +13,9 @@
    :maxdepth: 1
 
    Imgui/imgui_introduction
+
+.. toctree::
+   :caption: Основы
+   :maxdepth: 1
+
+   cxx_fundamentals

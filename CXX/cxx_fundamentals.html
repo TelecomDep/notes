@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Немного про C++ &mdash; Telecom Notes 0.1 documentation</title>
+  <title>C++ &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Установка Qt" href="Qt/qt_install.html" />
-    <link rel="prev" title="Библиотека Zero MQ (Android)" href="../Android/sockets/07_sockets_zmq_android.html" /> 
+    <link rel="next" title="PostgreSQL" href="../DataBase/database.html" />
+    <link rel="prev" title="Dear ImGui" href="Imgui/imgui_introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -68,11 +68,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">CXX</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Немного про C++</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="cxx.html">Немного про C++</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Qt/qt_install.html">Установка Qt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Imgui/imgui_introduction.html">Dear ImGui</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cxx_fundamentals.html">C++</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">C++</a></li>
 </ul>
 </li>
 </ul>
@@ -107,9 +107,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Немного про C++</li>
+          <li class="breadcrumb-item"><a href="cxx.html">Немного про C++</a></li>
+      <li class="breadcrumb-item active">C++</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/CXX/cxx.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/CXX/cxx_fundamentals.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -118,25 +119,30 @@
            <div itemprop="articleBody">
              
   <section id="c">
-<h1>Немного про C++<a class="headerlink" href="#c" title="Permalink to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Разработка GUI на Qt</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Qt/qt_install.html">Установка Qt</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Разработка GUI на Imgui</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Imgui/imgui_introduction.html">Dear ImGui</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Основы</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="cxx_fundamentals.html">C++</a></li>
-</ul>
+<h1>C++<a class="headerlink" href="#c" title="Permalink to this heading"></a></h1>
+<p><strong>Рекомендации от Страуструпа</strong>:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>[1] Represent ideas (concepts) directly in code, for example, as a function, a class, or an enumeration; §1.2.
+[2] Aim for your code to be both elegant and efficient; §1.2.
+[3] Don’t overabstract; §1.2.
+[4] Focus design on the provision of elegant and efficient abstractions, possibly presented as
+libraries; §1.2.
+[5] Represent relationships among ideas directly in code, for example, through parameterization or a class hierarchy; §1.2.1.
+[6] Represent independent ideas separately in code, for example, avoid mutual dependencies
+among classes; §1.2.1.
+[7] C++ is not just object-oriented; §1.2.1.
+[8] C++ is not just for generic programming; §1.2.1.
+[9] Prefer solutions that can be statically checked; §1.2.1.
+[10] Make resources explicit (represent them as class objects); §1.2.1, §1.4.2.1.
+[11] Express simple ideas simply; §1.2.1.
+[12] Use libraries, especially the standard library, rather than trying to build everything from
+scratch; §1.2.1.
+[13] Use a type-rich style of programming; §1.2.2.
+[14] Low-level code is not necessarily efficient; don’t avoid classes, templates, and standardlibrary components out of fear of performance problems; §1.2.4, §1.3.3.
+[15] If data has an invariant, encapsulate it; §1.3.2.
+[16] C++ is not just C with a few extensions; §1.3.3.
+In general: To write a good program takes intelligence, taste, and patience. You are not going to get
+it right the first time. Experiment!
+</pre></div>
 </div>
 </section>
 
@@ -150,8 +156,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../Android/sockets/07_sockets_zmq_android.html" class="btn btn-neutral float-left" title="Библиотека Zero MQ (Android)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="Qt/qt_install.html" class="btn btn-neutral float-right" title="Установка Qt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Imgui/imgui_introduction.html" class="btn btn-neutral float-left" title="Dear ImGui" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../DataBase/database.html" class="btn btn-neutral float-right" title="PostgreSQL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

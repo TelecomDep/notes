@@ -24,7 +24,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="PostgreSQL" href="../../DataBase/database.html" />
+    <link rel="next" title="C++" href="../cxx_fundamentals.html" />
     <link rel="prev" title="Разработка визуального интерфейса при помощи Qt." href="../Qt/qt_introduction.html" /> 
 </head>
 
@@ -74,8 +74,14 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Dear ImGui</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#sdl-and-opengl">SDL and OpenGL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#immediate-mode-gui">Особенности Immediate Mode GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Установка (подключение к проекту)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#git-submodules">Сабмодули (Git Submodules)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmakelists-txt">CMakeLists.txt (сборка проекта)</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../cxx_fundamentals.html">C++</a></li>
 </ul>
 </li>
 </ul>
@@ -142,6 +148,137 @@ SDL упрощает обработку ввода, работу с <strong>ок
 <li><p>И так повторяется <strong>60 кадров</strong> в секунду (или <strong>больше</strong>).</p></li>
 </ul>
 </section>
+<section id="id1">
+<h2>Установка (подключение к проекту)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Допустим, мы захотели создать новый проект. Начнем с потенциальной структуры проекта:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>&quot;имя_проекта&quot;
+├── include
+│   ├── &quot;заголовочные_файлы&quot;.h
+├── src
+│   ├── &quot;исполняемые_файлы&quot;.cpp
+│   └── main.cpp - самый главный исполняемый файл
+├── third_party - сторонние проекты\библиотеки и т.д.
+│   ├── imgui
+│   ├── implot
+│   └── и др.
+├── README.md
+├── CMakeLists.txt
+├── .gitignore
+├── .gitmodules
+└── и пр.
+</pre></div>
+</div>
+<section id="git-submodules">
+<h3>Сабмодули (Git Submodules)<a class="headerlink" href="#git-submodules" title="Permalink to this heading"></a></h3>
+<p>Для подключения сторонних проектов в ваш репозиторий можно не просто копировать весь код проекта, а обернуть это намерение в виде <code class="docutils literal notranslate"><span class="pre">ссылки</span></code> на нужный вам репозиторий.</p>
+<p>Осуществляется это про помощи команды <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">add</span> <span class="pre">&quot;ссылка&quot;</span> <span class="pre">&quot;куда</span> <span class="pre">кладем&quot;</span> <span class="pre">и</span> <span class="pre">т.д.</span></code>. <a class="reference external" href="https://git-scm.com/book/ru/v2/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B-Git-%D0%9F%D0%BE%D0%B4%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B8">RU</a>, <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">ENG</a> ссылки на документацию.</p>
+<p>Добавим в наш проект 2 репозитория, которые будем усердно изучать: <a class="reference external" href="https://github.com/ocornut/imgui">Dear Imgui</a> и его дополнение для работы с графиками <a class="reference external" href="https://github.com/epezent/implot">Implot</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/epezent/implot.git<span class="w"> </span>third_party/implot
+git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/ocornut/imgui.git<span class="w"> </span>third_party/imgui
+</pre></div>
+</div>
+<p>В данном случае я кладу оба проекта в директорию (см. дерево выше) <code class="docutils literal notranslate"><span class="pre">third_party</span></code>.</p>
+<p><img alt="alt text" src="../../_images/2026-01-24_22-5122-51-29.png" /></p>
+<p>Таким образом, получаем в виде ссылок сторонние проекты в нашем репозитории. Довольно удобно, не нужно скачивать и копировать все файлы. Также, можно привязываться к конкретному коммиту проекта (см. пример ниже).</p>
+<p><code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> выглядит следующим образом:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>submodule<span class="w"> </span><span class="s2">&quot;third_party/imgui&quot;</span><span class="o">]</span>
+<span class="w">	</span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>third_party/imgui
+<span class="w">	</span><span class="nv">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>https://github.com/ocornut/imgui.git
+<span class="w">	</span><span class="nv">branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>docking<span class="w"> </span><span class="c1"># указываем конкретную ветку (можно хэш коммита)</span>
+<span class="o">[</span>submodule<span class="w"> </span><span class="s2">&quot;third_party/implot&quot;</span><span class="o">]</span>
+<span class="w">	</span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>third_party/implot
+<span class="w">	</span><span class="nv">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>https://github.com/epezent/implot.git
+</pre></div>
+</div>
+<p><strong>ВАЖНО</strong> обязательно выполните команду (репозитории скачаются на ваш компьютер):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--remote<span class="w"> </span>--recursive
+<span class="c1"># или</span>
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+</section>
+<section id="cmakelists-txt">
+<h3>CMakeLists.txt (сборка проекта)<a class="headerlink" href="#cmakelists-txt" title="Permalink to this heading"></a></h3>
+<p>Допустим, у нас есть стандартная точка входа в нашу программу <code class="docutils literal notranslate"><span class="pre">&quot;имя_проекта&quot;/src/main.cpp</span></code> и мы хотим использовать её как стантартную библиотеку, например <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;iostream&gt;</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">main.cpp</span></code></p>
+<div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>#include &lt;iostream&gt;
+
+#include &quot;imgui.h&quot;
+#include &quot;implot.h&quot;
+
+int main(int argc, char *argv[]) {
+
+    return 0;
+}
+</pre></div>
+</div>
+<p>Для этого необходимо сначала собрать наш проект. В нашем случае, при помощи “сборщика” <code class="docutils literal notranslate"><span class="pre">Cmake</span></code>.</p>
+<p>Создаем (или открываем, если он уже есть) в корне директории файл CMakeLists.txt, в котором будут находится правила сборки вашего проекта:</p>
+<p><code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake_minimum_required<span class="o">(</span>VERSION<span class="w"> </span><span class="m">3</span>.14<span class="o">)</span>
+project<span class="o">(</span>backend_notes<span class="o">)</span>
+
+set<span class="o">(</span>CMAKE_CXX_STANDARD<span class="w"> </span><span class="m">17</span><span class="o">)</span>
+
+set<span class="o">(</span>THIRD_PARTY_DIR<span class="w"> </span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/third_party<span class="o">)</span>
+set<span class="o">(</span>SRC_DIR<span class="w"> </span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/src<span class="o">)</span>
+set<span class="o">(</span>INCLUDE_DIR<span class="w"> </span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/include<span class="o">)</span>
+
+<span class="c1"># SDL2</span>
+find_package<span class="o">(</span>SDL2<span class="w"> </span>REQUIRED<span class="o">)</span>
+include_directories<span class="o">(</span><span class="si">${</span><span class="nv">SDL2_INCLUDE_DIRS</span><span class="si">}</span><span class="o">)</span>
+
+<span class="c1"># OpenGL/GLEW</span>
+find_package<span class="o">(</span>OpenGL<span class="w"> </span>REQUIRED<span class="o">)</span>
+find_package<span class="o">(</span>GLEW<span class="w"> </span>REQUIRED<span class="o">)</span>
+
+include_directories<span class="o">(</span><span class="si">${</span><span class="nv">INCLUDE_DIR</span><span class="si">}</span><span class="o">)</span>
+
+add_library<span class="o">(</span>imgui<span class="w"> </span>STATIC
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui.cpp
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui_draw.cpp
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui_demo.cpp
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui_tables.cpp
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui_widgets.cpp
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/backends/imgui_impl_sdl2.cpp
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/backends/imgui_impl_opengl3.cpp
+<span class="o">)</span>
+target_include_directories<span class="o">(</span>imgui<span class="w"> </span>PUBLIC<span class="w"> </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui<span class="o">)</span>
+target_compile_options<span class="o">(</span>imgui<span class="w"> </span>PRIVATE<span class="w"> </span>-fPIC<span class="o">)</span>
+
+add_library<span class="o">(</span>implot<span class="w"> </span>STATIC
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/implot/implot.cpp
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/implot/implot_demo.cpp
+<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/implot/implot_items.cpp
+<span class="o">)</span>
+target_include_directories<span class="o">(</span>implot<span class="w"> </span>PUBLIC<span class="w"> </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/implot<span class="o">)</span>
+target_link_libraries<span class="o">(</span>implot<span class="w"> </span>PRIVATE<span class="w"> </span>imgui<span class="o">)</span>
+target_compile_options<span class="o">(</span>implot<span class="w"> </span>PRIVATE<span class="w"> </span>-fPIC<span class="o">)</span>
+
+add_executable<span class="o">(</span>main<span class="w"> </span><span class="si">${</span><span class="nv">SRC_DIR</span><span class="si">}</span>/main.cpp<span class="o">)</span>
+target_link_libraries<span class="o">(</span>main<span class="w"> </span>PRIVATE<span class="w"> </span>imgui<span class="w"> </span>implot<span class="w"> </span><span class="si">${</span><span class="nv">SDL2_LIBRARIES</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">OPENGL_LIBRARIES</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">GLEW_LIBRARIES</span><span class="si">}</span><span class="o">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">set()</span></code> -  используется для определения, изменения или удаления переменных;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">include_directories()</span></code> - указывает компилятору, где искать заголовочные файлы, используя директиву #include, аналогично флагу <code class="docutils literal notranslate"><span class="pre">-I</span></code> в <code class="docutils literal notranslate"><span class="pre">GCC/Clang</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">find_package()</span></code> - библиотека предоставляет <a class="reference external" href="https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#package-configuration-file">package configuration file</a>, который импортирует в <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> приложения таргет библиотеки. Этот файл, вместе с собранной библиотекой, ее публичными заголовочными файлами и некоторой другой информацией устанавливается в директорию, которая потом указывается в переменной <code class="docutils literal notranslate"><span class="pre">CMAKE_PREFIX_PATH</span></code> при сборке проекта.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add_library()</span></code> - создает цель (<code class="docutils literal notranslate"><span class="pre">target</span></code>) библиотеки из указанных исходных файлов, определяя её имя и тип (<code class="docutils literal notranslate"><span class="pre">STATIC</span></code>, <code class="docutils literal notranslate"><span class="pre">SHARED</span></code> или <code class="docutils literal notranslate"><span class="pre">MODULE</span></code>). Это ключевая команда для сборки библиотек, позволяющая управлять зависимостями и типами библиотек (<strong>статические</strong> .a/.lib, <strong>динамические</strong> .so/.dll или <strong>плагины</strong>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STATIC</span></code> - Статическая библиотека представляет собой собрание *.<code class="docutils literal notranslate"><span class="pre">obj</span></code>-файлов библиотеки (<strong>НЕ</strong> исполняемый файл), который мы можем, указав линкеру, прицепить к нашей программе в момент компиляции.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHARED</span></code> - <strong>УЖЕ</strong> исполняемый файл. Динамическая линковка выполняется средствами платформы (операционной системы) в процессе работы программы. Все так же у нас в руках *.lib и *.h файлы, однако, теперь к ним добавляется <code class="docutils literal notranslate"><span class="pre">.dll</span></code> (<code class="docutils literal notranslate"><span class="pre">.so</span></code> для Linux). *.<code class="docutils literal notranslate"><span class="pre">lib</span></code>-файл теперь содержит <strong>только вызовы</strong> к <code class="docutils literal notranslate"><span class="pre">*.so</span></code>, где лежат непосредственно алгоритмы и которые вызываются уже на ходу, а не компилируются.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target_include_directories(imgui</span> <span class="pre">PUBLIC</span> <span class="pre">${THIRD_PARTY_DIR}/imgui)</span></code> - При сборке самой библиотеки, добавляет эту папку в список путей, в которых компилятор ищет инклуды.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target_link_libraries()</span></code> - связываем исполняемые файлы или библиотеки (targets) с другими библиотеками, указывающая, какие файлы нужно подключить при линковке.</p></li>
+</ul>
+<p><strong>Собираем</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>../
+make<span class="w"> </span>-j16<span class="w"> </span><span class="c1"># вместо &#39;16&#39; можно указать другое количество потоков для компиляции.</span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/2026-01-25_00-2100-21-15.png" /></p>
+<p>Готово.</p>
+</section>
+</section>
 </section>
 
     <script type="text/javascript">
@@ -155,7 +292,7 @@ SDL упрощает обработку ввода, работу с <strong>ок
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="../Qt/qt_introduction.html" class="btn btn-neutral float-left" title="Разработка визуального интерфейса при помощи Qt." accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../../DataBase/database.html" class="btn btn-neutral float-right" title="PostgreSQL" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../cxx_fundamentals.html" class="btn btn-neutral float-right" title="C++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
