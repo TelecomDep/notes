@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Первая программа с Dear Imgui &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Виджеты &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -23,9 +23,7 @@
         <script src="https://wavedrom.com/wavedrom.min.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Установка Qt" href="../Qt/qt_install.html" />
-    <link rel="prev" title="Dear ImGui" href="imgui_introduction.html" /> 
+    <link rel="search" title="Search" href="../../search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -67,19 +65,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../../Android/android.html">Android</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">CXX</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../cxx.html">Немного про C++</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../cxx_fundamentals.html">C++</a></li>
-<li class="toctree-l2"><a class="reference internal" href="imgui_introduction.html">Dear ImGui</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Первая программа с Dear Imgui</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#gui-sdl2">Окно GUI интерфейса (SDL2)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#backends">Backends</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
-</ul>
-</li>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../cxx.html">Немного про C++</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
 <ul>
@@ -112,10 +99,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="../cxx.html">Немного про C++</a></li>
-      <li class="breadcrumb-item active">Первая программа с Dear Imgui</li>
+      <li class="breadcrumb-item active">Виджеты</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/CXX/Imgui/imgui_int_main.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/CXX/Imgui/imgui_widgets.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -123,30 +109,31 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="dear-imgui">
-<h1>Первая программа с Dear Imgui<a class="headerlink" href="#dear-imgui" title="Permalink to this heading"></a></h1>
-<p>Схематично вся работа нашей программы будет выглядеть следующим образом (см рисунок ниже):
-<img alt="alt text" src="../../_images/imgui_int_main_01.png" /></p>
-<section id="gui-sdl2">
-<h2>Окно GUI интерфейса (SDL2)<a class="headerlink" href="#gui-sdl2" title="Permalink to this heading"></a></h2>
-<div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
-SDL_Window* window = SDL_CreateWindow(
-                    &quot;Backend start&quot;, 
-                    SDL_WINDOWPOS_CENTERED, 
-                    SDL_WINDOWPOS_CENTERED,
-                    1024, 768, 
-                    SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+  <section id="id1">
+<h1>Виджеты<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="text">
+<h2>Text<a class="headerlink" href="#text" title="Permalink to this heading"></a></h2>
+</section>
+<section id="i-o">
+<h2>Работа с устройствами I\O<a class="headerlink" href="#i-o" title="Permalink to this heading"></a></h2>
+<p>Для работы с устройствами ввода вывода присутствует структура <code class="docutils literal notranslate"><span class="pre">ImGuiIO</span></code>. Включение различных устройств осуществляется при помощи флагов конфигурации:</p>
+<div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>ImGuiIO&amp; io = ImGui::GetIO(); (void)io;
+io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Включить Keyboard Controls
+io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Включить Gamepad Controls
+io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Включить Docking
+io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Включить Multi-Viewport / Platform Windows. Позволяет работать &quot;окнам&quot; вне основного окна. 
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">title</span></code> — имя окна.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">x,y</span></code> — координаты окна. Если хотим открыть на весь экран, то нужно ставить 0,0</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">w,h</span></code> — размеры окна. Что бы открыть на весть экран обращаемся к объекту displayMode.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code> — тут выставляем флаги инициализации окна.</p></li>
-</ul>
+<p>После инициализации <code class="docutils literal notranslate"><span class="pre">ImGuiIO</span></code> может получить доступ к работе с устройствами:</p>
+<section id="id2">
+<h3>Мышка<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>Получение текущей позиции мыши:</p>
+<div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>ImVec2 mouse = ImGui::GetMousePos();
+ImGui::Text(&quot;Mouse position: x = %d, y = %d&quot;, mouse.x, mouse.y);
+</pre></div>
+</div>
+<p><img alt="alt text" src="CXX/Imgui/image/imgui_widgets/Screenshot%20from%202026-01-26%2016-11-27.png" /></p>
 </section>
-<section id="backends">
-<h2>Backends<a class="headerlink" href="#backends" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -159,10 +146,7 @@ SDL_Window* window = SDL_CreateWindow(
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="imgui_introduction.html" class="btn btn-neutral float-left" title="Dear ImGui" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../Qt/qt_install.html" class="btn btn-neutral float-right" title="Установка Qt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+          <footer>
 
   <hr/>
 
