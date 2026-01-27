@@ -86,6 +86,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Установка Ubuntu (Risc-V) на QEMU</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Установка зависимостей</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Запуск при помощи готового образа ОС</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Пробуем скомпилировать программу</a></li>
 </ul>
 </li>
 </ul>
@@ -176,6 +177,42 @@ sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> <
 <li><p>Готово.</p></li>
 </ol>
 <p><img alt="alt text" src="../../_images/qemu_risc_v_success.png" /></p>
+</section>
+<section id="id3">
+<h2>Пробуем скомпилировать программу<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>По стандарту:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>build-essential
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Проверяем, есть ли GCC:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>--version
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Создаем файл <code class="docutils literal notranslate"><span class="pre">hello.c</span></code>:</p></li>
+</ol>
+<div class="highlight-clang notranslate"><div class="highlight"><pre><span></span>#include &lt;stdio.h&gt;
+
+int main(){
+        printf(&quot;Hello World!&quot;);
+        return 0;
+}
+
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Компилируем и запускаем:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>hello.c<span class="w"> </span>-o<span class="w"> </span>hello
+./hello
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/qemu_risc_v_hello.png" /></p>
 </section>
 </section>
 

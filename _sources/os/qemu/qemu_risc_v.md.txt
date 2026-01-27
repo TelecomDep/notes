@@ -49,3 +49,34 @@ qemu-system-riscv64 \
 
 ![alt text](image/qemu_risc_v_success.png)
 
+
+## Пробуем скомпилировать программу
+
+1) По стандарту:
+```bash
+sudo apt-get update
+sudo apt install build-essential
+```
+2) Проверяем, есть ли GCC: 
+```bash
+gcc --version
+```
+
+3) Создаем файл `hello.c`:
+```clang
+#include <stdio.h>
+
+int main(){
+        printf("Hello World!");
+        return 0;
+}
+
+```
+
+4) Компилируем и запускаем:
+```bash
+gcc hello.c -o hello
+./hello
+```
+
+![alt text](image/qemu_risc_v_hello.png)
