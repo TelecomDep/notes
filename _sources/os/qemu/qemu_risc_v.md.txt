@@ -18,7 +18,7 @@
 sudo apt update
 sudo apt install opensbi qemu-system-riscv64 qemu-efi-riscv64 u-boot-qemu
 ```
-## Использование образа ОС
+## Запуск при помощи готового образа ОС
 
 1)  Далее, необходимо скачать образ операционной системы на базе `risc-v`: [ubuntu-24.04.3-preinstalled-server-riscv64.img.xz](https://cdimage.ubuntu.com/releases/noble/release/ubuntu-24.04.3-preinstalled-server-riscv64.img.xz) или найти для себя подходящий [здесь](https://cdimage.ubuntu.com/releases/noble/release/).
 2) Распакуем архив:
@@ -46,5 +46,6 @@ qemu-system-riscv64 \
 5) Нажимаем `Enter`. Далее вас попросят ввести логин и пароль, по умолчанию логин - `ubuntu`, пароль - `ubuntu`. После ввода Вас попросят поменять данный пароль на свой. 
 
 6) Готово.
+
 ![alt text](image/qemu_risc_v_success.png)
 
