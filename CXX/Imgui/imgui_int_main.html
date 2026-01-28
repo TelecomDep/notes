@@ -72,13 +72,20 @@
 <li class="toctree-l2"><a class="reference internal" href="../cxx_fundamentals.html">C++</a></li>
 <li class="toctree-l2"><a class="reference internal" href="imgui_introduction.html">Dear ImGui</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Первая программа с Dear Imgui</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#gui-sdl2">Окно GUI интерфейса (SDL2)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#backends">Backends</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#using-standard-backends">Using standard Backends</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#backend">Список поддерживаемых Backend’ов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gui-sdl2">1) Окно GUI интерфейса (SDL2)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">2) Инициализация контекста Dear ImGui</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#backends">2.1) Backends</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Обработка ивентов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">3) Игра началась</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id3">3.0) Обработка ивентов</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">3.1) Фреймы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id5">3.2) Наши виджеты и пр. элементы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#opengl">3.3) Подчиняем себе магию OpenGL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id6">4) Безопасно освобождаем память</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#gui">Отправим GUI в отдельный поток</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
@@ -147,14 +154,14 @@
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">    </span><span class="c1">// SDL</span>
+<span class="w">    </span><span class="c1">// 1) Инициализация SDL</span>
 <span class="w">    </span><span class="n">SDL_Init</span><span class="p">(</span><span class="n">SDL_INIT_VIDEO</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_INIT_TIMER</span><span class="p">);</span>
 <span class="w">    </span><span class="n">SDL_Window</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_CreateWindow</span><span class="p">(</span>
 <span class="w">        </span><span class="s">&quot;Backend start&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span>
 <span class="w">        </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">768</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOW_OPENGL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_WINDOW_RESIZABLE</span><span class="p">);</span>
 <span class="w">    </span><span class="n">SDL_GLContext</span><span class="w"> </span><span class="n">gl_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_GL_CreateContext</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">// Imgui</span>
+<span class="w">    </span><span class="c1">// 2) Инициализация контекста Dear Imgui</span>
 <span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span>
 <span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span>
 
@@ -164,14 +171,15 @@
 <span class="w">    </span><span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_NavEnableGamepad</span><span class="p">;</span><span class="w">      </span><span class="c1">// Включить Gamepad Controls</span>
 <span class="w">    </span><span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_DockingEnable</span><span class="p">;</span><span class="w">         </span><span class="c1">// Включить Docking</span>
 
-<span class="w">    </span><span class="c1">// Imgui + OpenGl backend</span>
+<span class="w">    </span><span class="c1">// 2.1) Привязка Imgui к SDL2 и OpenGl backend&#39;ам</span>
 <span class="w">    </span><span class="n">ImGui_ImplSDL2_InitForOpenGL</span><span class="p">(</span><span class="n">window</span><span class="p">,</span><span class="w"> </span><span class="n">gl_context</span><span class="p">);</span>
 <span class="w">    </span><span class="n">ImGui_ImplOpenGL3_Init</span><span class="p">(</span><span class="s">&quot;#version 330&quot;</span><span class="p">);</span>
 
+<span class="w">    </span><span class="c1">// 3) Игра началась</span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">running</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">        </span><span class="c1">// 0) Обработка event&#39;ов (inputs, window resize, mouse moving, etc.);</span>
+<span class="w">        </span><span class="c1">// 3.0) Обработка event&#39;ов (inputs, window resize, mouse moving, etc.);</span>
 <span class="w">        </span><span class="n">SDL_Event</span><span class="w"> </span><span class="n">event</span><span class="p">;</span>
 <span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">SDL_PollEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">event</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Processing some event: &quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
@@ -181,14 +189,14 @@
 <span class="w">            </span><span class="p">}</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="c1">// 1) Начинаем создавать новый фрейм;</span>
+<span class="w">        </span><span class="c1">// 3.1) Начинаем создавать новый фрейм;</span>
 <span class="w">        </span><span class="n">ImGui_ImplOpenGL3_NewFrame</span><span class="p">();</span>
 <span class="w">        </span><span class="n">ImGui_ImplSDL2_NewFrame</span><span class="p">();</span>
 <span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">NewFrame</span><span class="p">();</span>
 <span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">DockSpaceOverViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">ImGuiDockNodeFlags_None</span><span class="p">);</span>
 
 
-<span class="w">        </span><span class="c1">// 2) Наш виджет с кнопкой;</span>
+<span class="w">        </span><span class="c1">// 3.2) Наш виджет с кнопкой;</span>
 <span class="w">        </span><span class="p">{</span>
 <span class="w">            </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">            </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"> </span>
@@ -199,7 +207,7 @@
 <span class="w">            </span><span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="c1">// 3) Отправляем на рендер;</span>
+<span class="w">        </span><span class="c1">// 3.3) Отправляем на рендер;</span>
 <span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Render</span><span class="p">();</span>
 <span class="w">        </span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
 <span class="w">        </span><span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
@@ -208,7 +216,7 @@
 <span class="w">        </span><span class="n">SDL_GL_SwapWindow</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// Закрываем приложение безопасно.</span>
+<span class="w">    </span><span class="c1">// 4) Закрываем приложение безопасно.</span>
 <span class="w">    </span><span class="n">ImGui_ImplOpenGL3_Shutdown</span><span class="p">();</span>
 <span class="w">    </span><span class="n">ImGui_ImplSDL2_Shutdown</span><span class="p">();</span>
 <span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
@@ -224,7 +232,7 @@
 <p><strong>Получаем</strong>:</p>
 <p><img alt="alt text" src="../../_images/imgui_simple_example.png" /></p>
 <section id="gui-sdl2">
-<h2>Окно GUI интерфейса (SDL2)<a class="headerlink" href="#gui-sdl2" title="Permalink to this heading"></a></h2>
+<h2>1) Окно GUI интерфейса (SDL2)<a class="headerlink" href="#gui-sdl2" title="Permalink to this heading"></a></h2>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SDL_Init</span><span class="p">(</span><span class="n">SDL_INIT_VIDEO</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_INIT_TIMER</span><span class="p">);</span>
 <span class="n">SDL_Window</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_CreateWindow</span><span class="p">(</span>
 <span class="w">                    </span><span class="s">&quot;Backend start&quot;</span><span class="p">,</span><span class="w"> </span>
@@ -232,6 +240,7 @@
 <span class="w">                    </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span>
 <span class="w">                    </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">768</span><span class="p">,</span><span class="w"> </span>
 <span class="w">                    </span><span class="n">SDL_WINDOW_OPENGL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_WINDOW_RESIZABLE</span><span class="p">);</span>
+<span class="n">SDL_GLContext</span><span class="w"> </span><span class="n">gl_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_GL_CreateContext</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -241,26 +250,48 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">flags</span></code> — тут выставляем флаги инициализации окна.</p></li>
 </ul>
 </section>
+<section id="id1">
+<h2>2) Инициализация контекста Dear ImGui<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Imgui</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span>
+<span class="n">ImPlot</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span>
+
+<span class="c1">// Ввод\вывод</span>
+<span class="n">ImGuiIO</span><span class="o">&amp;</span><span class="w"> </span><span class="n">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImGui</span><span class="o">::</span><span class="n">GetIO</span><span class="p">();</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">io</span><span class="p">;</span>
+<span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_NavEnableKeyboard</span><span class="p">;</span><span class="w">     </span><span class="c1">// Включить Keyboard Controls</span>
+<span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_NavEnableGamepad</span><span class="p">;</span><span class="w">      </span><span class="c1">// Включить Gamepad Controls</span>
+<span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_DockingEnable</span><span class="p">;</span><span class="w">         </span><span class="c1">// Включить Docking</span>
+
+<span class="c1">// Imgui + OpenGl backend</span>
+<span class="n">ImGui_ImplSDL2_InitForOpenGL</span><span class="p">(</span><span class="n">window</span><span class="p">,</span><span class="w"> </span><span class="n">gl_context</span><span class="p">);</span>
+<span class="n">ImGui_ImplOpenGL3_Init</span><span class="p">(</span><span class="s">&quot;#version 330&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
 <section id="backends">
-<h2>Backends<a class="headerlink" href="#backends" title="Permalink to this heading"></a></h2>
-</section>
-<section id="using-standard-backends">
-<h2>Using standard Backends<a class="headerlink" href="#using-standard-backends" title="Permalink to this heading"></a></h2>
+<h3>2.1) Backends<a class="headerlink" href="#backends" title="Permalink to this heading"></a></h3>
 <p>**Директория <a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends">backends/</a> содержит популярные backend’ы для работы с платформенными и графическими API. Можно использовать в своем проекте, интегрировав в  Dear ImGui.</p>
 <p>Каждый backend состоит и пары файлов: <code class="docutils literal notranslate"><span class="pre">imgui_impl_XXXX.cpp</span></code> + <code class="docutils literal notranslate"><span class="pre">imgui_impl_XXXX.h</span></code>.</p>
 <ul class="simple">
-<li><p>The ‘Platform’ backends are in charge of: mouse/keyboard/gamepad inputs, cursor shape, timing, and windowing.<BR>
-e.g. Windows (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_win32.cpp">imgui_impl_win32.cpp</a>), SDL3 (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_sdl3.cpp">imgui_impl_sdl3.cpp</a>), GLFW (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_glfw.cpp">imgui_impl_glfw.cpp</a>), etc.</p></li>
-<li><p>The ‘Renderer’ backends are in charge of: creating atlas texture, and rendering imgui draw data.<BR>
-e.g. DirectX11 (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_dx11.cpp">imgui_impl_dx11.cpp</a>), OpenGL/WebGL (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_opengl3.cpp">imgui_impl_opengl3.cpp</a>), Vulkan (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_vulkan.cpp">imgui_impl_vulkan.cpp</a>), etc.</p></li>
-<li><p>For some high-level frameworks, a single backend usually handles both ‘Platform’ and ‘Renderer’ parts.<BR>
-e.g. Allegro 5 (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_allegro5.cpp">imgui_impl_allegro5.cpp</a>). If you end up creating a custom backend for your engine, you may want to do the same.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Platform</span> <span class="pre">backend</span></code>’ы отвечают за: устройства ввода\вывода (mouse/keyboard/gamepad), cursor shape, timing, и за работу окон (windowing).<BR></p>
+<ul>
+<li><p>Windows (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_win32.cpp">imgui_impl_win32.cpp</a>)</p></li>
+<li><p>SDL3 (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_sdl3.cpp">imgui_impl_sdl3.cpp</a>)</p></li>
+<li><p>GLFW (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_glfw.cpp">imgui_impl_glfw.cpp</a>), etc.</p></li>
 </ul>
-<p>An application usually combines one Platform backend + one Renderer backend + main Dear ImGui sources.
-For example, the <a class="reference external" href="https://github.com/ocornut/imgui/tree/master/examples/example_win32_directx11">example_win32_directx11</a> application combines imgui_impl_win32.cpp + imgui_impl_dx11.cpp. There are 20+ examples in the <a class="reference external" href="https://github.com/ocornut/imgui/blob/master/examples/">examples/</a> folder. See <a class="reference external" href="https://github.com/ocornut/imgui/blob/master/docs/EXAMPLES.md">EXAMPLES.MD</a> for details.</p>
-<p><strong>Once Dear ImGui is setup and running, run and refer to <code class="docutils literal notranslate"><span class="pre">ImGui::ShowDemoWindow()</span></code> in imgui_demo.cpp for usage of the end-user API.</strong></p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Renderer</span> <span class="pre">backends</span></code> отвечают за: создание атласа текстур, отрисовку данных (преобразование мат. моделей в изображение).<BR></p>
+<ul>
+<li><p>DirectX11 (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_dx11.cpp">imgui_impl_dx11.cpp</a>)</p></li>
+<li><p>OpenGL/WebGL (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_opengl3.cpp">imgui_impl_opengl3.cpp</a>)</p></li>
+<li><p>Vulkan (<a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_vulkan.cpp">imgui_impl_vulkan.cpp</a>)</p></li>
+<li><p>и т.д..</p></li>
+</ul>
+</li>
+</ul>
+<p>Итого, наше приложение состит из <code class="docutils literal notranslate"><span class="pre">Platform</span> <span class="pre">backend</span></code> +  <code class="docutils literal notranslate"><span class="pre">Renderer</span> <span class="pre">backend</span></code> и <code class="docutils literal notranslate"><span class="pre">Dear</span> <span class="pre">ImGui</span></code> исходники, связывающие эти элементы.
+Примеры можно посмотреть в директории <a class="reference external" href="https://github.com/ocornut/imgui/blob/master/examples/">examples/</a>. Не забываем про ридми <a class="reference external" href="https://github.com/ocornut/imgui/blob/master/docs/EXAMPLES.md">EXAMPLES.MD</a>.</p>
 <section id="backend">
-<h3>Список поддерживаемых Backend’ов<a class="headerlink" href="#backend" title="Permalink to this heading"></a></h3>
+<h4>Список поддерживаемых Backend’ов<a class="headerlink" href="#backend" title="Permalink to this heading"></a></h4>
 <p><a class="reference external" href="https://github.com/ocornut/imgui/blob/master/backends">backends/</a>:</p>
 <p>Список <strong>Platforms Backends</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>imgui_impl_android.cpp      ; Android native app API
@@ -288,14 +319,23 @@ imgui_impl_wgpu.cpp         ; WebGPU (web + desktop)
 </pre></div>
 </div>
 <p>Список <strong>high-level Frameworks Backends</strong> (combining Platform + Renderer):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">imgui_impl_allegro5</span><span class="o">.</span><span class="n">cpp</span>
-<span class="n">imgui_impl_null</span><span class="o">.</span><span class="n">cpp</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>imgui_impl_allegro5.cpp
+imgui_impl_null.cpp
 </pre></div>
 </div>
 </section>
 </section>
-<section id="id1">
-<h2>Обработка ивентов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+</section>
+<section id="id2">
+<h2>3) Игра началась<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">running</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// здесь магия</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+<section id="id3">
+<h3>3.0) Обработка ивентов<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>Обработка ивентов происходит при помощи встроенной структуры <code class="docutils literal notranslate"><span class="pre">SDL_Event</span></code>. Каждый новый фрейм (или итерацию цикла) мы выполняем обработку ивентов в собственном цикле <code class="docutils literal notranslate"><span class="pre">while</span></code>, а потом уже отрисовываем все виджеты и т.д. Допольно простая архитектура.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Обработка event&#39;ов (inputs, window resize, mouse moving, etc.)</span>
 <span class="n">SDL_Event</span><span class="w"> </span><span class="n">event</span><span class="p">;</span>
@@ -324,6 +364,140 @@ imgui_impl_wgpu.cpp         ; WebGPU (web + desktop)
 </pre></div>
 </div>
 <p><img alt="alt text" src="../../_images/imgui_event_example.png" /></p>
+</section>
+<section id="id4">
+<h3>3.1) Фреймы<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ImGui_ImplOpenGL3_NewFrame</span><span class="p">();</span>
+<span class="n">ImGui_ImplSDL2_NewFrame</span><span class="p">();</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">NewFrame</span><span class="p">();</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">DockSpaceOverViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">ImGuiDockNodeFlags_None</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>3.2) Наши виджеты и пр. элементы<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"> </span>
+
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;This is some useful text.&quot;</span><span class="p">);</span><span class="w">    </span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Button&quot;</span><span class="p">)){</span>
+<span class="w">        </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w">                        </span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;counter = %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="opengl">
+<h3>3.3) Подчиняем себе магию OpenGL<a class="headerlink" href="#opengl" title="Permalink to this heading"></a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ImGui</span><span class="o">::</span><span class="n">Render</span><span class="p">();</span>
+<span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="n">ImGui_ImplOpenGL3_RenderDrawData</span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">GetDrawData</span><span class="p">());</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>4) Безопасно освобождаем память<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ImGui_ImplOpenGL3_Shutdown</span><span class="p">();</span>
+<span class="n">ImGui_ImplSDL2_Shutdown</span><span class="p">();</span>
+<span class="n">ImPlot</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
+<span class="n">SDL_GL_DeleteContext</span><span class="p">(</span><span class="n">gl_context</span><span class="p">);</span>
+<span class="n">SDL_DestroyWindow</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+<span class="n">SDL_Quit</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="gui">
+<h2>Отправим GUI в отдельный поток<a class="headerlink" href="#gui" title="Permalink to this heading"></a></h2>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;GL/glew.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SDL2/SDL.h&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;backends/imgui_impl_opengl3.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;backends/imgui_impl_sdl2.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;imgui.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;implot.h&quot;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">run_gui</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">SDL_Init</span><span class="p">(</span><span class="n">SDL_INIT_VIDEO</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_INIT_TIMER</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SDL_Window</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_CreateWindow</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;Backend start&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span>
+<span class="w">        </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">768</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOW_OPENGL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_WINDOW_RESIZABLE</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SDL_GLContext</span><span class="w"> </span><span class="n">gl_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_GL_CreateContext</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImGuiIO</span><span class="o">&amp;</span><span class="w"> </span><span class="n">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImGui</span><span class="o">::</span><span class="n">GetIO</span><span class="p">();</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">io</span><span class="p">;</span>
+<span class="w">    </span><span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_NavEnableKeyboard</span><span class="p">;</span><span class="w">     </span><span class="c1">// Включить Keyboard Controls</span>
+<span class="w">    </span><span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_NavEnableGamepad</span><span class="p">;</span><span class="w">      </span><span class="c1">// Включить Gamepad Controls</span>
+<span class="w">    </span><span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_DockingEnable</span><span class="p">;</span><span class="w">         </span><span class="c1">// Включить Docking</span>
+
+<span class="w">    </span><span class="n">ImGui_ImplSDL2_InitForOpenGL</span><span class="p">(</span><span class="n">window</span><span class="p">,</span><span class="w"> </span><span class="n">gl_context</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ImGui_ImplOpenGL3_Init</span><span class="p">(</span><span class="s">&quot;#version 330&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">running</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">SDL_Event</span><span class="w"> </span><span class="n">event</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">SDL_PollEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">event</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Processing some event: &quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; timestamp: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">motion</span><span class="p">.</span><span class="n">timestamp</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">            </span><span class="n">ImGui_ImplSDL2_ProcessEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">event</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SDL_QUIT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">ImGui_ImplOpenGL3_NewFrame</span><span class="p">();</span>
+<span class="w">        </span><span class="n">ImGui_ImplSDL2_NewFrame</span><span class="p">();</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">NewFrame</span><span class="p">();</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">DockSpaceOverViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">ImGuiDockNodeFlags_None</span><span class="p">);</span>
+
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">            </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">            </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;This is some useful text.&quot;</span><span class="p">);</span><span class="w">    </span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Button&quot;</span><span class="p">))</span><span class="w">                         </span>
+<span class="w">                </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;counter = %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">            </span><span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Render</span><span class="p">();</span>
+<span class="w">        </span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="w">        </span><span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ImGui_ImplOpenGL3_RenderDrawData</span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">GetDrawData</span><span class="p">());</span>
+
+<span class="w">        </span><span class="n">SDL_GL_SwapWindow</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ImGui_ImplOpenGL3_Shutdown</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImGui_ImplSDL2_Shutdown</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
+<span class="w">    </span><span class="n">SDL_GL_DeleteContext</span><span class="p">(</span><span class="n">gl_context</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SDL_DestroyWindow</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SDL_Quit</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">gui_thread</span><span class="p">(</span><span class="n">run_gui</span><span class="p">);</span>
+<span class="w">    </span><span class="n">gui_thread</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 
