@@ -83,7 +83,7 @@ git submodule update --init --recursive
 Допустим, у нас есть стандартная точка входа в нашу программу `"имя_проекта"/src/main.cpp` и мы хотим использовать её как стантартную библиотеку, например `#include <iostream>`:
 
 `main.cpp`
-```cxx
+```c++
 #include <iostream>
 
 #include "imgui.h"

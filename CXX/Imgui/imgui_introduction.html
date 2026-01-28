@@ -202,15 +202,15 @@ git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w
 <h3>CMakeLists.txt (сборка проекта)<a class="headerlink" href="#cmakelists-txt" title="Permalink to this heading"></a></h3>
 <p>Допустим, у нас есть стандартная точка входа в нашу программу <code class="docutils literal notranslate"><span class="pre">&quot;имя_проекта&quot;/src/main.cpp</span></code> и мы хотим использовать её как стантартную библиотеку, например <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;iostream&gt;</span></code>:</p>
 <p><code class="docutils literal notranslate"><span class="pre">main.cpp</span></code></p>
-<div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>#include &lt;iostream&gt;
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
 
-#include &quot;imgui.h&quot;
-#include &quot;implot.h&quot;
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;imgui.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;implot.h&quot;</span>
 
-int main(int argc, char *argv[]) {
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
 
-    return 0;
-}
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Для этого необходимо сначала собрать наш проект. В нашем случае, при помощи “сборщика” <code class="docutils literal notranslate"><span class="pre">Cmake</span></code>.</p>
