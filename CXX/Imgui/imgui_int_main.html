@@ -74,6 +74,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Первая программа с Dear Imgui</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#gui-sdl2">Окно GUI интерфейса (SDL2)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#backends">Backends</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Обработка ивентов</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
@@ -127,6 +128,93 @@
 <h1>Первая программа с Dear Imgui<a class="headerlink" href="#dear-imgui" title="Permalink to this heading"></a></h1>
 <p>Схематично вся работа нашей программы будет выглядеть следующим образом (см рисунок ниже):
 <img alt="alt text" src="../../_images/imgui_int_main_01.png" /></p>
+<p>С точки зрения кода программы, то простой интерфейс с одной кнопкой и выводом текста будет выглядеть следующим образом:</p>
+<div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>#include &lt;GL/glew.h&gt;
+#include &lt;SDL2/SDL.h&gt;
+
+#include &lt;iostream&gt;
+#include &lt;chrono&gt;
+#include &lt;thread&gt;
+#include &lt;cmath&gt;
+
+#include &quot;backends/imgui_impl_opengl3.h&quot;
+#include &quot;backends/imgui_impl_sdl2.h&quot;
+#include &quot;imgui.h&quot;
+
+int main(int argc, char *argv[]) {
+
+    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
+    SDL_Window* window = SDL_CreateWindow(
+        &quot;Backend start&quot;, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
+        1024, 768, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+    SDL_GLContext gl_context = SDL_GL_CreateContext(window);
+
+    ImGui::CreateContext();
+    ImPlot::CreateContext();
+    ImGuiIO&amp; io = ImGui::GetIO(); (void)io;
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Включить Keyboard Controls
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Включить Gamepad Controls
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Включить Docking
+
+    ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
+    ImGui_ImplOpenGL3_Init(&quot;#version 330&quot;);
+
+    bool running = true;
+    // auto last_frame_time = std::chrono::steady_clock::now();
+    while (running) {
+
+        // 0) Обработка event&#39;ов (inputs, window resize, mouse moving, etc.);
+        SDL_Event event;
+        while (SDL_PollEvent(&amp;event)) {
+            std::cout &lt;&lt; &quot;Processing some event: &quot;&lt;&lt; event.type &lt;&lt; std::endl;
+            ImGui_ImplSDL2_ProcessEvent(&amp;event);
+            if (event.type == SDL_QUIT) {
+                running = false;
+            }
+        }
+
+        // 1) Начинаем создавать новый фрейм;
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplSDL2_NewFrame();
+        ImGui::NewFrame();
+        ImGui::DockSpaceOverViewport(0, nullptr, ImGuiDockNodeFlags_None);
+
+
+        // 2) Наш виджет с кнопкой;
+        {
+            static int counter = 0;
+            ImGui::Begin(&quot;Hello, world!&quot;); 
+                ImGui::Text(&quot;This is some useful text.&quot;);    
+                if (ImGui::Button(&quot;Button&quot;))                         
+                    counter++;
+                ImGui::Text(&quot;counter = %d&quot;, counter);
+            ImGui::End();
+        }
+
+        // 3) Отправляем на рендер;
+        ImGui::Render();
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+
+        SDL_GL_SwapWindow(window);
+    }
+
+    // Закрываем приложение безопасно.
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImPlot::DestroyContext();
+    ImGui::DestroyContext();
+    SDL_GL_DeleteContext(gl_context);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+
+    return 0;
+}
+</pre></div>
+</div>
+<p><strong>Получаем</strong>:</p>
+<p><img alt="alt text" src="../../_images/imgui_simple_example.png" /></p>
 <section id="gui-sdl2">
 <h2>Окно GUI интерфейса (SDL2)<a class="headerlink" href="#gui-sdl2" title="Permalink to this heading"></a></h2>
 <div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
@@ -147,6 +235,36 @@ SDL_Window* window = SDL_CreateWindow(
 </section>
 <section id="backends">
 <h2>Backends<a class="headerlink" href="#backends" title="Permalink to this heading"></a></h2>
+</section>
+<section id="id1">
+<h2>Обработка ивентов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Обработка ивентов происходит при помощи встроенной структуры <code class="docutils literal notranslate"><span class="pre">SDL_Event</span></code>. Каждый новый фрейм (или итерацию цикла) мы выполняем обработку ивентов в собственном цикле <code class="docutils literal notranslate"><span class="pre">while</span></code>, а потом уже отрисовываем все виджеты и т.д. Допольно простая архитектура.</p>
+<div class="highlight-clang notranslate"><div class="highlight"><pre><span></span>// Обработка event&#39;ов (inputs, window resize, mouse moving, etc.)
+SDL_Event event;
+while (SDL_PollEvent(&amp;event)) {
+    std::cout &lt;&lt; &quot;Processing some event: &quot;&lt;&lt; event.type &lt;&lt; std::endl;
+    ImGui_ImplSDL2_ProcessEvent(&amp;event);
+    if (event.type == SDL_QUIT) {
+        running = false;
+    }
+}
+</pre></div>
+</div>
+<div class="highlight-clang notranslate"><div class="highlight"><pre><span></span>typedef enum
+{    /* Application events */
+    SDL_QUIT           = 0x100, /**&lt; User-requested quit */ # 256
+    ...
+    /* Window events */
+    SDL_WINDOWEVENT    = 0x200, /**&lt; Window state change */ # 512
+    ...
+        /* Mouse events */
+    SDL_MOUSEMOTION    = 0x400, /**&lt; Mouse moved */ # 1024
+
+    SDL_LASTEVENT    = 0xFFFF
+} SDL_EventType;
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/imgui_event_example.png" /></p>
 </section>
 </section>
 
