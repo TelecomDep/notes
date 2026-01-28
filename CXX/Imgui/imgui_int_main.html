@@ -129,88 +129,92 @@
 <p>Схематично вся работа нашей программы будет выглядеть следующим образом (см рисунок ниже):
 <img alt="alt text" src="../../_images/imgui_int_main_01.png" /></p>
 <p>С точки зрения кода программы, то простой интерфейс с одной кнопкой и выводом текста будет выглядеть следующим образом:</p>
-<div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>#include &lt;GL/glew.h&gt;
-#include &lt;SDL2/SDL.h&gt;
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;GL/glew.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SDL2/SDL.h&gt;</span>
 
-#include &lt;iostream&gt;
-#include &lt;chrono&gt;
-#include &lt;thread&gt;
-#include &lt;cmath&gt;
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
 
-#include &quot;backends/imgui_impl_opengl3.h&quot;
-#include &quot;backends/imgui_impl_sdl2.h&quot;
-#include &quot;imgui.h&quot;
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;backends/imgui_impl_opengl3.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;backends/imgui_impl_sdl2.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;imgui.h&quot;</span>
 
-int main(int argc, char *argv[]) {
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
 
-    SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
-    SDL_Window* window = SDL_CreateWindow(
-        &quot;Backend start&quot;, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-        1024, 768, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
-    SDL_GLContext gl_context = SDL_GL_CreateContext(window);
+<span class="w">    </span><span class="c1">// SDL</span>
+<span class="w">    </span><span class="n">SDL_Init</span><span class="p">(</span><span class="n">SDL_INIT_VIDEO</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_INIT_TIMER</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SDL_Window</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_CreateWindow</span><span class="p">(</span>
+<span class="w">        </span><span class="s">&quot;Backend start&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span>
+<span class="w">        </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">768</span><span class="p">,</span><span class="w"> </span><span class="n">SDL_WINDOW_OPENGL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_WINDOW_RESIZABLE</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SDL_GLContext</span><span class="w"> </span><span class="n">gl_context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_GL_CreateContext</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
 
-    ImGui::CreateContext();
-    ImPlot::CreateContext();
-    ImGuiIO&amp; io = ImGui::GetIO(); (void)io;
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Включить Keyboard Controls
-    io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Включить Gamepad Controls
-    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Включить Docking
+<span class="w">    </span><span class="c1">// Imgui</span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span>
 
-    ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
-    ImGui_ImplOpenGL3_Init(&quot;#version 330&quot;);
+<span class="w">    </span><span class="c1">// Ввод\вывод</span>
+<span class="w">    </span><span class="n">ImGuiIO</span><span class="o">&amp;</span><span class="w"> </span><span class="n">io</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImGui</span><span class="o">::</span><span class="n">GetIO</span><span class="p">();</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="n">io</span><span class="p">;</span>
+<span class="w">    </span><span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_NavEnableKeyboard</span><span class="p">;</span><span class="w">     </span><span class="c1">// Включить Keyboard Controls</span>
+<span class="w">    </span><span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_NavEnableGamepad</span><span class="p">;</span><span class="w">      </span><span class="c1">// Включить Gamepad Controls</span>
+<span class="w">    </span><span class="n">io</span><span class="p">.</span><span class="n">ConfigFlags</span><span class="w"> </span><span class="o">|=</span><span class="w"> </span><span class="n">ImGuiConfigFlags_DockingEnable</span><span class="p">;</span><span class="w">         </span><span class="c1">// Включить Docking</span>
 
-    bool running = true;
-    // auto last_frame_time = std::chrono::steady_clock::now();
-    while (running) {
+<span class="w">    </span><span class="c1">// OpenGl backend</span>
+<span class="w">    </span><span class="n">ImGui_ImplSDL2_InitForOpenGL</span><span class="p">(</span><span class="n">window</span><span class="p">,</span><span class="w"> </span><span class="n">gl_context</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ImGui_ImplOpenGL3_Init</span><span class="p">(</span><span class="s">&quot;#version 330&quot;</span><span class="p">);</span>
 
-        // 0) Обработка event&#39;ов (inputs, window resize, mouse moving, etc.);
-        SDL_Event event;
-        while (SDL_PollEvent(&amp;event)) {
-            std::cout &lt;&lt; &quot;Processing some event: &quot;&lt;&lt; event.type &lt;&lt; std::endl;
-            ImGui_ImplSDL2_ProcessEvent(&amp;event);
-            if (event.type == SDL_QUIT) {
-                running = false;
-            }
-        }
+<span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">running</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 
-        // 1) Начинаем создавать новый фрейм;
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplSDL2_NewFrame();
-        ImGui::NewFrame();
-        ImGui::DockSpaceOverViewport(0, nullptr, ImGuiDockNodeFlags_None);
+<span class="w">        </span><span class="c1">// 0) Обработка event&#39;ов (inputs, window resize, mouse moving, etc.);</span>
+<span class="w">        </span><span class="n">SDL_Event</span><span class="w"> </span><span class="n">event</span><span class="p">;</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">SDL_PollEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">event</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Processing some event: &quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">            </span><span class="n">ImGui_ImplSDL2_ProcessEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">event</span><span class="p">);</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SDL_QUIT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">        </span><span class="p">}</span>
+
+<span class="w">        </span><span class="c1">// 1) Начинаем создавать новый фрейм;</span>
+<span class="w">        </span><span class="n">ImGui_ImplOpenGL3_NewFrame</span><span class="p">();</span>
+<span class="w">        </span><span class="n">ImGui_ImplSDL2_NewFrame</span><span class="p">();</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">NewFrame</span><span class="p">();</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">DockSpaceOverViewport</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="k">nullptr</span><span class="p">,</span><span class="w"> </span><span class="n">ImGuiDockNodeFlags_None</span><span class="p">);</span>
 
 
-        // 2) Наш виджет с кнопкой;
-        {
-            static int counter = 0;
-            ImGui::Begin(&quot;Hello, world!&quot;); 
-                ImGui::Text(&quot;This is some useful text.&quot;);    
-                if (ImGui::Button(&quot;Button&quot;))                         
-                    counter++;
-                ImGui::Text(&quot;counter = %d&quot;, counter);
-            ImGui::End();
-        }
+<span class="w">        </span><span class="c1">// 2) Наш виджет с кнопкой;</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"> </span>
+<span class="w">                </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;This is some useful text.&quot;</span><span class="p">);</span><span class="w">    </span>
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Button&quot;</span><span class="p">))</span><span class="w">                         </span>
+<span class="w">                    </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">                </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;counter = %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="w">            </span><span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
+<span class="w">        </span><span class="p">}</span>
 
-        // 3) Отправляем на рендер;
-        ImGui::Render();
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT);
-        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+<span class="w">        </span><span class="c1">// 3) Отправляем на рендер;</span>
+<span class="w">        </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Render</span><span class="p">();</span>
+<span class="w">        </span><span class="n">glClearColor</span><span class="p">(</span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">0.1f</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0f</span><span class="p">);</span>
+<span class="w">        </span><span class="n">glClear</span><span class="p">(</span><span class="n">GL_COLOR_BUFFER_BIT</span><span class="p">);</span>
+<span class="w">        </span><span class="n">ImGui_ImplOpenGL3_RenderDrawData</span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">GetDrawData</span><span class="p">());</span>
 
-        SDL_GL_SwapWindow(window);
-    }
+<span class="w">        </span><span class="n">SDL_GL_SwapWindow</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-    // Закрываем приложение безопасно.
-    ImGui_ImplOpenGL3_Shutdown();
-    ImGui_ImplSDL2_Shutdown();
-    ImPlot::DestroyContext();
-    ImGui::DestroyContext();
-    SDL_GL_DeleteContext(gl_context);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
+<span class="w">    </span><span class="c1">// Закрываем приложение безопасно.</span>
+<span class="w">    </span><span class="n">ImGui_ImplOpenGL3_Shutdown</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImGui_ImplSDL2_Shutdown</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
+<span class="w">    </span><span class="n">SDL_GL_DeleteContext</span><span class="p">(</span><span class="n">gl_context</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SDL_DestroyWindow</span><span class="p">(</span><span class="n">window</span><span class="p">);</span>
+<span class="w">    </span><span class="n">SDL_Quit</span><span class="p">();</span>
 
-    return 0;
-}
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>Получаем</strong>:</p>
@@ -239,18 +243,18 @@ SDL_Window* window = SDL_CreateWindow(
 <section id="id1">
 <h2>Обработка ивентов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>Обработка ивентов происходит при помощи встроенной структуры <code class="docutils literal notranslate"><span class="pre">SDL_Event</span></code>. Каждый новый фрейм (или итерацию цикла) мы выполняем обработку ивентов в собственном цикле <code class="docutils literal notranslate"><span class="pre">while</span></code>, а потом уже отрисовываем все виджеты и т.д. Допольно простая архитектура.</p>
-<div class="highlight-clang notranslate"><div class="highlight"><pre><span></span>// Обработка event&#39;ов (inputs, window resize, mouse moving, etc.)
-SDL_Event event;
-while (SDL_PollEvent(&amp;event)) {
-    std::cout &lt;&lt; &quot;Processing some event: &quot;&lt;&lt; event.type &lt;&lt; std::endl;
-    ImGui_ImplSDL2_ProcessEvent(&amp;event);
-    if (event.type == SDL_QUIT) {
-        running = false;
-    }
-}
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="c1">// Обработка event&#39;ов (inputs, window resize, mouse moving, etc.)</span>
+<span class="n">SDL_Event</span><span class="w"> </span><span class="n">event</span><span class="p">;</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">SDL_PollEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">event</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Processing some event: &quot;</span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ImGui_ImplSDL2_ProcessEvent</span><span class="p">(</span><span class="o">&amp;</span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">type</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SDL_QUIT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<div class="highlight-clang notranslate"><div class="highlight"><pre><span></span>typedef enum
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span>typedef enum
 {    /* Application events */
     SDL_QUIT           = 0x100, /**&lt; User-requested quit */ # 256
     ...

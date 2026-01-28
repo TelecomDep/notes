@@ -6,7 +6,7 @@
 
 С точки зрения кода программы, то простой интерфейс с одной кнопкой и выводом текста будет выглядеть следующим образом:
 
-```cxx
+```c++
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 
@@ -21,24 +21,28 @@
 
 int main(int argc, char *argv[]) {
 
+    // SDL
     SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
     SDL_Window* window = SDL_CreateWindow(
         "Backend start", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
         1024, 768, SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
     SDL_GLContext gl_context = SDL_GL_CreateContext(window);
 
+    // Imgui
     ImGui::CreateContext();
     ImPlot::CreateContext();
+
+    // Ввод\вывод
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Включить Keyboard Controls
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Включить Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Включить Docking
 
+    // OpenGl backend
     ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
     ImGui_ImplOpenGL3_Init("#version 330");
 
     bool running = true;
-    // auto last_frame_time = std::chrono::steady_clock::now();
     while (running) {
 
         // 0) Обработка event'ов (inputs, window resize, mouse moving, etc.);
@@ -118,7 +122,7 @@ SDL_Window* window = SDL_CreateWindow(
 
 Обработка ивентов происходит при помощи встроенной структуры `SDL_Event`. Каждый новый фрейм (или итерацию цикла) мы выполняем обработку ивентов в собственном цикле `while`, а потом уже отрисовываем все виджеты и т.д. Допольно простая архитектура.
 
-```clang
+```c++
 // Обработка event'ов (inputs, window resize, mouse moving, etc.)
 SDL_Event event;
 while (SDL_PollEvent(&event)) {
@@ -130,7 +134,7 @@ while (SDL_PollEvent(&event)) {
 }
 ```
 
-```clang
+```c++
 typedef enum
 {    /* Application events */
     SDL_QUIT           = 0x100, /**< User-requested quit */ # 256

@@ -216,48 +216,48 @@ int main(int argc, char *argv[]) {
 <p>Для этого необходимо сначала собрать наш проект. В нашем случае, при помощи “сборщика” <code class="docutils literal notranslate"><span class="pre">Cmake</span></code>.</p>
 <p>Создаем (или открываем, если он уже есть) в корне директории файл CMakeLists.txt, в котором будут находится правила сборки вашего проекта:</p>
 <p><code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cmake_minimum_required<span class="o">(</span>VERSION<span class="w"> </span><span class="m">3</span>.14<span class="o">)</span>
-project<span class="o">(</span>backend_notes<span class="o">)</span>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.14</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">backend_notes</span><span class="p">)</span>
 
-set<span class="o">(</span>CMAKE_CXX_STANDARD<span class="w"> </span><span class="m">17</span><span class="o">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">17</span><span class="p">)</span>
 
-set<span class="o">(</span>THIRD_PARTY_DIR<span class="w"> </span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/third_party<span class="o">)</span>
-set<span class="o">(</span>SRC_DIR<span class="w"> </span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/src<span class="o">)</span>
-set<span class="o">(</span>INCLUDE_DIR<span class="w"> </span><span class="si">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="si">}</span>/include<span class="o">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">THIRD_PARTY_DIR</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/third_party</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">SRC_DIR</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/src</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">INCLUDE_DIR</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/include</span><span class="p">)</span>
 
-<span class="c1"># SDL2</span>
-find_package<span class="o">(</span>SDL2<span class="w"> </span>REQUIRED<span class="o">)</span>
-include_directories<span class="o">(</span><span class="si">${</span><span class="nv">SDL2_INCLUDE_DIRS</span><span class="si">}</span><span class="o">)</span>
+<span class="c"># SDL2</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">SDL2</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">SDL2_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
 
-<span class="c1"># OpenGL/GLEW</span>
-find_package<span class="o">(</span>OpenGL<span class="w"> </span>REQUIRED<span class="o">)</span>
-find_package<span class="o">(</span>GLEW<span class="w"> </span>REQUIRED<span class="o">)</span>
+<span class="c"># OpenGL/GLEW</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">OpenGL</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">GLEW</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
 
-include_directories<span class="o">(</span><span class="si">${</span><span class="nv">INCLUDE_DIR</span><span class="si">}</span><span class="o">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">INCLUDE_DIR</span><span class="o">}</span><span class="p">)</span>
 
-add_library<span class="o">(</span>imgui<span class="w"> </span>STATIC
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui.cpp
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui_draw.cpp
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui_demo.cpp
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui_tables.cpp
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/imgui_widgets.cpp
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/backends/imgui_impl_sdl2.cpp
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui/backends/imgui_impl_opengl3.cpp
-<span class="o">)</span>
-target_include_directories<span class="o">(</span>imgui<span class="w"> </span>PUBLIC<span class="w"> </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/imgui<span class="o">)</span>
-target_compile_options<span class="o">(</span>imgui<span class="w"> </span>PRIVATE<span class="w"> </span>-fPIC<span class="o">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">imgui</span><span class="w"> </span><span class="s">STATIC</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui_draw.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui_demo.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui_tables.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui_widgets.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/backends/imgui_impl_sdl2.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/backends/imgui_impl_opengl3.cpp</span>
+<span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">imgui</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui</span><span class="p">)</span>
+<span class="nb">target_compile_options</span><span class="p">(</span><span class="s">imgui</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">-fPIC</span><span class="p">)</span>
 
-add_library<span class="o">(</span>implot<span class="w"> </span>STATIC
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/implot/implot.cpp
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/implot/implot_demo.cpp
-<span class="w">    </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/implot/implot_items.cpp
-<span class="o">)</span>
-target_include_directories<span class="o">(</span>implot<span class="w"> </span>PUBLIC<span class="w"> </span><span class="si">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="si">}</span>/implot<span class="o">)</span>
-target_link_libraries<span class="o">(</span>implot<span class="w"> </span>PRIVATE<span class="w"> </span>imgui<span class="o">)</span>
-target_compile_options<span class="o">(</span>implot<span class="w"> </span>PRIVATE<span class="w"> </span>-fPIC<span class="o">)</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">STATIC</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot_demo.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot_items.cpp</span>
+<span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">imgui</span><span class="p">)</span>
+<span class="nb">target_compile_options</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">-fPIC</span><span class="p">)</span>
 
-add_executable<span class="o">(</span>main<span class="w"> </span><span class="si">${</span><span class="nv">SRC_DIR</span><span class="si">}</span>/main.cpp<span class="o">)</span>
-target_link_libraries<span class="o">(</span>main<span class="w"> </span>PRIVATE<span class="w"> </span>imgui<span class="w"> </span>implot<span class="w"> </span><span class="si">${</span><span class="nv">SDL2_LIBRARIES</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">OPENGL_LIBRARIES</span><span class="si">}</span><span class="w"> </span><span class="si">${</span><span class="nv">GLEW_LIBRARIES</span><span class="si">}</span><span class="o">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">main</span><span class="w"> </span><span class="o">${</span><span class="nv">SRC_DIR</span><span class="o">}</span><span class="s">/main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">main</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">imgui</span><span class="w"> </span><span class="s">implot</span><span class="w"> </span><span class="o">${</span><span class="nv">SDL2_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">OPENGL_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">GLEW_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
 <ul class="simple">

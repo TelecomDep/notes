@@ -99,7 +99,7 @@ int main(int argc, char *argv[]) {
 Создаем (или открываем, если он уже есть) в корне директории файл CMakeLists.txt, в котором будут находится правила сборки вашего проекта:
 
 `CMakeLists.txt`
-```bash
+```cmake
 cmake_minimum_required(VERSION 3.14)
 project(backend_notes)
 
