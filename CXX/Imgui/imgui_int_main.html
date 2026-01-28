@@ -221,13 +221,13 @@
 <p><img alt="alt text" src="../../_images/imgui_simple_example.png" /></p>
 <section id="gui-sdl2">
 <h2>Окно GUI интерфейса (SDL2)<a class="headerlink" href="#gui-sdl2" title="Permalink to this heading"></a></h2>
-<div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
-SDL_Window* window = SDL_CreateWindow(
-                    &quot;Backend start&quot;, 
-                    SDL_WINDOWPOS_CENTERED, 
-                    SDL_WINDOWPOS_CENTERED,
-                    1024, 768, 
-                    SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">SDL_Init</span><span class="p">(</span><span class="n">SDL_INIT_VIDEO</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_INIT_TIMER</span><span class="p">);</span>
+<span class="n">SDL_Window</span><span class="o">*</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SDL_CreateWindow</span><span class="p">(</span>
+<span class="w">                    </span><span class="s">&quot;Backend start&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                    </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                    </span><span class="n">SDL_WINDOWPOS_CENTERED</span><span class="p">,</span>
+<span class="w">                    </span><span class="mi">1024</span><span class="p">,</span><span class="w"> </span><span class="mi">768</span><span class="p">,</span><span class="w"> </span>
+<span class="w">                    </span><span class="n">SDL_WINDOW_OPENGL</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SDL_WINDOW_RESIZABLE</span><span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">
