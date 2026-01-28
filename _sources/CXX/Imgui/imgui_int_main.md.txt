@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;      // Включить Gamepad Controls
     io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;         // Включить Docking
 
-    // OpenGl backend
+    // Imgui + OpenGl backend
     ImGui_ImplSDL2_InitForOpenGL(window, gl_context);
     ImGui_ImplOpenGL3_Init("#version 330");
 
@@ -117,6 +117,60 @@ SDL_Window* window = SDL_CreateWindow(
 
 ## Backends
 
+## Using standard Backends
+
+**Директория [backends/](https://github.com/ocornut/imgui/blob/master/backends) содержит популярные backend'ы для работы с платформенными и графическими API. Можно использовать в своем проекте, интегрировав в  Dear ImGui. 
+
+Каждый backend состоит и пары файлов: `imgui_impl_XXXX.cpp` + `imgui_impl_XXXX.h`.
+
+- The 'Platform' backends are in charge of: mouse/keyboard/gamepad inputs, cursor shape, timing, and windowing.<BR>
+  e.g. Windows ([imgui_impl_win32.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_win32.cpp)), SDL3 ([imgui_impl_sdl3.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_sdl3.cpp)), GLFW ([imgui_impl_glfw.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_glfw.cpp)), etc.
+
+- The 'Renderer' backends are in charge of: creating atlas texture, and rendering imgui draw data.<BR>
+  e.g. DirectX11 ([imgui_impl_dx11.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_dx11.cpp)), OpenGL/WebGL ([imgui_impl_opengl3.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_opengl3.cpp)), Vulkan ([imgui_impl_vulkan.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_vulkan.cpp)), etc.
+
+- For some high-level frameworks, a single backend usually handles both 'Platform' and 'Renderer' parts.<BR>
+  e.g. Allegro 5 ([imgui_impl_allegro5.cpp](https://github.com/ocornut/imgui/blob/master/backends/imgui_impl_allegro5.cpp)). If you end up creating a custom backend for your engine, you may want to do the same.
+
+An application usually combines one Platform backend + one Renderer backend + main Dear ImGui sources.
+For example, the [example_win32_directx11](https://github.com/ocornut/imgui/tree/master/examples/example_win32_directx11) application combines imgui_impl_win32.cpp + imgui_impl_dx11.cpp. There are 20+ examples in the [examples/](https://github.com/ocornut/imgui/blob/master/examples/) folder. See [EXAMPLES.MD](https://github.com/ocornut/imgui/blob/master/docs/EXAMPLES.md) for details.
+
+**Once Dear ImGui is setup and running, run and refer to `ImGui::ShowDemoWindow()` in imgui_demo.cpp for usage of the end-user API.**
+
+### Список поддерживаемых Backend'ов
+
+[backends/](https://github.com/ocornut/imgui/blob/master/backends):
+
+Список **Platforms Backends**:
+```
+imgui_impl_android.cpp      ; Android native app API
+imgui_impl_glfw.cpp         ; GLFW (Windows, macOS, Linux, etc.) http://www.glfw.org/
+imgui_impl_osx.mm           ; macOS native API (not as feature complete as glfw/sdl backends)
+imgui_impl_sdl2.cpp         ; SDL2 (Windows, macOS, Linux, iOS, Android) https://www.libsdl.org
+imgui_impl_sdl3.cpp         ; SDL3 (Windows, macOS, Linux, iOS, Android) https://www.libsdl.org
+imgui_impl_win32.cpp        ; Win32 native API (Windows)
+imgui_impl_glut.cpp         ; GLUT/FreeGLUT (this is prehistoric software and absolutely not recommended today!)
+```
+Список **Renderer Backends**:
+```
+imgui_impl_dx9.cpp          ; DirectX9
+imgui_impl_dx10.cpp         ; DirectX10
+imgui_impl_dx11.cpp         ; DirectX11
+imgui_impl_dx12.cpp         ; DirectX12
+imgui_impl_metal.mm         ; Metal (ObjC or C++)
+imgui_impl_opengl2.cpp      ; OpenGL 2 (legacy fixed pipeline. Don't use with modern OpenGL code!)
+imgui_impl_opengl3.cpp      ; OpenGL 3/4, OpenGL ES 2/3, WebGL
+imgui_impl_sdlgpu3.cpp      ; SDL_GPU (portable 3D graphics API of SDL3)
+imgui_impl_sdlrenderer2.cpp ; SDL_Renderer (optional component of SDL2 available from SDL 2.0.18+)
+imgui_impl_sdlrenderer3.cpp ; SDL_Renderer (optional component of SDL3. Prefer using SDL_GPU!).
+imgui_impl_vulkan.cpp       ; Vulkan
+imgui_impl_wgpu.cpp         ; WebGPU (web + desktop)
+```
+Список **high-level Frameworks Backends** (combining Platform + Renderer):
+```
+imgui_impl_allegro5.cpp
+imgui_impl_null.cpp
+```
 
 ## Обработка ивентов
 
@@ -133,6 +187,8 @@ while (SDL_PollEvent(&event)) {
     }
 }
 ```
+
+Список ивентов, обрабатываемых библиотекой SDL2 [SDL_EventType](https://wiki.libsdl.org/SDL2/SDL_EventType): 
 
 ```c++
 typedef enum

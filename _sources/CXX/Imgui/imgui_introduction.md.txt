@@ -1,6 +1,12 @@
 # Dear ImGui
 
-Начнем с тех кто использует библиотеку [Dear Imgui](https://github.com/ocornut/imgui/wiki/Software-using-Dear-ImGui).
+**Полезно**
+- Начнем с тех кто использует библиотеку [Dear Imgui](https://github.com/ocornut/imgui/wiki/Software-using-Dear-ImGui);
+- Thirdparty [полезные расширения](https://github.com/ocornut/imgui/wiki/Useful-Extensions);
+- Немного про [Docking](https://github.com/ocornut/imgui/wiki/Docking);
+- Поддерживаемые [backend'ы](https://github.com/ocornut/imgui/wiki/Bindings#frameworkengine-backends);
+
+
 
 
 ### SDL and OpenGL
@@ -51,7 +57,7 @@ SDL упрощает обработку ввода, работу с **окнам
 
 ```bash
 git submodule add https://github.com/epezent/implot.git third_party/implot
-git submodule add https://github.com/ocornut/imgui.git third_party/imgui
+git submodule add -b docking https://github.com/ocornut/imgui.git third_party/imgui
 ```
 В данном случае я кладу оба проекта в директорию (см. дерево выше) `third_party`. 
 

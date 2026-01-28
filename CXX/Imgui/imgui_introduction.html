@@ -130,7 +130,13 @@
              
   <section id="dear-imgui">
 <h1>Dear ImGui<a class="headerlink" href="#dear-imgui" title="Permalink to this heading"></a></h1>
-<p>Начнем с тех кто использует библиотеку <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Software-using-Dear-ImGui">Dear Imgui</a>.</p>
+<p><strong>Полезно</strong></p>
+<ul class="simple">
+<li><p>Начнем с тех кто использует библиотеку <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Software-using-Dear-ImGui">Dear Imgui</a>;</p></li>
+<li><p>Thirdparty <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Useful-Extensions">полезные расширения</a>;</p></li>
+<li><p>Немного про <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Docking">Docking</a>;</p></li>
+<li><p>Поддерживаемые <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Bindings#frameworkengine-backends">backend’ы</a>;</p></li>
+</ul>
 <section id="sdl-and-opengl">
 <h2>SDL and OpenGL<a class="headerlink" href="#sdl-and-opengl" title="Permalink to this heading"></a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SDL2</span></code> - это <a class="reference external" href="https://www.libsdl.org/">Simple DirectMedia Layer</a>, то, что обычно называют “фреймворком”.
@@ -175,7 +181,7 @@ SDL упрощает обработку ввода, работу с <strong>ок
 <p>Осуществляется это про помощи команды <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">add</span> <span class="pre">&quot;ссылка&quot;</span> <span class="pre">&quot;куда</span> <span class="pre">кладем&quot;</span> <span class="pre">и</span> <span class="pre">т.д.</span></code>. <a class="reference external" href="https://git-scm.com/book/ru/v2/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B-Git-%D0%9F%D0%BE%D0%B4%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B8">RU</a>, <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">ENG</a> ссылки на документацию.</p>
 <p>Добавим в наш проект 2 репозитория, которые будем усердно изучать: <a class="reference external" href="https://github.com/ocornut/imgui">Dear Imgui</a> и его дополнение для работы с графиками <a class="reference external" href="https://github.com/epezent/implot">Implot</a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/epezent/implot.git<span class="w"> </span>third_party/implot
-git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/ocornut/imgui.git<span class="w"> </span>third_party/imgui
+git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>-b<span class="w"> </span>docking<span class="w"> </span>https://github.com/ocornut/imgui.git<span class="w"> </span>third_party/imgui
 </pre></div>
 </div>
 <p>В данном случае я кладу оба проекта в директорию (см. дерево выше) <code class="docutils literal notranslate"><span class="pre">third_party</span></code>.</p>
