@@ -100,7 +100,7 @@ int main(int argc, char *argv[]) {
 ![alt text](image/imgui_int_main/imgui_simple_example.png)
 ## Окно GUI интерфейса (SDL2)
 
-```cxx
+```c++
 SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER);
 SDL_Window* window = SDL_CreateWindow(
                     "Backend start", 
