@@ -50,6 +50,7 @@
 ```bash
 1. Что такое наследование?
 2. В каком случае необходимо наследование?
+3. Написать программы, реализующую основной класс и класс-наследник (на усмотрение преподавателя).
 ```
 
 ### 3. Интерфейсы.
@@ -66,7 +67,7 @@
 ```bash
 1. Что такое интерфейсы?
 2. Чем отличается наследование интерфейса от "обычного" наследования? В каком случае логичнее наследовать от интерфейса?
-3. 
+3. Написать простой интерфейс вывода информации об объекте.
 ```
 
 
@@ -163,22 +164,8 @@ bGoToPlayerActivity.setOnClickListener({
 2. Что такое `Unix Epoch Time`?
 3. Как считается время в мобильных телефонах? Есть ли разница с вычислением времени на спутниках? Какая точность измерений?
 
-### 7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)
 
-1.  Создать новое `Activity`, добавив кнопку перехода основном "окне" `MainActivity`;
-2. При помощи класса `Telephony` получаем информацию о сетях мобильной связи:
-    1. [CellInfoLte](https://developer.android.com/reference/android/telephony/CellInfoLte): CellIdentityLte, CellSignalStrengthLte;
-        1. CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;
-        5. CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;
-    2. [CellInfoGsm](https://developer.android.com/reference/android/telephony/CellInfoGsm): CellIdentityGSM, CellSignalStrengthGsm;
-        1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
-        6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
-    3. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
-        1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
-        7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
-3. Ссылка на [пример получения данных](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt). 
-
-### 8. Реализация клиент-серверного приложения (Python\clang)
+### 7. Реализация клиент-серверного приложения (Python\clang)
 1. Создать новый репозиторий в профиле `github` (для backend-сервера);
 2. В созданный репозиторий добавить Ваш проект `Android'a` как `submodule`;
 3. В корне репозитория создать папку `examples/`, где будут находится примеры работы клиент-серверного приложения;
@@ -199,7 +186,7 @@ bGoToPlayerActivity.setOnClickListener({
 
 
 
-### 9. Работа с сокетами (ZMQ). Передача данных от Android к PC
+### 8. Работа с сокетами (ZMQ). Передача данных от Android к PC
 1. На базе [примера](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/SocketsActivity.kt) реализовать передачу данных внутри приложения `Android` (ваш предыдущий проект);
 1. Создать новое `Activity`, в котором будет реализованы функции `клиента` и `сервера`;
     1. Реализовать начало передачу данных между сервером и клиентом при нажатии на кнопку (создать новую кнопку);
@@ -217,7 +204,33 @@ bGoToPlayerActivity.setOnClickListener({
     3. `Server` - добавить новый коммит, обновить удаленный репозиторий.
 
 
-### 10. Сериализация. Data-классы. Формирование JSON.
+### 9.  Backend-сервер на CXX
+1. Скоректировать `backend`-сервер в сторону работы на базе языка C++. Пример работы [ C++ и ZMQ](https://zeromq.org/languages/cplusplus/).
+2. Реализовать передачу данных о местоположении смартфона (см. Задание №6) на CXX-сервер. Сервер должен:
+    1. При получении данных от смартфона сохранять их в файл `.json`;
+    2. Работа `ZMQ`-сокетов должна выполняться в отдельном (от `int main()`) потоке (`thread`). [Простой пример](https://www.geeksforgeeks.org/cpp/multithreading-in-cpp/);
+2. Приложение (`Android`) должно автоматически переподключаться к серверной части, в случае разрыва соединения (при помощи `try` и проверки на разрыв соединения);
+3. Реализовать графический интерфейс (ImGUI или Qt5\6), в котором:
+    1. Должен быть виджет с информацией о местоположении (которую мы получили в пункте 2.). В виде текстовой информации;
+    2. Информация должна обновляться каждый раз, когда данные принимаются от `Android`-приложения.
+
+<!-- ### 9. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)
+
+1.  Создать новое `Activity`, добавив кнопку перехода основном "окне" `MainActivity`;
+2. При помощи класса `Telephony` получаем информацию о сетях мобильной связи:
+    1. [CellInfoLte](https://developer.android.com/reference/android/telephony/CellInfoLte): CellIdentityLte, CellSignalStrengthLte;
+        1. CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;
+        5. CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;
+    2. [CellInfoGsm](https://developer.android.com/reference/android/telephony/CellInfoGsm): CellIdentityGSM, CellSignalStrengthGsm;
+        1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
+        6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
+    3. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
+        1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
+        7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
+3. Ссылка на [пример получения данных](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt).  -->
+
+
+<!-- ### 10. Сериализация. Data-классы. Формирование JSON.
 
 1. В приложении `Android`, `Desktop-сервере` сформировать [Data-классы](https://metanit.com/kotlin/tutorial/4.12.php) для данных, которые будем передавать с между приложениями. Список данных:
     1. [Location](https://developer.android.com/reference/android/location/Location): Latitude, Longitude, Altitude, Timestamp, Speed, Accuracy;
@@ -239,10 +252,10 @@ bGoToPlayerActivity.setOnClickListener({
     6.1 Схемы архитектуры программного комплекса (клиент-серверного приложения). Начинаем с получения `Location` (6 практика), заканчиваем 10 практикой (можно нарисовать в **Draw.io**,**MS Visio**, и **т.д.**);
     6.2 Описания `DTO` (`Data Transfer Object`), которыми обмениваются сервер и клиент;
     6.2 Описания архитектуры клиента (`Android`): структура проекта (файловая система), структура с точки зрения работы потоков (`Thread`), `endpoint`'ы соединения с сервером;
-    6.3. Описания архитектуры сервера (`Python\Clang`): структура проекта (файловая система), структура с точки зрения работы потоков (`Thread`), `endpoint`'ы сервара (все сетевые соединения).
+    6.3. Описания архитектуры сервера (`Python\Clang`): структура проекта (файловая система), структура с точки зрения работы потоков (`Thread`), `endpoint`'ы сервара (все сетевые соединения). -->
 
 
-### 11. PostgreSQL. База данных (на стороне backend)
+<!-- ### 11. PostgreSQL. База данных (на стороне backend)
 
 1. Создать базу данных при помощи средств **СУБД** (например, `PostgreSQL`) для храрения информации, полученной в `Пр. №10`.
     1. Создать базу данных при помощи psql-консоли (как [здесь](https://telecomdep.github.io/notes/DataBase/work_with_database.html));
@@ -275,5 +288,5 @@ while True:
 
 cursor.close() # закрываем курсор
 conn.close() 
-```
+``` -->
 
