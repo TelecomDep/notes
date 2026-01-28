@@ -62,11 +62,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#activities">4.5. Рефакторинг. Разделение по Activities.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#mediaplayer">5. Разработать MediaPlayer для воспроизведения музыки</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#location">6. Местоположение смартфона. Location</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#g-3g-4g-lte-5g-nr">7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#python-clang">8. Реализация клиент-серверного приложения (Python\clang)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">9. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#data-json">10. Сериализация. Data-классы. Формирование JSON.</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#postgresql-backend">11. PostgreSQL. База данных (на стороне backend)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#python-clang">7. Реализация клиент-серверного приложения (Python\clang)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">8. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#backend-cxx">9.  Backend-сервер на CXX</a></li>
 </ul>
 </li>
 </ul>
@@ -187,6 +185,7 @@
 <p><strong>Вопросы к защите</strong></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>.<span class="w"> </span>Что<span class="w"> </span>такое<span class="w"> </span>наследование?
 <span class="m">2</span>.<span class="w"> </span>В<span class="w"> </span>каком<span class="w"> </span>случае<span class="w"> </span>необходимо<span class="w"> </span>наследование?
+<span class="m">3</span>.<span class="w"> </span>Написать<span class="w"> </span>программы,<span class="w"> </span>реализующую<span class="w"> </span>основной<span class="w"> </span>класс<span class="w"> </span>и<span class="w"> </span>класс-наследник<span class="w"> </span><span class="o">(</span>на<span class="w"> </span>усмотрение<span class="w"> </span>преподавателя<span class="o">)</span>.
 </pre></div>
 </div>
 </section>
@@ -210,7 +209,7 @@
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="m">1</span>.<span class="w"> </span>Что<span class="w"> </span>такое<span class="w"> </span>интерфейсы?
 <span class="m">2</span>.<span class="w"> </span>Чем<span class="w"> </span>отличается<span class="w"> </span>наследование<span class="w"> </span>интерфейса<span class="w"> </span>от<span class="w"> </span><span class="s2">&quot;обычного&quot;</span><span class="w"> </span>наследования?<span class="w"> </span>В<span class="w"> </span>каком<span class="w"> </span>случае<span class="w"> </span>логичнее<span class="w"> </span>наследовать<span class="w"> </span>от<span class="w"> </span>интерфейса?
-<span class="m">3</span>.<span class="w"> </span>
+<span class="m">3</span>.<span class="w"> </span>Написать<span class="w"> </span>простой<span class="w"> </span>интерфейс<span class="w"> </span>вывода<span class="w"> </span>информации<span class="w"> </span>об<span class="w"> </span>объекте.
 </pre></div>
 </div>
 </section>
@@ -317,37 +316,8 @@
 <li><p>Как считается время в мобильных телефонах? Есть ли разница с вычислением времени на спутниках? Какая точность измерений?</p></li>
 </ol>
 </section>
-<section id="g-3g-4g-lte-5g-nr">
-<h3>7. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)<a class="headerlink" href="#g-3g-4g-lte-5g-nr" title="Permalink to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p>Создать новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, добавив кнопку перехода основном “окне” <code class="docutils literal notranslate"><span class="pre">MainActivity</span></code>;</p></li>
-<li><p>При помощи класса <code class="docutils literal notranslate"><span class="pre">Telephony</span></code> получаем информацию о сетях мобильной связи:</p>
-<ol class="arabic simple">
-<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoLte">CellInfoLte</a>: CellIdentityLte, CellSignalStrengthLte;</p>
-<ol class="arabic simple">
-<li><p>CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;</p></li>
-<li><p>CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;</p></li>
-</ol>
-</li>
-<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoGsm">CellInfoGsm</a>: CellIdentityGSM, CellSignalStrengthGsm;</p>
-<ol class="arabic simple">
-<li><p>CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;</p></li>
-<li><p>CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;</p></li>
-</ol>
-</li>
-<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoNr">CellInfoNr</a>: CellIdentityNr, CellSignalStrengthNr</p>
-<ol class="arabic simple">
-<li><p>CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;</p></li>
-<li><p>CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;</p></li>
-</ol>
-</li>
-</ol>
-</li>
-<li><p>Ссылка на <a class="reference external" href="https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt">пример получения данных</a>.</p></li>
-</ol>
-</section>
 <section id="python-clang">
-<h3>8. Реализация клиент-серверного приложения (Python\clang)<a class="headerlink" href="#python-clang" title="Permalink to this heading"></a></h3>
+<h3>7. Реализация клиент-серверного приложения (Python\clang)<a class="headerlink" href="#python-clang" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Создать новый репозиторий в профиле <code class="docutils literal notranslate"><span class="pre">github</span></code> (для backend-сервера);</p></li>
 <li><p>В созданный репозиторий добавить Ваш проект <code class="docutils literal notranslate"><span class="pre">Android'a</span></code> как <code class="docutils literal notranslate"><span class="pre">submodule</span></code>;</p></li>
@@ -370,7 +340,7 @@
 </ol>
 </section>
 <section id="zmq-android-pc">
-<h3>9. Работа с сокетами (ZMQ). Передача данных от Android к PC<a class="headerlink" href="#zmq-android-pc" title="Permalink to this heading"></a></h3>
+<h3>8. Работа с сокетами (ZMQ). Передача данных от Android к PC<a class="headerlink" href="#zmq-android-pc" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>На базе <a class="reference external" href="https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/SocketsActivity.kt">примера</a> реализовать передачу данных внутри приложения <code class="docutils literal notranslate"><span class="pre">Android</span></code> (ваш предыдущий проект);</p></li>
 <li><p>Создать новое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, в котором будет реализованы функции <code class="docutils literal notranslate"><span class="pre">клиента</span></code> и <code class="docutils literal notranslate"><span class="pre">сервера</span></code>;</p>
@@ -398,86 +368,95 @@
 </li>
 </ol>
 </section>
-<section id="data-json">
-<h3>10. Сериализация. Data-классы. Формирование JSON.<a class="headerlink" href="#data-json" title="Permalink to this heading"></a></h3>
+<section id="backend-cxx">
+<h3>9.  Backend-сервер на CXX<a class="headerlink" href="#backend-cxx" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
-<li><p>В приложении <code class="docutils literal notranslate"><span class="pre">Android</span></code>, <code class="docutils literal notranslate"><span class="pre">Desktop-сервере</span></code> сформировать <a class="reference external" href="https://metanit.com/kotlin/tutorial/4.12.php">Data-классы</a> для данных, которые будем передавать с между приложениями. Список данных:</p>
+<li><p>Скоректировать <code class="docutils literal notranslate"><span class="pre">backend</span></code>-сервер в сторону работы на базе языка C++. Пример работы <a class="reference external" href="https://zeromq.org/languages/cplusplus/"> C++ и ZMQ</a>.</p></li>
+<li><p>Реализовать передачу данных о местоположении смартфона (см. Задание №6) на CXX-сервер. Сервер должен:</p>
 <ol class="arabic simple">
-<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location">Location</a>: Latitude, Longitude, Altitude, Timestamp, Speed, Accuracy;</p></li>
-<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoLte">CellInfoLte</a>: CellIdentityLte, CellSignalStrengthLte;</p>
-<ol class="arabic simple">
-<li><p>CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;</p></li>
-<li><p>CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;</p></li>
+<li><p>При получении данных от смартфона сохранять их в файл <code class="docutils literal notranslate"><span class="pre">.json</span></code>;</p></li>
+<li><p>Работа <code class="docutils literal notranslate"><span class="pre">ZMQ</span></code>-сокетов должна выполняться в отдельном (от <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">main()</span></code>) потоке (<code class="docutils literal notranslate"><span class="pre">thread</span></code>). <a class="reference external" href="https://www.geeksforgeeks.org/cpp/multithreading-in-cpp/">Простой пример</a>;</p></li>
 </ol>
 </li>
-<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoGsm">CellInfoGsm</a>: CellIdentityGSM, CellSignalStrengthGsm;</p>
+<li><p>Приложение (<code class="docutils literal notranslate"><span class="pre">Android</span></code>) должно автоматически переподключаться к серверной части, в случае разрыва соединения (при помощи <code class="docutils literal notranslate"><span class="pre">try</span></code> и проверки на разрыв соединения);</p></li>
+<li><p>Реализовать графический интерфейс (ImGUI или Qt5\6), в котором:</p>
 <ol class="arabic simple">
-<li><p>CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;</p></li>
-<li><p>CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;</p></li>
-</ol>
-</li>
-<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoNr">CellInfoNr</a>: CellIdentityNr, CellSignalStrengthNr</p>
-<ol class="arabic simple">
-<li><p>CellIdentityNr: Band, NCI, PCI, Nrarfcn, TAC, MCC, MNC;</p></li>
-<li><p>CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;</p></li>
+<li><p>Должен быть виджет с информацией о местоположении (которую мы получили в пункте 2.). В виде текстовой информации;</p></li>
+<li><p>Информация должна обновляться каждый раз, когда данные принимаются от <code class="docutils literal notranslate"><span class="pre">Android</span></code>-приложения.</p></li>
 </ol>
 </li>
 </ol>
-</li>
-<li><p>Заполнить каждый <code class="docutils literal notranslate"><span class="pre">Data-класс</span></code> актуальными данными с мобильного телефона (<code class="docutils literal notranslate"><span class="pre">Пр.</span> <span class="pre">№3</span></code>, <code class="docutils literal notranslate"><span class="pre">Пр.</span> <span class="pre">№4</span></code>);</p></li>
-<li><p>Реализовать <a class="reference external" href="https://kotlinlang.org/docs/serialization.html#serialize-and-deserialize-json">Serialization</a> и преобразование в <code class="docutils literal notranslate"><span class="pre">Json</span></code>, созданных вами классов:</p>
-<ol class="arabic simple">
-<li><p>Структура на передачу <strong>ДОЛЖНА</strong> состоять из <code class="docutils literal notranslate"><span class="pre">Location</span></code> и одним из (или несколько, если позволяет производитель смартфона) объектов <code class="docutils literal notranslate"><span class="pre">CellInfo</span></code> (<code class="docutils literal notranslate"><span class="pre">GSM</span></code> или <code class="docutils literal notranslate"><span class="pre">LTE</span></code> или <code class="docutils literal notranslate"><span class="pre">NR</span></code>);</p></li>
-</ol>
-</li>
-<li><p>С заранее заданной периодичностью (допустим, <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">секунда</span></code>) передавать, сформированную структуру <code class="docutils literal notranslate"><span class="pre">Json</span></code>, с мобильного устройства на сервер.</p></li>
-<li><p>На стороне сервера получать данные, выводить в терминал и сохранять данные в файл;</p></li>
-<li><p>Обновить <code class="docutils literal notranslate"><span class="pre">README.md</span></code>-файл (в репозитории <code class="docutils literal notranslate"><span class="pre">backend</span></code>’а) с описанием вашего проекта. Описание должно состоять из:
-6.1 Схемы архитектуры программного комплекса (клиент-серверного приложения). Начинаем с получения <code class="docutils literal notranslate"><span class="pre">Location</span></code> (6 практика), заканчиваем 10 практикой (можно нарисовать в <strong>Draw.io</strong>,<strong>MS Visio</strong>, и <strong>т.д.</strong>);
-6.2 Описания <code class="docutils literal notranslate"><span class="pre">DTO</span></code> (<code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">Transfer</span> <span class="pre">Object</span></code>), которыми обмениваются сервер и клиент;
-6.2 Описания архитектуры клиента (<code class="docutils literal notranslate"><span class="pre">Android</span></code>): структура проекта (файловая система), структура с точки зрения работы потоков (<code class="docutils literal notranslate"><span class="pre">Thread</span></code>), <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>’ы соединения с сервером;
-6.3. Описания архитектуры сервера (<code class="docutils literal notranslate"><span class="pre">Python\Clang</span></code>): структура проекта (файловая система), структура с точки зрения работы потоков (<code class="docutils literal notranslate"><span class="pre">Thread</span></code>), <code class="docutils literal notranslate"><span class="pre">endpoint</span></code>’ы сервара (все сетевые соединения).</p></li>
-</ol>
-</section>
-<section id="postgresql-backend">
-<h3>11. PostgreSQL. База данных (на стороне backend)<a class="headerlink" href="#postgresql-backend" title="Permalink to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p>Создать базу данных при помощи средств <strong>СУБД</strong> (например, <code class="docutils literal notranslate"><span class="pre">PostgreSQL</span></code>) для храрения информации, полученной в <code class="docutils literal notranslate"><span class="pre">Пр.</span> <span class="pre">№10</span></code>.</p>
-<ol class="arabic simple">
-<li><p>Создать базу данных при помощи psql-консоли (как <a class="reference external" href="https://telecomdep.github.io/notes/DataBase/work_with_database.html">здесь</a>);</p></li>
-<li><p>Создать таблицу, содержащую все необходимые атрибуты (<strong>столбцы</strong>), исходя из <code class="docutils literal notranslate"><span class="pre">Пр.</span> <span class="pre">№10</span></code>;</p></li>
-</ol>
-</li>
-<li><p>Добавить функцию работы backend-сервера с <strong>СУБД</strong> (PostgreSQL, например, как <a class="reference external" href="https://telecomdep.github.io/notes/DataBase/python_psql.html">тут</a>);</p></li>
-<li><p>При каждом получении данных с <code class="docutils literal notranslate"><span class="pre">Android</span></code>-телефона, Ваш <code class="docutils literal notranslate"><span class="pre">backend-сервер</span></code> должен сохранять информацию в базе данных (используем <strong>SQL-команду</strong> <code class="docutils literal notranslate"><span class="pre">INSERT</span></code>);</p></li>
-<li><p>Реализовать отображение данных о местоположении (в реальном времени) на стороне <code class="docutils literal notranslate"><span class="pre">backend-сервера</span></code>:</p>
-<ol class="arabic simple">
-<li><p>Используем библиотеку <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>;</p></li>
-<li><p>Данные забираем из базы данных.</p></li>
-</ol>
-</li>
-</ol>
-<p>Итого, “<strong>бэкэнд-севрер</strong>” будет выглядеть (схематично, без <code class="docutils literal notranslate"><span class="pre">потоков</span></code>, <code class="docutils literal notranslate"><span class="pre">data-классов</span></code> и <strong>прочей красоты</strong>) след. образом:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">psycopg2</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">zmq</span>
+<!-- ### 9. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)
 
-<span class="n">conn</span> <span class="o">=</span> <span class="n">psycopg2</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">dbname</span><span class="o">=</span><span class="s2">&quot;test_db_from_psql&quot;</span><span class="p">,</span> <span class="n">host</span><span class="o">=</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s2">&quot;postgres&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;postgres1234&quot;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="s2">&quot;5432&quot;</span><span class="p">)</span>
+1.  Создать новое `Activity`, добавив кнопку перехода основном "окне" `MainActivity`;
+2. При помощи класса `Telephony` получаем информацию о сетях мобильной связи:
+    1. [CellInfoLte](https://developer.android.com/reference/android/telephony/CellInfoLte): CellIdentityLte, CellSignalStrengthLte;
+        1. CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;
+        5. CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;
+    2. [CellInfoGsm](https://developer.android.com/reference/android/telephony/CellInfoGsm): CellIdentityGSM, CellSignalStrengthGsm;
+        1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
+        6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
+    3. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
+        1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
+        7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
+3. Ссылка на [пример получения данных](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt).  -->
+<!-- ### 10. Сериализация. Data-классы. Формирование JSON.
 
-<span class="n">context</span> <span class="o">=</span> <span class="n">zmq</span><span class="o">.</span><span class="n">Context</span><span class="p">()</span>
-<span class="n">socket</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">socket</span><span class="p">(</span><span class="n">zmq</span><span class="o">.</span><span class="n">REP</span><span class="p">)</span>
-<span class="n">socket</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s2">&quot;tcp://*:5555&quot;</span><span class="p">)</span>
+1. В приложении `Android`, `Desktop-сервере` сформировать [Data-классы](https://metanit.com/kotlin/tutorial/4.12.php) для данных, которые будем передавать с между приложениями. Список данных:
+    1. [Location](https://developer.android.com/reference/android/location/Location): Latitude, Longitude, Altitude, Timestamp, Speed, Accuracy;
+    2. [CellInfoLte](https://developer.android.com/reference/android/telephony/CellInfoLte): CellIdentityLte, CellSignalStrengthLte;
+        1. CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;
+        5. CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;
+    3. [CellInfoGsm](https://developer.android.com/reference/android/telephony/CellInfoGsm): CellIdentityGSM, CellSignalStrengthGsm;
+        1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
+        6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
+    4. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
+        1. CellIdentityNr: Band, NCI, PCI, Nrarfcn, TAC, MCC, MNC;
+        7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
+2. Заполнить каждый `Data-класс` актуальными данными с мобильного телефона (`Пр. №3`, `Пр. №4`);
+3. Реализовать [Serialization](https://kotlinlang.org/docs/serialization.html#serialize-and-deserialize-json) и преобразование в `Json`, созданных вами классов:
+    1. Структура на передачу **ДОЛЖНА** состоять из `Location` и одним из (или несколько, если позволяет производитель смартфона) объектов `CellInfo` (`GSM` или `LTE` или `NR`);
+4. С заранее заданной периодичностью (допустим, `1 секунда`) передавать, сформированную структуру `Json`, с мобильного устройства на сервер.
+5. На стороне сервера получать данные, выводить в терминал и сохранять данные в файл;
+6. Обновить `README.md`-файл (в репозитории `backend`'а) с описанием вашего проекта. Описание должно состоять из:
+    6.1 Схемы архитектуры программного комплекса (клиент-серверного приложения). Начинаем с получения `Location` (6 практика), заканчиваем 10 практикой (можно нарисовать в **Draw.io**,**MS Visio**, и **т.д.**);
+    6.2 Описания `DTO` (`Data Transfer Object`), которыми обмениваются сервер и клиент;
+    6.2 Описания архитектуры клиента (`Android`): структура проекта (файловая система), структура с точки зрения работы потоков (`Thread`), `endpoint`'ы соединения с сервером;
+    6.3. Описания архитектуры сервера (`Python\Clang`): структура проекта (файловая система), структура с точки зрения работы потоков (`Thread`), `endpoint`'ы сервара (все сетевые соединения). -->
+<!-- ### 11. PostgreSQL. База данных (на стороне backend)
 
-<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="n">message</span> <span class="o">=</span> <span class="n">socket</span><span class="o">.</span><span class="n">recv</span><span class="p">()</span> <span class="c1"># Здесь получили данные от Android-приложения</span>
-    <span class="c1"># Здесь записали в таблицу</span>
-    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;INSERT INTO user_equipment (Imei, Lat, Lon, Alt, Timestamp) values (333, 84.5559, 51.433332, 225.0, 1233408283)&quot;</span><span class="p">)</span> 
-    <span class="n">conn</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1"># на самом деле ЗДЕСЬ.</span>
+1. Создать базу данных при помощи средств **СУБД** (например, `PostgreSQL`) для храрения информации, полученной в `Пр. №10`.
+    1. Создать базу данных при помощи psql-консоли (как [здесь](https://telecomdep.github.io/notes/DataBase/work_with_database.html));
+    2. Создать таблицу, содержащую все необходимые атрибуты (**столбцы**), исходя из `Пр. №10`;
+2. Добавить функцию работы backend-сервера с **СУБД** (PostgreSQL, например, как [тут](https://telecomdep.github.io/notes/DataBase/python_psql.html));
+
+3. При каждом получении данных с `Android`-телефона, Ваш `backend-сервер` должен сохранять информацию в базе данных (используем **SQL-команду** `INSERT`);
+4. Реализовать отображение данных о местоположении (в реальном времени) на стороне `backend-сервера`:
+    1. Используем библиотеку `matplotlib`;
+    2. Данные забираем из базы данных.
+
+Итого, "**бэкэнд-севрер**" будет выглядеть (схематично, без `потоков`, `data-классов` и **прочей красоты**) след. образом:
+
+```python
+import psycopg2
+import zmq
+
+conn = psycopg2.connect(dbname="test_db_from_psql", host="localhost", user="postgres", password="postgres1234", port="5432")
+
+context = zmq.Context()
+socket = context.socket(zmq.REP)
+socket.bind("tcp://*:5555")
+
+while True:
+    message = socket.recv() # Здесь получили данные от Android-приложения
+    # Здесь записали в таблицу
+    cursor.execute("INSERT INTO user_equipment (Imei, Lat, Lon, Alt, Timestamp) values (333, 84.5559, 51.433332, 225.0, 1233408283)") 
+    conn.commit() # на самом деле ЗДЕСЬ.
 
 
-<span class="n">cursor</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> <span class="c1"># закрываем курсор</span>
-<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span> 
-</pre></div>
-</div>
+cursor.close() # закрываем курсор
+conn.close() 
+``` -->
 </section>
 </section>
 </section>
