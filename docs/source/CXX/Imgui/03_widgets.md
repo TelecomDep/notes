@@ -9,7 +9,6 @@
 Начало любого виджета (окна внутри главного приложения) начинается с `ImGui::Begin();` и должно заканчиваться `ImGui::End();`. Далее, для примеров виджетов эти конструкции будут проигнорированы для сокращения текста.
 ```c++
 {
-    static int counter = 0;
     ImGui::Begin("Hello, world!"); 
 
     ImGui::End();
@@ -25,8 +24,14 @@
 
 ```c++
 { 
+    
+    ImGui::Begin("Hello, world!"); 
+
+    static int counter = 0;
     ImGui::Text("This is some useful text.");
     ImGui::Text("counter = %d", counter);
+
+    ImGui::End();
 }
 ```
 
