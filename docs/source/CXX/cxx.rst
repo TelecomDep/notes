@@ -13,8 +13,9 @@
    :caption: Разработка GUI на Imgui
    :maxdepth: 1
 
-   Imgui/imgui_introduction
-   Imgui/imgui_int_main
+   Imgui/01_introduction
+   Imgui/02_int_main
+   Imgui/03_widgets
 
 
 .. toctree::
