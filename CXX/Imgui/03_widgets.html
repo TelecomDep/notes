@@ -135,7 +135,6 @@
 <p><img alt="alt text" src="../../_images/imgui_widgets_demo.png" /></p>
 <p>Начало любого виджета (окна внутри главного приложения) начинается с <code class="docutils literal notranslate"><span class="pre">ImGui::Begin();</span></code> и должно заканчиваться <code class="docutils literal notranslate"><span class="pre">ImGui::End();</span></code>. Далее, для примеров виджетов эти конструкции будут проигнорированы для сокращения текста.</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"> </span>
 
 <span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
@@ -148,8 +147,14 @@
 <h2>Text<a class="headerlink" href="#text" title="Permalink to this heading"></a></h2>
 <p>Это окно с <code class="docutils literal notranslate"><span class="pre">текстом</span></code> + <code class="docutils literal notranslate"><span class="pre">текстом</span> <span class="pre">с</span> <span class="pre">выводом</span> <span class="pre">занчения</span></code> переменной:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"> </span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
 <span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;This is some useful text.&quot;</span><span class="p">);</span>
 <span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;counter = %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
