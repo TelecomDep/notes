@@ -74,8 +74,9 @@
 <li class="toctree-l2"><a class="reference internal" href="02_int_main.html">2. Первая программа с Dear Imgui</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. Виджеты</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#text">Text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Кнопки</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#i-o">Работа с устройствами I\O</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Мышка</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Мышка</a></li>
 </ul>
 </li>
 </ul>
@@ -129,8 +130,44 @@
              
   <section id="id1">
 <h1>3. Виджеты<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>Лучший вариант для более полного понимания работы виджетов находится в <code class="docutils literal notranslate"><span class="pre">Demo</span></code>-версии самой библиотеки. Запустить ее можно при помощи <code class="docutils literal notranslate"><span class="pre">ImGui::ShowDemoWindow();</span></code>, если в CMakeLists.txt вы подключали исходники <code class="docutils literal notranslate"><span class="pre">${THIRD_PARTY_DIR}/imgui/imgui_demo.cpp</span></code>. Далее, уже по названию виджетов в примерах можно найти реализацию любого элемента на экране и их взаимодействия.</p>
+<p>Проект только с <code class="docutils literal notranslate"><span class="pre">Demo</span></code>-окном можно найти по <a class="reference external" href="https://github.com/TelecomDep/backend_notes/blob/DemoWindow/src/main.cpp">ссылке</a>.</p>
+<p>Начало любого виджета (окна внутри главного приложения) начинается с <code class="docutils literal notranslate"><span class="pre">ImGui::Begin();</span></code> и должно заканчиваться <code class="docutils literal notranslate"><span class="pre">ImGui::End();</span></code>. Далее, для примеров виджетов эти конструкции будут проигнорированы для сокращения текста.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span><span class="w"> </span>
+
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Здесь будет просто пустое окно с текстом <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World!</span></code> в шапке.</p>
+<p><img alt="alt text" src="../../_images/imgui_widgets_hello.png" /></p>
 <section id="text">
 <h2>Text<a class="headerlink" href="#text" title="Permalink to this heading"></a></h2>
+<p>Это окно с <code class="docutils literal notranslate"><span class="pre">текстом</span></code> + <code class="docutils literal notranslate"><span class="pre">текстом</span> <span class="pre">с</span> <span class="pre">выводом</span> <span class="pre">занчения</span></code> переменной:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;This is some useful text.&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;counter = %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/imgui_widgets_text.png" /></p>
+</section>
+<section id="id2">
+<h2>Кнопки<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>С кнопками можно помнить, что проверка нажатия на каждую кнопку должна осуществляться в инструкции <code class="docutils literal notranslate"><span class="pre">if()</span> <span class="pre">{}</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Button&quot;</span><span class="p">)){</span>
+<span class="w">        </span><span class="n">counter</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="c1">// можно что угодно добавить при нажатии на кнопку</span>
+<span class="w">    </span><span class="p">}</span><span class="w">                        </span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;counter = %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/imgui_widgets_button.png" /></p>
 </section>
 <section id="i-o">
 <h2>Работа с устройствами I\O<a class="headerlink" href="#i-o" title="Permalink to this heading"></a></h2>
@@ -143,14 +180,14 @@ io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;       // Включить Mu
 </pre></div>
 </div>
 <p>После инициализации <code class="docutils literal notranslate"><span class="pre">ImGuiIO</span></code> может получить доступ к работе с устройствами:</p>
-<section id="id2">
-<h3>Мышка<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h3>Мышка<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>Получение текущей позиции мыши:</p>
 <div class="highlight-cxx notranslate"><div class="highlight"><pre><span></span>ImVec2 mouse = ImGui::GetMousePos();
 ImGui::Text(&quot;Mouse position: x = %d, y = %d&quot;, mouse.x, mouse.y);
 </pre></div>
 </div>
-<p><img alt="alt text" src="CXX/Imgui/image/imgui_widgets/Screenshot%20from%202026-01-26%2016-11-27.png" /></p>
+<p><img alt="alt text" src="../../_images/mouse_get_position.png" /></p>
 </section>
 </section>
 </section>

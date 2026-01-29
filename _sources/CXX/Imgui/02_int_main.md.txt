@@ -152,7 +152,7 @@ ImGui_ImplOpenGL3_Init("#version 330");
     - и т.д..
 
 Итого, наше приложение состит из `Platform backend` +  `Renderer backend` и `Dear ImGui` исходники, связывающие эти элементы.
-Примеры можно посмотреть в директории [examples/](https://github.com/ocornut/imgui/blob/master/examples/). Не забываем про ридми [EXAMPLES.MD](https://github.com/ocornut/imgui/blob/master/docs/EXAMPLES.md).
+Примеры можно посмотреть в директории [examples/](https://github.com/ocornut/imgui/blob/master/examples/).
 
 #### Список поддерживаемых Backend'ов
 
@@ -182,11 +182,6 @@ imgui_impl_sdlrenderer2.cpp ; SDL_Renderer (optional component of SDL2 available
 imgui_impl_sdlrenderer3.cpp ; SDL_Renderer (optional component of SDL3. Prefer using SDL_GPU!).
 imgui_impl_vulkan.cpp       ; Vulkan
 imgui_impl_wgpu.cpp         ; WebGPU (web + desktop)
-```
-Список **high-level Frameworks Backends** (combining Platform + Renderer):
-```bash
-imgui_impl_allegro5.cpp
-imgui_impl_null.cpp
 ```
 
 ## 3) Игра началась
