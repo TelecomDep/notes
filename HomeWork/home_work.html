@@ -65,6 +65,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#python-clang">7. Реализация клиент-серверного приложения (Python\clang)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">8. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#backend-cxx">9.  Backend-сервер на CXX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xx-android-background-service">XX. Android background service.</a></li>
 </ul>
 </li>
 </ul>
@@ -383,6 +384,53 @@
 <ol class="arabic simple">
 <li><p>Должен быть виджет с информацией о местоположении (которую мы получили в пункте 2.). В виде текстовой информации;</p></li>
 <li><p>Информация должна обновляться каждый раз, когда данные принимаются от <code class="docutils literal notranslate"><span class="pre">Android</span></code>-приложения.</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="xx-android-background-service">
+<h3>XX. Android background service.<a class="headerlink" href="#xx-android-background-service" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Реализовать в приложении Android сервис работы в фоновом режиме.</p></li>
+<li><p>Реализовать получение данных и передачу на backend-сервер след. данные о смартфоне:</p>
+<ol class="arabic simple">
+<li><p>При помощи класса <code class="docutils literal notranslate"><span class="pre">Telephony</span></code> получаем информацию о сетях мобильной связи:</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoLte">CellInfoLte</a>: CellIdentityLte, CellSignalStrengthLte;</p>
+<ol class="arabic simple">
+<li><p>CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;</p></li>
+<li><p>CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;</p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoGsm">CellInfoGsm</a>: CellIdentityGSM, CellSignalStrengthGsm;</p>
+<ol class="arabic simple">
+<li><p>CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;</p></li>
+<li><p>CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;</p></li>
+</ol>
+</li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/telephony/CellInfoNr">CellInfoNr</a>: CellIdentityNr, CellSignalStrengthNr</p>
+<ol class="arabic simple">
+<li><p>CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;</p></li>
+<li><p>CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;</p></li>
+</ol>
+</li>
+</ol>
+</li>
+<li><p>Данные о местоположении смартфона (см. практику №6):</p>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location#getLatitude()">Latitude</a>;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location#getLongitude()">Longitude</a>;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location#getAltitude()">Altitude</a>;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/reference/android/location/Location#getTime()">Current Time</a>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Accuracy</span></code> - точность вычисления местоположения;</p></li>
+</ol>
+</li>
+<li><p>Информацию о <strong>сетевом трафике</strong> смартфона:</p>
+<ol class="arabic simple">
+<li><p>Информация об общем количестве переданных данных;</p></li>
+<li><p>Информация о <strong>ТОП</strong> приложений (входящих в <code class="docutils literal notranslate"><span class="pre">2-сигма</span></code> по потреблению трафика), потребляющих интернет-трафик смартфона.</p></li>
+</ol>
+</li>
 </ol>
 </li>
 </ol>
