@@ -214,6 +214,29 @@ bGoToPlayerActivity.setOnClickListener({
     1. Должен быть виджет с информацией о местоположении (которую мы получили в пункте 2.). В виде текстовой информации;
     2. Информация должна обновляться каждый раз, когда данные принимаются от `Android`-приложения.
 
+### XX. Android background service.
+1. Реализовать в приложении Android сервис работы в фоновом режиме. 
+2. Реализовать получение данных и передачу на backend-сервер след. данные о смартфоне:
+    1. При помощи класса `Telephony` получаем информацию о сетях мобильной связи:
+        1. [CellInfoLte](https://developer.android.com/reference/android/telephony/CellInfoLte): CellIdentityLte, CellSignalStrengthLte;
+            1. CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;
+            5. CellSignalStrengthLte: ASU Level, CQI, RSRP, RSRQ, RSSI, RSSNR, Timing Advance;
+        2. [CellInfoGsm](https://developer.android.com/reference/android/telephony/CellInfoGsm): CellIdentityGSM, CellSignalStrengthGsm;
+            1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
+            6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
+        3. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
+            1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
+            7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
+    2. Данные о местоположении смартфона (см. практику №6):
+        1. [Latitude](https://developer.android.com/reference/android/location/Location#getLatitude());
+        2. [Longitude](https://developer.android.com/reference/android/location/Location#getLongitude());
+        3. [Altitude](https://developer.android.com/reference/android/location/Location#getAltitude());
+        4. [Current Time](https://developer.android.com/reference/android/location/Location#getTime());
+        5. `Accuracy` - точность вычисления местоположения;
+    3. Информацию о **сетевом трафике** смартфона:
+        1. Информация об общем количестве переданных данных;
+        2. Информация о **ТОП** приложений (входящих в `2-сигма` по потреблению трафика), потребляющих интернет-трафик смартфона.
+
 <!-- ### 9. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)
 
 1.  Создать новое `Activity`, добавив кнопку перехода основном "окне" `MainActivity`;
