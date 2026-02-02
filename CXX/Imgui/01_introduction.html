@@ -72,7 +72,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../cxx_fundamentals.html">C++</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1. Dear ImGui</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#sdl-and-opengl">SDL and OpenGL</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#immediate-mode-gui">Особенности Immediate Mode GUI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#immediate-mode-gui-vs-retained-mode">Особенности Immediate Mode GUI vs Retained Mode</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Установка (подключение к проекту)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#git-submodules">Сабмодули (Git Submodules)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#cmakelists-txt">CMakeLists.txt (сборка проекта)</a></li>
@@ -145,8 +145,14 @@ SDL упрощает обработку ввода, работу с <strong>ок
 Он позаботятся о загрузке текстур и ресурсов, отрисовке на экране, воспроизведении аудио и т. д. Но им не хватает игрового шаблона, который есть у полноценного движка: например, <strong>коллизий</strong>, <strong>физики</strong>, <strong>управления сценой</strong> и т. д.</p>
 <p><code class="docutils literal notranslate"><span class="pre">OpenGL</span></code> - это <a class="reference external" href="https://www.opengl.org/">Open Graphics Library</a> 3d графический API, он упрощает сложный рендеринг при использовании видеокарты. У видеокарт разные инструкции, поэтому он, по сути, преобразует то, что вы хотите нарисовать на экране, во что-то, что видеокарта может понять. <code class="docutils literal notranslate"><span class="pre">OpenGL</span></code>, <code class="docutils literal notranslate"><span class="pre">DirectX</span></code> и <code class="docutils literal notranslate"><span class="pre">Vulkan</span></code> - это большие графические <code class="docutils literal notranslate"><span class="pre">API</span></code> для работы с видеокартой.</p>
 </section>
-<section id="immediate-mode-gui">
-<h2>Особенности Immediate Mode GUI<a class="headerlink" href="#immediate-mode-gui" title="Permalink to this heading"></a></h2>
+<section id="immediate-mode-gui-vs-retained-mode">
+<h2>Особенности Immediate Mode GUI vs Retained Mode<a class="headerlink" href="#immediate-mode-gui-vs-retained-mode" title="Permalink to this heading"></a></h2>
+<p>Ориг. <a class="reference external" href="https://learn.microsoft.com/en-us/windows/win32/learnwin32/retained-mode-versus-immediate-mode">ссыль</a> и <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D1%91%D0%BD%D0%BD%D1%8B%D0%B9_%D1%80%D0%B5%D0%B6%D0%B8%D0%BC">ссыль</a>.</p>
+<p><strong>Retained mode</strong>. Приложение создает сцену из графических примитивов, таких как фигуры, линии и т.д., образуя <code class="docutils literal notranslate"><span class="pre">математическую</span> <span class="pre">модель</span></code> сцены. Графическая библиотека хранит модель сцены в памяти. При отрисовки каждого кадра, приложение обращается к  графическому API за обновлением сцены. Затем библиотека отрисовывает сцену.
+<strong>Пример Retained Mode</strong>
+<img alt="1770020903343" src="../../_images/1770020903343.png" /></p>
+<p><strong>Пример Immediate Mode</strong>
+<img alt="1770020911045" src="../../_images/1770020911045.png" /></p>
 <p>Основными особенностями можно назвать:</p>
 <ul class="simple">
 <li><p>Интерфейс <code class="docutils literal notranslate"><span class="pre">ImGui</span></code> вызывается в <strong>цикле</strong>, каждая итерация цикла считается одним кадром.</p></li>

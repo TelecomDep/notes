@@ -258,7 +258,7 @@ int main(){
         2. [CellInfoGsm](https://developer.android.com/reference/android/telephony/CellInfoGsm): CellIdentityGSM, CellSignalStrengthGsm;
             1. CellIdentityGSM:  CellIdentity, BSIC, ARFCN, LAC, MCC, MNC, PSC;
             6. CellSignalStrengthGsm: Dbm, RSSI, Timing Advance;
-        3. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellIdentityNr, CellSignalStrengthNr
+        3. [CellInfoNr](https://developer.android.com/reference/android/telephony/CellInfoNr): CellwIdentityNr, CellSignalStrengthNr
             1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
             7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
     2. Данные о местоположении смартфона (см. практику №6):
