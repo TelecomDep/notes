@@ -66,6 +66,9 @@
 <li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">8. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#backend-cxx">9.  Backend-сервер на CXX</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-android-background-service">XX. Android background service.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xx-android-backend">XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xx-postgresql-backend">XX. PostgreSQL. База данных (на стороне backend)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xx">XX. Тайлы. Работа с картами.</a></li>
 </ul>
 </li>
 </ul>
@@ -481,6 +484,25 @@
         1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
         7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
 3. Ссылка на [пример получения данных](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt).  -->
+</section>
+<section id="xx-android-backend">
+<h3>XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)<a class="headerlink" href="#xx-android-backend" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>В вашем приложении (<code class="docutils literal notranslate"><span class="pre">backend</span> <span class="pre">gui</span></code>) настроить фильтрацию передаваемых данных c со стороны <code class="docutils literal notranslate"><span class="pre">Android-приложения</span></code>:</p>
+<ol class="arabic simple">
+<li><p>В <code class="docutils literal notranslate"><span class="pre">backend-gui</span></code> приложении реализовать вкладку с фильтрами (при помощи объектов <code class="docutils literal notranslate"><span class="pre">Checkbox</span></code>, у которого есть состояния <code class="docutils literal notranslate"><span class="pre">true</span></code> и <code class="docutils literal notranslate"><span class="pre">false</span></code>). Список переменных должен совпадать со списком из <strong>Практической работы</strong> №<code class="docutils literal notranslate"><span class="pre">XX.</span> <span class="pre">Android</span> <span class="pre">background</span> <span class="pre">service</span></code>.</p></li>
+<li><p>При состоянии какого-либо <code class="docutils literal notranslate"><span class="pre">Checkbox</span> <span class="pre">=</span> <span class="pre">false</span></code>, передать команду на <code class="docutils literal notranslate"><span class="pre">Android-приложение</span></code> <strong>НЕ</strong> передавать (или передавать, если <code class="docutils literal notranslate"><span class="pre">true</span></code>) при помощи <code class="docutils literal notranslate"><span class="pre">ZMQ-сокетов</span></code>:
+2. Это значит, что при получении или передачи пакетов между вашими приложениями необходимо добавить некоторые <code class="docutils literal notranslate"><span class="pre">управляющие</span></code> команды, которые Вы должны обработать вручную (<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">else</span></code> или <code class="docutils literal notranslate"><span class="pre">switch</span> <span class="pre">case</span></code> и т.д.).</p></li>
+<li><p>Продолжение следует…</p></li>
+</ol>
+</li>
+</ol>
+</section>
+<section id="xx-postgresql-backend">
+<h3>XX. PostgreSQL. База данных (на стороне backend)<a class="headerlink" href="#xx-postgresql-backend" title="Permalink to this heading"></a></h3>
+</section>
+<section id="xx">
+<h3>XX. Тайлы. Работа с картами.<a class="headerlink" href="#xx" title="Permalink to this heading"></a></h3>
 <!-- ### 10. Сериализация. Data-классы. Формирование JSON.
 
 1. В приложении `Android`, `Desktop-сервере` сформировать [Data-классы](https://metanit.com/kotlin/tutorial/4.12.php) для данных, которые будем передавать с между приложениями. Список данных:

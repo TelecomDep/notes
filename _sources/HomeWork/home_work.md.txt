@@ -286,6 +286,16 @@ int main(){
         7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
 3. Ссылка на [пример получения данных](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt).  -->
 
+### XX. Двустороннее управление поверх сокетов (Android <-> Backend)
+1. В вашем приложении (`backend gui`) настроить фильтрацию передаваемых данных c со стороны `Android-приложения`:
+    1. В `backend-gui` приложении реализовать вкладку с фильтрами (при помощи объектов `Checkbox`, у которого есть состояния `true` и `false`). Список переменных должен совпадать со списком из **Практической работы** №`XX. Android background service`.
+    2. При состоянии какого-либо `Checkbox = false`, передать команду на `Android-приложение` **НЕ** передавать (или передавать, если `true`) при помощи `ZMQ-сокетов`:
+        2. Это значит, что при получении или передачи пакетов между вашими приложениями необходимо добавить некоторые `управляющие` команды, которые Вы должны обработать вручную (`if else` или `switch case` и т.д.).
+    3. Продолжение следует...
+
+### XX. PostgreSQL. База данных (на стороне backend)
+
+### XX. Тайлы. Работа с картами. 
 
 <!-- ### 10. Сериализация. Data-классы. Формирование JSON.
 
