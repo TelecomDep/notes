@@ -30,12 +30,13 @@
     static int counter = 0;
     ImGui::Text("This is some useful text.");
     ImGui::Text("counter = %d", counter);
+    ImGui::TextLinkOpenURL(" Текст с сылкой: https://github.com/epezent/implot");
 
     ImGui::End();
 }
 ```
 
-![alt text](image/imgui_widgets/imgui_widgets_text.png)
+![alt text](image/imgui_widgets/imgui_widgets_text_02.png)
 
 ## Кнопки
 
