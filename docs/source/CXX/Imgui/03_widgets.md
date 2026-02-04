@@ -69,7 +69,7 @@ ImGui::End();
 Для того, чтобы изменить местоположнеие виджета применяем функцию `SetCursorPos()`.
 ```c
 ImGui::SetCursorPos(ImVec2(109.5,54.5));
-ImGui::Button("change me", ImVec2(71,19)); //remove size argument (ImVec2) to auto-resize
+ImGui::Button("change me"); 
 ```
 
 ## Цветовые схемы GUI
