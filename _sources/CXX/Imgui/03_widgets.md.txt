@@ -56,6 +56,42 @@
 ![alt text](image/imgui_widgets/imgui_widgets_button.png)
 
 
+## Цветовые схемы GUI
+Глобально, за отображение интерфейса в конкретном контексте (`ImGuiContext*   GImGui`) отвечает структура  `struct ImGuiStyle`. Получить текущий **стиль** можно при помощи функции `ImGuiStyle& ImGui::GetStyle()` (в случае, если хотите поменять цветовую схему конкретного элемента окна).
+
+Также, можно задать одну из стандартных цветовых схем интерфейса:
+```c
+{
+    ImGui::Begin("Color theme");
+
+    static int style_idx = 0;
+
+    if (ImGui::Button("Light"))
+        style_idx = 1;
+    if (ImGui::Button("Dark"))
+        style_idx = 0;
+    if (ImGui::Button("Classic"))
+        style_idx = 2;
+
+    switch (style_idx)
+    {
+        case 0: ImGui::StyleColorsDark(); break;
+        case 1: ImGui::StyleColorsLight(); break;
+        case 2: ImGui::StyleColorsClassic(); break;
+    }
+
+    ImGui::End();
+}
+```
+
+
+![alt text](image/imgui_widgets/imgui_widgets_color_style_light.png)
+![alt text](image/imgui_widgets/imgui_widgets_color_style_dark.png)
+![alt text](image/imgui_widgets/imgui_widgets_color_style_classic.png)
+
+
+
+
 ## Работа с устройствами I\O
 
 Для работы с устройствами ввода вывода присутствует структура `ImGuiIO`. Включение различных устройств осуществляется при помощи флагов конфигурации:  

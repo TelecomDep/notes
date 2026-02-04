@@ -75,6 +75,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. Виджеты</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#text">Text</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id2">Кнопки</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gui">Цветовые схемы GUI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#i-o">Работа с устройствами I\O</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id3">Мышка</a></li>
 </ul>
@@ -175,6 +176,37 @@
 </pre></div>
 </div>
 <p><img alt="alt text" src="../../_images/imgui_widgets_button.png" /></p>
+</section>
+<section id="gui">
+<h2>Цветовые схемы GUI<a class="headerlink" href="#gui" title="Permalink to this heading"></a></h2>
+<p>Глобально, за отображение интерфейса в конкретном контексте (<code class="docutils literal notranslate"><span class="pre">ImGuiContext*</span>&#160;&#160; <span class="pre">GImGui</span></code>) отвечает структура  <code class="docutils literal notranslate"><span class="pre">struct</span> <span class="pre">ImGuiStyle</span></code>. Получить текущий <strong>стиль</strong> можно при помощи функции <code class="docutils literal notranslate"><span class="pre">ImGuiStyle&amp;</span> <span class="pre">ImGui::GetStyle()</span></code> (в случае, если хотите поменять цветовую схему конкретного элемента окна).</p>
+<p>Также, можно задать одну из стандартных цветовых схем интерфейса:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Color theme&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">style_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Light&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">style_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Dark&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">style_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;Classic&quot;</span><span class="p">))</span>
+<span class="w">        </span><span class="n">style_idx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">style_idx</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="n">ImGui</span><span class="o">::</span><span class="n">StyleColorsDark</span><span class="p">();</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="n">ImGui</span><span class="o">::</span><span class="n">StyleColorsLight</span><span class="p">();</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="n">ImGui</span><span class="o">::</span><span class="n">StyleColorsClassic</span><span class="p">();</span><span class="w"> </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/imgui_widgets_color_style_light.png" />
+<img alt="alt text" src="../../_images/imgui_widgets_color_style_dark.png" />
+<img alt="alt text" src="../../_images/imgui_widgets_color_style_classic.png" /></p>
 </section>
 <section id="i-o">
 <h2>Работа с устройствами I\O<a class="headerlink" href="#i-o" title="Permalink to this heading"></a></h2>
