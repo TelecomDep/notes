@@ -18,7 +18,7 @@
 
 ![alt text](image/imgui_widgets/imgui_widgets_hello.png)
 
-## Text
+## Текстовое сообщение (Text)
 
 Это окно с `текстом` + `текстом с выводом занчения` переменной:
 
@@ -38,7 +38,7 @@
 
 ![alt text](image/imgui_widgets/imgui_widgets_text_02.png)
 
-## Кнопки
+## Кнопки (Button)
 
 С кнопками можно помнить, что проверка нажатия на каждую кнопку должна осуществляться в инструкции `if() {}`:
 
@@ -50,11 +50,27 @@
         // можно что угодно добавить при нажатии на кнопку
     }                        
     ImGui::Text("counter = %d", counter);
+
+    ImGui::Button("change me", ImVec2(71,19));
 }
 ```
 
 ![alt text](image/imgui_widgets/imgui_widgets_button.png)
 
+## Изменение размера окна, позиция виджетов
+
+Изменяем размер виджета\окна по координатам `X = 686`, `Y = 416`.
+```c
+ImGui::SetNextWindowSize(ImVec2(686,416));
+ImGui::Begin("Hello, world!");
+ImGui::End();
+```
+
+Для того, чтобы изменить местоположнеие виджета применяем функцию `SetCursorPos()`.
+```c
+ImGui::SetCursorPos(ImVec2(109.5,54.5));
+ImGui::Button("change me", ImVec2(71,19)); //remove size argument (ImVec2) to auto-resize
+```
 
 ## Цветовые схемы GUI
 Глобально, за отображение интерфейса в конкретном контексте (`ImGuiContext*   GImGui`) отвечает структура  `struct ImGuiStyle`. Получить текущий **стиль** можно при помощи функции `ImGuiStyle& ImGui::GetStyle()` (в случае, если хотите поменять цветовую схему конкретного элемента окна).
