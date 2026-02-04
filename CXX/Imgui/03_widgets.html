@@ -73,8 +73,9 @@
 <li class="toctree-l2"><a class="reference internal" href="01_introduction.html">1. Dear ImGui</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02_int_main.html">2. Первая программа с Dear Imgui</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">3. Виджеты</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#text">Text</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id2">Кнопки</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#text">Текстовое сообщение (Text)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#button">Кнопки (Button)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Изменение размера окна, позиция виджетов</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gui">Цветовые схемы GUI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#i-o">Работа с устройствами I\O</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id3">Мышка</a></li>
@@ -145,7 +146,7 @@
 <p>Здесь будет просто пустое окно с текстом <code class="docutils literal notranslate"><span class="pre">Hello</span> <span class="pre">World!</span></code> в шапке.</p>
 <p><img alt="alt text" src="../../_images/imgui_widgets_hello.png" /></p>
 <section id="text">
-<h2>Text<a class="headerlink" href="#text" title="Permalink to this heading"></a></h2>
+<h2>Текстовое сообщение (Text)<a class="headerlink" href="#text" title="Permalink to this heading"></a></h2>
 <p>Это окно с <code class="docutils literal notranslate"><span class="pre">текстом</span></code> + <code class="docutils literal notranslate"><span class="pre">текстом</span> <span class="pre">с</span> <span class="pre">выводом</span> <span class="pre">занчения</span></code> переменной:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"> </span>
 <span class="w">    </span>
@@ -162,8 +163,8 @@
 </div>
 <p><img alt="alt text" src="../../_images/imgui_widgets_text_02.png" /></p>
 </section>
-<section id="id2">
-<h2>Кнопки<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<section id="button">
+<h2>Кнопки (Button)<a class="headerlink" href="#button" title="Permalink to this heading"></a></h2>
 <p>С кнопками можно помнить, что проверка нажатия на каждую кнопку должна осуществляться в инструкции <code class="docutils literal notranslate"><span class="pre">if()</span> <span class="pre">{}</span></code>:</p>
 <div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
 <span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">counter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
@@ -172,10 +173,26 @@
 <span class="w">        </span><span class="c1">// можно что угодно добавить при нажатии на кнопку</span>
 <span class="w">    </span><span class="p">}</span><span class="w">                        </span>
 <span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Text</span><span class="p">(</span><span class="s">&quot;counter = %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">counter</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;change me&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ImVec2</span><span class="p">(</span><span class="mi">71</span><span class="p">,</span><span class="mi">19</span><span class="p">));</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p><img alt="alt text" src="../../_images/imgui_widgets_button.png" /></p>
+</section>
+<section id="id2">
+<h2>Изменение размера окна, позиция виджетов<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Изменяем размер виджета\окна по координатам <code class="docutils literal notranslate"><span class="pre">X</span> <span class="pre">=</span> <span class="pre">686</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span> <span class="pre">=</span> <span class="pre">416</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ImGui</span><span class="o">::</span><span class="n">SetNextWindowSize</span><span class="p">(</span><span class="n">ImVec2</span><span class="p">(</span><span class="mi">686</span><span class="p">,</span><span class="mi">416</span><span class="p">));</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;Hello, world!&quot;</span><span class="p">);</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Для того, чтобы изменить местоположнеие виджета применяем функцию <code class="docutils literal notranslate"><span class="pre">SetCursorPos()</span></code>.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">ImGui</span><span class="o">::</span><span class="n">SetCursorPos</span><span class="p">(</span><span class="n">ImVec2</span><span class="p">(</span><span class="mf">109.5</span><span class="p">,</span><span class="mf">54.5</span><span class="p">));</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">Button</span><span class="p">(</span><span class="s">&quot;change me&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ImVec2</span><span class="p">(</span><span class="mi">71</span><span class="p">,</span><span class="mi">19</span><span class="p">));</span><span class="w"> </span><span class="c1">//remove size argument (ImVec2) to auto-resize</span>
+</pre></div>
+</div>
 </section>
 <section id="gui">
 <h2>Цветовые схемы GUI<a class="headerlink" href="#gui" title="Permalink to this heading"></a></h2>
