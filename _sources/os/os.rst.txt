@@ -2,6 +2,12 @@
 ============
 
 .. toctree::
+   :caption: TODO
+   :maxdepth: 1
+
+   todo
+
+.. toctree::
    :caption: ОС
    :maxdepth: 1
 
