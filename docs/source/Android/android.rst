@@ -2,6 +2,12 @@ Android
 ============
 
 .. toctree::
+   :caption: Kotlin
+   :maxdepth: 1
+
+   Kotlin/kotlin
+
+.. toctree::
    :caption: Основы
    :maxdepth: 1
 
