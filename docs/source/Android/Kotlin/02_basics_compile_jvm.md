@@ -6,12 +6,12 @@
 
 JVM, если кратко - это интерпретатор байт-кода **Java**. Главной особенностью JVM является возможность компиляции и запуска програм на, практически, любой платформе, не меняя при это код **Java** (сильно упращая жизнь разработчикам ПО). 
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_wora.png" width="650" title="hover text" alt="Alt text">
+  <img src="../../_static/images/kotlin/compilation/01_wora.png" width="650" title="hover text" alt="Alt text">
   <figcaption> Write Once Run Anywhere (WORA). <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
 </p>
 
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_woca.png" width="650" title="hover text" alt="Alt text">
+  <img src="../../_static/images/kotlin/compilation/01_woca.png" width="650" title="hover text" alt="Alt text">
   <figcaption> Write Once Compile Anywhere (WOCA). <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
 </p>
 
@@ -21,7 +21,7 @@ JVM может быть установлена на любую операцио�
 
 Виртуальная машина Java является некой прослойкой между программным кодом и операционной системой:
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_jvm_in_os.jpg" width="650" title="hover text" alt="Alt text">
+  <img src="../../_static/images/kotlin/compilation/01_jvm_in_os.jpg" width="650" title="hover text" alt="Alt text">
   <figcaption> JVM and OS. <a href="https://www.nic.ru/help/jvm-chto-eto-kak-ustroena-virtual6naya-mashina-java_11250.html">Источник изображения.</a></figcaption>
 </p>
 
@@ -29,7 +29,7 @@ JVM может быть установлена на любую операцио�
 Ниже рассмотрим более подробно этапы компиляции и запуска приложения, написанного на языке Kotlin (Kotlin + JVM).
 
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/Kotlin_JVM_Architecture.png" width="900" title="hover text" alt="Alt text">
+  <img src="../../_static/images/kotlin/compilation/Kotlin_JVM_Architecture.png" width="900" title="hover text" alt="Alt text">
   <figcaption> Архитектура взаимодействия Kotlin + JVM.</figcaption>
 </p>
 
@@ -329,7 +329,7 @@ public final class ApplicationKt {
 Эффективное управление памятью - важнейший аспект архитектуры JVM, способствующий эффективному выполнению Java-приложений. JVM выделяет различные области памяти, называемые Runtime Data Areas, для различных типов хранения данных и манипулирования ими во время выполнения программы. 
 
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_jvm_runtime_memory.png" width="650" title="hover text" alt="Alt text">
+  <img src="../../_static/images/kotlin/compilation/01_jvm_runtime_memory.png" width="650" title="hover text" alt="Alt text">
   <figcaption> Архитектура JVM Runtime Memory. <a href="https://habr.com/ru/companies/domclick/articles/500646/">Источник изображения.</a></figcaption>
 </p>
 
@@ -349,7 +349,7 @@ public final class ApplicationKt {
 Подсистема загрузчика классов отвечает не только за поиск и импорт бинарных данных класса. Она также выполняет проверку правильности импортируемых классов, выделяет и инициализирует память для переменных класса, помогает в разрешении символьных ссылок. Эти действия выполняются в следующем порядке:
 
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_class_loader_subsystem.png" width="650" title="hover text" alt="Alt text">
+  <img src="../../_static/images/kotlin/compilation/01_class_loader_subsystem.png" width="650" title="hover text" alt="Alt text">
   <figcaption> Загрузчик классов. <a href="https://appmaster.io/ru/blog/arkhitektura-virtual-noi-mashiny-java">Источник изображения.</a></figcaption>
 </p>
 
@@ -370,7 +370,7 @@ public final class ApplicationKt {
 
 Процесс компиляции кода происходит следующим образом:
 <p align="center">
-  <img src="../_static/images/kotlin/compilation/01_compile.png" width="650" title="hover text" alt="Alt text">
+  <img src="../../_static/images/kotlin/compilation/01_compile.png" width="650" title="hover text" alt="Alt text">
   <figcaption> Процесс компиляции в языке Kotlin. <a href="https://habr.com/ru/companies/inforion/articles/330060/">Источник изображения.</a></figcaption>
 </p>
 
