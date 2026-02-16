@@ -14,7 +14,7 @@
 .. _ссылке: https://www.jetbrains.com/idea/download/
 
 
-.. figure:: ../_static/images/kotlin/00_intellij_idea_install.png
+.. figure:: ../../_static/images/kotlin/00_intellij_idea_install.png
     :name: Canti_15
     :width: 50%
 
@@ -28,7 +28,7 @@
 
 После установки запускаем IntelliJ IDEA Community Edition и создаем новый проект (настройки среды уже сделаете сами под себя).
 
-.. figure:: ../_static/images/kotlin/00_new_project.png
+.. figure:: ../../_static/images/kotlin/00_new_project.png
     :name: Canti_15
     :width: 50%
 
@@ -37,7 +37,7 @@
 Далее, настраиваем параметры проекта. 
 
 
-.. figure:: ../_static/images/kotlin/00_new_project_initialization.png
+.. figure:: ../../_static/images/kotlin/00_new_project_initialization.png
     :name: Canti_15
     :width: 50%
 
@@ -51,7 +51,7 @@
 
 После создания проекта, вам откроется сам проект, в левой части которого будет отображаться его структура.
 
-.. figure:: ../_static/images/kotlin/00_new_project_first_file.png
+.. figure:: ../../_static/images/kotlin/00_new_project_first_file.png
     :name: Canti_15
     :width: 30%
 
@@ -61,7 +61,7 @@
 
 В открывшемся окне, выбираем ``File``, называем, например "application" (можно любой другое название) и получим ``application.kt`` или ``ваше_имя.kt``.
 
-.. figure:: ../_static/images/kotlin/00_new_project_first_file_name.png
+.. figure:: ../../_static/images/kotlin/00_new_project_first_file_name.png
     :name: Canti_15
     :width: 30%
 
@@ -79,7 +79,7 @@
 
 Для инициализации фукнции в Kotlin используется ключевое слово `fun`. Далее, вызываем другую функцию println(), которая выведет текст в консоль.
 
-.. figure:: ../_static/images/kotlin/00_new_project_hello_world.png
+.. figure:: ../../_static/images/kotlin/00_new_project_hello_world.png
     :name: Canti_15
     :width: 90%
 
