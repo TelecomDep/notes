@@ -248,9 +248,8 @@ int main(){
 }
 ```
 
-### XX. Android background service.
-1. Реализовать в приложении Android сервис работы в фоновом режиме. 
-2. Реализовать получение данных и передачу на backend-сервер след. данные о смартфоне:
+### X. Android Cellinfo. 
+1. Реализовать получение данных и передачу на backend-сервер след. данные о смартфоне:
     1. При помощи класса `Telephony` получаем информацию о сетях мобильной связи:
         1. [CellInfoLte](https://developer.android.com/reference/android/telephony/CellInfoLte): CellIdentityLte, CellSignalStrengthLte;
             1. CellIdentityLte: Band, CellIdentity, EARFCN, MCC, MNC, PCI, TAC;
@@ -271,6 +270,15 @@ int main(){
         1. Информация об общем количестве переданных данных;
         2. Информация о **ТОП** приложений (входящих в `2-сигма` по потреблению трафика), потребляющих интернет-трафик смартфона.
 
+
+### 11. Android background service.
+1. Реализовать в приложении Android сервис работы в фоновом режиме. [Пример здесь](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/services/BackgroundService.kt).
+    1. Перенести функцию **определения местоположения** в `Service`;
+    2. Перенести функцию получения **данных о сети** в `Service`;
+    3. Перенести **отправку посредством сокетов** в `Service`.
+2. Реализовать отображение параметров мощности радиосигнала (`CellSignalStrength`) на графиках по мере получения данных с мобильного устройства. 
+    1. Для графиков использовать библиотеку ImPlot.
+3. Обновить `git`-репозиторий.
 <!-- ### 9. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)
 
 1.  Создать новое `Activity`, добавив кнопку перехода основном "окне" `MainActivity`;

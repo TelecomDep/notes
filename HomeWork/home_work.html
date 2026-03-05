@@ -65,7 +65,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#python-clang">7. Реализация клиент-серверного приложения (Python\clang)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#zmq-android-pc">8. Работа с сокетами (ZMQ). Передача данных от Android к PC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#backend-cxx">9.  Backend-сервер на CXX</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xx-android-background-service">XX. Android background service.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#x-android-cellinfo">X. Android Cellinfo.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#android-background-service">11. Android background service.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-android-backend">XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-postgresql-backend">XX. PostgreSQL. База данных (на стороне backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx">XX. Тайлы. Работа с картами.</a></li>
@@ -421,10 +422,9 @@
 </pre></div>
 </div>
 </section>
-<section id="xx-android-background-service">
-<h3>XX. Android background service.<a class="headerlink" href="#xx-android-background-service" title="Permalink to this heading"></a></h3>
+<section id="x-android-cellinfo">
+<h3>X. Android Cellinfo.<a class="headerlink" href="#x-android-cellinfo" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
-<li><p>Реализовать в приложении Android сервис работы в фоновом режиме.</p></li>
 <li><p>Реализовать получение данных и передачу на backend-сервер след. данные о смартфоне:</p>
 <ol class="arabic simple">
 <li><p>При помощи класса <code class="docutils literal notranslate"><span class="pre">Telephony</span></code> получаем информацию о сетях мобильной связи:</p>
@@ -466,6 +466,24 @@
 </li>
 </ol>
 </li>
+</ol>
+</section>
+<section id="android-background-service">
+<h3>11. Android background service.<a class="headerlink" href="#android-background-service" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Реализовать в приложении Android сервис работы в фоновом режиме. <a class="reference external" href="https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/services/BackgroundService.kt">Пример здесь</a>.</p>
+<ol class="arabic simple">
+<li><p>Перенести функцию <strong>определения местоположения</strong> в <code class="docutils literal notranslate"><span class="pre">Service</span></code>;</p></li>
+<li><p>Перенести функцию получения <strong>данных о сети</strong> в <code class="docutils literal notranslate"><span class="pre">Service</span></code>;</p></li>
+<li><p>Перенести <strong>отправку посредством сокетов</strong> в <code class="docutils literal notranslate"><span class="pre">Service</span></code>.</p></li>
+</ol>
+</li>
+<li><p>Реализовать отображение параметров мощности радиосигнала (<code class="docutils literal notranslate"><span class="pre">CellSignalStrength</span></code>) на графиках по мере получения данных с мобильного устройства.</p>
+<ol class="arabic simple">
+<li><p>Для графиков использовать библиотеку ImPlot.</p></li>
+</ol>
+</li>
+<li><p>Обновить <code class="docutils literal notranslate"><span class="pre">git</span></code>-репозиторий.</p></li>
 </ol>
 <!-- ### 9. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)
 

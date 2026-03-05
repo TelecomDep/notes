@@ -29,6 +29,7 @@ Android
 
    location
    telephony
+   service
 
 .. toctree::
    :caption: Сетевое взаимодействие (Sockets)
