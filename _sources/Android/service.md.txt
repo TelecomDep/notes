@@ -39,6 +39,8 @@ class BackgroundService : Service() {
 
 Компонент приложения, такой как активность, может запустить службу, вызвав `startService()` и передав Intent , который определяет службу и включает любые данные, которые служба может использовать. Служба получает это Intent в методе `onStartCommand()`.
 
+![alt text](image/startService_from_Activity.png)
+
 Добавляем запуск и остановку сервиса:
 
 ```kotlin
