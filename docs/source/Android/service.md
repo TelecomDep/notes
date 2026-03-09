@@ -4,7 +4,7 @@
 1. [BackgroundService](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/services/BackgroundService.kt )
 2. [Activity](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/ServiceActivity.kt)
 
-# Service
+## Service
 [Service](https://developer.android.com/reference/android/app/Service) — это компонент приложения, который может выполнять длительные операции в фоновом режиме. Он не предоставляет пользовательский интерфейс. После запуска служба может продолжать работу в течение некоторого времени, даже после того, как пользователь переключится на другое приложение. Кроме того, компонент может привязываться к службе для взаимодействия с ней и даже выполнения межпроцессного взаимодействия (IPC). Например, служба может обрабатывать сетевые транзакции, воспроизводить музыку, выполнять файловый ввод-вывод или взаимодействовать с поставщиком контента — и все это в фоновом режиме.
 
 Создание класса сервиса осуществляется след. образом:
@@ -31,7 +31,7 @@ class BackgroundService : Service() {
 ```
 Класс `Service` является базовым классом для всех сервисов. При расширении этого класса важно создать новый поток, в котором служба сможет выполнить всю свою работу; служба по умолчанию использует основной поток вашего приложения, что может замедлить производительность любого действия, выполняемого вашим приложением.
 
-## Запуск сервиса
+### Запуск сервиса
 
 **Запущенная служба** — это служба, которую другой компонент запускает путем вызова `startService()` , что приводит к вызову метода `onStartCommand()` службы.
 
@@ -128,9 +128,9 @@ class BackgroundService : Service() {
 }
 ```
 
-### Передача данных из Service в Activity
+## Передача данных из Service в Activity
 
-#### Broadcast Receiver
+### Broadcast Receiver
 
 Для примера мы будем использовать `BroadcastRceiver`-класс. Важно отметить, что фильтрация сообщений `Intent` осуществляется по ключевому слову: `IntentFilter("BackGroundUpdate")`, можно добавить любое свое.
 
