@@ -71,11 +71,14 @@
 <li class="toctree-l2"><a class="reference internal" href="context.html">Context. Что это? Зачем это? Как работает?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="location.html">Получение данных о местоположении смартфона (Location)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Запуск задачи в фоновом режиме (Background)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#service">Service</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Запуск сервиса</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Запуск задачи в фоновом режиме (Background)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#service">Service</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Запуск сервиса</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Оборачиваем выполнение задачи в Корутины</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#service-activity">Передача данных из Service в Activity</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#service-activity">Передача данных из Service в Activity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#broadcast-receiver">Broadcast Receiver</a></li>
 </ul>
 </li>
 </ul>
@@ -138,9 +141,8 @@
 <li><p><a class="reference external" href="https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/services/BackgroundService.kt">BackgroundService</a></p></li>
 <li><p><a class="reference external" href="https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/ServiceActivity.kt">Activity</a></p></li>
 </ol>
-</section>
 <section id="service">
-<h1>Service<a class="headerlink" href="#service" title="Permalink to this heading"></a></h1>
+<h2>Service<a class="headerlink" href="#service" title="Permalink to this heading"></a></h2>
 <p><a class="reference external" href="https://developer.android.com/reference/android/app/Service">Service</a> — это компонент приложения, который может выполнять длительные операции в фоновом режиме. Он не предоставляет пользовательский интерфейс. После запуска служба может продолжать работу в течение некоторого времени, даже после того, как пользователь переключится на другое приложение. Кроме того, компонент может привязываться к службе для взаимодействия с ней и даже выполнения межпроцессного взаимодействия (IPC). Например, служба может обрабатывать сетевые транзакции, воспроизводить музыку, выполнять файловый ввод-вывод или взаимодействовать с поставщиком контента — и все это в фоновом режиме.</p>
 <p>Создание класса сервиса осуществляется след. образом:
 <img alt="alt text" src="../_images/android_new_service.png" /></p>
@@ -164,7 +166,7 @@
 </div>
 <p>Класс <code class="docutils literal notranslate"><span class="pre">Service</span></code> является базовым классом для всех сервисов. При расширении этого класса важно создать новый поток, в котором служба сможет выполнить всю свою работу; служба по умолчанию использует основной поток вашего приложения, что может замедлить производительность любого действия, выполняемого вашим приложением.</p>
 <section id="id1">
-<h2>Запуск сервиса<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<h3>Запуск сервиса<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
 <p><strong>Запущенная служба</strong> — это служба, которую другой компонент запускает путем вызова <code class="docutils literal notranslate"><span class="pre">startService()</span></code> , что приводит к вызову метода <code class="docutils literal notranslate"><span class="pre">onStartCommand()</span></code> службы.</p>
 <p>Когда служба запускается, ее жизненный цикл не зависит от компонента, который ее запустил. Служба может работать в фоновом режиме неограниченное время, даже если компонент, запустивший ее, уничтожен. Таким образом, служба должна остановить себя после завершения своей работы, вызвав <code class="docutils literal notranslate"><span class="pre">stopSelf()</span></code> , или другой компонент может остановить ее, вызвав <code class="docutils literal notranslate"><span class="pre">stopService()</span> </code>.</p>
 <p>Компонент приложения, такой как активность, может запустить службу, вызвав <code class="docutils literal notranslate"><span class="pre">startService()</span></code> и передав Intent , который определяет службу и включает любые данные, которые служба может использовать. Служба получает это Intent в методе <code class="docutils literal notranslate"><span class="pre">onStartCommand()</span></code>.</p>
@@ -211,6 +213,7 @@
 </pre></div>
 </div>
 <p>В даной реализации нюанс заключается в том, что операционная система Android остановит ваш сервис, если мы свернем приложение или переключимся на другое.</p>
+</section>
 <section id="id2">
 <h3>Оборачиваем выполнение задачи в Корутины<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>Про корпутины почитать можно <a class="reference external" href="https://metanit.com/kotlin/tutorial/8.1.php">здесь</a>.</p>
@@ -251,10 +254,11 @@
 </pre></div>
 </div>
 </section>
+</section>
 <section id="service-activity">
-<h3>Передача данных из Service в Activity<a class="headerlink" href="#service-activity" title="Permalink to this heading"></a></h3>
+<h2>Передача данных из Service в Activity<a class="headerlink" href="#service-activity" title="Permalink to this heading"></a></h2>
 <section id="broadcast-receiver">
-<h4>Broadcast Receiver<a class="headerlink" href="#broadcast-receiver" title="Permalink to this heading"></a></h4>
+<h3>Broadcast Receiver<a class="headerlink" href="#broadcast-receiver" title="Permalink to this heading"></a></h3>
 <p>Для примера мы будем использовать <code class="docutils literal notranslate"><span class="pre">BroadcastRceiver</span></code>-класс. Важно отметить, что фильтрация сообщений <code class="docutils literal notranslate"><span class="pre">Intent</span></code> осуществляется по ключевому слову: <code class="docutils literal notranslate"><span class="pre">IntentFilter(&quot;BackGroundUpdate&quot;)</span></code>, можно добавить любое свое.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Activity.kt</span></code></p>
 <div class="highlight-kotlin notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ServiceActivity</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">AppCompatActivity</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -331,7 +335,6 @@
 <!-- ## Bound Serivce
 [Bound Service](https://developer.android.com/develop/background-work/services/bound-services) – это взаимодействие по принципу “клиент-сервер”, которое позволяет компоненту приложения, например Activity, подключиться к Service и отправлять запросы через вызовы методов, а не коммуникацией с помощью Intent. Основное предназначение этого формата Service – обеспечение взаимодействия между приложениями, которые работают в разных процессах, но это необязательно. Фактически Inter Process Communication или сокращенно IPC – основная цель, с которой создавали Bound Service.
 (https://habr.com/ru/articles/773228/)(c) -->
-</section>
 </section>
 </section>
 </section>
