@@ -32,7 +32,7 @@ $$m'[n] = \left( \textcolor{blue}{m[0]},\ 0,\dots,0,\ \textcolor{blue}{m[1]}, \ 
 <embed src="res/after_upsam.pdf" />
 </div>
 <figcaption>Спектр <span
-class="math inline"><em>m</em><sup>′</sup>[<em>n</em>]</span></figcaption>
+class="math inline">\(m&#39;[n]\)</span></figcaption>
 </figure>
 
 Поэтому после повышения частоты дискретизации необходимо использовать
@@ -113,10 +113,8 @@ $\dfrac{\cos \left( \frac{\pi \alpha t}{T} \right)}{1 - \left(\frac{2 \alpha t}{
 <figure data-latex-placement="h!">
 <figure>
 <embed src="res/windowsinc.pdf" />
-<figcaption><span
-class="math inline"><em>s</em><em>i</em><em>n</em><em>c</em></span> и
-оконная функция при <span
-class="math inline"><em>α</em> = 0.25</span></figcaption>
+<figcaption><span class="math inline">\(sinc\)</span> и оконная функция
+при <span class="math inline">\(\alpha=0.25\)</span></figcaption>
 </figure>
 <figure>
 <embed src="res/window_mult_sinc.pdf" />
@@ -185,7 +183,7 @@ $$h(t) =
 <figure data-latex-placement="h!">
 <embed src="res/rrc.pdf" style="width:40.0%" />
 <figcaption>RRC. N=51, <span
-class="math inline"><em>α</em> = 0.25</span></figcaption>
+class="math inline">\(\alpha=0.25\)</span></figcaption>
 </figure>
 
 **Пример.** Рассмотрим все тоже сообщение. Для фильтра $N=51$ и
@@ -453,10 +451,9 @@ $\{1+i, -1+i, -1-i, 1-i \}$. Возведем эти числа в квадра�
 
 <figure data-latex-placement="h!">
 <embed src="res/coarse_estim.pdf" style="width:90.0%" />
-<figcaption>График спектра сигнала <span
-class="math inline"><em>y</em><sup>4</sup></span>. Модуляция QAM4.
-Красная точка соответствует максимуму <span class="math inline">≈</span>
-25Hz</figcaption>
+<figcaption>График спектра сигнала <span class="math inline">\(y ^
+4\)</span>. Модуляция QAM4. Красная точка соответствует максимуму <span
+class="math inline">\(\approx\)</span> 25Hz</figcaption>
 </figure>
 
 **Замечание.** *Вполне очевидно, что возводить длинный массив
