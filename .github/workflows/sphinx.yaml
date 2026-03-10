@@ -24,9 +24,9 @@ jobs:
         persist-credentials: false
     - name: Build HTML
       uses: ammaraskar/sphinx-action@master
-    - name: Run something
-      run: |
-        invoke release
+    # - name: Run something
+    #   run: |
+    #     invoke release
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
