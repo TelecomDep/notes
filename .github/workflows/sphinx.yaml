@@ -21,15 +21,24 @@ jobs:
     - name: Install minimal Python packages
       run: |
         pip install -r requirements.bootstrap.txt
-
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
+    
+    - name: Setup Pandoc
+        uses: pandoc/actions/setup@v1 # Use a specific version if needed
+    - name: Convert Markdown to TEX
+      run: pandoc -s README.rst -o README.tex --metadata title="My Project Page"
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: tex_to_html
+        path: 'README.tex'
+
+
     - name: Build HTML
       uses: ammaraskar/sphinx-action@master
-    # - name: Run something
-    #   run: |
-    #     invoke release
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
