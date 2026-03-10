@@ -15,7 +15,7 @@ jobs:
         uses: pandoc/actions/setup@v1 # Use a specific version if needed
 
       - name: Convert Markdown to HTML
-        run: pandoc -s README.md -o README.tex --metadata title="My Project Page"
+        run: pandoc -s README.rst -o README.tex --metadata title="My Project Page"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
