@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1. Dear ImGui &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="https://wavedrom.com/skins/default.js"></script>
+        <script src="https://wavedrom.com/wavedrom.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. Первая программа с Dear Imgui" href="02_int_main.html" />
+    <link rel="prev" title="C++" href="../cxx_fundamentals.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html">Практические задания</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html#id6">Вопросы к экзамену\зачету</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CXX</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../cxx.html">Немного про C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../cxx_fundamentals.html">C++</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. Dear ImGui</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sdl-and-opengl">SDL and OpenGL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#immediate-mode-gui-vs-retained-mode">Особенности Immediate Mode GUI vs Retained Mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Установка (подключение к проекту)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#git-submodules">Сабмодули (Git Submodules)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cmakelists-txt">CMakeLists.txt (сборка проекта)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="02_int_main.html">2. Первая программа с Dear Imgui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_widgets.html">3. Виджеты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../React/react.html">React</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../os/os.html">Операционные системы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cxx.html">Немного про C++</a></li>
+      <li class="breadcrumb-item active">1. Dear ImGui</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/CXX/Imgui/01_introduction.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="dear-imgui">
+<h1>1. Dear ImGui<a class="headerlink" href="#dear-imgui" title="Permalink to this heading"></a></h1>
+<p><strong>Полезно</strong></p>
+<ul class="simple">
+<li><p>Начнем с тех кто использует библиотеку <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Software-using-Dear-ImGui">Dear Imgui</a>;</p></li>
+<li><p>Thirdparty <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Useful-Extensions">полезные расширения</a>;</p></li>
+<li><p>Немного про <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Docking">Docking</a>;</p></li>
+<li><p>Поддерживаемые <a class="reference external" href="https://github.com/ocornut/imgui/wiki/Bindings#frameworkengine-backends">backend’ы</a>;</p></li>
+</ul>
+<section id="sdl-and-opengl">
+<h2>SDL and OpenGL<a class="headerlink" href="#sdl-and-opengl" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SDL2</span></code> - это <a class="reference external" href="https://www.libsdl.org/">Simple DirectMedia Layer</a>, то, что обычно называют “фреймворком”.
+SDL упрощает обработку ввода, работу с <strong>окнами</strong>, <strong>аудио</strong> и тому подобное (хотя он также может делать какую-то очень базовую графику).
+Он позаботятся о загрузке текстур и ресурсов, отрисовке на экране, воспроизведении аудио и т. д. Но им не хватает игрового шаблона, который есть у полноценного движка: например, <strong>коллизий</strong>, <strong>физики</strong>, <strong>управления сценой</strong> и т. д.</p>
+<p><code class="docutils literal notranslate"><span class="pre">OpenGL</span></code> - это <a class="reference external" href="https://www.opengl.org/">Open Graphics Library</a> 3d графический API, он упрощает сложный рендеринг при использовании видеокарты. У видеокарт разные инструкции, поэтому он, по сути, преобразует то, что вы хотите нарисовать на экране, во что-то, что видеокарта может понять. <code class="docutils literal notranslate"><span class="pre">OpenGL</span></code>, <code class="docutils literal notranslate"><span class="pre">DirectX</span></code> и <code class="docutils literal notranslate"><span class="pre">Vulkan</span></code> - это большие графические <code class="docutils literal notranslate"><span class="pre">API</span></code> для работы с видеокартой.</p>
+</section>
+<section id="immediate-mode-gui-vs-retained-mode">
+<h2>Особенности Immediate Mode GUI vs Retained Mode<a class="headerlink" href="#immediate-mode-gui-vs-retained-mode" title="Permalink to this heading"></a></h2>
+<p>Ориг. <a class="reference external" href="https://learn.microsoft.com/en-us/windows/win32/learnwin32/retained-mode-versus-immediate-mode">ссыль</a> и <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D1%85%D1%80%D0%B0%D0%BD%D1%91%D0%BD%D0%BD%D1%8B%D0%B9_%D1%80%D0%B5%D0%B6%D0%B8%D0%BC">ссыль</a>.</p>
+<p><strong>Retained mode</strong>. Приложение создает сцену из графических примитивов, таких как фигуры, линии и т.д., образуя <code class="docutils literal notranslate"><span class="pre">математическую</span> <span class="pre">модель</span></code> сцены. Графическая библиотека хранит модель сцены в памяти. При отрисовки каждого кадра, приложение обращается к  графическому API за обновлением сцены. Затем библиотека отрисовывает сцену.
+<strong>Пример Retained Mode</strong>
+<img alt="1770020903343" src="../../_images/1770020903343.png" /></p>
+<p><strong>Пример Immediate Mode</strong>
+<img alt="1770020911045" src="../../_images/1770020911045.png" /></p>
+<p>Основными особенностями можно назвать:</p>
+<ul class="simple">
+<li><p>Интерфейс <code class="docutils literal notranslate"><span class="pre">ImGui</span></code> вызывается в <strong>цикле</strong>, каждая итерация цикла считается одним кадром.</p></li>
+<li><p>Перед началом кадра библиотека должна получить все данные касательно положения мыши, нажатых клавиш и прочих вводных.</p></li>
+<li><p>Затем вызывается функция, в которой пользователь библиотеки получает структуру ui, рисует свой интерфейс. В этот момент библиотека в реальном времени формирует все виджеты, для каждого виджета определяет попала ли на него мышь, и формирует вершины и треугольники, которые потом будут рисоваться.</p></li>
+<li><p>Теперь библиотека возвращает все сформированные <strong>mesh’и</strong> и отдаёт их на рисование <strong>бэкенду</strong>. Он рисует это на экран.</p></li>
+<li><p>И так повторяется <strong>60 кадров</strong> в секунду (или <strong>больше</strong>).</p></li>
+</ul>
+</section>
+<section id="id1">
+<h2>Установка (подключение к проекту)<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p><strong>Необходимые зависимоисти</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libsdl2-dev<span class="w"> </span>libgl1-mesa-dev<span class="w"> </span>libglew-dev
+</pre></div>
+</div>
+<p>Допустим, мы захотели создать новый проект. Начнем с потенциальной структуры проекта:</p>
+<div class="highlight-md notranslate"><div class="highlight"><pre><span></span>&quot;имя_проекта&quot;
+├── include
+│   ├── &quot;заголовочные_файлы&quot;.h
+├── src
+│   ├── &quot;исполняемые_файлы&quot;.cpp
+│   └── main.cpp - самый главный исполняемый файл
+├── third_party - сторонние проекты\библиотеки и т.д.
+│   ├── imgui
+│   ├── implot
+│   └── и др.
+├── README.md
+├── CMakeLists.txt
+├── .gitignore
+├── .gitmodules
+└── и пр.
+</pre></div>
+</div>
+<section id="git-submodules">
+<h3>Сабмодули (Git Submodules)<a class="headerlink" href="#git-submodules" title="Permalink to this heading"></a></h3>
+<p>Для подключения сторонних проектов в ваш репозиторий можно не просто копировать весь код проекта, а обернуть это намерение в виде <code class="docutils literal notranslate"><span class="pre">ссылки</span></code> на нужный вам репозиторий.</p>
+<p>Осуществляется это про помощи команды <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">submodule</span> <span class="pre">add</span> <span class="pre">&quot;ссылка&quot;</span> <span class="pre">&quot;куда</span> <span class="pre">кладем&quot;</span> <span class="pre">и</span> <span class="pre">т.д.</span></code>. <a class="reference external" href="https://git-scm.com/book/ru/v2/%D0%98%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B-Git-%D0%9F%D0%BE%D0%B4%D0%BC%D0%BE%D0%B4%D1%83%D0%BB%D0%B8">RU</a>, <a class="reference external" href="https://git-scm.com/book/en/v2/Git-Tools-Submodules">ENG</a> ссылки на документацию.</p>
+<p>Добавим в наш проект 2 репозитория, которые будем усердно изучать: <a class="reference external" href="https://github.com/ocornut/imgui">Dear Imgui</a> и его дополнение для работы с графиками <a class="reference external" href="https://github.com/epezent/implot">Implot</a>.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>https://github.com/epezent/implot.git<span class="w"> </span>third_party/implot
+git<span class="w"> </span>submodule<span class="w"> </span>add<span class="w"> </span>-b<span class="w"> </span>docking<span class="w"> </span>https://github.com/ocornut/imgui.git<span class="w"> </span>third_party/imgui
+</pre></div>
+</div>
+<p>В данном случае я кладу оба проекта в директорию (см. дерево выше) <code class="docutils literal notranslate"><span class="pre">third_party</span></code>.</p>
+<p><img alt="alt text" src="../../_images/2026-01-24_22-5122-51-29.png" /></p>
+<p>Таким образом, получаем в виде ссылок сторонние проекты в нашем репозитории. Довольно удобно, не нужно скачивать и копировать все файлы. Также, можно привязываться к конкретному коммиту проекта (см. пример ниже).</p>
+<p><code class="docutils literal notranslate"><span class="pre">.gitmodules</span></code> выглядит следующим образом:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>submodule<span class="w"> </span><span class="s2">&quot;third_party/imgui&quot;</span><span class="o">]</span>
+<span class="w">	</span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>third_party/imgui
+<span class="w">	</span><span class="nv">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>https://github.com/ocornut/imgui.git
+<span class="w">	</span><span class="nv">branch</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>docking<span class="w"> </span><span class="c1"># указываем конкретную ветку (можно хэш коммита)</span>
+<span class="o">[</span>submodule<span class="w"> </span><span class="s2">&quot;third_party/implot&quot;</span><span class="o">]</span>
+<span class="w">	</span><span class="nv">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>third_party/implot
+<span class="w">	</span><span class="nv">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>https://github.com/epezent/implot.git
+</pre></div>
+</div>
+<p><strong>ВАЖНО</strong> обязательно выполните команду (репозитории скачаются на ваш компьютер):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--remote<span class="w"> </span>--recursive
+<span class="c1"># или</span>
+git<span class="w"> </span>submodule<span class="w"> </span>update<span class="w"> </span>--init<span class="w"> </span>--recursive
+</pre></div>
+</div>
+</section>
+<section id="cmakelists-txt">
+<h3>CMakeLists.txt (сборка проекта)<a class="headerlink" href="#cmakelists-txt" title="Permalink to this heading"></a></h3>
+<p>Допустим, у нас есть стандартная точка входа в нашу программу <code class="docutils literal notranslate"><span class="pre">&quot;имя_проекта&quot;/src/main.cpp</span></code> и мы хотим использовать её как стантартную библиотеку, например <code class="docutils literal notranslate"><span class="pre">#include</span> <span class="pre">&lt;iostream&gt;</span></code>:</p>
+<p><code class="docutils literal notranslate"><span class="pre">main.cpp</span></code></p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;imgui.h&quot;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;implot.h&quot;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Для этого необходимо сначала собрать наш проект. В нашем случае, при помощи “сборщика” <code class="docutils literal notranslate"><span class="pre">Cmake</span></code>.</p>
+<p>Создаем (или открываем, если он уже есть) в корне директории файл CMakeLists.txt, в котором будут находится правила сборки вашего проекта:</p>
+<p><code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.14</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">backend_notes</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_STANDARD</span><span class="w"> </span><span class="s">17</span><span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">THIRD_PARTY_DIR</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/third_party</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">SRC_DIR</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/src</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">INCLUDE_DIR</span><span class="w"> </span><span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/include</span><span class="p">)</span>
+
+<span class="c"># SDL2</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">SDL2</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">SDL2_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
+
+<span class="c"># OpenGL/GLEW</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">OpenGL</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">GLEW</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span><span class="o">${</span><span class="nv">INCLUDE_DIR</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">imgui</span><span class="w"> </span><span class="s">STATIC</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui_draw.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui_demo.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui_tables.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/imgui_widgets.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/backends/imgui_impl_sdl2.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui/backends/imgui_impl_opengl3.cpp</span>
+<span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">imgui</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/imgui</span><span class="p">)</span>
+<span class="nb">target_compile_options</span><span class="p">(</span><span class="s">imgui</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">-fPIC</span><span class="p">)</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">STATIC</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot_demo.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot_items.cpp</span>
+<span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">imgui</span><span class="p">)</span>
+<span class="nb">target_compile_options</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">-fPIC</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">main</span><span class="w"> </span><span class="o">${</span><span class="nv">SRC_DIR</span><span class="o">}</span><span class="s">/main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">main</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">imgui</span><span class="w"> </span><span class="s">implot</span><span class="w"> </span><span class="o">${</span><span class="nv">SDL2_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">OPENGL_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">GLEW_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">set()</span></code> -  используется для определения, изменения или удаления переменных;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">include_directories()</span></code> - указывает компилятору, где искать заголовочные файлы, используя директиву #include, аналогично флагу <code class="docutils literal notranslate"><span class="pre">-I</span></code> в <code class="docutils literal notranslate"><span class="pre">GCC/Clang</span></code>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">find_package()</span></code> - библиотека предоставляет <a class="reference external" href="https://cmake.org/cmake/help/latest/manual/cmake-packages.7.html#package-configuration-file">package configuration file</a>, который импортирует в <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> приложения таргет библиотеки. Этот файл, вместе с собранной библиотекой, ее публичными заголовочными файлами и некоторой другой информацией устанавливается в директорию, которая потом указывается в переменной <code class="docutils literal notranslate"><span class="pre">CMAKE_PREFIX_PATH</span></code> при сборке проекта.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add_library()</span></code> - создает цель (<code class="docutils literal notranslate"><span class="pre">target</span></code>) библиотеки из указанных исходных файлов, определяя её имя и тип (<code class="docutils literal notranslate"><span class="pre">STATIC</span></code>, <code class="docutils literal notranslate"><span class="pre">SHARED</span></code> или <code class="docutils literal notranslate"><span class="pre">MODULE</span></code>). Это ключевая команда для сборки библиотек, позволяющая управлять зависимостями и типами библиотек (<strong>статические</strong> .a/.lib, <strong>динамические</strong> .so/.dll или <strong>плагины</strong>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">STATIC</span></code> - Статическая библиотека представляет собой собрание *.<code class="docutils literal notranslate"><span class="pre">obj</span></code>-файлов библиотеки (<strong>НЕ</strong> исполняемый файл), который мы можем, указав линкеру, прицепить к нашей программе в момент компиляции.  <a class="reference download internal" download="" href="../../_downloads/91b14c6662963e091ac012f298ba4f98/imgui_cmake_static.png"><span class="xref download myst">Пример</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SHARED</span></code> - <strong>УЖЕ</strong> исполняемый файл. Динамическая линковка выполняется средствами платформы (операционной системы) в процессе работы программы. Все так же у нас в руках *.lib и *.h файлы, однако, теперь к ним добавляется <code class="docutils literal notranslate"><span class="pre">.dll</span></code> (<code class="docutils literal notranslate"><span class="pre">.so</span></code> для Linux). *.<code class="docutils literal notranslate"><span class="pre">lib</span></code>-файл теперь содержит <strong>только вызовы</strong> к <code class="docutils literal notranslate"><span class="pre">*.so</span></code>, где лежат непосредственно алгоритмы и которые вызываются уже на ходу, а не компилируются.<a class="reference download internal" download="" href="../../_downloads/bd1f82a726d2391512715e87c2ff51de/imgui_cmake_shared.png"><span class="xref download myst">Пример</span></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target_include_directories(imgui</span> <span class="pre">PUBLIC</span> <span class="pre">${THIRD_PARTY_DIR}/imgui)</span></code> - При сборке самой библиотеки, добавляет эту папку в список путей, в которых компилятор ищет инклуды.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target_link_libraries()</span></code> - связываем исполняемые файлы или библиотеки (targets) с другими библиотеками, указывающая, какие файлы нужно подключить при линковке.</p></li>
+</ul>
+<p><strong>Собираем</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>build<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>build
+cmake<span class="w"> </span>../
+make<span class="w"> </span>-j16<span class="w"> </span><span class="c1"># вместо &#39;16&#39; можно указать другое количество потоков для компиляции.</span>
+</pre></div>
+</div>
+<p><img alt="alt text" src="../../_images/2026-01-25_00-2100-21-15.png" /></p>
+<p>Готово. Хотя бы компилируется.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../cxx_fundamentals.html" class="btn btn-neutral float-left" title="C++" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="02_int_main.html" class="btn btn-neutral float-right" title="2. Первая программа с Dear Imgui" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Макеты элементов пользовательского интерфейса (Layout) &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="https://wavedrom.com/skins/default.js"></script>
+        <script src="https://wavedrom.com/wavedrom.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Работа виджетами из Activity" href="05_widgets.html" />
+    <link rel="prev" title="Ползовательский интерфейс (первое Activity)" href="app_activity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html">Практические задания</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../HomeWork/home_work.html#id6">Вопросы к экзамену\зачету</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="android.html">Android</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Kotlin/kotlin.html">Kotlin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_first_app.html">Создание первого приложения (начало)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_structure.html">Структура проекта</a></li>
+<li class="toctree-l2"><a class="reference internal" href="app_activity.html">Ползовательский интерфейс (первое Activity)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Макеты элементов пользовательского интерфейса (Layout)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#density-independent-pixel-dp">Density-independent pixel (dp)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rendering">Процесс отображения (Rendering) виджетов</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#view">View</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#constraint-layout">Constraint Layout</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#constraing-layout">Пример Constraing Layout</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="05_widgets.html">Работа виджетами из Activity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="context.html">Context. Что это? Зачем это? Как работает?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="location.html">Получение данных о местоположении смартфона (Location)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="telephony.html">Получение данных о сетях мобильной связи (2/3/4/5G)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="service.html">Запуск задачи в фоновом режиме (Background)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/06_sockets_zmq.html">Работа c сокетами Беркли (Sockets).</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sockets/07_sockets_zmq_android.html">Библиотека Zero MQ (Android)</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CXX</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../CXX/cxx.html">Немного про C++</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../React/react.html">React</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../os/os.html">Операционные системы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="android.html">Android</a></li>
+      <li class="breadcrumb-item active">Макеты элементов пользовательского интерфейса (Layout)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/Android/app_layout.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="layout">
+<h1>Макеты элементов пользовательского интерфейса (Layout)<a class="headerlink" href="#layout" title="Permalink to this heading"></a></h1>
+<p>Одной из проблем при разработки приложения является адаптация элементов экрана (пользовательского интерфейса) под устройства с разными характеристиками экранов.</p>
+<p><img alt="1760496730343" src="../_images/1760496730343.png" /></p>
+<p><strong>Рис. 1.</strong> Различные размеры экранов устройств Android.</p>
+<p>Что такое <code class="docutils literal notranslate"><span class="pre">px</span></code>, думаю, тоже понятно. Если у вас есть устройство с экраном шириной <code class="docutils literal notranslate"><span class="pre">480</span> <span class="pre">px</span></code> и вы создали кнопку шириной <code class="docutils literal notranslate"><span class="pre">240</span> <span class="pre">px</span></code>, то эта кнопка займет в ширину ровно пол-экрана. Но если вы откроете ваше приложение на устройстве с экраном с меньшим разрешением, то соотношение  изменится, например:</p>
+<ul class="simple">
+<li><p>если разрешение <code class="docutils literal notranslate"><span class="pre">320х240</span></code>, ширина экрана = <code class="docutils literal notranslate"><span class="pre">240</span> <span class="pre">px</span></code>. Кнопка займет уже не пол-экрана в ширину, а весь экран</p></li>
+<li><p>если же разрешение <code class="docutils literal notranslate"><span class="pre">1280х800</span></code>, ширина = <code class="docutils literal notranslate"><span class="pre">800</span> <span class="pre">px</span></code>. Кнопка опять же будет занимать в ширину не пол-экрана, а чуть меньше трети</p></li>
+</ul>
+<p><img alt="1760584374419" src="../_images/1760584374419.png" /></p>
+<p><strong>Рис. 2.</strong> Различные размеры экранов устройств Android.</p>
+<section id="density-independent-pixel-dp">
+<h2>Density-independent pixel (dp)<a class="headerlink" href="#density-independent-pixel-dp" title="Permalink to this heading"></a></h2>
+<p>Относительный параметр (<strong>не зависящий от плотности экрана пиксель</strong>) был введен во избежании проблем с компановкой элементов внутри разного размера экранов пользовательского оборудования.</p>
+<p><img alt="1760497331837" src="../_images/1760497331837.png" /></p>
+<p><strong>Рис. 3.</strong> Размеры ширины и высоты <code class="docutils literal notranslate"><span class="pre">TextView</span></code> в <code class="docutils literal notranslate"><span class="pre">dp</span></code>.</p>
+<p>Данный параметр учитывает плотность пикселей (<code class="docutils literal notranslate"><span class="pre">Pixel</span> <span class="pre">per</span> <span class="pre">Inch</span></code> - <code class="docutils literal notranslate"><span class="pre">PPI</span></code>) экрана или <code class="docutils literal notranslate"><span class="pre">screen</span> <span class="pre">density</span></code>.
+Все Android-виджеты измеряются в относительных величинах (<code class="docutils literal notranslate"><span class="pre">dp</span></code>).</p>
+<div class="math notranslate nohighlight">
+\[dp = \frac{width_{pixels} * 160}{density_{screen}}\]</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">160</span></code> - средняя плотность пикселей (<strong>baseline density</strong>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">width_pixels</span></code> - ширина экрана, например <strong>1920x800</strong>, 800 - ширина;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">density_screen</span></code> - плотность пикселей.</p></li>
+</ul>
+<p><img alt="1760497657503" src="../_images/1760497657503.png" /></p>
+<p><strong>Рис. 4.</strong> Наглядный пример отображения плотности пикселей (<code class="docutils literal notranslate"><span class="pre">PPI</span></code>).</p>
+<!-- ![1760500976124](image/app_layout/1760500976124.png)
+
+**Рис. 5.** Пример одинакового размера экрана, но разной плотностью пикселей. -->
+<p>Чтобы обеспечить хорошее качество изображений на устройствах с разной плотностью пикселей, предоставьте в приложении <strong>несколько</strong> версий каждого растрового изображения — по одной для каждого диапазона плотности с соответствующим разрешением. В противном случае <code class="docutils literal notranslate"><span class="pre">Android</span></code> придётся масштабировать растровое изображение так, чтобы оно занимало одинаковое видимое пространство на каждом экране, что приведёт <strong>к появлению артефактов масштабирования</strong>, таких как <strong>размытие</strong>.</p>
+<p><strong>Таблица. 1.</strong> Разделение на группы по параметру <code class="docutils literal notranslate"><span class="pre">DPI</span></code>.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Density qualifier</p></th>
+<th class="head"><p>DPI estimate [<code class="docutils literal notranslate"><span class="pre">dpi</span></code>]</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ldpi</span></code></p></td>
+<td><p>~120   (x0.75)</p></td>
+<td><p>low-density</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">mdpi</span></code></p></td>
+<td><p>~160   (x0.1)</p></td>
+<td><p>medium-density (<code class="docutils literal notranslate"><span class="pre">baseline</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">hdpi</span></code></p></td>
+<td><p>~240   (x1.5)</p></td>
+<td><p>high-density</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xhdpi</span></code></p></td>
+<td><p>~320   (x2)</p></td>
+<td><p>extra-high-density</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">xxhdpi</span></code></p></td>
+<td><p>~480   (x3)</p></td>
+<td><p>extra-extra-high-density</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">xxxhdpi</span></code></p></td>
+<td><p>~640   (x4)</p></td>
+<td><p>extra-extra-extra-high-density</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">nodpi</span></code></p></td>
+<td><p>-</p></td>
+<td><p>Не зависят от плотности.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Т.е. когда для экрана стоит режим mdpi, то <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">dp</span> <span class="pre">=</span> <span class="pre">1</span> <span class="pre">px</span></code>. Т.е. кнопка шириной <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">dp</span></code> будет выглядеть также как и кнопка шириной <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">px</span></code>.</p>
+<p>Если, например, у нас экран с низким разрешением, то используется режим <code class="docutils literal notranslate"><span class="pre">ldpi.</span></code> В этом случае <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">dp</span> <span class="pre">=</span> <span class="pre">0,75</span> <span class="pre">px</span></code>. Т.е. кнопка шириной <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">dp</span></code> будет выглядеть так же как кнопка шириной <code class="docutils literal notranslate"><span class="pre">75</span> <span class="pre">px</span></code>.</p>
+<p>Если у нас экран с высоким разрешением, то используется режим <code class="docutils literal notranslate"><span class="pre">hdpi</span></code> или <code class="docutils literal notranslate"><span class="pre">xhdpi</span></code>. <code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">dp</span> <span class="pre">=</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span> <span class="pre">px</span></code> или <code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">px</span></code>. И кнопка шириной <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">dp</span></code> будет выглядеть так же как кнопка шириной <code class="docutils literal notranslate"><span class="pre">150</span> <span class="pre">px</span></code> или <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">px</span></code>.</p>
+<p>Т.е. при различных разрешениях используются различные Density режимы, которые позволяют приложениям масштабироваться и выглядеть если не одинаково, то, по крайне мере, похоже на всех экранах.</p>
+<p>Ниже показан пример нескольких версий растрового изображения.</p>
+<p><img alt="1760508822835" src="../_images/1760508822835.png" /></p>
+<p><strong>Рис. 6.</strong> Несколько изображений под каждую группу <code class="docutils literal notranslate"><span class="pre">DPI</span></code>.</p>
+<p>В ресурсах проекта (директория <code class="docutils literal notranslate"><span class="pre">res/</span></code>) файлы должны находится в своих <code class="docutils literal notranslate"><span class="pre">dpi</span></code>-группах:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>res/
+<span class="w">  </span>drawable-xxxhdpi/
+<span class="w">    </span>awesome_image.png
+<span class="w">  </span>drawable-xxhdpi/
+<span class="w">    </span>awesome_image.png
+<span class="w">  </span>drawable-xhdpi/
+<span class="w">    </span>awesome_image.png
+<span class="w">  </span>drawable-hdpi/
+<span class="w">    </span>awesome_image.png
+<span class="w">  </span>drawable-mdpi/
+<span class="w">    </span>awesome_image.png
+</pre></div>
+</div>
+</section>
+<section id="rendering">
+<h2>Процесс отображения (Rendering) виджетов<a class="headerlink" href="#rendering" title="Permalink to this heading"></a></h2>
+<p>Перед тем как <code class="docutils literal notranslate"><span class="pre">Android</span></code>-приложение покажет вам свое первое <code class="docutils literal notranslate"><span class="pre">Activity</span></code>, выполняется еще несколько основных функций\методов работы с изображением:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Measure</span></code> - вычисление точного местоположения каждого виджета на экране;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Layout</span></code> - выравнивание виджетов относительно “макета\компановки” (<code class="docutils literal notranslate"><span class="pre">layout</span> <span class="pre">manager</span></code>);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Draw</span></code> - отрисовка\рендер изображения.</p></li>
+</ol>
+<p><img alt="1760509581710" src="../_images/1760509581710.png" /></p>
+<p><strong>Рис. 7.</strong> Android View rendering cycle.</p>
+</section>
+<section id="view">
+<h2>View<a class="headerlink" href="#view" title="Permalink to this heading"></a></h2>
+<p>Android SDK включает множество виджетов, которые являются дочерним классом класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. Таким образом, каждый виджет является экземпляром класса <code class="docutils literal notranslate"><span class="pre">View</span></code>, как и отражено на рисунке ниже.</p>
+<p><img alt="alt text" src="https://github.com/sibsutisTelecomDep/blog/blob/main/book/figures/android/android_class_hierarchy_view.svg?raw=true" /></p>
+<p><strong>Рис. 8.</strong> Иерархия класса <code class="docutils literal notranslate"><span class="pre">View</span></code>. <a class="reference external" href="https://www.mathematik.uni-marburg.de/~thormae/lectures/graphics1/media/vectorart/android_class_hierarchy_view.svg">Источник изображения</a>.</p>
+</section>
+<section id="constraint-layout">
+<h2>Constraint Layout<a class="headerlink" href="#constraint-layout" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Constraint</span></code> - если коротко, это некие ограничения свойств виджета (или <code class="docutils literal notranslate"><span class="pre">view</span></code>) внутри <code class="docutils literal notranslate"><span class="pre">constraint</span> <span class="pre">layout</span></code>.</p>
+<p><img alt="1760585911561" src="../_images/1760585911561.png" /></p>
+<p><strong>Рис. 9.</strong> Пример ограничений элементов <code class="docutils literal notranslate"><span class="pre">B</span></code> и <code class="docutils literal notranslate"><span class="pre">С</span></code>.</p>
+<p>Например, можно задать относительную (к родительскому <code class="docutils literal notranslate"><span class="pre">layout</span></code>) позицию виджета:</p>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span>app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+app:layout_constraintStart_toStartOf=&quot;parent&quot;
+app:layout_constraintTop_toTopOf=&quot;parent&quot;&gt;
+</pre></div>
+</div>
+<p>Получим относительное положение виджета (на <code class="docutils literal notranslate"><span class="pre">16</span> <span class="pre">dp</span></code>) к краям <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>:</p>
+<p><img alt="1760674810398" src="../_images/1760674810398.png" /></p>
+<p>В данном случае происходит следующее: “<code class="docutils literal notranslate"><span class="pre">TextView</span></code> выравнивает свою верхнюю границу к верхней части <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code> на 16 dp, а левую границу к левой части <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>”.</p>
+<p>Существует несколько относительных позиций <code class="docutils literal notranslate"><span class="pre">ConstraintLayout</span></code>:</p>
+<p><img alt="1760675170776" src="../_images/1760675170776.png" /></p>
+<p><strong>Рис. 10.</strong> Top, Bottom, Baseline.</p>
+<p>Где <code class="docutils literal notranslate"><span class="pre">baseline</span></code> - это нижняя граница текста внутри <code class="docutils literal notranslate"><span class="pre">TextView</span></code>.</p>
+<p><img alt="1760675184696" src="../_images/1760675184696.png" /></p>
+<p><strong>Рис. 10.</strong> Left, Right.</p>
+<section id="constraing-layout">
+<h3>Пример Constraing Layout<a class="headerlink" href="#constraing-layout" title="Permalink to this heading"></a></h3>
+<div class="highlight-xml notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;androidx.constraintlayout.widget.ConstraintLayout</span><span class="w"> </span><span class="na">xmlns:android=</span><span class="s">&quot;http://schemas.android.com/apk/res/android&quot;</span>
+<span class="w">    </span><span class="na">xmlns:app=</span><span class="s">&quot;http://schemas.android.com/apk/res-auto&quot;</span>
+<span class="w">    </span><span class="na">xmlns:tools=</span><span class="s">&quot;http://schemas.android.com/tools&quot;</span>
+<span class="w">    </span><span class="na">android:id=</span><span class="s">&quot;@+id/back_to_main&quot;</span>
+<span class="w">    </span><span class="na">android:layout_width=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">android:layout_height=</span><span class="s">&quot;match_parent&quot;</span>
+<span class="w">    </span><span class="na">tools:context=</span><span class="s">&quot;.activities.MediaPlayerActivity&quot;</span><span class="nt">&gt;</span>
+
+<span class="w">    </span><span class="nt">&lt;TextView</span>
+<span class="w">        </span><span class="na">android:id=</span><span class="s">&quot;@+id/textView3&quot;</span>
+<span class="w">        </span><span class="na">android:layout_width=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_height=</span><span class="s">&quot;wrap_content&quot;</span>
+<span class="w">        </span><span class="na">android:layout_marginTop=</span><span class="s">&quot;324dp&quot;</span>
+<span class="w">        </span><span class="na">android:text=</span><span class="s">&quot;TextView&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintEnd_toEndOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintStart_toStartOf=</span><span class="s">&quot;parent&quot;</span>
+<span class="w">        </span><span class="na">app:layout_constraintTop_toTopOf=</span><span class="s">&quot;parent&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<span class="nt">&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;</span>
+</pre></div>
+</div>
+<p><img alt="1760676083956" src="../_images/1760676083956.png" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="app_activity.html" class="btn btn-neutral float-left" title="Ползовательский интерфейс (первое Activity)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="05_widgets.html" class="btn btn-neutral float-right" title="Работа виджетами из Activity" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
