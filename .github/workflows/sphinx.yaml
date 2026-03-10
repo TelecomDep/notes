@@ -27,7 +27,7 @@ jobs:
     
     - name: Setup Pandoc
       uses: pandoc/actions/setup@v1 # Use a specific version if needed
-      
+
     - name: Convert Markdown to TEX
       run: pandoc -s README.rst -o README.tex --metadata title="My Project Page"
     - name: Upload artifacts
@@ -36,6 +36,11 @@ jobs:
         name: tex_to_html
         path: 'README.tex'
 
+    - name: Download pre-existing asset
+      uses: actions/download-artifact@v4
+      with:
+        name: tex_to_html
+        path: docs/source/ # Downloads to the 'src' directory
 
     - name: Build HTML
       uses: ammaraskar/sphinx-action@master
