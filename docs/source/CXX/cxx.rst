@@ -24,4 +24,5 @@
 
    Qt/qt_install
    Qt/qt_introduction
+   test
 
