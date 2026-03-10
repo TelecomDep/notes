@@ -30,6 +30,13 @@ jobs:
 
     - name: Convert Markdown to TEX
       run: pandoc -s README.rst -o README.tex --metadata title="My Project Page"
+
+    - name: Commit and push changes
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        # Optional: specify which files to commit (default is all changes)
+        file_pattern: 'README.tex'
+        commit_message: "Automated: Update generated files"
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
