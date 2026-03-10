@@ -8,8 +8,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Pandoc
         uses: pandoc/actions/setup@v1 # Use a specific version if needed
@@ -21,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: html-docs
-          path: docs/build/html/README.tex
+          path: 'README.tex'
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
