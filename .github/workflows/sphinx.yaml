@@ -9,10 +9,7 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v4
-      with:
-        # Use the PAT here instead of the default token
-        token: ${{ secrets.MY_PAT }} 
-        persist-credentials: true
+
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -25,9 +22,11 @@ jobs:
     - name: Install minimal Python packages
       run: |
         pip install -r requirements.bootstrap.txt
+
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
+        token: ${{ secrets.MY_PAT }} 
     
     - name: Setup Pandoc
       uses: pandoc/actions/setup@v1 # Use a specific version if needed
