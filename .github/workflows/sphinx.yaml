@@ -16,6 +16,9 @@ jobs:
     - name: Upgrade pip
       run: |
         python3 -m pip install --upgrade pip
+    - name: Install minimal Python packages
+      run: |
+        pip install -r requirements.bootstrap.txt
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
