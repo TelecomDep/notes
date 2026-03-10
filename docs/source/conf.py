@@ -40,6 +40,10 @@ extensions = [
     'sphinxcontrib.exceltable',
 ]
 
+
+class RubyTemplate(string.Template):
+    delimiter = "#"
+    
 # -- Project information
 
 project = 'Telecom Notes'
@@ -282,7 +286,7 @@ latex_elements = {
         %% \listoftables
         \clearpage
         """
-    ).substitute(VERSION=1),
+    ).substitute(VERSION=version),
 }
 latex_show_urls = 'footnote'
 
