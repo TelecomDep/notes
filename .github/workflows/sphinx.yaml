@@ -35,10 +35,10 @@ jobs:
       uses: stefanzweifel/git-auto-commit-action@v5
       with:
         # Optional: specify which files to commit (default is all changes)
-        persist-credentials: false
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         file_pattern: 'README.tex'
         commit_message: "Automated: Update generated files"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
