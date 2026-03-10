@@ -28,32 +28,32 @@ jobs:
         persist-credentials: false
         github_token: ${{ secrets.GITHUB_TOKEN }}
     
-    - name: Setup Pandoc
-      uses: pandoc/actions/setup@v1 # Use a specific version if needed
+    # - name: Setup Pandoc
+    #   uses: pandoc/actions/setup@v1 # Use a specific version if needed
 
-    - name: Convert Markdown to TEX
-      run: pandoc -s README.rst -o README.tex --metadata title="My Project Page"
+    # - name: Convert Markdown to TEX
+    #   run: pandoc -s README.rst -o README.tex --metadata title="My Project Page"
 
-    - name: Commit and push changes
-      uses: stefanzweifel/git-auto-commit-action@v5
-      with:
-        # Optional: specify which files to commit (default is all changes)
-        file_pattern: 'README.tex'
-        commit_message: "Automated: Update generated files"
-      env:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Commit and push changes
+    #   uses: stefanzweifel/git-auto-commit-action@v5
+    #   with:
+    #     # Optional: specify which files to commit (default is all changes)
+    #     file_pattern: 'README.tex'
+    #     commit_message: "Automated: Update generated files"
+    #   env:
+    #     github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
-        name: tex_to_html
-        path: 'README.tex'
+    # - name: Upload artifacts
+    #   uses: actions/upload-artifact@v4
+    #   with:
+    #     name: tex_to_html
+    #     path: 'README.tex'
 
-    - name: Download pre-existing asset
-      uses: actions/download-artifact@v4
-      with:
-        name: tex_to_html
-        path: docs/source/ # Downloads to the 'src' directory
+    # - name: Download pre-existing asset
+    #   uses: actions/download-artifact@v4
+    #   with:
+    #     name: tex_to_html
+    #     path: docs/source/ # Downloads to the 'src' directory
 
     - name: Build HTML
       uses: ammaraskar/sphinx-action@master
