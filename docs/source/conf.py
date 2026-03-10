@@ -6,6 +6,7 @@ Imports the system and the
 theme the project is using to the project.
 """
 
+import string
 import sys, os
 import sphinx_bootstrap_theme
 
