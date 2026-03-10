@@ -9,6 +9,10 @@ jobs:
       contents: write
     steps:
     - uses: actions/checkout@v4
+      with:
+        # Use the PAT here instead of the default token
+        token: ${{ secrets.MY_PAT }} 
+        persist-credentials: true
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
@@ -38,7 +42,7 @@ jobs:
         file_pattern: 'README.tex'
         commit_message: "Automated: Update generated files"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.MY_PAT }}
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
