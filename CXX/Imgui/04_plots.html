@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Работа с графиками &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="https://wavedrom.com/skins/default.js"></script>
+        <script src="https://wavedrom.com/wavedrom.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Установка Qt" href="../Qt/qt_install.html" />
+    <link rel="prev" title="3. Виджеты" href="03_widgets.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html">Практические задания</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html#id7">Вопросы к экзамену\зачету</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CXX</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../cxx.html">Немного про C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../cxx_fundamentals.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_introduction.html">1. Dear ImGui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_int_main.html">2. Первая программа с Dear Imgui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_widgets.html">3. Виджеты</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Работа с графиками</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Установка (подключение к проекту)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#demowindow">DemoWindow, примеры от разработчиков</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Использование библиотеки</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../React/react.html">React</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../os/os.html">Операционные системы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cxx.html">Немного про C++</a></li>
+      <li class="breadcrumb-item active">4. Работа с графиками</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/CXX/Imgui/04_plots.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>4. Работа с графиками<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="id2">
+<h2>Установка (подключение к проекту)<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>В <a class="reference external" href="https://telecomdep.github.io/notes/CXX/Imgui/01_introduction.html">первой главе</a> мы уже добавили репозитрий <a class="reference external" href="https://github.com/epezent/implot.git">Implot</a> как сабмодуль в наш проект. Повторим основные шаги для компиляции:</p>
+<p>Добавляем в <code class="docutils literal notranslate"><span class="pre">CmakeLists.txt</span></code></p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="c"># ImPlot</span>
+<span class="nb">add_library</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">STATIC</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot_demo.cpp</span>
+<span class="w">    </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot/implot_items.cpp</span>
+<span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PUBLIC</span><span class="w"> </span><span class="o">${</span><span class="nv">THIRD_PARTY_DIR</span><span class="o">}</span><span class="s">/implot</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">imgui</span><span class="p">)</span>
+<span class="nb">target_compile_options</span><span class="p">(</span><span class="s">implot</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">-fPIC</span><span class="p">)</span>
+
+<span class="c"># Линкуем к main</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">main</span><span class="w"> </span><span class="o">${</span><span class="nv">SOURCES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">main</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">imgui</span><span class="w"> </span><span class="s">implot</span><span class="w"> </span><span class="o">${</span><span class="nv">SDL2_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">OPENGL_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">GLEW_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">SoapySDR_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="s">mylib</span><span class="w"> </span><span class="s">fftw3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="demowindow">
+<h2>DemoWindow, примеры от разработчиков<a class="headerlink" href="#demowindow" title="Permalink to this heading"></a></h2>
+<p><strong>Онлайн версия Демо</strong> - <a class="reference external" href="https://pthom.github.io/imgui_explorer/?lib=implot">здесь</a>.</p>
+<p>Как и в основной библиотеке <code class="docutils literal notranslate"><span class="pre">Dear</span> <span class="pre">Imgui</span></code>, в данном репозитории присутствует исчерпывающий <code class="docutils literal notranslate"><span class="pre">demo</span></code>-пример:</p>
+<ul class="simple">
+<li><p>Реализации функций можно найти в исполняемом файле <code class="docutils literal notranslate"><span class="pre">impllot_demo.cpp</span></code>;</p></li>
+<li><p>Вызвать в своем проекте можно при помощи функции <code class="docutils literal notranslate"><span class="pre">ImPlot::ShowDemoWindow()</span></code> (в основном цикле рендеринга вашей программы);</p></li>
+<li><p>Рекомендуется использовать этот файл в качестве справочного материала для реализации графиков в своей программе.</p></li>
+</ul>
+<p><img alt="alt text" src="../../_images/implot_demo_window.png" /></p>
+</section>
+<section id="id3">
+<h2>Использование библиотеки<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>В первую очередь, необходимо инициализировать контекст <code class="docutils literal notranslate"><span class="pre">ImPlot</span></code> (аналогично <code class="docutils literal notranslate"><span class="pre">ImGui</span></code>). Контекст <code class="docutils literal notranslate"><span class="pre">ImPlot</span></code> должен находится внутри контекста <code class="docutils literal notranslate"><span class="pre">ImGui</span></code>:</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="n">ImGui</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span><span class="w"> </span><span class="c1">// ImGui контекст</span>
+<span class="n">ImPlot</span><span class="o">::</span><span class="n">CreateContext</span><span class="p">();</span><span class="w"> </span><span class="c1">// Implot контекст</span>
+<span class="p">...</span>
+<span class="n">ImPlot</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">DestroyContext</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Инициализируем и уничтожаем контекст при помощи <code class="docutils literal notranslate"><span class="pre">ImPlot::CreateContext()\ImPlot::DestroyContext()</span></code>, где бы вы это ни делали для <code class="docutils literal notranslate"><span class="pre">ImGuiContext</span></code>.</p>
+<p><strong>API</strong> используется так же, как и любая другая пара <code class="docutils literal notranslate"><span class="pre">ImGui</span></code> <code class="docutils literal notranslate"><span class="pre">BeginX/EndX</span></code>. Сначала инициализируем новое окно с графиком при помощи <code class="docutils literal notranslate"><span class="pre">ImPlot::BeginPlot()</span></code>. Затем <strong>рисуем</strong> столько элементов, сколько хотим, с помощью предусмотренных функций <code class="docutils literal notranslate"><span class="pre">PlotX</span></code> (например, <code class="docutils literal notranslate"><span class="pre">PlotLine()</span></code>, <code class="docutils literal notranslate"><span class="pre">PlotBars()</span></code>, <code class="docutils literal notranslate"><span class="pre">PlotScatter()</span></code> и т. д.). Наконец, закрываем текущее окно с графиком <code class="docutils literal notranslate"><span class="pre">ImPlot::EndPlot()</span></code>.</p>
+<div class="highlight-c++ notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w">   </span><span class="n">bar_data</span><span class="p">[</span><span class="mi">11</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">x_data</span><span class="p">[</span><span class="mi">1000</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+<span class="kt">float</span><span class="w"> </span><span class="n">y_data</span><span class="p">[</span><span class="mi">1000</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
+
+<span class="n">ImGui</span><span class="o">::</span><span class="n">Begin</span><span class="p">(</span><span class="s">&quot;My Window&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ImPlot</span><span class="o">::</span><span class="n">BeginPlot</span><span class="p">(</span><span class="s">&quot;My Plot&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">PlotBars</span><span class="p">(</span><span class="s">&quot;My Bar Plot&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">bar_data</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">);</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">PlotLine</span><span class="p">(</span><span class="s">&quot;My Line Plot&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x_data</span><span class="p">,</span><span class="w"> </span><span class="n">y_data</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">);</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">EndPlot</span><span class="p">();</span>
+<span class="p">}</span>
+<span class="n">ImGui</span><span class="o">::</span><span class="n">End</span><span class="p">();</span>
+</pre></div>
+</div>
+<p><strong>Результат</strong>:</p>
+<p><img alt="alt text" src="../../_images/implot_example_01.png" /></p>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="03_widgets.html" class="btn btn-neutral float-left" title="3. Виджеты" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Qt/qt_install.html" class="btn btn-neutral float-right" title="Установка Qt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
