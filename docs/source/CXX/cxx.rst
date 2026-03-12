@@ -16,6 +16,7 @@
    Imgui/01_introduction
    Imgui/02_int_main
    Imgui/03_widgets
+   Imgui/04_plots
 
 
 .. toctree::
