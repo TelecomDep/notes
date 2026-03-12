@@ -67,6 +67,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#backend-cxx">9.  Backend-сервер на CXX</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#x-android-cellinfo">X. Android Cellinfo.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#android-background-service">11. Android background service.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">12. Драйв-тест.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-android-backend">XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-postgresql-backend">XX. PostgreSQL. База данных (на стороне backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx">XX. Тайлы. Работа с картами.</a></li>
@@ -74,7 +75,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#id6">Вопросы к экзамену\зачету</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id7">Вопросы к экзамену\зачету</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Git</span></p>
 <ul>
@@ -485,6 +486,61 @@
 </li>
 <li><p>Обновить <code class="docutils literal notranslate"><span class="pre">git</span></code>-репозиторий.</p></li>
 </ol>
+</section>
+<section id="id6">
+<h3>12. Драйв-тест.<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Провести драйв-тест в городской местности (например, г. Новосибирск);</p>
+<ol class="arabic simple">
+<li><p>Пройтись по городу с телефоном, сохраняя статистику в <code class="docutils literal notranslate"><span class="pre">json</span></code>-файле (это у вас уже должно работать);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Json</span></code>-файл должен соответствовать формату из <code class="docutils literal notranslate"><span class="pre">Практики</span> <span class="pre">№10</span></code>;</p></li>
+<li><p>Собрать максимально возможное количество данных (за 1 неделю).</p></li>
+</ol>
+</li>
+</ol>
+<!-- 2. **Для всех групп**: Объединить данные каждого человека в один json-файл:
+    1. При объединении проверить форматы Json-схем;
+    2. Если не соответствует, привести к единому формату.
+
+**Пример Json-файла с данными о сети и геолокации**
+```json
+"AllCellInfo": [
+    {
+        "NetworkType": "CellInfoLte",
+        "CellIdentity": "138259478",
+        "MCC": "250",
+        "MNC": "20",
+        "PCI": 303,
+        "TAC": 17724,
+        "Bands": "7",
+        "SignalStrength": "RSRP: -93",
+        "RSRP": -93,
+        "RSRQ": -13,
+        "RSSI": -81,
+        "TimingAdvance": 2147483647,
+        "Time": 1773137040928
+    },
+    {
+        "NetworkType": "CellInfoLte",
+        "CellIdentity": "268435455",
+        "PCI": 163,
+        "TAC": 65535,
+        "Bands": "7",
+        "SignalStrength": "RSRP: -98",
+        "RSRP": -98,
+        "RSRQ": -15,
+        "RSSI": -83,
+        "TimingAdvance": 2147483647,
+        "Time": 1773137040928
+    }
+],
+"Location": {
+    "Latitude": 55.0132929,
+    "Longitude": 82.9507357,
+    "Altitude": 136.50001525878906,
+    "Time": 1773137040920
+}
+``` -->
 <!-- ### 9. Данные о сетях мобильной связи (2G, 3G, 4G-LTE, 5G-NR)
 
 1.  Создать новое `Activity`, добавив кнопку перехода основном "окне" `MainActivity`;
@@ -578,8 +634,8 @@ conn.close()
 </section>
 </section>
 </section>
-<section id="id6">
-<h1>Вопросы к экзамену\зачету<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h1>
+<section id="id7">
+<h1>Вопросы к экзамену\зачету<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h1>
 <ol class="arabic simple">
 <li><p>В чем разница между переменными <code class="docutils literal notranslate"><span class="pre">val</span></code> и <code class="docutils literal notranslate"><span class="pre">var</span></code> в языке Kotlin?</p></li>
 <li><p>Что такое свойство(свойства) класса?</p></li>
