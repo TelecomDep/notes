@@ -11,4 +11,5 @@ PostgreSQL
    work_with_database
    data_types
    sql_synax
+   c_psql
    python_psql
