@@ -18,6 +18,10 @@ create database test_db_from_psql;
 
 Важно отметить, что для создания базы данных используем команду `create database <имя_базы_данных>;`, где точка с запятой **ОБЯЗАТЕЛЬНА**.
 
+В интерфейсе **PgAdmin** увидим добавление новой базы данных:
+
+![alt text](image/psql_create_database.png)
+
 <!-- ## Мета-команды psql
 
 Все что начинается с обратного слэша (`\`) считается командой, которую обрабатывает непосредственно сам `psql`.  -->
@@ -48,6 +52,10 @@ create table user_equipment (Id serial primary key, Imei integer, Lat real, Lon 
 - `Alt` `real`;
 - `Timestamp` `bigint`. 
 
+В интерфейсе **PgAdmin** увидим добавление новой таблицы:
+
+![alt text](image/psql_create_table.png)
+
 ### Внесение данных в таблицу
 Для примера добавим в нашу таблицу некоторые значения в след. формате:
 
@@ -56,6 +64,12 @@ insert into user_equipment (Imei, Lat, Lon, Alt, Timestamp) values (1234, 82.555
 ```
 
 ![1760865203525](image/work_with_database/1760865203525.png)
+
+Чтобы посмотреть на записанные нами данные в **PgAdmin** нажимаем правой кнопкой мыши на нужную таблицу (`user_equipment` в нашем случае) и идем по пути `Viev/Edit Data` `->` `All Rows`:
+
+![alt text](image/psql_add_data_into_table.png)
+
+
 
 ### Получение данных из таблицы
 
