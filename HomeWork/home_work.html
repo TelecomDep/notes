@@ -68,6 +68,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#x-android-cellinfo">X. Android Cellinfo.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#android-background-service">11. Android background service.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">12. Драйв-тест.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#postgresql">13. Работа с базой данных (PostgreSQL) из С/С++</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-android-backend">XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-postgresql-backend">XX. PostgreSQL. База данных (на стороне backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx">XX. Тайлы. Работа с картами.</a></li>
@@ -497,6 +498,26 @@
 <li><p>Собрать максимально возможное количество данных (за 1 неделю).</p></li>
 </ol>
 </li>
+</ol>
+</section>
+<section id="postgresql">
+<h3>13. Работа с базой данных (PostgreSQL) из С/С++<a class="headerlink" href="#postgresql" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Доработать код <code class="docutils literal notranslate"><span class="pre">backend</span></code>-сервера для взаимодействия с базой данных <code class="docutils literal notranslate"><span class="pre">PSQl</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Создать собственную базу данных (<a class="reference external" href="https://telecomdep.github.io/notes/DataBase/work_with_database.html">пример</a>);</p></li>
+<li><p>Создать таблицу на основе данных, которые вы собираете с <code class="docutils literal notranslate"><span class="pre">Android</span></code>-приложения (<strong>Практика X</strong>). Пример создания таблицы по ссылке выше;</p></li>
+<li><p>При каждом получении данных с <code class="docutils literal notranslate"><span class="pre">Android</span></code>-приложения, добавить данные в таблицу (<a class="reference external" href="https://telecomdep.github.io/notes/DataBase/c_psql.html">пример на языке СИ</a>);</p></li>
+</ol>
+</li>
+<li><p>В <code class="docutils literal notranslate"><span class="pre">GUI</span></code>-потоке приложения отображать только текущее значение (пока <strong>НЕ</strong> загружаем из базы данных);</p></li>
+<li><p>Графики уровня сигнала (<code class="docutils literal notranslate"><span class="pre">RSRP</span></code>, <code class="docutils literal notranslate"><span class="pre">RSSI</span></code>, <code class="docutils literal notranslate"><span class="pre">SINR</span></code>) также отбражаем, кладя значения в массив по мере поступления данных.</p>
+<ol class="arabic simple">
+<li><p>При получении данных о НЕСКОЛЬКИХ сотах, отображаем графики для каждого <code class="docutils literal notranslate"><span class="pre">PCI</span></code>. Например, пришли данные о двух сотах со значениями <code class="docutils literal notranslate"><span class="pre">PCI_1</span></code> = 7 (<code class="docutils literal notranslate"><span class="pre">RSRP</span></code> = -100 [dBm]), <code class="docutils literal notranslate"><span class="pre">PCI_2</span></code> = 13 (<code class="docutils literal notranslate"><span class="pre">RSRP</span></code> = -89 [dBm]), на графиках должно параллельно отобразиться 2 значения (разными цветами) по оси <code class="docutils literal notranslate"><span class="pre">Y</span></code> в одном значении оси `X;</p></li>
+<li><p>В легенде графика добавить значения для всех <code class="docutils literal notranslate"><span class="pre">PCI</span></code>.</p></li>
+</ol>
+</li>
+<li><p>Обновить <code class="docutils literal notranslate"><span class="pre">Github</span></code>-репозиторий. Обновить <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, описать возможности вашего приложения.</p></li>
 </ol>
 <!-- 2. **Для всех групп**: Объединить данные каждого человека в один json-файл:
     1. При объединении проверить форматы Json-схем;
