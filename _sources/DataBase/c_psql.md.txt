@@ -2,6 +2,8 @@
 
 Пример взаимодействия приложения на языке `СИ` с базой данных `PSQL`. В этом нам поможет библиотека [libpq](https://postgrespro.ru/docs/postgresql/current/libpq), поддерживаемая разработчикеами `PSQL`.
 
+Полный пример взаимодействия с базой данных - [здесь](https://github.com/TelecomDep/backend_notes/blob/main/examples/psql/psql_example.cpp)
+
 
 ## Установка и подключение библиотеки в CMake
 
