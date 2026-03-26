@@ -76,7 +76,11 @@
 <li class="toctree-l2"><a class="reference internal" href="data_types.html">Типы данных в PostgresSQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sql_synax.html">Основы синтаксиса языка SQL</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Clang + PSQL</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">Установка и подключение библиотеки</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmake">Установка и подключение библиотеки в CMake</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Взаимодействие из кода СИ</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Пример подключения к БД</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="python_psql.html">Python + PSQL</a></li>
@@ -124,8 +128,8 @@
   <section id="clang-psql">
 <h1>Clang + PSQL<a class="headerlink" href="#clang-psql" title="Permalink to this heading"></a></h1>
 <p>Пример взаимодействия приложения на языке <code class="docutils literal notranslate"><span class="pre">СИ</span></code> с базой данных <code class="docutils literal notranslate"><span class="pre">PSQL</span></code>. В этом нам поможет библиотека <a class="reference external" href="https://postgrespro.ru/docs/postgresql/current/libpq">libpq</a>, поддерживаемая разработчикеами <code class="docutils literal notranslate"><span class="pre">PSQL</span></code>.</p>
-<section id="id1">
-<h2>Установка и подключение библиотеки<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<section id="cmake">
+<h2>Установка и подключение библиотеки в CMake<a class="headerlink" href="#cmake" title="Permalink to this heading"></a></h2>
 <p><strong>Устанавливаем</strong>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libpq-dev
 </pre></div>
@@ -141,6 +145,49 @@
 <span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">main</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">PostgreSQL::PostgreSQL</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+<section id="id1">
+<h2>Взаимодействие из кода СИ<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>Имя базы данных и кредиты пользователя сохранились из предыдущей “лекции”.</p>
+<section id="id2">
+<h3>Пример подключения к БД<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cmath&gt;</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;libpq-fe.h&gt;</span>
+
+<span class="cp">#define HOST &quot;localhost&quot;</span>
+<span class="cp">#define PORT &quot;5432&quot;</span>
+<span class="cp">#define DB_NAME &quot;test_db_from_psql&quot;</span>
+<span class="cp">#define DB_USER &quot;postgres&quot;               </span><span class="c1">//по умолчанию postgres</span>
+<span class="cp">#define DB_USER_PASSWORD &quot;postgres1234&quot; </span><span class="c1">//Пароль от DB_USER</span>
+
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">argc</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">argv</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">    </span><span class="n">PGconn</span><span class="w"> </span><span class="o">*</span><span class="n">con</span><span class="p">;</span><span class="w">            </span><span class="c1">// обьект подключения</span>
+<span class="w">    </span><span class="n">PGresult</span><span class="w"> </span><span class="o">*</span><span class="n">res</span><span class="p">;</span><span class="w">          </span><span class="c1">// результат запроса к базе</span>
+
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;host=&quot;</span><span class="w"> </span><span class="n">HOST</span><span class="w"> </span><span class="s">&quot; port=&quot;</span><span class="w"> </span><span class="n">PORT</span><span class="w"> </span><span class="s">&quot; dbname=&quot;</span><span class="w"> </span><span class="n">DB_NAME</span><span class="w"> </span><span class="s">&quot; user=&quot;</span><span class="w"> </span><span class="n">DB_USER</span><span class="w"> </span><span class="s">&quot; password=&quot;</span><span class="w"> </span><span class="n">DB_USER_PASSWORD</span><span class="p">;</span>
+<span class="w">    </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PQconnectdb</span><span class="p">(</span><span class="n">info</span><span class="p">);</span><span class="w">                </span><span class="c1">// подключаемся к бд по данным из info</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PQstatus</span><span class="p">(</span><span class="n">con</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CONNECTION_OK</span><span class="p">){</span><span class="w">                      </span><span class="c1">// если подключение не удалось пишем ошибку</span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[31mОШИБКА</span><span class="se">\033</span><span class="s">[0m подключения к БД.</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">PQerrorMessage</span><span class="p">(</span><span class="n">con</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">            </span><span class="n">PQfinish</span><span class="p">(</span><span class="n">con</span><span class="p">);</span><span class="w">                                   </span><span class="c1">// рвём подключение перед выходом</span>
+<span class="w">            </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Подключение </span><span class="se">\033</span><span class="s">[32mУСПЕШНО!</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Результат</strong>:</p>
+<p><img alt="alt text" src="../_images/psql_bd_connect_from_c_success.png" /></p>
+</section>
 </section>
 </section>
 
