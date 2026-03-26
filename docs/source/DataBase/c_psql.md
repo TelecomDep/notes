@@ -29,6 +29,10 @@ target_link_libraries(main PRIVATE PostgreSQL::PostgreSQL)
 
 ### Пример подключения к БД
 ```c
+/*
+@author: https://github.com/FacelessProfile, Никита Шаламов
+*/
+
 #include <iostream>
 #include <chrono>
 #include <thread>
