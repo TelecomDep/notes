@@ -53,7 +53,7 @@ int main(int argc, char *argv[]) {
     PGresult *res;          // результат запроса к базе
 
     const char* info = "host=" HOST " port=" PORT " dbname=" DB_NAME " user=" DB_USER " password=" DB_USER_PASSWORD;
-    con = PQconnectdb(info);                // подключаемся к бд по данным из info
+    con = PQconnectdb(info);                // Выполняем SQL-запрос из переменной info
 
     if (PQstatus(con) != CONNECTION_OK){                      // если подключение не удалось пишем ошибку
             std::cerr << "\033[31mОШИБКА\033[0m подключения к БД.\n" << PQerrorMessage(con) << "\n";
@@ -70,3 +70,34 @@ int main(int argc, char *argv[]) {
 **Результат**:
 
 ![alt text](image/psql_bd_connect_from_c_success.png)
+
+
+### Добавляем данные в таблицу
+
+```c
+const char* test_data[] = {"12345", "83.5559", "53.433332", "135.0", "123408383"};
+std::string query =  std::string("INSERT INTO ") + std::string("user_equipment") + "(Imei, Lat, Lon, Alt, Timestamp)" + "VALUES ($1, $2, $3, $4, $5)";
+PGresult* insert_res = PQexecParams(                // передаем параметры отдельно для защиты от SQL injection
+    con,                                            // наше установленное соединение
+    query.c_str(),                                  // строка запроса где table - таблица в БД
+    5,                                              // количество переданных параметров
+    NULL,                                           // типы данных (NULL - автотипизация)
+    test_data,                                      // массив с данными
+    NULL,                                           // длины данных
+    NULL,                                           // формат (0 - текст)
+    0                                               // результат текстом
+    );
+
+// проверяем успешен ли запрос на добавление в базу
+if (PQresultStatus(insert_res) != PGRES_COMMAND_OK) {
+    std::cerr << "\033[31mОШИБКА\033[0m:" << PQresultErrorMessage(insert_res) << "\n";
+} else{
+    std::cout << "Вставка произошла \033[32mУСПЕШНО!\033[0m\n";
+}
+
+PQclear(insert_res);
+```
+
+Результат:
+
+![alt text](image/psql_add_new_row_into_table_from_c.png)

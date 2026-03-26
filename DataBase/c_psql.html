@@ -79,6 +79,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cmake">Установка и подключение библиотеки в CMake</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Взаимодействие из кода СИ</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Пример подключения к БД</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Добавляем данные в таблицу</a></li>
 </ul>
 </li>
 </ul>
@@ -175,7 +176,7 @@
 <span class="w">    </span><span class="n">PGresult</span><span class="w"> </span><span class="o">*</span><span class="n">res</span><span class="p">;</span><span class="w">          </span><span class="c1">// результат запроса к базе</span>
 
 <span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">info</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;host=&quot;</span><span class="w"> </span><span class="n">HOST</span><span class="w"> </span><span class="s">&quot; port=&quot;</span><span class="w"> </span><span class="n">PORT</span><span class="w"> </span><span class="s">&quot; dbname=&quot;</span><span class="w"> </span><span class="n">DB_NAME</span><span class="w"> </span><span class="s">&quot; user=&quot;</span><span class="w"> </span><span class="n">DB_USER</span><span class="w"> </span><span class="s">&quot; password=&quot;</span><span class="w"> </span><span class="n">DB_USER_PASSWORD</span><span class="p">;</span>
-<span class="w">    </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PQconnectdb</span><span class="p">(</span><span class="n">info</span><span class="p">);</span><span class="w">                </span><span class="c1">// подключаемся к бд по данным из info</span>
+<span class="w">    </span><span class="n">con</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PQconnectdb</span><span class="p">(</span><span class="n">info</span><span class="p">);</span><span class="w">                </span><span class="c1">// Выполняем SQL-запрос из переменной info</span>
 
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PQstatus</span><span class="p">(</span><span class="n">con</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CONNECTION_OK</span><span class="p">){</span><span class="w">                      </span><span class="c1">// если подключение не удалось пишем ошибку</span>
 <span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[31mОШИБКА</span><span class="se">\033</span><span class="s">[0m подключения к БД.</span><span class="se">\n</span><span class="s">&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">PQerrorMessage</span><span class="p">(</span><span class="n">con</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
@@ -191,6 +192,34 @@
 </div>
 <p><strong>Результат</strong>:</p>
 <p><img alt="alt text" src="../_images/psql_bd_connect_from_c_success.png" /></p>
+</section>
+<section id="id3">
+<h3>Добавляем данные в таблицу<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">test_data</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s">&quot;12345&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;83.5559&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;53.433332&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;135.0&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;123408383&quot;</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;INSERT INTO &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;user_equipment&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;(Imei, Lat, Lon, Alt, Timestamp)&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;VALUES ($1, $2, $3, $4, $5)&quot;</span><span class="p">;</span>
+<span class="n">PGresult</span><span class="o">*</span><span class="w"> </span><span class="n">insert_res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PQexecParams</span><span class="p">(</span><span class="w">                </span><span class="c1">// передаем параметры отдельно для защиты от SQL injection</span>
+<span class="w">    </span><span class="n">con</span><span class="p">,</span><span class="w">                                            </span><span class="c1">// наше установленное соединение</span>
+<span class="w">    </span><span class="n">query</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w">                                  </span><span class="c1">// строка запроса где table - таблица в БД</span>
+<span class="w">    </span><span class="mi">5</span><span class="p">,</span><span class="w">                                              </span><span class="c1">// количество переданных параметров</span>
+<span class="w">    </span><span class="nb">NULL</span><span class="p">,</span><span class="w">                                           </span><span class="c1">// типы данных (NULL - автотипизация)</span>
+<span class="w">    </span><span class="n">test_data</span><span class="p">,</span><span class="w">                                      </span><span class="c1">// массив с данными</span>
+<span class="w">    </span><span class="nb">NULL</span><span class="p">,</span><span class="w">                                           </span><span class="c1">// длины данных</span>
+<span class="w">    </span><span class="nb">NULL</span><span class="p">,</span><span class="w">                                           </span><span class="c1">// формат (0 - текст)</span>
+<span class="w">    </span><span class="mi">0</span><span class="w">                                               </span><span class="c1">// результат текстом</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="c1">// проверяем успешен ли запрос на добавление в базу</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PQresultStatus</span><span class="p">(</span><span class="n">insert_res</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">PGRES_COMMAND_OK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[31mОШИБКА</span><span class="se">\033</span><span class="s">[0m:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">PQresultErrorMessage</span><span class="p">(</span><span class="n">insert_res</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Вставка произошла </span><span class="se">\033</span><span class="s">[32mУСПЕШНО!</span><span class="se">\033</span><span class="s">[0m</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">PQclear</span><span class="p">(</span><span class="n">insert_res</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Результат:</p>
+<p><img alt="alt text" src="../_images/psql_add_new_row_into_table_from_c.png" /></p>
 </section>
 </section>
 </section>
