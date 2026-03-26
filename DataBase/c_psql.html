@@ -80,6 +80,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id1">Взаимодействие из кода СИ</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Пример подключения к БД</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id3">Добавляем данные в таблицу</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Получение данных из таблицы</a></li>
 </ul>
 </li>
 </ul>
@@ -199,7 +200,7 @@
 <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">query</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;INSERT INTO &quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span><span class="s">&quot;user_equipment&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;(Imei, Lat, Lon, Alt, Timestamp)&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;VALUES ($1, $2, $3, $4, $5)&quot;</span><span class="p">;</span>
 <span class="n">PGresult</span><span class="o">*</span><span class="w"> </span><span class="n">insert_res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PQexecParams</span><span class="p">(</span><span class="w">                </span><span class="c1">// передаем параметры отдельно для защиты от SQL injection</span>
 <span class="w">    </span><span class="n">con</span><span class="p">,</span><span class="w">                                            </span><span class="c1">// наше установленное соединение</span>
-<span class="w">    </span><span class="n">query</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w">                                  </span><span class="c1">// строка запроса где table - таблица в БД</span>
+<span class="w">    </span><span class="n">query</span><span class="p">.</span><span class="n">c_str</span><span class="p">(),</span><span class="w">                                  </span><span class="c1">// строка запроса с таблицей в БД</span>
 <span class="w">    </span><span class="mi">5</span><span class="p">,</span><span class="w">                                              </span><span class="c1">// количество переданных параметров</span>
 <span class="w">    </span><span class="nb">NULL</span><span class="p">,</span><span class="w">                                           </span><span class="c1">// типы данных (NULL - автотипизация)</span>
 <span class="w">    </span><span class="n">test_data</span><span class="p">,</span><span class="w">                                      </span><span class="c1">// массив с данными</span>
@@ -220,6 +221,43 @@
 </div>
 <p>Результат:</p>
 <p><img alt="alt text" src="../_images/psql_add_new_row_into_table_from_c.png" /></p>
+</section>
+<section id="id4">
+<h3>Получение данных из таблицы<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">PGresult</span><span class="o">*</span><span class="w"> </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PQexec</span><span class="p">(</span><span class="n">con</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;SELECT Imei, Lat, Lon, Alt, Timestamp FROM user_equipment&quot;</span><span class="p">);</span>
+<span class="c1">// Check the query status</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PQresultStatus</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">PGRES_TUPLES_OK</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\033</span><span class="s">[31mОШИБКА</span><span class="se">\033</span><span class="s">[0m:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">PQresultErrorMessage</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">PQfinish</span><span class="p">(</span><span class="n">con</span><span class="p">);</span>
+<span class="w">    </span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Получаем количество Столбцов, полученных при запросе</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">nFields</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PQnfields</span><span class="p">(</span><span class="n">res</span><span class="p">);</span>
+
+<span class="c1">// Выводим на экран названия столбцов, полученных в запросе</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nFields</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%-15s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">PQfname</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">-----------------------------------</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+
+<span class="c1">// Выводим значения во всех строках каждого столбца</span>
+<span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">PQntuples</span><span class="p">(</span><span class="n">res</span><span class="p">);</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">nFields</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1">// Проверка на NULL</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PQgetisnull</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%-15s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;NULL&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="c1">// Получаем значения</span>
+<span class="w">            </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;%-15s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">PQgetvalue</span><span class="p">(</span><span class="n">res</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">));</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">printf</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Результат</strong>:</p>
+<p><img alt="alt text" src="../_images/psql_fetch_data_from_c.png" /></p>
 </section>
 </section>
 </section>

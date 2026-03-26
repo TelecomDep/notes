@@ -79,7 +79,7 @@ const char* test_data[] = {"12345", "83.5559", "53.433332", "135.0", "123408383"
 std::string query =  std::string("INSERT INTO ") + std::string("user_equipment") + "(Imei, Lat, Lon, Alt, Timestamp)" + "VALUES ($1, $2, $3, $4, $5)";
 PGresult* insert_res = PQexecParams(                // передаем параметры отдельно для защиты от SQL injection
     con,                                            // наше установленное соединение
-    query.c_str(),                                  // строка запроса где table - таблица в БД
+    query.c_str(),                                  // строка запроса с таблицей в БД
     5,                                              // количество переданных параметров
     NULL,                                           // типы данных (NULL - автотипизация)
     test_data,                                      // массив с данными
@@ -101,3 +101,43 @@ PQclear(insert_res);
 Результат:
 
 ![alt text](image/psql_add_new_row_into_table_from_c.png)
+
+
+### Получение данных из таблицы
+
+```c
+PGresult* res = PQexec(con, "SELECT Imei, Lat, Lon, Alt, Timestamp FROM user_equipment");
+// Check the query status
+if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+    std::cerr << "\033[31mОШИБКА\033[0m:" << PQresultErrorMessage(res) << "\n";
+    PQfinish(con);
+    exit(1);
+}
+
+// Получаем количество Столбцов, полученных при запросе
+int nFields = PQnfields(res);
+
+// Выводим на экран названия столбцов, полученных в запросе
+for (int i = 0; i < nFields; i++) {
+    printf("%-15s", PQfname(res, i));
+}
+printf("\n-----------------------------------\n");
+
+// Выводим значения во всех строках каждого столбца
+for (int i = 0; i < PQntuples(res); i++) {
+    for (int j = 0; j < nFields; j++) {
+        // Проверка на NULL
+        if (PQgetisnull(res, i, j)) {
+            printf("%-15s", "NULL");
+        } else {
+            // Получаем значения
+            printf("%-15s", PQgetvalue(res, i, j));
+        }
+    }
+    printf("\n");
+}
+```
+
+**Результат**:
+
+![alt text](image/psql_fetch_data_from_c.png)
