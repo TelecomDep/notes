@@ -18,7 +18,7 @@
 Этот файл был получен при помощи запроса на сервер ``OpenStreetMap`` - 
 `https://tile.openstreetmap.org/16/47867/20726.png`.
 
-`OSM`-карты (и не только они) присваивают каждому изображению свои наименования. Правила наименований описаны в статье:[wiki.openstreetmap.org/wiki/Slippy_map_tilenames](https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames).
+`OSM`-карты (и не только они) присваивают каждому изображению свои наименования. Правила наименований описаны в статье:`wiki.openstreetmap.org/wiki/Slippy_map_tilenames <https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames>`_.
 
 Правила наименований тайлов
 ---------------------
@@ -29,9 +29,8 @@
 
 Например, для масштаба карты 2 (``zoom = 2``) будут след. наименования:
 
-![alt text](image/Tiled_web_map_numbering.png) 
+.. image:: ./image/Tiled_web_map_numbering.png
 
-<!-- <img src="image/Tiled_web_map_numbering.png" width="700" /> -->
 
 Можно заметить, что:
 - Координата ``Z`` - не меняется, ``Z = 2``. 
@@ -41,8 +40,6 @@
 ^^^^^^^^^^^^^^^^^^^^^
 
 С названиями координат изображений мы определились, но первая часть URL (например, ``tile.openstreetmap.org``) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.
-
-Таблица с примерами тайл серверов:
 
 ..  table:: Таблица серверов
 
@@ -62,7 +59,7 @@
 
 Масштаб (zoom levels)
 ^^^^^^^^^^^^^^^^^^^^^
-Ниже приведена таблица по каждому уровню масштабирования (от `0` до `19`). Более подробная таблица находится [здесь](https://wiki.openstreetmap.org/wiki/Zoom_levels).
+Ниже приведена таблица по каждому уровню масштабирования (от `0` до `19`). Более подробная таблица находится `здесь <https://wiki.openstreetmap.org/wiki/Zoom_levels>`_.
 
 .. |zoom level |tile coverage	                        |number of tiles	                    | tile size(*) in degrees           |
 .. |   ---     |   ---                                 |   ---                                 | ---                               |
