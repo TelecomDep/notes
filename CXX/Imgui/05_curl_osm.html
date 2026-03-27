@@ -21,6 +21,7 @@
         <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="https://wavedrom.com/skins/default.js"></script>
         <script src="https://wavedrom.com/wavedrom.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -73,12 +74,12 @@
 <li class="toctree-l2"><a class="reference internal" href="04_plots.html">4. Работа с графиками</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Получение тайлов карты (Open Street Map)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Правила наименований тайлов</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id2">Тайл серверы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Тайл серверы</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#zoom-levels">Масштаб (zoom levels)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3">Математика</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id4">Получение тайлов из кода С\С++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id33">Математика</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id34">Получение тайлов из кода СС++</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="06_rst.html">Тест</a></li>
@@ -121,7 +122,7 @@
           <li class="breadcrumb-item"><a href="../cxx.html">Немного про C++</a></li>
       <li class="breadcrumb-item active">Получение тайлов карты (Open Street Map)</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/CXX/Imgui/05_curl_osm.md.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/CXX/Imgui/05_curl_osm.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -131,135 +132,67 @@
              
   <section id="open-street-map">
 <h1>Получение тайлов карты (Open Street Map)<a class="headerlink" href="#open-street-map" title="Permalink to this heading"></a></h1>
-<p><strong>Тайлы</strong> - это изображения небольшого размера (одинакового), являющиеся фрагментами большого изображения. В рамках работы с картами - это квадратные (обычно <code class="docutils literal notranslate"><span class="pre">256х256</span></code> пикселей, могут быть и <code class="docutils literal notranslate"><span class="pre">512x512</span></code>) изображения, формирующие карту мира.</p>
-<p>Они используются в веб-картографии (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс</span> <span class="pre">Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
-<p>Например, если открыть в браузере карту <span class="xref myst">OpenStreetMap.org</span>, перейти в режим разработчика (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code>+<code class="docutils literal notranslate"><span class="pre">SHIFT</span></code>+<code class="docutils literal notranslate"><span class="pre">I</span></code>) во вкладке <code class="docutils literal notranslate"><span class="pre">Network</span></code>, мы увидим следующую картину:</p>
-<p><img alt="alt text" src="../../_images/imgui_osm_tiles.png" /></p>
-<p>, где увидим, что были загружены несколько изображений <code class="docutils literal notranslate"><span class="pre">*.png</span></code> со странными названиями файлов.</p>
-<p>Например, <code class="docutils literal notranslate"><span class="pre">20726</span></code>:</p>
-<p><img alt="alt text" src="../../_images/20726.png" /></p>
-<p>Этот файл был получен при помощи запроса на сервер <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code> -
-<code class="docutils literal notranslate"><span class="pre">https://tile.openstreetmap.org/16/47867/20726.png</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">OSM</span></code>-карты (и не только они) присваивают каждому изображению свои наименования. Правила наименований описаны в статье:<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>.</p>
+<p><strong>Тайлы</strong> - это изображения небольшого размера (одинакового), являющиеся фрагментами большого изображения. В рамках работы с картами - это квадратные (обычно <cite>256х256</cite> пикселей, могут быть и <cite>512x512</cite>) изображения, формирующие карту мира.</p>
+<p>Они используются в веб-картографии (<cite>Google Maps</cite>, <cite>Яндекс Карты</cite>, <cite>OpenStreetMap</cite>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
+<p>Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (<cite>CTRL`+`SHIFT`+`I</cite>) во вкладке <cite>Network</cite>, мы увидим следующую картину:</p>
+<p>![alt text](image/imgui_osm_tiles.png)</p>
+<p>, где увидим, что были загружены несколько изображений <cite>*.png</cite> со странными названиями файлов.</p>
+<p>Например, <cite>20726</cite>:</p>
+<p>![alt text](image/20726.png)</p>
+<p>Этот файл был получен при помощи запроса на сервер <cite>OpenStreetMap</cite> -
+<cite>https://tile.openstreetmap.org/16/47867/20726.png</cite>.</p>
+<p><cite>OSM</cite>-карты (и не только они) присваивают каждому изображению свои наименования. Правила наименований описаны в статье:[wiki.openstreetmap.org/wiki/Slippy_map_tilenames](<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>).</p>
 <section id="id1">
 <h2>Правила наименований тайлов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p>Все тайлы имеют размер <code class="docutils literal notranslate"><span class="pre">256</span> <span class="pre">×</span> <span class="pre">256</span></code> пикселей формата <code class="docutils literal notranslate"><span class="pre">PNG</span></code>;</p></li>
+<li><p>Все тайлы имеют размер <cite>256 × 256</cite> пикселей формата <cite>PNG</cite>;</p></li>
 <li><p>Каждое значение масштаба карты (zoom level) является директорией, каждый столбец также является директорией, в которой находятся изображения;</p></li>
-<li><p>Ссылка (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) на получения конкретного файла (*.png) формируется в формате: <code class="docutils literal notranslate"><span class="pre">/zoom/x/y.png</span></code></p></li>
+<li><p>Ссылка (<cite>URL</cite>) на получения конкретного файла (<a href="#id2"><span class="problematic" id="id3">*</span></a>.png) формируется в формате: <cite>/zoom/x/y.png</cite></p></li>
 </ol>
-<p>Например, для масштаба карты 2 (<code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">2</span></code>) будут след. наименования:</p>
-<p><img alt="alt text" src="../../_images/Tiled_web_map_numbering.png" /></p>
-<!-- <img src="image/Tiled_web_map_numbering.png" width="700" /> -->
-<p>Можно заметить, что:</p>
-<ul class="simple">
-<li><p>Координата <code class="docutils literal notranslate"><span class="pre">Z</span></code> - не меняется, <code class="docutils literal notranslate"><span class="pre">Z</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p></li>
-<li><p>Координаты <code class="docutils literal notranslate"><span class="pre">X</span></code> - это <strong>столбцы</strong> матрицы, <code class="docutils literal notranslate"><span class="pre">Y</span></code> - <strong>строки</strong> матрицы.</p></li>
-</ul>
-<section id="id2">
-<h3>Тайл серверы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
-<p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
+<p>Например, для масштаба карты 2 (<cite>zoom = 2</cite>) будут след. наименования:</p>
+<p>![alt text](image/Tiled_web_map_numbering.png)</p>
+<p>&lt;!– &lt;img src=”image/Tiled_web_map_numbering.png” width=”700” /&gt; –&gt;</p>
+<p>Можно заметить, что:
+- Координата <cite>Z</cite> - не меняется, <cite>Z = 2</cite>.
+- Координаты <cite>X</cite> - это <strong>столбцы</strong> матрицы, <cite>Y</cite> - <strong>строки</strong> матрицы.</p>
+<section id="id4">
+<h3>Тайл серверы<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>С названиями координат изображений мы определились, но первая часть URL (например, <cite>tile.openstreetmap.org</cite>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
 <p>Таблица с примерами тайл серверов:</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Name</p></th>
-<th class="head"><p>URL template</p></th>
-<th class="head"><p>zoomlevels</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>OSM ‘standard’ style</p></td>
-<td><p>https://tile.openstreetmap.org/<strong>zoom/x/y.png</strong></p></td>
-<td><p>0-19</p></td>
-</tr>
-<tr class="row-odd"><td><p>OpenCycleMap</p></td>
-<td><p>http://[abc].tile.thunderforest.com/cycle/<strong>zoom/x/y.png</strong></p></td>
-<td><p>0-22</p></td>
-</tr>
-<tr class="row-even"><td><p>Thunderforest Transport</p></td>
-<td><p>http://[abc].tile.thunderforest.com/transport/<strong>zoom/x/y.png</strong></p></td>
-<td><p>0-22</p></td>
-</tr>
-<tr class="row-odd"><td><p>MapTiles API Standard</p></td>
-<td><p>https://maptiles.p.rapidapi.com/local/osm/v1/<strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY</p></td>
-<td><p>0-19 globally</p></td>
-</tr>
-<tr class="row-even"><td><p>MapTiles API English</p></td>
-<td><p>https://maptiles.p.rapidapi.com/en/map/v1/<strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY</p></td>
-<td><p>0-19 globally with English labels</p></td>
-</tr>
-</tbody>
-</table>
+<div class="line-block">
+<div class="line">Name                    |   URL template        |   zoomlevels  |</div>
+<div class="line">—                 |   —                 |   —         |</div>
+</div>
+<p><a href="#id5"><span class="problematic" id="id6">|</span></a>OSM ‘standard’ style   | <a class="reference external" href="https://tile.openstreetmap.org/">https://tile.openstreetmap.org/</a><strong>zoom/x/y.png</strong> |     0-19 |
+<a href="#id7"><span class="problematic" id="id8">|</span></a>OpenCycleMap    <a href="#id9"><span class="problematic" id="id10">|</span></a><a class="reference external" href="http://[abc].tile.thunderforest.com/cycle/">http://[abc].tile.thunderforest.com/cycle/</a><strong>zoom/x/y.png</strong>     <a href="#id11"><span class="problematic" id="id12">|</span></a>0-22 |
+<a href="#id13"><span class="problematic" id="id14">|</span></a>Thunderforest Transport         <a href="#id15"><span class="problematic" id="id16">|</span></a><a class="reference external" href="http://[abc].tile.thunderforest.com/transport/">http://[abc].tile.thunderforest.com/transport/</a><strong>zoom/x/y.png</strong>         <a href="#id17"><span class="problematic" id="id18">|</span></a>0-22 |
+<a href="#id19"><span class="problematic" id="id20">|</span></a>MapTiles API Standard   <a href="#id21"><span class="problematic" id="id22">|</span></a><a class="reference external" href="https://maptiles.p.rapidapi.com/local/osm/v1/">https://maptiles.p.rapidapi.com/local/osm/v1/</a><strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY    <a href="#id23"><span class="problematic" id="id24">|</span></a>0-19 globally |
+<a href="#id25"><span class="problematic" id="id26">|</span></a>MapTiles API English    <a href="#id27"><span class="problematic" id="id28">|</span></a><a class="reference external" href="https://maptiles.p.rapidapi.com/en/map/v1/">https://maptiles.p.rapidapi.com/en/map/v1/</a><strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY       <a href="#id29"><span class="problematic" id="id30">|</span></a>0-19 globally with English labels |</p>
 </section>
 <section id="zoom-levels">
 <h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
-<p>Ниже приведена таблица по каждому уровню масштабирования (от <code class="docutils literal notranslate"><span class="pre">0</span></code> до <code class="docutils literal notranslate"><span class="pre">19</span></code>). Более подробная таблица находится <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">здесь</a>.</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>zoom level</p></th>
-<th class="head"><p>tile coverage</p></th>
-<th class="head"><p>number of tiles</p></th>
-<th class="head"><p>tile size(*) in degrees</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>0</p></td>
-<td><p>1 tile covers whole world</p></td>
-<td><p>1 tile</p></td>
-<td><p>360° x 170.1022°</p></td>
-</tr>
-<tr class="row-odd"><td><p>1</p></td>
-<td><p>2 × 2 tiles</p></td>
-<td><p>4 tiles</p></td>
-<td><p>180° x 85.0511°</p></td>
-</tr>
-<tr class="row-even"><td><p>2</p></td>
-<td><p>4 × 4 tiles</p></td>
-<td><p>16 tiles</p></td>
-<td><p>90° x [variable]</p></td>
-</tr>
-<tr class="row-odd"><td><p>n</p></td>
-<td><p>2<sup>n</sup> × 2<sup>n</sup> tiles</p></td>
-<td><p>2<sup>2n</sup> tiles</p></td>
-<td><p>360/2<sup>n</sup> ° x [variable]</p></td>
-</tr>
-<tr class="row-even"><td><p>12</p></td>
-<td><p>4096 x 4096 tiles</p></td>
-<td><p>16 777 216</p></td>
-<td><p>0.0879° x [variable]</p></td>
-</tr>
-<tr class="row-odd"><td><p>16</p></td>
-<td><p>—</p></td>
-<td><p>2<sup>32</sup> ≈ 4 295 million tiles</p></td>
-<td><p>—</p></td>
-</tr>
-<tr class="row-even"><td><p>17</p></td>
-<td><p>—</p></td>
-<td><p>17.2 billion tiles</p></td>
-<td><p>—</p></td>
-</tr>
-<tr class="row-odd"><td><p>18</p></td>
-<td><p>—</p></td>
-<td><p>68.7 billion tiles</p></td>
-<td><p>—</p></td>
-</tr>
-<tr class="row-even"><td><p>19</p></td>
-<td><p>Maximum zoom for Mapnik layer</p></td>
-<td><p>274.9 billion tiles</p></td>
-<td><p>—</p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="id3">
-<h3>Математика<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
-<p>.. math::</p>
-<p>(a + b)^2 = a^2 + 2ab + b^2
-e^{i\pi} + 1 = 0</p>
+<p>Ниже приведена таблица по каждому уровню масштабирования (от <cite>0</cite> до <cite>19</cite>). Более подробная таблица находится [здесь](<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">https://wiki.openstreetmap.org/wiki/Zoom_levels</a>).</p>
+<p><a href="#id35"><span class="problematic" id="id36">|zoom level |tile coverage                              |number of tiles                            | tile size(*) in degrees           |
+|   ---     |   ---                                 |   ---                                 | ---                               |
+| 0             |1 tile covers whole world                  |1 tile                                 |   360° x 170.1022°                |
+| 1             |2 × 2 tiles                            |4 tiles                                |       180° x 85.0511°                 |
+| 2             |4 × 4 tiles                            |16 tiles                               |       90° x [variable]                |
+| n             |2&lt;sup&gt;n&lt;/sup&gt; × 2&lt;sup&gt;n&lt;/sup&gt; tiles    |2&lt;sup&gt;2n&lt;/sup&gt; tiles                   |       360/2&lt;sup&gt;n&lt;/sup&gt; ° x [variable]|</span></a>
+| 12        <a href="#id37"><span class="problematic" id="id38">|4096 x 4096 tiles                      |16 777 216                             | 0.0879° x [variable]              |
+| 16        |---                                        |2&lt;sup&gt;32&lt;/sup&gt; ≈ 4 295 million tiles   |       ---                             |
+| 17        |---                                        |17.2 billion tiles                         |---                                |
+| 18        |---                                        |68.7 billion tiles                         |---                                |
+| 19        |Maximum zoom for Mapnik layer|</span></a>     274.9 billion tiles                                 <a href="#id31"><span class="problematic" id="id32">|</span></a>—                                |</p>
 </section>
 </section>
-<section id="id4">
-<h2>Получение тайлов из кода С\С++<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<section id="id33">
+<h2>Математика<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
+<div class="math notranslate nohighlight">
+\[(a + b)^2 = a^2 + 2ab + b^2
+e^{i\pi} + 1 = 0\]</div>
+</section>
+<section id="id34">
+<h2>Получение тайлов из кода СС++<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
