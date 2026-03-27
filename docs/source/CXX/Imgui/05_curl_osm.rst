@@ -64,7 +64,19 @@
      - https://maptiles.p.rapidapi.com/en/map/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY
      - 0-19 globally with English labels
 
+.. list-table:: Caption of the table
+   :widths: 15 10 30
+   :header-rows: 1
 
+   * - Column 1 Header
+     - Column 2 Header
+     - Column 3 Header
+   * - Row 1, Col 1
+     - Row 1, Col 2
+     - Row 1, Col 3
+   * - Row 2, Col 1
+     - Row 2, Col 2
+     - Row 2, Col 3
 Масштаб (zoom levels)
 ^^^^^^^^^^^^^^^^^^^^^
 Ниже приведена таблица по каждому уровню масштабирования (от `0` до `19`). Более подробная таблица находится `здесь <https://wiki.openstreetmap.org/wiki/Zoom_levels>`_.
