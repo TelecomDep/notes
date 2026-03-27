@@ -25,7 +25,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Тест" href="06_rst.html" />
+    <link rel="next" title="Установка Qt" href="../Qt/qt_install.html" />
     <link rel="prev" title="4. Работа с графиками" href="04_plots.html" /> 
 </head>
 
@@ -82,7 +82,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#id5">Получение тайлов из кода СС++</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="06_rst.html">Тест</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
 </ul>
@@ -136,11 +135,11 @@
 <p>Они используются в веб-картографии (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс</span> <span class="pre">Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
 <p>Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">SHIFT</span></code> + <code class="docutils literal notranslate"><span class="pre">I</span></code>) во вкладке <code class="docutils literal notranslate"><span class="pre">Network</span></code>, мы увидим следующую картину:</p>
 <img alt="../../_images/imgui_osm_tiles.png" src="../../_images/imgui_osm_tiles.png" />
-<p>, где увидим, что были загружены несколько изображений <cite>*.png</cite> со странными названиями файлов.</p>
+<p>, где увидим, что были загружены несколько изображений <code class="docutils literal notranslate"><span class="pre">*.png</span></code> со странными названиями файлов.</p>
 <p>Например, <code class="docutils literal notranslate"><span class="pre">20726</span></code>:</p>
 <img alt="../../_images/20726.png" src="../../_images/20726.png" />
 <p>Этот файл был получен при помощи запроса на сервер <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code> -
-<cite>https://tile.openstreetmap.org/16/47867/20726.png</cite>.</p>
+<code class="docutils literal notranslate"><span class="pre">https://tile.openstreetmap.org/16/47867/20726.png</span></code>.</p>
 <p><cite>OSM</cite>-карты (и не только они) присваивают каждому изображению свои наименования. Правила наименований описаны в статье:<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>.</p>
 <section id="id1">
 <h2>Правила наименований тайлов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
@@ -157,6 +156,28 @@
 <section id="id2">
 <h3>Тайл серверы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
+<table class="docutils align-default">
+<tbody>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">Header 1   | Header 2   | Header 3  |</div>
+</div>
+<p>+============+============+===========+</p>
+<div class="line-block">
+<div class="line">Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3|</div>
+</div>
+<table class="docutils align-default">
+<tbody>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line">Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3|</div>
+</div>
+<table class="docutils align-default">
+<tbody>
+</tbody>
+</table>
 </section>
 <section id="zoom-levels">
 <h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
@@ -185,7 +206,7 @@ e^{i\pi} + 1 = 0\]</div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="04_plots.html" class="btn btn-neutral float-left" title="4. Работа с графиками" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="06_rst.html" class="btn btn-neutral float-right" title="Тест" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../Qt/qt_install.html" class="btn btn-neutral float-right" title="Установка Qt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
