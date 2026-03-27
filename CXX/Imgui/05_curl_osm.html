@@ -24,7 +24,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Установка Qt" href="../Qt/qt_install.html" />
+    <link rel="next" title="Тест" href="06_rst.html" />
     <link rel="prev" title="4. Работа с графиками" href="04_plots.html" /> 
 </head>
 
@@ -74,11 +74,14 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Получение тайлов карты (Open Street Map)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Правила наименований тайлов</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id2">Тайл серверы</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#zoom-levels">Уровни масштаба (zoom levels)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zoom-levels">Масштаб (zoom levels)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Математика</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Получение тайлов из кода С\С++</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="06_rst.html">Тест</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
 </ul>
@@ -142,7 +145,7 @@
 <h2>Правила наименований тайлов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Все тайлы имеют размер <code class="docutils literal notranslate"><span class="pre">256</span> <span class="pre">×</span> <span class="pre">256</span></code> пикселей формата <code class="docutils literal notranslate"><span class="pre">PNG</span></code>;</p></li>
-<li><p>Каждый уровень масштаба карты (zoom level) является директорией, каждый столбец также является директорией, в которой находятся изображения;</p></li>
+<li><p>Каждое значение масштаба карты (zoom level) является директорией, каждый столбец также является директорией, в которой находятся изображения;</p></li>
 <li><p>Ссылка (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) на получения конкретного файла (*.png) формируется в формате: <code class="docutils literal notranslate"><span class="pre">/zoom/x/y.png</span></code></p></li>
 </ol>
 <p>Например, для масштаба карты 2 (<code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">2</span></code>) будут след. наименования:</p>
@@ -189,7 +192,7 @@
 </table>
 </section>
 <section id="zoom-levels">
-<h3>Уровни масштаба (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
+<h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
 <p>Ниже приведена таблица по каждому уровню масштабирования (от <code class="docutils literal notranslate"><span class="pre">0</span></code> до <code class="docutils literal notranslate"><span class="pre">19</span></code>). Более подробная таблица находится <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">здесь</a>.</p>
 <table class="docutils align-default">
 <thead>
@@ -248,6 +251,12 @@
 </tbody>
 </table>
 </section>
+<section id="id3">
+<h3>Математика<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+</section>
+</section>
+<section id="id4">
+<h2>Получение тайлов из кода С\С++<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
@@ -262,7 +271,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="04_plots.html" class="btn btn-neutral float-left" title="4. Работа с графиками" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../Qt/qt_install.html" class="btn btn-neutral float-right" title="Установка Qt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="06_rst.html" class="btn btn-neutral float-right" title="Тест" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
