@@ -78,8 +78,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#zoom-levels">Масштаб (zoom levels)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id33">Математика</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id34">Получение тайлов из кода СС++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">Математика</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">Получение тайлов из кода СС++</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="06_rst.html">Тест</a></li>
@@ -159,40 +159,20 @@
 <h3>Тайл серверы<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
 <p>С названиями координат изображений мы определились, но первая часть URL (например, <cite>tile.openstreetmap.org</cite>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
 <p>Таблица с примерами тайл серверов:</p>
-<div class="line-block">
-<div class="line">Name                    |   URL template        |   zoomlevels  |</div>
-<div class="line">—                 |   —                 |   —         |</div>
-</div>
-<p><a href="#id5"><span class="problematic" id="id6">|</span></a>OSM ‘standard’ style   | <a class="reference external" href="https://tile.openstreetmap.org/">https://tile.openstreetmap.org/</a><strong>zoom/x/y.png</strong> |     0-19 |
-<a href="#id7"><span class="problematic" id="id8">|</span></a>OpenCycleMap    <a href="#id9"><span class="problematic" id="id10">|</span></a><a class="reference external" href="http://[abc].tile.thunderforest.com/cycle/">http://[abc].tile.thunderforest.com/cycle/</a><strong>zoom/x/y.png</strong>     <a href="#id11"><span class="problematic" id="id12">|</span></a>0-22 |
-<a href="#id13"><span class="problematic" id="id14">|</span></a>Thunderforest Transport         <a href="#id15"><span class="problematic" id="id16">|</span></a><a class="reference external" href="http://[abc].tile.thunderforest.com/transport/">http://[abc].tile.thunderforest.com/transport/</a><strong>zoom/x/y.png</strong>         <a href="#id17"><span class="problematic" id="id18">|</span></a>0-22 |
-<a href="#id19"><span class="problematic" id="id20">|</span></a>MapTiles API Standard   <a href="#id21"><span class="problematic" id="id22">|</span></a><a class="reference external" href="https://maptiles.p.rapidapi.com/local/osm/v1/">https://maptiles.p.rapidapi.com/local/osm/v1/</a><strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY    <a href="#id23"><span class="problematic" id="id24">|</span></a>0-19 globally |
-<a href="#id25"><span class="problematic" id="id26">|</span></a>MapTiles API English    <a href="#id27"><span class="problematic" id="id28">|</span></a><a class="reference external" href="https://maptiles.p.rapidapi.com/en/map/v1/">https://maptiles.p.rapidapi.com/en/map/v1/</a><strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY       <a href="#id29"><span class="problematic" id="id30">|</span></a>0-19 globally with English labels |</p>
 </section>
 <section id="zoom-levels">
 <h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
 <p>Ниже приведена таблица по каждому уровню масштабирования (от <cite>0</cite> до <cite>19</cite>). Более подробная таблица находится [здесь](<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">https://wiki.openstreetmap.org/wiki/Zoom_levels</a>).</p>
-<p><a href="#id35"><span class="problematic" id="id36">|zoom level |tile coverage                              |number of tiles                            | tile size(*) in degrees           |
-|   ---     |   ---                                 |   ---                                 | ---                               |
-| 0             |1 tile covers whole world                  |1 tile                                 |   360° x 170.1022°                |
-| 1             |2 × 2 tiles                            |4 tiles                                |       180° x 85.0511°                 |
-| 2             |4 × 4 tiles                            |16 tiles                               |       90° x [variable]                |
-| n             |2&lt;sup&gt;n&lt;/sup&gt; × 2&lt;sup&gt;n&lt;/sup&gt; tiles    |2&lt;sup&gt;2n&lt;/sup&gt; tiles                   |       360/2&lt;sup&gt;n&lt;/sup&gt; ° x [variable]|</span></a>
-| 12        <a href="#id37"><span class="problematic" id="id38">|4096 x 4096 tiles                      |16 777 216                             | 0.0879° x [variable]              |
-| 16        |---                                        |2&lt;sup&gt;32&lt;/sup&gt; ≈ 4 295 million tiles   |       ---                             |
-| 17        |---                                        |17.2 billion tiles                         |---                                |
-| 18        |---                                        |68.7 billion tiles                         |---                                |
-| 19        |Maximum zoom for Mapnik layer|</span></a>     274.9 billion tiles                                 <a href="#id31"><span class="problematic" id="id32">|</span></a>—                                |</p>
 </section>
 </section>
-<section id="id33">
-<h2>Математика<a class="headerlink" href="#id33" title="Permalink to this heading"></a></h2>
+<section id="id5">
+<h2>Математика<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[(a + b)^2 = a^2 + 2ab + b^2
 e^{i\pi} + 1 = 0\]</div>
 </section>
-<section id="id34">
-<h2>Получение тайлов из кода СС++<a class="headerlink" href="#id34" title="Permalink to this heading"></a></h2>
+<section id="id6">
+<h2>Получение тайлов из кода СС++<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
