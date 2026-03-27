@@ -18,6 +18,7 @@
    Imgui/03_widgets
    Imgui/04_plots
    Imgui/05_curl_osm
+   Imgui/06_rst
 
 
 .. toctree::
