@@ -7,7 +7,7 @@
 
 Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (``CTRL`` + ``SHIFT`` + ``I``) во вкладке ``Network``, мы увидим следующую картину:
 
-![alt text](image/imgui_osm_tiles.png)
+.. image:: ./image/imgui_osm_tiles.png
 
 , где увидим, что были загружены несколько изображений `*.png` со странными названиями файлов. 
 
