@@ -44,29 +44,25 @@
 .. table:: Таблица серверов
 
    +----------------+--------------+--------------+
+
    | Name       |     URL template         |   zoomlevels     |
    +================+==============+==============+
+
    |OSM 'standard' style	| https://tile.openstreetmap.org/**zoom/x/y.png** |	0-19 |
    +----------------+--------------+--------------+
+
    |OpenCycleMap	 |http://[abc].tile.thunderforest.com/cycle/**zoom/x/y.png**	 |0-22 |
    +----------------+--------------+--------------+
+
    |Thunderforest Transport	 |http://[abc].tile.thunderforest.com/transport/**zoom/x/y.png**	 | 0-22 |
    +----------------+--------------+--------------+
+
    |MapTiles API Standard	 |https://maptiles.p.rapidapi.com/local/osm/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY	 |0-19 globally |
    +----------------+--------------+--------------+
+
    |MapTiles API English	 |https://maptiles.p.rapidapi.com/en/map/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY	 |0-19 globally with English labels |
    +----------------+--------------+--------------+
 
-+------------+------------+-----------+
-
-| Header 1   | Header 2   | Header 3  |
-+============+============+===========+
-
-| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3|
-+------------+------------+-----------+
-
-| Row 2, Col 1 | Row 2, Col 2 | Row 2, Col 3|
-+------------+------------+-----------+
 
 Масштаб (zoom levels)
 ^^^^^^^^^^^^^^^^^^^^^
