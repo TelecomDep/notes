@@ -63,6 +63,27 @@
    |MapTiles API English	 |https://maptiles.p.rapidapi.com/en/map/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY	 |0-19 globally with English labels |
    +----------------+--------------+--------------+
 
+.. list-table:: Board games
+   :widths: 20 15 65
+   :header-rows: 1
+
+   * - Name
+     - Players
+     - Description
+   * - Catan
+     - 3 to 4
+     - Resource trading game
+   * - Chess
+     - 2
+     - Classic strategy game
+
+
+===  ===  ===
+A    B    C
+===  ===  ===
+1    2    3
+4    5    6
+===  ===  ===
 
 Масштаб (zoom levels)
 ^^^^^^^^^^^^^^^^^^^^^
