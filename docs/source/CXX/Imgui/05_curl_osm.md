@@ -67,8 +67,6 @@
 
 ### Математика
 
-.. math::
-   A_k = \sum_{m=0}^{n-1} a_m \exp\left\{-2\pi i{mk \over n}\right\} \qquad k = 0,\ldots,n-1.
 
 ## Получение тайлов из кода С\С++
 
