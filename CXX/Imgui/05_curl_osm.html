@@ -74,12 +74,12 @@
 <li class="toctree-l2"><a class="reference internal" href="04_plots.html">4. Работа с графиками</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Получение тайлов карты (Open Street Map)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id1">Правила наименований тайлов</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Тайл серверы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">Тайл серверы</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#zoom-levels">Масштаб (zoom levels)</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id5">Математика</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#id6">Получение тайлов из кода СС++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Математика</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Получение тайлов из кода СС++</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="06_rst.html">Тест</a></li>
@@ -132,32 +132,32 @@
              
   <section id="open-street-map">
 <h1>Получение тайлов карты (Open Street Map)<a class="headerlink" href="#open-street-map" title="Permalink to this heading"></a></h1>
-<p><strong>Тайлы</strong> - это изображения небольшого размера (одинакового), являющиеся фрагментами большого изображения. В рамках работы с картами - это квадратные (обычно <cite>256х256</cite> пикселей, могут быть и <cite>512x512</cite>) изображения, формирующие карту мира.</p>
-<p>Они используются в веб-картографии (<cite>Google Maps</cite>, <cite>Яндекс Карты</cite>, <cite>OpenStreetMap</cite>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
-<p>Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (<cite>CTRL`+`SHIFT`+`I</cite>) во вкладке <cite>Network</cite>, мы увидим следующую картину:</p>
+<p><strong>Тайлы</strong> - это изображения небольшого размера (одинакового), являющиеся фрагментами большого изображения. В рамках работы с картами - это квадратные (обычно <code class="docutils literal notranslate"><span class="pre">256х256</span></code> пикселей, могут быть и <code class="docutils literal notranslate"><span class="pre">512x512</span></code>) изображения, формирующие карту мира.</p>
+<p>Они используются в веб-картографии (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс</span> <span class="pre">Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
+<p>Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">SHIFT</span></code> + <code class="docutils literal notranslate"><span class="pre">I</span></code>) во вкладке <code class="docutils literal notranslate"><span class="pre">Network</span></code>, мы увидим следующую картину:</p>
 <p>![alt text](image/imgui_osm_tiles.png)</p>
 <p>, где увидим, что были загружены несколько изображений <cite>*.png</cite> со странными названиями файлов.</p>
-<p>Например, <cite>20726</cite>:</p>
+<p>Например, <code class="docutils literal notranslate"><span class="pre">20726</span></code>:</p>
 <img alt="../../_images/20726.png" src="../../_images/20726.png" />
-<p>Этот файл был получен при помощи запроса на сервер <cite>OpenStreetMap</cite> -
+<p>Этот файл был получен при помощи запроса на сервер <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code> -
 <cite>https://tile.openstreetmap.org/16/47867/20726.png</cite>.</p>
 <p><cite>OSM</cite>-карты (и не только они) присваивают каждому изображению свои наименования. Правила наименований описаны в статье:[wiki.openstreetmap.org/wiki/Slippy_map_tilenames](<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>).</p>
 <section id="id1">
 <h2>Правила наименований тайлов<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p>Все тайлы имеют размер <cite>256 × 256</cite> пикселей формата <cite>PNG</cite>;</p></li>
+<li><p>Все тайлы имеют размер <code class="docutils literal notranslate"><span class="pre">256</span> <span class="pre">×</span> <span class="pre">256</span></code> пикселей формата <code class="docutils literal notranslate"><span class="pre">PNG</span></code>;</p></li>
 <li><p>Каждое значение масштаба карты (zoom level) является директорией, каждый столбец также является директорией, в которой находятся изображения;</p></li>
-<li><p>Ссылка (<cite>URL</cite>) на получения конкретного файла (<a href="#id2"><span class="problematic" id="id3">*</span></a>.png) формируется в формате: <cite>/zoom/x/y.png</cite></p></li>
+<li><p>Ссылка (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) на получения конкретного файла (<code class="docutils literal notranslate"><span class="pre">*.png</span></code>) формируется в формате: <code class="docutils literal notranslate"><span class="pre">/zoom/x/y.png</span></code></p></li>
 </ol>
-<p>Например, для масштаба карты 2 (<cite>zoom = 2</cite>) будут след. наименования:</p>
+<p>Например, для масштаба карты 2 (<code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">2</span></code>) будут след. наименования:</p>
 <p>![alt text](image/Tiled_web_map_numbering.png)</p>
 <p>&lt;!– &lt;img src=”image/Tiled_web_map_numbering.png” width=”700” /&gt; –&gt;</p>
 <p>Можно заметить, что:
-- Координата <cite>Z</cite> - не меняется, <cite>Z = 2</cite>.
-- Координаты <cite>X</cite> - это <strong>столбцы</strong> матрицы, <cite>Y</cite> - <strong>строки</strong> матрицы.</p>
-<section id="id4">
-<h3>Тайл серверы<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
-<p>С названиями координат изображений мы определились, но первая часть URL (например, <cite>tile.openstreetmap.org</cite>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
+- Координата <code class="docutils literal notranslate"><span class="pre">Z</span></code> - не меняется, <code class="docutils literal notranslate"><span class="pre">Z</span> <span class="pre">=</span> <span class="pre">2</span></code>.
+- Координаты <code class="docutils literal notranslate"><span class="pre">X</span></code> - это <strong>столбцы</strong> матрицы, <code class="docutils literal notranslate"><span class="pre">Y</span></code> - <strong>строки</strong> матрицы.</p>
+<section id="id2">
+<h3>Тайл серверы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
 <p>Таблица с примерами тайл серверов:</p>
 </section>
 <section id="zoom-levels">
@@ -165,14 +165,14 @@
 <p>Ниже приведена таблица по каждому уровню масштабирования (от <cite>0</cite> до <cite>19</cite>). Более подробная таблица находится [здесь](<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">https://wiki.openstreetmap.org/wiki/Zoom_levels</a>).</p>
 </section>
 </section>
-<section id="id5">
-<h2>Математика<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
+<section id="id3">
+<h2>Математика<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <div class="math notranslate nohighlight">
 \[(a + b)^2 = a^2 + 2ab + b^2
 e^{i\pi} + 1 = 0\]</div>
 </section>
-<section id="id6">
-<h2>Получение тайлов из кода СС++<a class="headerlink" href="#id6" title="Permalink to this heading"></a></h2>
+<section id="id4">
+<h2>Получение тайлов из кода СС++<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 </section>
 </section>
 
