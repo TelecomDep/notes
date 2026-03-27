@@ -22,7 +22,7 @@
 ## Правила наименований тайлов
 
 1. Все тайлы имеют размер `256 × 256` пикселей формата `PNG`;
-2. Каждый уровень масштаба карты (zoom level) является директорией, каждый столбец также является директорией, в которой находятся изображения;
+2. Каждое значение масштаба карты (zoom level) является директорией, каждый столбец также является директорией, в которой находятся изображения;
 3. Ссылка (`URL`) на получения конкретного файла (*.png) формируется в формате: `/zoom/x/y.png`
 
 Например, для масштаба карты 2 (`zoom = 2`) будут след. наименования:
@@ -49,19 +49,31 @@
 |MapTiles API Standard	 |https://maptiles.p.rapidapi.com/local/osm/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY	 |0-19 globally |
 |MapTiles API English	 |https://maptiles.p.rapidapi.com/en/map/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY	 |0-19 globally with English labels |
 
-### Уровни масштаба (zoom levels)
+### Масштаб (zoom levels)
 Ниже приведена таблица по каждому уровню масштабирования (от `0` до `19`). Более подробная таблица находится [здесь](https://wiki.openstreetmap.org/wiki/Zoom_levels).
 
-|zoom level	|tile coverage	|number of tiles	| tile size(*) in degrees|
-|   ---                 |   ---                 |   ---         | --- |
-| 0	|1 tile covers whole world	|1 tile|	360° x 170.1022°|
-| 1	|2 × 2 tiles	|4 tiles|	180° x 85.0511°|
-| 2	|4 × 4 tiles	|16 tiles|	90° x [variable]|
-| n	|2<sup>n</sup> × 2<sup>n</sup> tiles	|2<sup>2n</sup> tiles|	360/2<sup>n</sup> ° x [variable]|
-| 12	|4096 x 4096 tiles	|16 777 216	| 0.0879° x [variable]|
-| 16	|---	|2<sup>32</sup> ≈ 4 295 million tiles|	--- |
-| 17	|---	|17.2 billion tiles	|--- |
-| 18	|---	|68.7 billion tiles	|--- |
-| 19	|Maximum zoom for Mapnik layer|	274.9 billion tiles	|--- |
+|zoom level |tile coverage	                        |number of tiles	                    | tile size(*) in degrees           |
+|   ---     |   ---                                 |   ---                                 | ---                               |
+| 0	        |1 tile covers whole world	            |1 tile                                 |	360° x 170.1022°                |
+| 1	        |2 × 2 tiles	                        |4 tiles                                |	180° x 85.0511°                 |
+| 2	        |4 × 4 tiles	                        |16 tiles                               |	90° x [variable]                |
+| n	        |2<sup>n</sup> × 2<sup>n</sup> tiles	|2<sup>2n</sup> tiles                   |	360/2<sup>n</sup> ° x [variable]|
+| 12	    |4096 x 4096 tiles	                    |16 777 216	                            | 0.0879° x [variable]              |
+| 16	    |---	                                |2<sup>32</sup> ≈ 4 295 million tiles   |	---                             |
+| 17	    |---	                                |17.2 billion tiles	                    |---                                |
+| 18	    |---	                                |68.7 billion tiles	                    |---                                |
+| 19	    |Maximum zoom for Mapnik layer|	274.9 billion tiles	                            |---                                |
 
+
+### Математика
+
+```{math}
+:label: my-equation
+w_{t+1} = (1 + r_{t+1}) s(w_t) + y_{t+1}
+```
+$$
+\int_{-\infty}^{\infty} f(x) \delta(x - x_0) \,dx = f(x_0)
+$$
+
+## Получение тайлов из кода С\С++
 
