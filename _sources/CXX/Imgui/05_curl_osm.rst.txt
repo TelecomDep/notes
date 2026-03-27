@@ -13,7 +13,7 @@
 
 Например, `20726`:
 
-![alt text](image/20726.png)
+.. image:: ./image/20726.png
 
 Этот файл был получен при помощи запроса на сервер `OpenStreetMap` - 
 `https://tile.openstreetmap.org/16/47867/20726.png`.
