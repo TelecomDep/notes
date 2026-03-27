@@ -41,49 +41,29 @@
 
 С названиями координат изображений мы определились, но первая часть URL (например, ``tile.openstreetmap.org``) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.
 
-.. table:: Таблица серверов
-
-   +----------------+--------------+--------------+
-
-   | Name       |     URL template         |   zoomlevels     |
-   +================+==============+==============+
-
-   |OSM 'standard' style	| https://tile.openstreetmap.org/**zoom/x/y.png** |	0-19 |
-   +----------------+--------------+--------------+
-
-   |OpenCycleMap	 |http://[abc].tile.thunderforest.com/cycle/**zoom/x/y.png**	 |0-22 |
-   +----------------+--------------+--------------+
-
-   |Thunderforest Transport	 |http://[abc].tile.thunderforest.com/transport/**zoom/x/y.png**	 | 0-22 |
-   +----------------+--------------+--------------+
-
-   |MapTiles API Standard	 |https://maptiles.p.rapidapi.com/local/osm/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY	 |0-19 globally |
-   +----------------+--------------+--------------+
-
-   |MapTiles API English	 |https://maptiles.p.rapidapi.com/en/map/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY	 |0-19 globally with English labels |
-   +----------------+--------------+--------------+
-
-.. list-table:: Board games
+.. list-table:: Таблица тайл-серверов
    :widths: 20 15 65
    :header-rows: 1
 
    * - Name
-     - Players
-     - Description
-   * - Catan
-     - 3 to 4
-     - Resource trading game
-   * - Chess
-     - 2
-     - Classic strategy game
+     - URL template 
+     - zoomlevels
+   * - OSM 'standard' style
+     - https://tile.openstreetmap.org/**zoom/x/y.png**
+     - 0-19
+   * - OpenCycleMap
+     - http://[abc].tile.thunderforest.com/cycle/**zoom/x/y.png**
+     - 0-22
+   * - Thunderforest Transport
+     -http://[abc].tile.thunderforest.com/transport/**zoom/x/y.png**	
+     -0-22
+   * - MapTiles API Standard
+     - https://maptiles.p.rapidapi.com/local/osm/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY
+     - 0-19 globally
+   * - MapTiles API English
+     - https://maptiles.p.rapidapi.com/en/map/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY
+     - 0-19 globally with English labels
 
-
-===  ===  ===
-A    B    C
-===  ===  ===
-1    2    3
-4    5    6
-===  ===  ===
 
 Масштаб (zoom levels)
 ^^^^^^^^^^^^^^^^^^^^^
