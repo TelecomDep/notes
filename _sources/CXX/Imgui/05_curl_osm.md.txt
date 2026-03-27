@@ -26,10 +26,10 @@
 3. Ссылка (`URL`) на получения конкретного файла (*.png) формируется в формате: `/zoom/x/y.png`
 
 Например, для масштаба карты 2 (`zoom = 2`) будут след. наименования:
-<!-- 
+
 ![alt text](image/Tiled_web_map_numbering.png) 
--->
-<img src="image/Tiled_web_map_numbering.png" width="700" />
+
+<!-- <img src="image/Tiled_web_map_numbering.png" width="700" /> -->
 
 Можно заметить, что:
 - Координата `Z` - не меняется, `Z = 2`. 
@@ -57,9 +57,9 @@
 | 0	|1 tile covers whole world	|1 tile|	360° x 170.1022°|
 | 1	|2 × 2 tiles	|4 tiles|	180° x 85.0511°|
 | 2	|4 × 4 tiles	|16 tiles|	90° x [variable]|
-| n	|$2^n$ × $2^n$ tiles	|$2^{2n}$ tiles|	360/$2^n$ ° x [variable]|
+| n	|2<sup>n</sup> × 2<sup>n</sup> tiles	|2<sup>2n</sup> tiles|	360/2<sup>n</sup> ° x [variable]|
 | 12	|4096 x 4096 tiles	|16 777 216	| 0.0879° x [variable]|
-| 16	|---	|$2^{32}$ ≈ 4 295 million tiles|	--- |
+| 16	|---	|2<sup>32</sup> ≈ 4 295 million tiles|	--- |
 | 17	|---	|17.2 billion tiles	|--- |
 | 18	|---	|68.7 billion tiles	|--- |
 | 19	|Maximum zoom for Mapnik layer|	274.9 billion tiles	|--- |
