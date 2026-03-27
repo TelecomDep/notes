@@ -22,7 +22,6 @@ Tells Sphinx which extensions to use.
 """
 extensions = [
     'myst_nb',
-    'myst_parser',
     'sphinxcontrib.mermaid',
     'sphinxcontrib.wavedrom',
     'sphinxcontrib.plantuml',
@@ -57,15 +56,6 @@ version = '0.1.0'
 
 
 mathjax_path = "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
-myst_enable_extensions = ["dollarmath"]
-
-# Optional: Configure MathJax 3 if needed
-mathjax3_config = {
-    "tex": {
-        "inlineMath": [['\\(', '\\)']],
-        "displayMath": [['\\[', '\\]']],
-    }
-}
 
 intersphinx_mapping = {
     'python': ('https://docs.python.org/3/', None),
