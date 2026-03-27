@@ -157,7 +157,43 @@
 <h3>Тайл серверы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
 <table class="docutils align-default" id="id6">
-<caption><span class="caption-text">Caption of the table</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 15.0%" />
+<col style="width: 65.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>URL template</p></th>
+<th class="head"><p>zoomlevels</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OSM ‘standard’ style</p></td>
+<td><p><a class="reference external" href="https://tile.openstreetmap.org/">https://tile.openstreetmap.org/</a><strong>zoom/x/y.png</strong></p></td>
+<td><p>0-19</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenCycleMap</p></td>
+<td><p><a class="reference external" href="http://[abc].tile.thunderforest.com/cycle/">http://[abc].tile.thunderforest.com/cycle/</a><strong>zoom/x/y.png</strong></p></td>
+<td><p>0-22</p></td>
+</tr>
+<tr class="row-even"><td><p>Thunderforest Transport</p></td>
+<td><p><a class="reference external" href="http://[abc].tile.thunderforest.com/transport/">http://[abc].tile.thunderforest.com/transport/</a><strong>zoom/x/y.png</strong></p></td>
+<td><p>0-22</p></td>
+</tr>
+<tr class="row-odd"><td><p>MapTiles API Standard</p></td>
+<td><p><a class="reference external" href="https://maptiles.p.rapidapi.com/local/osm/v1/">https://maptiles.p.rapidapi.com/local/osm/v1/</a><strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY</p></td>
+<td><p>0-19 globally</p></td>
+</tr>
+<tr class="row-even"><td><p>MapTiles API English</p></td>
+<td><p><a class="reference external" href="https://maptiles.p.rapidapi.com/en/map/v1/">https://maptiles.p.rapidapi.com/en/map/v1/</a><strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY</p></td>
+<td><p>0-19 globally with English labels</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Caption of the table</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 27.3%" />
 <col style="width: 18.2%" />

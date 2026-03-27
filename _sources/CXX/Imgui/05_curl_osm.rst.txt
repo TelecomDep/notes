@@ -55,8 +55,8 @@
      - http://[abc].tile.thunderforest.com/cycle/**zoom/x/y.png**
      - 0-22
    * - Thunderforest Transport
-     -http://[abc].tile.thunderforest.com/transport/**zoom/x/y.png**	
-     -0-22
+     - http://[abc].tile.thunderforest.com/transport/**zoom/x/y.png**	
+     - 0-22
    * - MapTiles API Standard
      - https://maptiles.p.rapidapi.com/local/osm/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY
      - 0-19 globally
