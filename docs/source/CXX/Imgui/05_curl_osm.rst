@@ -64,34 +64,55 @@
      - https://maptiles.p.rapidapi.com/en/map/v1/**zoom/x/y.png**?rapidapi-key=YOUR-KEY
      - 0-19 globally with English labels
 
-.. list-table:: Caption of the table
-   :widths: 15 10 30
-   :header-rows: 1
-
-   * - Column 1 Header
-     - Column 2 Header
-     - Column 3 Header
-   * - Row 1, Col 1
-     - Row 1, Col 2
-     - Row 1, Col 3
-   * - Row 2, Col 1
-     - Row 2, Col 2
-     - Row 2, Col 3
 Масштаб (zoom levels)
 ^^^^^^^^^^^^^^^^^^^^^
 Ниже приведена таблица по каждому уровню масштабирования (от `0` до `19`). Более подробная таблица находится `здесь <https://wiki.openstreetmap.org/wiki/Zoom_levels>`_.
 
-.. |zoom level |tile coverage	                        |number of tiles	                    | tile size(*) in degrees           |
-.. |   ---     |   ---                                 |   ---                                 | ---                               |
-.. | 0	        |1 tile covers whole world	            |1 tile                                 |	360° x 170.1022°                |
-.. | 1	        |2 × 2 tiles	                        |4 tiles                                |	180° x 85.0511°                 |
-.. | 2	        |4 × 4 tiles	                        |16 tiles                               |	90° x [variable]                |
-.. | n	        |2<sup>n</sup> × 2<sup>n</sup> tiles	|2<sup>2n</sup> tiles                   |	360/2<sup>n</sup> ° x [variable]|
-.. | 12	    |4096 x 4096 tiles	                    |16 777 216	                            | 0.0879° x [variable]              |
-.. | 16	    |---	                                |2<sup>32</sup> ≈ 4 295 million tiles   |	---                             |
-.. | 17	    |---	                                |17.2 billion tiles	                    |---                                |
-.. | 18	    |---	                                |68.7 billion tiles	                    |---                                |
-.. | 19	    |Maximum zoom for Mapnik layer|	274.9 billion tiles	                            |---                                |
+.. list-table:: Информация по тайлам для масштабов (0 - 19)
+   :widths: 15 10 30
+   :header-rows: 1
+
+   * - zoom level
+     - tile coverage	
+     - number of tiles
+     - tile size(*) in degrees
+   * - 0
+     - 1 tile covers whole world
+     - 1 tile 
+     - 360° x 170.1022° 
+   * - 1
+     - 2 × 2 tiles
+     - 4 tiles
+     - 180° x 85.0511° 
+   * - 2
+     - 4 × 4 tiles	
+     - 16 tiles
+     - 90° x [variable]
+   * - n
+     - 2<sup>n</sup> × 2<sup>n</sup> tiles
+     - 2<sup>2n</sup> tiles
+     - 360/2<sup>n</sup> ° x [variable]
+   * - 12
+     - 4096 x 4096 tiles	
+     - 16 777 216
+     - 0.0879° x [variable] 
+   * - 16
+     - ...
+     - 2<sup>32</sup> ≈ 4 295 million tiles
+     - ...
+   * - 17
+     - ...
+     - 17.2 billion tiles
+     - ...
+   * - 18
+     - ...
+     - 68.7 billion tiles	 
+     - ...
+   * - 19
+     - Maximum zoom for Mapnik layer
+     - 274.9 billion tiles	
+     - ...
+
 
 
 Математика
