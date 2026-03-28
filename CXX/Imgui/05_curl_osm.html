@@ -165,9 +165,11 @@
 <p><span class="caption-text">Пример нумерации тайлов</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>Можно заметить, что:
-- Координата <code class="docutils literal notranslate"><span class="pre">Z</span></code> - не меняется, <code class="docutils literal notranslate"><span class="pre">Z</span> <span class="pre">=</span> <span class="pre">2</span></code>.
-- Координаты <code class="docutils literal notranslate"><span class="pre">X</span></code> - это <strong>столбцы</strong> матрицы, <code class="docutils literal notranslate"><span class="pre">Y</span></code> - <strong>строки</strong> матрицы.</p>
+<p>Можно заметить, что:</p>
+<ul class="simple">
+<li><p>Координата <code class="docutils literal notranslate"><span class="pre">Z</span></code> - не меняется, <code class="docutils literal notranslate"><span class="pre">Z</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p></li>
+<li><p>Координаты <code class="docutils literal notranslate"><span class="pre">X</span></code> - это <strong>столбцы</strong> матрицы, <code class="docutils literal notranslate"><span class="pre">Y</span></code> - <strong>строки</strong> матрицы.</p></li>
+</ul>
 <section id="id2">
 <h3>Тайл серверы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
@@ -285,10 +287,12 @@
 <p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>Если посмотрим на полный путь до этого файла, то увидим: <code class="docutils literal notranslate"><span class="pre">16/47867/20726.png</span></code>, где:
-- <code class="docutils literal notranslate"><span class="pre">16</span></code> - zoom;
-- <code class="docutils literal notranslate"><span class="pre">47867</span></code> - это номер столбца (координата <code class="docutils literal notranslate"><span class="pre">X</span></code>) во всей матрице тайлов для текущего масштаба;
-- <code class="docutils literal notranslate"><span class="pre">20726</span></code> - это номер строки (или координата <code class="docutils literal notranslate"><span class="pre">Y</span></code>) в матрице.</p>
+<p>Если посмотрим на полный путь до этого файла, то увидим: <code class="docutils literal notranslate"><span class="pre">16/47867/20726.png</span></code>, где:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">16</span></code> - zoom;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">47867</span></code> - это номер столбца (координата <code class="docutils literal notranslate"><span class="pre">X</span></code>) во всей матрице тайлов для текущего масштаба;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">20726</span></code> - это номер строки (или координата <code class="docutils literal notranslate"><span class="pre">Y</span></code>) в матрице.</p></li>
+</ul>
 <ol class="arabic simple">
 <li><p>Первое что нужно сделать - это посчитать количество тайлов, которое мы хотим отобразить на карте (см. <a class="reference internal" href="#my-zoom-info-table"><span class="std std-ref">Информация по тайлам для масштабов (0 - 19)</span></a>):</p></li>
 </ol>
