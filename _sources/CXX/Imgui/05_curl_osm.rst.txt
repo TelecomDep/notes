@@ -122,7 +122,7 @@
    
 .. math::
   :name: Количество тайлов
-  .. :label: (1)
+  :label: (1)
 
    N_{tiles} = 2^{zoom}
 
