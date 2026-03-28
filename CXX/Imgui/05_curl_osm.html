@@ -21,6 +21,7 @@
         <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
         <script src="https://wavedrom.com/skins/default.js"></script>
         <script src="https://wavedrom.com/wavedrom.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -262,12 +263,11 @@
 </section>
 <section id="id4">
 <h2>Математика получения тайлов<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
-<p>1) Первое что нужно сделать - это посчитать количество тайлов, которое мы хотим отобразить на карте (см. таблицу выше <a class="reference internal" href="#my-reference-label"><span class="std std-ref">Таблица тайл-серверов</span></a>):
-.. math:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span> <span class="o">=</span> <span class="n">a</span><span class="o">^</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="n">ab</span> <span class="o">+</span> <span class="n">b</span><span class="o">^</span><span class="mi">2</span>
-<span class="n">e</span><span class="o">^</span><span class="p">{</span><span class="n">i</span>\<span class="n">pi</span><span class="p">}</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
+<ol class="arabic simple">
+<li><p>Первое что нужно сделать - это посчитать количество тайлов, которое мы хотим отобразить на карте (см. таблицу выше <a class="reference internal" href="#my-reference-label"><span class="std std-ref">Таблица тайл-серверов</span></a>):</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[N_{tiles} = 2^{zoom}\]</div>
 </section>
 <section id="id5">
 <h2>Получение тайлов из кода СС++<a class="headerlink" href="#id5" title="Permalink to this heading"></a></h2>
