@@ -29,7 +29,10 @@
 
 Например, для масштаба карты 2 (``zoom = 2``) будут след. наименования:
 
-.. image:: ./image/Tiled_web_map_numbering.png
+.. figure:: ./image/Tiled_web_map_numbering.png
+   :width: 80%
+
+   Пример нумерации тайлов
 
 
 Можно заметить, что:
