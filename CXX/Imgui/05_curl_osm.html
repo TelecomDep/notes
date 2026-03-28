@@ -156,7 +156,7 @@
 <section id="id2">
 <h3>Тайл серверы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
-<span id="my-reference-label"></span><table class="docutils align-default" id="id6">
+<table class="docutils align-default" id="id6">
 <caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 18.2%" />
@@ -196,7 +196,7 @@
 <section id="zoom-levels">
 <h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
 <p>Ниже приведена таблица по каждому уровню масштабирования (от <cite>0</cite> до <cite>19</cite>). Более подробная таблица находится <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">здесь</a>.</p>
-<table class="docutils align-default" id="id7">
+<span id="my-zoom-info-table"></span><table class="docutils align-default" id="id7">
 <caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 23.1%" />
@@ -264,7 +264,7 @@
 <section id="id4">
 <h2>Математика именования тайлов<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
-<li><p>Первое что нужно сделать - это посчитать количество тайлов, которое мы хотим отобразить на карте (см. <a class="reference internal" href="#my-reference-label"><span class="std std-ref">Таблица тайл-серверов</span></a>):</p></li>
+<li><p>Первое что нужно сделать - это посчитать количество тайлов, которое мы хотим отобразить на карте (см. <a class="reference internal" href="#my-zoom-info-table"><span class="std std-ref">Информация по тайлам для масштабов (0 - 19)</span></a>):</p></li>
 </ol>
 <p>, где <span class="math notranslate nohighlight">\(N_{tiles}\)</span> - количество тайлов, <span class="math notranslate nohighlight">\(zoom\)</span> - уровень масштабирования.</p>
 </section>
