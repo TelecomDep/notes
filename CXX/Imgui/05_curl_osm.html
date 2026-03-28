@@ -134,10 +134,20 @@
 <p><strong>Тайлы</strong> - это изображения небольшого размера (одинакового), являющиеся фрагментами большого изображения. В рамках работы с картами - это квадратные (обычно <code class="docutils literal notranslate"><span class="pre">256х256</span></code> пикселей, могут быть и <code class="docutils literal notranslate"><span class="pre">512x512</span></code>) изображения, формирующие карту мира.</p>
 <p>Они используются в веб-картографии (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс</span> <span class="pre">Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
 <p>Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">SHIFT</span></code> + <code class="docutils literal notranslate"><span class="pre">I</span></code>) во вкладке <code class="docutils literal notranslate"><span class="pre">Network</span></code>, мы увидим следующую картину:</p>
-<img alt="../../_images/imgui_osm_tiles.png" src="../../_images/imgui_osm_tiles.png" />
+<figure class="align-default" id="id6">
+<a class="reference internal image-reference" href="../../_images/imgui_osm_tiles.png"><img alt="../../_images/imgui_osm_tiles.png" src="../../_images/imgui_osm_tiles.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">Как web-карта (Open Street Map) получает изображения (тайлы)</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <p>, где увидим, что были загружены несколько изображений <code class="docutils literal notranslate"><span class="pre">*.png</span></code> со странными названиями файлов.</p>
 <p>Например, <code class="docutils literal notranslate"><span class="pre">20726</span></code>:</p>
-<img alt="../../_images/20726.png" src="../../_images/20726.png" />
+<figure class="align-default" id="id7">
+<a class="reference internal image-reference" href="../../_images/20726.png"><img alt="../../_images/20726.png" src="../../_images/20726.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <p>Этот файл был получен при помощи запроса на сервер <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code> -
 <code class="docutils literal notranslate"><span class="pre">https://tile.openstreetmap.org/16/47867/20726.png</span></code>.</p>
 <p><cite>OSM</cite>-карты (и не только они) присваивают каждому изображению свои наименования. Правила наименований описаны в статье:<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>.</p>
@@ -149,10 +159,10 @@
 <li><p>Ссылка (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) на получения конкретного файла (<code class="docutils literal notranslate"><span class="pre">*.png</span></code>) формируется в формате: <code class="docutils literal notranslate"><span class="pre">/zoom/x/y.png</span></code></p></li>
 </ol>
 <p>Например, для масштаба карты 2 (<code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">2</span></code>) будут след. наименования:</p>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id8">
 <a class="reference internal image-reference" href="../../_images/Tiled_web_map_numbering.png"><img alt="../../_images/Tiled_web_map_numbering.png" src="../../_images/Tiled_web_map_numbering.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-text">Пример нумерации тайлов</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Пример нумерации тайлов</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Можно заметить, что:
@@ -161,8 +171,8 @@
 <section id="id2">
 <h3>Тайл серверы<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
 <p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
-<table class="docutils align-default" id="id7">
-<caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 18.2%" />
 <col style="width: 59.1%" />
@@ -201,8 +211,8 @@
 <section id="zoom-levels">
 <h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
 <p>Ниже приведена таблица по каждому уровню масштабирования (от <cite>0</cite> до <cite>19</cite>). Более подробная таблица находится <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">здесь</a>.</p>
-<span id="my-zoom-info-table"></span><table class="docutils align-default" id="id8">
-<caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<span id="my-zoom-info-table"></span><table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 23.1%" />
 <col style="width: 15.4%" />
@@ -269,8 +279,16 @@
 <section id="id4">
 <h2>Математика именования тайлов<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>Вспомним про странные названия изображений, которые получает наш браузер: <code class="docutils literal notranslate"><span class="pre">20726.png</span></code>.</p>
-<img alt="../../_images/20726.png" src="../../_images/20726.png" />
-<p>Если посмотрим на полный путь до этого файла, то увидим: <code class="docutils literal notranslate"><span class="pre">16/47867/20726.png</span></code>, где <code class="docutils literal notranslate"><span class="pre">16</span></code> - zoom, <code class="docutils literal notranslate"><span class="pre">47867</span></code> - это номер столбца (координата <code class="docutils literal notranslate"><span class="pre">X</span></code>) во всей матрице тайлов для текущего масштаба, <code class="docutils literal notranslate"><span class="pre">20726</span></code> - это номер строки (или координата <code class="docutils literal notranslate"><span class="pre">Y</span></code>) в матрице.</p>
+<figure class="align-default" id="id11">
+<a class="reference internal image-reference" href="../../_images/20726.png"><img alt="../../_images/20726.png" src="../../_images/20726.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Если посмотрим на полный путь до этого файла, то увидим: <code class="docutils literal notranslate"><span class="pre">16/47867/20726.png</span></code>, где:
+- <code class="docutils literal notranslate"><span class="pre">16</span></code> - zoom;
+- <code class="docutils literal notranslate"><span class="pre">47867</span></code> - это номер столбца (координата <code class="docutils literal notranslate"><span class="pre">X</span></code>) во всей матрице тайлов для текущего масштаба;
+- <code class="docutils literal notranslate"><span class="pre">20726</span></code> - это номер строки (или координата <code class="docutils literal notranslate"><span class="pre">Y</span></code>) в матрице.</p>
 <ol class="arabic simple">
 <li><p>Первое что нужно сделать - это посчитать количество тайлов, которое мы хотим отобразить на карте (см. <a class="reference internal" href="#my-zoom-info-table"><span class="std std-ref">Информация по тайлам для масштабов (0 - 19)</span></a>):</p></li>
 </ol>
