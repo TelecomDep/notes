@@ -17,7 +17,6 @@
 Например, ``20726``:
 
 .. figure:: ./image/20726.png
-   :width: 100%
 
    https://tile.openstreetmap.org/16/47867/20726.png
 
@@ -130,7 +129,6 @@
 Вспомним про странные названия изображений, которые получает наш браузер: ``20726.png``. 
 
 .. figure:: ./image/20726.png
-   :width: 100%
 
    https://tile.openstreetmap.org/16/47867/20726.png
 
