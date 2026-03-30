@@ -13,6 +13,7 @@
 
    linux_tips
    file_descriptor
+   cache_misses
 
 
 .. toctree::
