@@ -1,5 +1,7 @@
 # Полезные ссылки
 
+## Perf
+1. Большое количество примеров работы [perf](https://www.brendangregg.com/perf.html);
 
 ## Kotlin
 
