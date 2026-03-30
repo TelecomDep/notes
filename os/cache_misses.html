@@ -136,7 +136,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Компилируем и запускаем профайлинг при помощи <code class="docutils literal notranslate"><span class="pre">perf</span></code>:</p>
+<p>Компилируем и запускаем профайлинг при помощи <code class="docutils literal notranslate"><span class="pre">perf</span></code> с флагом <code class="docutils literal notranslate"><span class="pre">-e</span></code>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gcc<span class="w"> </span>-o2<span class="w"> </span>-g<span class="w"> </span>cache_miss.c<span class="w"> </span>-o<span class="w"> </span>cache_miss
 sudo<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-B<span class="w"> </span>-e<span class="w"> </span>cache-references,cache-misses,cycles,instructions,branches,faults,migrations<span class="w"> </span>./cache_miss
 </pre></div>
@@ -158,7 +158,7 @@ sudo<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </s
 <span class="w">   </span><span class="m">0</span>.051974000<span class="w"> </span>seconds<span class="w"> </span>sys
 </pre></div>
 </div>
-<p>Подробнее по каждой из команд:</p>
+<p>Подробнее по каждой из команд <code class="docutils literal notranslate"><span class="pre">perf</span> <span class="pre">-e</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cache-references</span></code> – количество обращений доступа к памяти в КЭШе. Суммарно имеем <code class="docutils literal notranslate"><span class="pre">252,440,135</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cache-misses</span></code> – количество кэш промахов, т.е. количество доступов к памяти, где небоходимо получить доступ из более памяти высокого уровня (<code class="docutils literal notranslate"><span class="pre">high-level</span></code> или <code class="docutils literal notranslate"><span class="pre">RAM</span></code>). <code class="docutils literal notranslate"><span class="pre">3,536,534</span></code> или <code class="docutils literal notranslate"><span class="pre">1.40%</span></code> от общего количества обращений.</p></li>
