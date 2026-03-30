@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Операционные системы &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Промахи кэша (L1, L2, L3) &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -24,8 +24,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Описать" href="todo.html" />
-    <link rel="prev" title="Маппим точки на карту" href="../React/Map.html" /> 
+    <link rel="next" title="Установка Ubuntu (Risc-V) на QEMU" href="qemu/qemu_risc_v.html" />
+    <link rel="prev" title="Файловый дескриптор" href="file_descriptor.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -77,11 +77,11 @@
 </ul>
 <p class="caption" role="heading"><span class="caption-text">ОС</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Операционные системы</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="os.html">Операционные системы</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="todo.html">Описать</a></li>
 <li class="toctree-l2"><a class="reference internal" href="linux_tips.html">Grub (while booting)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="file_descriptor.html">Файловый дескриптор</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cache_misses.html">Промахи кэша (L1, L2, L3)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Промахи кэша (L1, L2, L3)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qemu/qemu_risc_v.html">Установка Ubuntu (Risc-V) на QEMU</a></li>
 </ul>
 </li>
@@ -105,9 +105,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Операционные системы</li>
+          <li class="breadcrumb-item"><a href="os.html">Операционные системы</a></li>
+      <li class="breadcrumb-item active">Промахи кэша (L1, L2, L3)</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/os/os.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/os/cache_misses.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -115,28 +116,45 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1>Операционные системы<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">TODO</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="todo.html">Описать</a></li>
+  <section id="l1-l2-l3">
+<h1>Промахи кэша (L1, L2, L3)<a class="headerlink" href="#l1-l2-l3" title="Permalink to this heading"></a></h1>
+<p>Пример кода с промахами кэш <code class="docutils literal notranslate"><span class="pre">/src/examples/cache_miss.c</span></code>:
+.. code-block:: c</p>
+<blockquote>
+<div><p>#include &lt;stdio.h&gt;
+#define SIZE 10000</p>
+<p>int arr[SIZE][SIZE];</p>
+<dl>
+<dt>int main() {</dt><dd><p>long long sum = 0;</p>
+<dl>
+<dt>for (int i = 0; i &lt; SIZE; i++) {</dt><dd><dl class="simple">
+<dt>for (int j = 0; j &lt; SIZE; j++) {</dt><dd><p>sum += arr[j][i];</p>
+</dd>
+</dl>
+<p>}</p>
+</dd>
+</dl>
+<p>}
+return 0;</p>
+</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<p>Компилируем и запускаем профайлинг при помощи <code class="docutils literal notranslate"><span class="pre">perf</span></code>:</p>
+<p>Видим следующий вывод:</p>
+<p>Подробнее по каждой из команд:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cache-references</span></code> – counts the total number of cache references, which are memory accesses to the cache. In this sample, we have 2,315 cache references.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cache-misses</span></code> – sums up the number of cache misses, which are memory accesses that require fetching data from a higher-level cache or main memory. There were 513 cache misses in this sample, accounting for 22.15% of all cache references.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cycles</span></code> – computes the total number of CPU cycles executed. Here, we have 1,004,927 cycles, indicating the time that the CPU was active.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">instructions</span></code> – enumerates the total number of instructions executed. Here, we have 1,002,550 instructions, with an average of 0.99 per cycle, to indicate how efficiently the instructions execute.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">branches</span></code> – calculates the number of branch instructions executed. Here, we have 193,719 branches, indicating the number of times the program changed its execution path.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">faults</span></code> – adds up the number of page faults, which occur when a process tries to access a page of memory that is not currently mapped in its address space. Here, we have 1,523-page faults.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">migrations</span></code> – quantifies the number of times a task is migrated between different CPU cores, with 2 migrations in this example.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">elapsed</span></code> line shows the total time taken for the sleep 5 command to execute, which is approximately 0.1009 seconds.</p></li>
 </ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="linux_tips.html">Grub (while booting)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="file_descriptor.html">Файловый дескриптор</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cache_misses.html">Промахи кэша (L1, L2, L3)</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Эмулятор QEMU (RISC-V, ARM)</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="qemu/qemu_risc_v.html">Установка Ubuntu (Risc-V) на QEMU</a></li>
-</ul>
-</div>
+<p>Пример вывода с последовательным доступом к памяти (в строке):</p>
+<p>Вывод perf:</p>
 </section>
 
     <script type="text/javascript">
@@ -149,8 +167,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../React/Map.html" class="btn btn-neutral float-left" title="Маппим точки на карту" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="todo.html" class="btn btn-neutral float-right" title="Описать" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="file_descriptor.html" class="btn btn-neutral float-left" title="Файловый дескриптор" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="qemu/qemu_risc_v.html" class="btn btn-neutral float-right" title="Установка Ubuntu (Risc-V) на QEMU" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
