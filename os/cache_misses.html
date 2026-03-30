@@ -119,8 +119,45 @@
   <section id="l1-l2-l3">
 <h1>Промахи кэша (L1, L2, L3)<a class="headerlink" href="#l1-l2-l3" title="Permalink to this heading"></a></h1>
 <p>Пример кода с промахами кэш <code class="docutils literal notranslate"><span class="pre">/src/examples/cache_miss.c</span></code>:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdio.h&gt;</span>
+<span class="cp">#define SIZE 10000</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">SIZE</span><span class="p">][</span><span class="n">SIZE</span><span class="p">];</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>Компилируем и запускаем профайлинг при помощи <code class="docutils literal notranslate"><span class="pre">perf</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~/../src/examples$<span class="w"> </span>gcc<span class="w"> </span>-o2<span class="w"> </span>-g<span class="w"> </span>cache_miss.c<span class="w"> </span>-o<span class="w"> </span>cache_miss
+~/../src/examples$<span class="w"> </span>sudo<span class="w"> </span>perf<span class="w"> </span>stat<span class="w"> </span>-B<span class="w"> </span>-e<span class="w"> </span>cache-references,cache-misses,cycles,instructions,branches,faults,migrations<span class="w"> </span>./cache_miss
+</pre></div>
+</div>
 <p>Видим следующий вывод:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;./cache_miss&#39;</span>:
+
+<span class="w">   </span><span class="m">252</span>,440,135<span class="w">      </span>cache-references
+<span class="w">     </span><span class="m">3</span>,536,534<span class="w">      </span>cache-misses<span class="w">                     </span><span class="c1">#    1.40% of all cache refs</span>
+<span class="w"> </span><span class="m">1</span>,227,589,321<span class="w">      </span>cycles
+<span class="w"> </span><span class="m">1</span>,606,273,789<span class="w">      </span>instructions<span class="w">                     </span><span class="c1">#    1.31  insn per cycle</span>
+<span class="w">   </span><span class="m">145</span>,190,445<span class="w">      </span>branches
+<span class="w">        </span><span class="m">97</span>,709<span class="w">      </span>faults
+<span class="w">             </span><span class="m">2</span><span class="w">      </span>migrations
+
+<span class="w">   </span><span class="m">0</span>.332995043<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
+
+<span class="w">   </span><span class="m">0</span>.280862000<span class="w"> </span>seconds<span class="w"> </span>user
+<span class="w">   </span><span class="m">0</span>.051974000<span class="w"> </span>seconds<span class="w"> </span>sys
+</pre></div>
+</div>
 <p>Подробнее по каждой из команд:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">cache-references</span></code> – counts the total number of cache references, which are memory accesses to the cache. In this sample, we have 2,315 cache references.</p></li>
@@ -133,7 +170,30 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">time</span> <span class="pre">elapsed</span></code> line shows the total time taken for the sleep 5 command to execute, which is approximately 0.1009 seconds.</p></li>
 </ul>
 <p>Пример вывода с последовательным доступом к памяти (в строке):</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">SIZE</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">];</span><span class="w"> </span><span class="c1">// Сначала суммируем строку, потом уже меняем столбец</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <p>Вывод perf:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w"> </span>Performance<span class="w"> </span>counter<span class="w"> </span>stats<span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="s1">&#39;./cache_miss&#39;</span>:
+
+<span class="w">    </span><span class="m">14</span>,890,250<span class="w">      </span>cache-references
+<span class="w">        </span><span class="m">72</span>,399<span class="w">      </span>cache-misses<span class="w">                     </span><span class="c1">#    0.49% of all cache refs</span>
+<span class="w">   </span><span class="m">706</span>,258,358<span class="w">      </span>cycles
+<span class="w"> </span><span class="m">1</span>,603,989,429<span class="w">      </span>instructions<span class="w">                     </span><span class="c1">#    2.27  insn per cycle</span>
+<span class="w">   </span><span class="m">144</span>,702,850<span class="w">      </span>branches
+<span class="w">        </span><span class="m">97</span>,711<span class="w">      </span>faults
+<span class="w">            </span><span class="m">23</span><span class="w">      </span>migrations
+
+<span class="m">0</span>.193752798<span class="w"> </span>seconds<span class="w"> </span><span class="nb">time</span><span class="w"> </span>elapsed
+
+<span class="m">0</span>.134352000<span class="w"> </span>seconds<span class="w"> </span>user
+<span class="m">0</span>.059155000<span class="w"> </span>seconds<span class="w"> </span>sys
+</pre></div>
+</div>
 </section>
 
     <script type="text/javascript">
