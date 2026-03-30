@@ -2,6 +2,7 @@
 ===================================
 
 Пример кода с промахами кэш ``/src/examples/cache_miss.c``:
+
 .. code-block:: c
     #include <stdio.h>
     #define SIZE 10000
