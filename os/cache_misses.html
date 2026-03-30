@@ -118,28 +118,7 @@
              
   <section id="l1-l2-l3">
 <h1>Промахи кэша (L1, L2, L3)<a class="headerlink" href="#l1-l2-l3" title="Permalink to this heading"></a></h1>
-<p>Пример кода с промахами кэш <code class="docutils literal notranslate"><span class="pre">/src/examples/cache_miss.c</span></code>:
-.. code-block:: c</p>
-<blockquote>
-<div><p>#include &lt;stdio.h&gt;
-#define SIZE 10000</p>
-<p>int arr[SIZE][SIZE];</p>
-<dl>
-<dt>int main() {</dt><dd><p>long long sum = 0;</p>
-<dl>
-<dt>for (int i = 0; i &lt; SIZE; i++) {</dt><dd><dl class="simple">
-<dt>for (int j = 0; j &lt; SIZE; j++) {</dt><dd><p>sum += arr[j][i];</p>
-</dd>
-</dl>
-<p>}</p>
-</dd>
-</dl>
-<p>}
-return 0;</p>
-</dd>
-</dl>
-<p>}</p>
-</div></blockquote>
+<p>Пример кода с промахами кэш <code class="docutils literal notranslate"><span class="pre">/src/examples/cache_miss.c</span></code>:</p>
 <p>Компилируем и запускаем профайлинг при помощи <code class="docutils literal notranslate"><span class="pre">perf</span></code>:</p>
 <p>Видим следующий вывод:</p>
 <p>Подробнее по каждой из команд:</p>
