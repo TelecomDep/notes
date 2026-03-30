@@ -174,6 +174,7 @@
 `Пример преобразований <https://wiki.openstreetmap.org/wiki/Mercator>`_ ``Latitude`` и ``Longitude`` в проекцию Меркатора на языке ``СИ``:
 
 .. code-block:: c
+  
     #include <math.h>
     #define DEG2RAD(a)   ((a) / (180 / M_PI))
     #define RAD2DEG(a)   ((a) * (180 / M_PI))
