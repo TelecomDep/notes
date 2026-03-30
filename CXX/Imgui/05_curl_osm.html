@@ -81,7 +81,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id4">Получение названий тайлов</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id5"><strong>Наша цель</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id7">А сейчас по формулам</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Математика</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id8">Получение тайлов из кода С / С++</a><ul>
@@ -308,20 +308,45 @@
 <p>Преобразовать GPS-координаты в позиции (<code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>) тайлов <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%86%D0%B8%D1%8F_%D0%9C%D0%B5%D1%80%D0%BA%D0%B0%D1%82%D0%BE%D1%80%D0%B0">Меркатора</a>.</p>
 <p>Состоит из 4 этапов:</p>
 <ul class="simple">
-<li><p>Преобразовать углы <code class="docutils literal notranslate"><span class="pre">Latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">Longitude</span></code> в Web-проекцию Меркатора <a class="reference external" href="https://epsg.io/3857">https://epsg.io/3857</a>;</p></li>
+<li><p>Преобразовать углы <code class="docutils literal notranslate"><span class="pre">Latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">Longitude</span></code> в сферическую проекцию Меркатора (из EPSG:4326 в EPSG:3857) <a class="reference external" href="https://epsg.io/3857">https://epsg.io/3857</a>;</p></li>
 <li><p>Преобразовать значения <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code> к отрезку <code class="docutils literal notranslate"><span class="pre">[0</span> <span class="pre">-</span> <span class="pre">1]</span></code> и сместить к <strong>верхнему левому</strong> углу;</p></li>
 <li><p>Получить количество всей тайлов для текущего масштаба (<code class="docutils literal notranslate"><span class="pre">zoom</span></code>);</p></li>
 <li><p>Умножаем <code class="docutils literal notranslate"><span class="pre">X</span></code> и <code class="docutils literal notranslate"><span class="pre">Y</span></code> на количество тайлов - получаем “<strong>имена</strong>” тайлов в формате <code class="docutils literal notranslate"><span class="pre">zoom/x/y</span></code>.</p></li>
 </ul>
 </section>
 <section id="id7">
-<h3>А сейчас по формулам<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p>Первое что нужно сделать - это посчитать количество тайлов, которое мы хотим отобразить на карте (см. <a class="reference internal" href="#my-zoom-info-table"><span class="std std-ref">Информация по тайлам для масштабов (0 - 19)</span></a>):</p></li>
+<h3>Математика<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>1) Преобразование в Web-проекцию Меркатора
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">label</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+ <span class="n">x_</span><span class="p">{</span><span class="n">EPSG</span><span class="p">:</span><span class="mi">3857</span><span class="p">}</span> <span class="o">=</span> <span class="n">lon_</span><span class="p">{</span><span class="n">EPSG</span><span class="p">:</span><span class="mi">4326</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight" id="equation-2">
+<span class="eqno">(1)<a class="headerlink" href="#equation-2" title="Permalink to this equation"></a></span>\[ y_{EPSG:3857} = \ln(\tanh(lat_{EPSG:4326}) + \frac{1}{\cos(lat_{EPSG:4326})})\]</div>
+<ol class="arabic simple" start="2">
+<li><p>Нормируем к интервалу <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code></p></li>
 </ol>
-<div class="math notranslate nohighlight" id="equation-1">
-<span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation"></a></span>\[ N_{tiles} = 2^{zoom}\]</div>
+<div class="math notranslate nohighlight" id="equation-3">
+<span class="eqno">(2)<a class="headerlink" href="#equation-3" title="Permalink to this equation"></a></span>\[ x = 0.5 + \frac{x_{EPSG:3857}}{360}\]</div>
+<div class="math notranslate nohighlight" id="equation-4">
+<span class="eqno">(3)<a class="headerlink" href="#equation-4" title="Permalink to this equation"></a></span>\[ y = 0.5 - \frac{y_{EPSG:3857}}{2 * \pi}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Считаем количество тайлов, которое есть на карте данного масштаба (см. <a class="reference internal" href="#my-zoom-info-table"><span class="std std-ref">Информация по тайлам для масштабов (0 - 19)</span></a>):</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-5">
+<span class="eqno">(4)<a class="headerlink" href="#equation-5" title="Permalink to this equation"></a></span>\[ N_{tiles} = 2^{zoom}\]</div>
 <p>, где <span class="math notranslate nohighlight">\(N_{tiles}\)</span> - количество тайлов, <span class="math notranslate nohighlight">\(zoom\)</span> - уровень масштабирования.</p>
+<p>4) Получаем нумерацию тайлов (имя тайла в сетке для <span class="math notranslate nohighlight">\(2^zoom\)</span>)
+.. math:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">label</span><span class="p">:</span> <span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="n">x_</span><span class="p">{</span><span class="n">tile</span><span class="p">}</span> <span class="o">=</span> <span class="n">N_</span><span class="p">{</span><span class="n">tiles</span><span class="p">}</span> <span class="o">*</span> <span class="n">x</span>
+</pre></div>
+</div>
+<div class="math notranslate nohighlight" id="equation-7">
+<span class="eqno">(5)<a class="headerlink" href="#equation-7" title="Permalink to this equation"></a></span>\[y_{tile} = N_{tiles} * y\]</div>
 </section>
 </section>
 <section id="id8">
