@@ -4,6 +4,7 @@
 Пример кода с промахами кэш ``/src/examples/cache_miss.c``:
 
 .. code-block:: c
+
     #include <stdio.h>
     #define SIZE 10000
 
@@ -23,12 +24,14 @@
 Компилируем и запускаем профайлинг при помощи ``perf``:
 
 .. code-block:: bash
+
     ~/../src/examples$ gcc -o2 -g cache_miss.c -o cache_miss
     ~/../src/examples$ sudo perf stat -B -e cache-references,cache-misses,cycles,instructions,branches,faults,migrations ./cache_miss
 
 Видим следующий вывод:
 
 .. code-block:: bash
+
     Performance counter stats for './cache_miss':
 
        252,440,135      cache-references                                                      
@@ -58,6 +61,7 @@
 Пример вывода с последовательным доступом к памяти (в строке):
 
 .. code-block:: c
+
     for (int i = 0; i < SIZE; i++) {
         for (int j = 0; j < SIZE; j++) {
             sum += arr[i][j]; // Сначала суммируем строку, потом уже меняем столбец
@@ -67,6 +71,7 @@
 Вывод perf:
 
 .. code-block:: bash
+    
      Performance counter stats for './cache_miss':
 
         14,890,250      cache-references                                                      
