@@ -359,7 +359,7 @@
 <p>, где <span class="math notranslate nohighlight">\(lon_{EPSG:4326}\)</span> - <strong>longitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(X_{EPSG:3857}\)</span> - <strong>X</strong> в системе Меркатора.</p>
 <div class="math notranslate nohighlight" id="equation-2">
 <span class="eqno">(2)<a class="headerlink" href="#equation-2" title="Permalink to this equation"></a></span>\[ Y_{EPSG:3857} = \ln(\tan(lat_{EPSG:4326}) + \frac{1}{\cos(lat_{EPSG:4326})})\]</div>
-<p>, где <span class="math notranslate nohighlight">\(lat_{EPSG:4326}\)</span> - <strong>latitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(Y_{EPSG:3857}\)</span> - <strong>X</strong> в системе Меркатора.</p>
+<p>, где <span class="math notranslate nohighlight">\(lat_{EPSG:4326}\)</span> - <strong>latitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(Y_{EPSG:3857}\)</span> - <strong>Y</strong> в системе Меркатора.</p>
 <ol class="arabic simple" start="2">
 <li><p>Нормируем к интервалу <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code></p></li>
 </ol>
@@ -395,11 +395,8 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>Web-Меркатор</p></td>
-<td><div class="line-block">
-<div class="line"><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 82.944546\)</span></div>
-</div>
-<p><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 1.1544770655\)</span></p>
-</td>
+<td><p><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 82.944546\)</span>
+<span class="math notranslate nohighlight">\(X_{EPSG:3857} = 1.1544770655\)</span></p></td>
 </tr>
 <tr class="row-odd"><td><p>Нормирование</p></td>
 <td><div class="line-block">
