@@ -319,10 +319,12 @@
 Отправка запроса на тайл-сервер (``curl``)
 '''''''''''''
 
+На данном этапе мы уже знаем как, зная ``zoom`` и координаты ``Lat``, ``Lon``, получить необходмые нам значения ``X``, ``Y``.
+
 Формируем и отправляем запрос:
 
 .. code-block:: c
-  
+
   ...
   #include <curl/curl.h>
   ...
@@ -337,7 +339,15 @@
     return realsize;
   }
 
-  bool receiveTile(int z, int x, int y, std::vector<std::byte> &blob) {
+  bool loaded = false;
+
+  int main()
+  {
+
+    // 0. Здесь нам нужно из координат Lat, Lon получить координаты X, Y, Z ()
+    int z, int x, int y;
+    std::vector<std::byte> &blob
+
     // 1. Инициализируем структуру curl
     CURL *curl{curl_easy_init()};
 
@@ -363,49 +373,74 @@
     const bool ok{curl_easy_perform(curl) == CURLE_OK};
     curl_easy_cleanup(curl);
     loaded = true;
-    return ok;
+
+    // 5. Здесь уже получили .PNG-байтики, которые нужно отобразить на гарфике
+    return 0;
   }
 
-.. code-block:: c
+При выполнении данной программы (если мы захотим еще побайтово вывести информацию в консоль), мы получим след. результат :
 
-  // Вызываем фукнцию очень просто 
-  std::vector<std::byte> blob;
-  if (receiveTile(z, x, y, blob)) {
-      std::cout << "tile is received" << std::endl;
-      // тут в blob лежат байтики после получения тайлов
-  }
+.. figure:: ./image/tiles_raw_data.png
+
+   Данные, полученные при помощи библиотеки ``curl``
+
+В текстовом виде это будет выглядеть след. образом, нам здесь важно начало байтового массива:
+
+.. code-block:: 
+
+  89504e47da1aa000d4948445200100010830006bac58540030504c5445aaa181818201a1929292932312f3434333834333939354d312e3b3b3b3e3e4141413bbf00734a8474747764f107b54174d4d51554d4cc6161655554e805b1f815d235756561d668a7f62346959565d5d6162625c896933686868b47115c7740c8765c87876c6c70736d6b4964a0947546c97accd76d76746c737373c97d15b97c28b359557a7674cb811a76767b7c7a74092da593d97b7b7b494dabd8435895dae94d6847b799e83587d7d816579a78b85761499da1974fbcc8c32ca6361ac39ac8988883399ce2b7cf68a8a90bd9256c6924d8d9089a9916e938d8aae53ac32a4dc9689966f98b03886fb
 
 
-Преобразования Меркатора на языке СИ
+Отрисовка **.PNG** изображения
 '''''''''''''
 
+- Почитать про `.PNG можно здесь <https://habr.com/ru/articles/130472/>`_;
+- `Официальная документация <https://www.libpng.org/pub/png/spec/1.2/PNG-Rationale.html#R.PNG-file-signature>`_
 
-`Пример преобразований <https://wiki.openstreetmap.org/wiki/Mercator>`_ ``Latitude`` и ``Longitude`` в проекцию Меркатора на языке ``СИ``:
+Вкратце, .png состоит из двух основных частей:
 
-.. code-block:: c
+- Подпись ``.png``;
+- Чанки (``chunks``) с данными.
 
-    #include <math.h>
-    #define DEG2RAD(a)   ((a) / (180 / M_PI))
-    #define RAD2DEG(a)   ((a) * (180 / M_PI))
-    #define EARTH_RADIUS 6378137
 
-    /* The following functions take their parameter and return their result in degrees */
+Подпись PNG-файла состоит из 8 байт и представляет собой (в hex-записи):
 
-    double y2lat_d(double y)   { return RAD2DEG( atan(exp( DEG2RAD(y) )) * 2 - M_PI/2 ); }
-    double x2lon_d(double x)   { return x; }
+.. code-block:: 
+  
+  89 50 4e 47 da 1a a0 00
 
-    double lat2y_d(double lat) { return RAD2DEG( log(tan( DEG2RAD(lat) / 2 +  M_PI/4 )) ); }
-    double lon2x_d(double lon) { return lon; }
+, где 
 
-    /* The following functions take their parameter in something close to meters, along the equator, and return their result in degrees */
+.. Преобразования Меркатора на языке СИ
+.. '''''''''''''
 
-    double y2lat_m(double y)   { return RAD2DEG(2 * atan(exp( y/EARTH_RADIUS)) - M_PI/2); }
-    double x2lon_m(double x)   { return RAD2DEG(              x/EARTH_RADIUS           ); }
 
-    /* The following functions take their parameter in degrees, and return their result in something close to meters, along the equator */
+.. `Пример преобразований <https://wiki.openstreetmap.org/wiki/Mercator>`_ ``Latitude`` и ``Longitude`` в проекцию Меркатора на языке ``СИ``:
 
-    double lat2y_m(double lat) { return log(tan( DEG2RAD(lat) / 2 + M_PI/4 )) * EARTH_RADIUS; }
-    double lon2x_m(double lon) { return          DEG2RAD(lon)                 * EARTH_RADIUS; }
+.. .. code-block:: c
+
+..     #include <math.h>
+..     #define DEG2RAD(a)   ((a) / (180 / M_PI))
+..     #define RAD2DEG(a)   ((a) * (180 / M_PI))
+..     #define EARTH_RADIUS 6378137
+
+..     /* The following functions take their parameter and return their result in degrees */
+
+..     double y2lat_d(double y)   { return RAD2DEG( atan(exp( DEG2RAD(y) )) * 2 - M_PI/2 ); }
+..     double x2lon_d(double x)   { return x; }
+
+..     double lat2y_d(double lat) { return RAD2DEG( log(tan( DEG2RAD(lat) / 2 +  M_PI/4 )) ); }
+..     double lon2x_d(double lon) { return lon; }
+
+..     /* The following functions take their parameter in something close to meters, along the equator, and return their result in degrees */
+
+..     double y2lat_m(double y)   { return RAD2DEG(2 * atan(exp( y/EARTH_RADIUS)) - M_PI/2); }
+..     double x2lon_m(double x)   { return RAD2DEG(              x/EARTH_RADIUS           ); }
+
+..     /* The following functions take their parameter in degrees, and return their result in something close to meters, along the equator */
+
+..     double lat2y_m(double lat) { return log(tan( DEG2RAD(lat) / 2 + M_PI/4 )) * EARTH_RADIUS; }
+..     double lon2x_m(double lon) { return          DEG2RAD(lon)                 * EARTH_RADIUS; }
 
 
 Отправляем HTTP-запрос при помощи CURL
