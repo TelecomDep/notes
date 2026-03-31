@@ -155,21 +155,24 @@
 <section id="id4">
 <h2>Картографические проекции и системы координат<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <p>Земля имеет форму, так называемого, <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%93%D0%B5%D0%BE%D0%B8%D0%B4">геоида</a>.  Впервые фигуру геоида описал немецкий математик <strong>К. Ф. Гаусс</strong>, который определял её как <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%93%D0%B5%D0%BE%D0%B8%D0%B4">«математическую фигуру Земли»</a> — гладкую, но неправильную поверхность.</p>
-<figure class="align-default" id="id19">
-<img alt="CXX/Imgui/image/Geoid_undulation_10k_scale.jpg:width:100%" src="CXX/Imgui/image/Geoid_undulation_10k_scale.jpg:width:100%" />
-<figcaption>
-<p><span class="caption-text">Авторство: International Centre for Global Earth Models (ICGEM). <a class="reference external" href="http://icgem.gfz-potsdam.de/vis3d/longtime">http://icgem.gfz-potsdam.de/vis3d/longtime</a> / Ince, E. S., Barthelmes, F., Reißland, S., Elger, K., Förste, C., Flechtner, F., Schuh, H. (2019): ICGEM – 15 years of successful collection and distribution of global gravitational models, associated services and future plans. - Earth System Science Data, 11, pp. 647-674,DOI: <a class="reference external" href="http://doi.org/10.5194/essd-11-647-2019">http://doi.org/10.5194/essd-11-647-2019</a>., CC BY 4.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=81462823">https://commons.wikimedia.org/w/index.php?curid=81462823</a></span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
-</figcaption>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/Geoid_undulation_10k_scale.jpg"><img alt="../../_images/Geoid_undulation_10k_scale.jpg" src="../../_images/Geoid_undulation_10k_scale.jpg" style="width: 100%;" /></a>
 </figure>
 <p>Форма геоида обусловлена неравномерным распределением <strong>масс</strong> внутри и на поверхности Земли. Геоид является поверхностью, относительно которой ведётся отсчёт высот над уровнем моря, в силу чего точное знание параметров геоида необходимо, в частности, в навигации — для определения высоты над уровнем моря на основе геодезической (эллипсоидальной) высоты, измеряемой <code class="docutils literal notranslate"><span class="pre">GPS</span></code>-приёмниками, а также в физической океанологии — для определения высот морской поверхности.</p>
+<p>Проблема геоида в обычной жизни?</p>
+<p>Работать с элипсоидом (аппроксиморованный геоид) напрямую неудобно. Если мы работаем с маленькими масштабами на бумаге, нам потребуется <strong>ОГРОМНЫХ</strong> размеров глобус. И наоборот, при работе с большими масштабами, сложно было бы с таким глобусом охватить взглядом разные материки, например. Для многих задач намного удобнее использовать <strong>плоскую проекцию</strong>.</p>
+<p>НО, создать плоскую проекцию Земли без искажений <strong>невозможно</strong> и точка. Не получится преобразовать глобус в плоскость без разрывов (кроме экватора):</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../../_images/projection_geoid.png"><img alt="../../_images/projection_geoid.png" src="../../_images/projection_geoid.png" style="width: 100%;" /></a>
+</figure>
 <p><code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code> — географическая система координат, основанная на системе параметров <code class="docutils literal notranslate"><span class="pre">WGS84</span></code> ((<strong>World Geodetic System 1984</strong>) традиционно использует порядок <strong>широта</strong> — <strong>долгота</strong>, а <code class="docutils literal notranslate"><span class="pre">EPSG</span> <span class="pre">4326</span></code> —  <strong>долгота</strong> — <strong>широта</strong>.). Единица измерения — <strong>градус</strong>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">EPSG:3857</span></code> — прямоугольная система координат, основанная на проекции <strong>Меркатора</strong>, построенной по системе параметров <code class="docutils literal notranslate"><span class="pre">WGS84</span></code>. Единица измерения – <strong>метр</strong>.</p>
 <section id="id7">
 <h3>Проекция Меркатора<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
-<figure class="align-default" id="id20">
-<a class="reference internal image-reference" href="../../_images/Worlds_animate.gif"><img alt="../../_images/Worlds_animate.gif" src="../../_images/Worlds_animate.gif" style="width: 100%;" /></a>
+<figure class="align-default" id="id19">
+<a class="reference internal image-reference" href="../../_images/Worlds_animate.gif"><img alt="../../_images/Worlds_animate.gif" src="../../_images/Worlds_animate.gif" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-text">Авторство: Jakub Nowosad. Собственная работа, CC BY-SA 4.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=73955926">https://commons.wikimedia.org/w/index.php?curid=73955926</a></span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Авторство: Jakub Nowosad. Собственная работа, CC BY-SA 4.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=73955926">https://commons.wikimedia.org/w/index.php?curid=73955926</a></span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -179,18 +182,18 @@
 <p><strong>Тайлы</strong> - это изображения небольшого размера (одинакового), являющиеся фрагментами большого изображения. В рамках работы с картами - это квадратные (обычно <code class="docutils literal notranslate"><span class="pre">256х256</span></code> пикселей, могут быть и <code class="docutils literal notranslate"><span class="pre">512x512</span></code>) изображения, формирующие карту мира.</p>
 <p>Они используются в веб-картографии (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс</span> <span class="pre">Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
 <p>Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">SHIFT</span></code> + <code class="docutils literal notranslate"><span class="pre">I</span></code>) во вкладке <code class="docutils literal notranslate"><span class="pre">Network</span></code>, мы увидим следующую картину:</p>
-<figure class="align-default" id="id21">
+<figure class="align-default" id="id20">
 <a class="reference internal image-reference" href="../../_images/imgui_osm_tiles.png"><img alt="../../_images/imgui_osm_tiles.png" src="../../_images/imgui_osm_tiles.png" style="width: 100%;" /></a>
 <figcaption>
-<p><span class="caption-text">Как web-карта (Open Street Map) получает изображения (тайлы)</span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Как web-карта (Open Street Map) получает изображения (тайлы)</span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>, где увидим, что были загружены несколько изображений <code class="docutils literal notranslate"><span class="pre">*.png</span></code> со странными названиями файлов.</p>
 <p>Например, <code class="docutils literal notranslate"><span class="pre">20726</span></code>:</p>
-<figure class="align-default" id="id22">
+<figure class="align-default" id="id21">
 <img alt="../../_images/20726.png" src="../../_images/20726.png" />
 <figcaption>
-<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id22" title="Permalink to this image"></a></p>
+<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Этот файл был получен при помощи запроса на сервер <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code> -
@@ -204,10 +207,10 @@
 <li><p>Ссылка (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) на получения конкретного файла (<code class="docutils literal notranslate"><span class="pre">*.png</span></code>) формируется в формате: <code class="docutils literal notranslate"><span class="pre">/zoom/x/y.png</span></code></p></li>
 </ol>
 <p>Например, для масштаба карты 2 (<code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">2</span></code>) будут след. наименования:</p>
-<figure class="align-default" id="id23">
+<figure class="align-default" id="id22">
 <a class="reference internal image-reference" href="../../_images/Tiled_web_map_numbering.png"><img alt="../../_images/Tiled_web_map_numbering.png" src="../../_images/Tiled_web_map_numbering.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-text">Пример нумерации тайлов</span><a class="headerlink" href="#id23" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Пример нумерации тайлов</span><a class="headerlink" href="#id22" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Можно заметить, что:</p>
@@ -219,8 +222,8 @@
 <section id="id10">
 <h3>Тайл серверы<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
 <p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
-<table class="docutils align-default" id="id24">
-<caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id24" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id23">
+<caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id23" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 18.2%" />
 <col style="width: 59.1%" />
@@ -259,8 +262,8 @@
 <section id="zoom-levels">
 <h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
 <p>Ниже приведена таблица по каждому уровню масштабирования (от <cite>0</cite> до <cite>19</cite>). Более подробная таблица находится <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">здесь</a>.</p>
-<span id="my-zoom-info-table"></span><table class="docutils align-default" id="id25">
-<caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id25" title="Permalink to this table"></a></caption>
+<span id="my-zoom-info-table"></span><table class="docutils align-default" id="id24">
+<caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id24" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 23.1%" />
 <col style="width: 15.4%" />
@@ -327,10 +330,10 @@
 <section id="id12">
 <h2>Получение названий тайлов<a class="headerlink" href="#id12" title="Permalink to this heading"></a></h2>
 <p>Вспомним про странные названия изображений, которые получает наш браузер: <code class="docutils literal notranslate"><span class="pre">20726.png</span></code>.</p>
-<figure class="align-default" id="id26">
+<figure class="align-default" id="id25">
 <img alt="../../_images/20726.png" src="../../_images/20726.png" />
 <figcaption>
-<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id26" title="Permalink to this image"></a></p>
+<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id25" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Если посмотрим на полный путь до этого файла, то увидим: <code class="docutils literal notranslate"><span class="pre">16/47867/20726.png</span></code>, где:</p>
