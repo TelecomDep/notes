@@ -82,7 +82,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#id10">Правила наименований тайлов</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id11">Тайл серверы</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#zoom-levels">Масштаб (zoom levels)</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id13">Получение названий тайлов</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Получение наименований тайлов</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#id17">Получение тайлов из кода С / С++</a></li>
@@ -324,7 +324,7 @@
 </table>
 </section>
 <section id="id13">
-<h3>Получение названий тайлов<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+<h3>Получение наименований тайлов<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
 <p>Вспомним про странные названия изображений, которые получает наш браузер: <code class="docutils literal notranslate"><span class="pre">20726.png</span></code>.</p>
 <figure class="align-default" id="id25">
 <img alt="../../_images/20726.png" src="../../_images/20726.png" />
@@ -356,10 +356,10 @@
 </ol>
 <div class="math notranslate nohighlight" id="equation-1">
 <span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation"></a></span>\[ X_{EPSG:3857} = lon_{EPSG:4326}\]</div>
-<p>, где <span class="math notranslate nohighlight">\(lon_{EPSG:4326}\)</span> - <strong>longitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(X_{EPSG:3857}\)</span> - <strong>X</strong> в система Меркатора.</p>
+<p>, где <span class="math notranslate nohighlight">\(lon_{EPSG:4326}\)</span> - <strong>longitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(X_{EPSG:3857}\)</span> - <strong>X</strong> в системе Меркатора.</p>
 <div class="math notranslate nohighlight" id="equation-2">
 <span class="eqno">(2)<a class="headerlink" href="#equation-2" title="Permalink to this equation"></a></span>\[ Y_{EPSG:3857} = \ln(\tan(lat_{EPSG:4326}) + \frac{1}{\cos(lat_{EPSG:4326})})\]</div>
-<p>, где <span class="math notranslate nohighlight">\(lat_{EPSG:4326}\)</span> - <strong>latitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(Y_{EPSG:3857}\)</span> - <strong>X</strong> в система Меркатора.</p>
+<p>, где <span class="math notranslate nohighlight">\(lat_{EPSG:4326}\)</span> - <strong>latitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(Y_{EPSG:3857}\)</span> - <strong>X</strong> в системе Меркатора.</p>
 <ol class="arabic simple" start="2">
 <li><p>Нормируем к интервалу <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code></p></li>
 </ol>
@@ -380,6 +380,35 @@
 <span class="eqno">(6)<a class="headerlink" href="#equation-6" title="Permalink to this equation"></a></span>\[x_{tile} = N_{tiles} * x\]</div>
 <div class="math notranslate nohighlight" id="equation-7">
 <span class="eqno">(7)<a class="headerlink" href="#equation-7" title="Permalink to this equation"></a></span>\[y_{tile} = N_{tiles} * y\]</div>
+<p><strong>Пример</strong>:</p>
+<p>Возьмем координаты <code class="docutils literal notranslate"><span class="pre">lat</span> <span class="pre">=</span> <span class="pre">55.007969</span></code>, <code class="docutils literal notranslate"><span class="pre">lon</span> <span class="pre">=</span> <span class="pre">82.944546</span></code> (широта, долгота), <code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">16</span></code>.</p>
+<ol class="arabic simple">
+<li><p>Web-меркатор</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 82.944546\)</span>;
+<span class="math notranslate nohighlight">\(X_{EPSG:3857} = 1.1544770655\)</span>;</p>
+<ol class="arabic simple">
+<li><p>Нормирование</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(x = 0.73040151666\)</span>;
+<span class="math notranslate nohighlight">\(y = 0.31625926833\)</span>;</p>
+<ol class="arabic simple">
+<li><p>Масштаб</p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(2^{16} = 65536\)</span>;</p>
+<ol class="arabic simple">
+<li><p>Точные индексы тайла по <cite>X</cite>, <cite>Y</cite></p></li>
+</ol>
+<p><span class="math notranslate nohighlight">\(x_{tile} = 0.73040151666 * 65536 = 47867.5937958\)</span>;
+<span class="math notranslate nohighlight">\(y_{tile} = 0.31625926833 * 65536 = 20726.3674093\)</span>;
+<span class="math notranslate nohighlight">\(fractional_{x} =59.37958%\)</span>;
+<span class="math notranslate nohighlight">\(fractional_{y} =36.74093%\)</span>;</p>
+<p><span class="math notranslate nohighlight">\(fractional_{x}\)</span> и <span class="math notranslate nohighlight">\(fractional_{y}\)</span> дадут нам значения пикселя для искомой точки координат:</p>
+<ol class="arabic simple">
+<li><p>Пиксель X - <span class="math notranslate nohighlight">\(256 * 0.5937 = 151.9872\)</span>;</p></li>
+<li><p>Пиксель Y - <span class="math notranslate nohighlight">\(256 * 0.3674 = 94.0544\)</span>.</p></li>
+</ol>
+<p>С округлением вниз получаем: <cite>z = 16</cite>, <cite>x = 47867</cite>, <cite>y = 20726</cite>. Как мы можем заметить, это совпадает с запросом к тайл-серверу OpenStreetmap: <code class="docutils literal notranslate"><span class="pre">https://tile.openstreetmap.org/16/47867/20726.png</span></code>.</p>
 </section>
 </section>
 </section>
