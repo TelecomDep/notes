@@ -373,7 +373,7 @@
 <div class="math notranslate nohighlight" id="equation-5">
 <span class="eqno">(5)<a class="headerlink" href="#equation-5" title="Permalink to this equation"></a></span>\[ N_{tiles} = 2^{zoom}\]</div>
 <p>, где <span class="math notranslate nohighlight">\(N_{tiles}\)</span> - количество тайлов, <span class="math notranslate nohighlight">\(zoom\)</span> - уровень масштабирования.</p>
-<ol class="arabic simple">
+<ol class="arabic simple" start="4">
 <li><p>Получаем значения координат тайла (в матрице всех тайлов для <span class="math notranslate nohighlight">\(2^{zoom}\)</span>)</p></li>
 </ol>
 <div class="math notranslate nohighlight" id="equation-6">
@@ -382,6 +382,35 @@
 <span class="eqno">(7)<a class="headerlink" href="#equation-7" title="Permalink to this equation"></a></span>\[y_{tile} = N_{tiles} * y\]</div>
 <p><strong>Пример</strong>:</p>
 <p>Возьмем координаты <code class="docutils literal notranslate"><span class="pre">lat</span> <span class="pre">=</span> <span class="pre">55.007969</span></code>, <code class="docutils literal notranslate"><span class="pre">lon</span> <span class="pre">=</span> <span class="pre">82.944546</span></code> (широта, долгота), <code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">16</span></code>.</p>
+<table class="docutils align-default" id="id26">
+<caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id26" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 60.0%" />
+<col style="width: 40.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Этап</p></th>
+<th class="head"><p>Значения</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Web-Меркатор</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 82.944546\)</span>; <span class="math notranslate nohighlight">\(X_{EPSG:3857} = 1.1544770655\)</span>;</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Нормирование</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(x = 0.73040151666\)</span>; <span class="math notranslate nohighlight">\(y = 0.31625926833\)</span>;</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Масштаб</strong></p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{16} = 65536\)</span>;</p></td>
+</tr>
+<tr class="row-odd"><td><p>Точные индексы тайла по <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><p><span class="math notranslate nohighlight">\(x_{tile} = 0.73040151666 * 65536 = 47867.5937958\)</span>; <span class="math notranslate nohighlight">\(y_{tile} = 0.31625926833 * 65536 = 20726.3674093\)</span>; <span class="math notranslate nohighlight">\(fractional_{x} =59.37958\)</span> %; <span class="math notranslate nohighlight">\(fractional_{y} =36.74093\)</span> %;</p></td>
+</tr>
+<tr class="row-even"><td><p>Значения пикселей в картинке <code class="docutils literal notranslate"><span class="pre">256x256</span></code></p></td>
+<td><p>X - <span class="math notranslate nohighlight">\(256 * 0.5937 = 151.9872\)</span>;  Y - <span class="math notranslate nohighlight">\(256 * 0.3674 = 94.0544\)</span>.</p></td>
+</tr>
+</tbody>
+</table>
 <ol class="arabic simple">
 <li><p><strong>Web-Меркатор</strong></p></li>
 </ol>
