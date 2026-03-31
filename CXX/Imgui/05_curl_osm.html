@@ -85,7 +85,14 @@
 <li class="toctree-l4"><a class="reference internal" href="#id13">Получение наименований тайлов</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#id17">Получение тайлов из кода С / С++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id17">Получение тайлов из кода С / С++</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cmakelists">Установка зависимостей и подключение к CMakeLists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#curl">Отправка запроса на тайл-сервер (<code class="docutils literal notranslate"><span class="pre">curl</span></code>)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id18">Преобразования Меркатора на языке СИ</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#http-curl">Отправляем HTTP-запрос при помощи CURL</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rgb">Преобразуем в пиксельную карту (матрицу пикселей RGB)</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
@@ -161,10 +168,10 @@
 <h3>Проекция Меркатора<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
 <p>Проекция <strong>Меркатора</strong> является лишь одной из большого списка. Список некоторых проекций можно посмотреть <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D1%85_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%86%D0%B8%D0%B9">здесь</a>.</p>
 <p>Это цилиндрическая проекция, которая сохраняет углы и формы объектов (равноугольная), но сильно искажает площади ближе к полюсам. Основные области использования — морская навигация, авиация, веб-карты (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс.Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Street</span> <span class="pre">Map</span></code> и др.) и крупномасштабные карты приэкваториальных областей.</p>
-<figure class="align-default" id="id19">
+<figure class="align-default" id="id20">
 <a class="reference internal image-reference" href="../../_images/Worlds_animate.gif"><img alt="../../_images/Worlds_animate.gif" src="../../_images/Worlds_animate.gif" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-text">Пример искажений в проекции Меркатора. Авторство: Jakub Nowosad. Собственная работа, CC BY-SA 4.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=73955926">https://commons.wikimedia.org/w/index.php?curid=73955926</a></span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Пример искажений в проекции Меркатора. Авторство: Jakub Nowosad. Собственная работа, CC BY-SA 4.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=73955926">https://commons.wikimedia.org/w/index.php?curid=73955926</a></span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Про <strong>стандарты</strong>:</p>
@@ -179,18 +186,18 @@
 <p><strong>Тайлы</strong> - это изображения небольшого размера (одинакового), являющиеся фрагментами большого изображения. В рамках работы с картами - это квадратные (обычно <code class="docutils literal notranslate"><span class="pre">256х256</span></code> пикселей, могут быть и <code class="docutils literal notranslate"><span class="pre">512x512</span></code>) изображения, формирующие карту мира.</p>
 <p>Они используются в веб-картографии (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс</span> <span class="pre">Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
 <p>Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">SHIFT</span></code> + <code class="docutils literal notranslate"><span class="pre">I</span></code>) во вкладке <code class="docutils literal notranslate"><span class="pre">Network</span></code>, мы увидим следующую картину:</p>
-<figure class="align-default" id="id20">
+<figure class="align-default" id="id21">
 <a class="reference internal image-reference" href="../../_images/imgui_osm_tiles.png"><img alt="../../_images/imgui_osm_tiles.png" src="../../_images/imgui_osm_tiles.png" style="width: 100%;" /></a>
 <figcaption>
-<p><span class="caption-text">Как web-карта (Open Street Map) получает изображения (тайлы)</span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Как web-карта (Open Street Map) получает изображения (тайлы)</span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>, где увидим, что были загружены несколько изображений <code class="docutils literal notranslate"><span class="pre">*.png</span></code> со странными названиями файлов.</p>
 <p>Например, <code class="docutils literal notranslate"><span class="pre">20726</span></code>:</p>
-<figure class="align-default" id="id21">
+<figure class="align-default" id="id22">
 <img alt="../../_images/20726.png" src="../../_images/20726.png" />
 <figcaption>
-<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
+<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id22" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Этот файл был получен при помощи запроса на сервер <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code> -
@@ -204,10 +211,10 @@
 <li><p>Ссылка (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) на получения конкретного файла (<code class="docutils literal notranslate"><span class="pre">*.png</span></code>) формируется в формате: <code class="docutils literal notranslate"><span class="pre">/zoom/x/y.png</span></code></p></li>
 </ol>
 <p>Например, для масштаба карты 2 (<code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">2</span></code>) будут след. наименования:</p>
-<figure class="align-default" id="id22">
+<figure class="align-default" id="id23">
 <a class="reference internal image-reference" href="../../_images/Tiled_web_map_numbering.png"><img alt="../../_images/Tiled_web_map_numbering.png" src="../../_images/Tiled_web_map_numbering.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-text">Пример нумерации тайлов</span><a class="headerlink" href="#id22" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Пример нумерации тайлов</span><a class="headerlink" href="#id23" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Можно заметить, что:</p>
@@ -219,8 +226,8 @@
 <section id="id11">
 <h3>Тайл серверы<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
 <p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
-<table class="docutils align-default" id="id23">
-<caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id23" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id24">
+<caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id24" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 18.2%" />
 <col style="width: 59.1%" />
@@ -259,8 +266,8 @@
 <section id="zoom-levels">
 <h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
 <p>Ниже приведена таблица по каждому уровню масштабирования (от <cite>0</cite> до <cite>19</cite>). Более подробная таблица находится <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">здесь</a>.</p>
-<span id="my-zoom-info-table"></span><table class="docutils align-default" id="id24">
-<caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id24" title="Permalink to this table"></a></caption>
+<span id="my-zoom-info-table"></span><table class="docutils align-default" id="id25">
+<caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id25" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 23.1%" />
 <col style="width: 15.4%" />
@@ -326,10 +333,10 @@
 <section id="id13">
 <h3>Получение наименований тайлов<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
 <p>Вспомним про странные названия изображений, которые получает наш браузер: <code class="docutils literal notranslate"><span class="pre">20726.png</span></code>.</p>
-<figure class="align-default" id="id25">
+<figure class="align-default" id="id26">
 <img alt="../../_images/20726.png" src="../../_images/20726.png" />
 <figcaption>
-<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id25" title="Permalink to this image"></a></p>
+<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id26" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <p>Если посмотрим на полный путь до этого файла, то увидим: <code class="docutils literal notranslate"><span class="pre">16/47867/20726.png</span></code>, где:</p>
@@ -382,8 +389,8 @@
 <span class="eqno">(7)<a class="headerlink" href="#equation-7" title="Permalink to this equation"></a></span>\[y_{tile} = N_{tiles} * y\]</div>
 <p><strong>Пример</strong>:</p>
 <p>Возьмем координаты <code class="docutils literal notranslate"><span class="pre">lat</span> <span class="pre">=</span> <span class="pre">55.007969</span></code>, <code class="docutils literal notranslate"><span class="pre">lon</span> <span class="pre">=</span> <span class="pre">82.944546</span></code> (широта, долгота), <code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">16</span></code>.</p>
-<table class="docutils align-default" id="id26">
-<caption><span class="caption-text">Пример вычисления наименования тайла</span><a class="headerlink" href="#id26" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id27">
+<caption><span class="caption-text">Пример вычисления наименования тайла</span><a class="headerlink" href="#id27" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 40.0%" />
 <col style="width: 60.0%" />
@@ -435,6 +442,36 @@
 </section>
 <section id="id17">
 <h2>Получение тайлов из кода С / С++<a class="headerlink" href="#id17" title="Permalink to this heading"></a></h2>
+<section id="cmakelists">
+<h3>Установка зависимостей и подключение к CMakeLists<a class="headerlink" href="#cmakelists" title="Permalink to this heading"></a></h3>
+<p>Устанавливаем пакеты:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>curl<span class="w"> </span>libstb-dev
+</pre></div>
+</div>
+<p>Добавляем в CmakLists нашего проекта (пример с добавлением проект с ImGUI + PSQL):</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="s">FindPkgConfig</span><span class="p">)</span>
+<span class="nb">pkg_check_modules</span><span class="p">(</span><span class="s">STB</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">stb</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="o">${</span><span class="nv">EXAMPLES_DIR</span><span class="o">}</span><span class="s">/osm_tiles/tile_catcher.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">imgui</span><span class="w"> </span><span class="s">implot</span><span class="w"> </span><span class="s">curl</span><span class="w"> </span><span class="o">${</span><span class="nv">SDL2_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">OPENGL_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">GLEW_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">STB_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="o">${</span><span class="nv">STB_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="curl">
+<h3>Отправка запроса на тайл-сервер (<code class="docutils literal notranslate"><span class="pre">curl</span></code>)<a class="headerlink" href="#curl" title="Permalink to this heading"></a></h3>
+<p>Формируем и отправляем запрос:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">// Вызываем фукнцию очень просто</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">byte</span><span class="o">&gt;</span><span class="w"> </span><span class="n">blob</span><span class="p">;</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">receiveTile</span><span class="p">(</span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">blob</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;tile is received&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// тут в blob лежат байтики после получения тайлов</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h3>Преобразования Меркатора на языке СИ<a class="headerlink" href="#id18" title="Permalink to this heading"></a></h3>
 <p><a class="reference external" href="https://wiki.openstreetmap.org/wiki/Mercator">Пример преобразований</a> <code class="docutils literal notranslate"><span class="pre">Latitude</span></code> и <code class="docutils literal notranslate"><span class="pre">Longitude</span></code> в проекцию Меркатора на языке <code class="docutils literal notranslate"><span class="pre">СИ</span></code>:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;math.h&gt;</span>
 <span class="cp">#define DEG2RAD(a)   ((a) / (180 / M_PI))</span>
@@ -460,6 +497,13 @@
 <span class="kt">double</span><span class="w"> </span><span class="nf">lon2x_m</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">lon</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w">          </span><span class="n">DEG2RAD</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span><span class="w">                 </span><span class="o">*</span><span class="w"> </span><span class="n">EARTH_RADIUS</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="http-curl">
+<h3>Отправляем HTTP-запрос при помощи CURL<a class="headerlink" href="#http-curl" title="Permalink to this heading"></a></h3>
+</section>
+<section id="rgb">
+<h3>Преобразуем в пиксельную карту (матрицу пикселей RGB)<a class="headerlink" href="#rgb" title="Permalink to this heading"></a></h3>
+</section>
 </section>
 </section>
 
