@@ -293,8 +293,91 @@
 Получение тайлов из кода С / С++
 ---------------------
 
+Установка зависимостей и подключение к CMakeLists
+'''''''''''''
+
+
+Устанавливаем пакеты:
+
+.. code-block:: bash
+
+  sudo apt install curl libstb-dev
+
+
+Добавляем в CmakLists нашего проекта (пример с добавлением проект с ImGUI + PSQL):
+
+.. code-block:: cmake
+
+  include(FindPkgConfig)
+  pkg_check_modules(STB REQUIRED stb)
+
+  add_executable(tile ${EXAMPLES_DIR}/osm_tiles/tile_catcher.cpp)
+  target_link_libraries(tile PRIVATE imgui implot curl ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES} ${GLEW_LIBRARIES} ${STB_LIBRARIES})
+  target_include_directories(tile PRIVATE ${STB_INCLUDE_DIRS})
+
+
+Отправка запроса на тайл-сервер (``curl``)
+'''''''''''''
+
+Формируем и отправляем запрос:
+
+.. code-block:: c
+  ...
+  #include <curl/curl.h>
+  ...
+
+  // Наш callback при получении данных от libcurl
+  size_t onPullResponse(void *data, size_t size, size_t nmemb, void *userp) {
+    size_t realsize{size * nmemb};
+    auto &blob{*static_cast<std::vector<std::byte> *>(userp)};
+    auto const *const dataptr{static_cast<std::byte *>(data)};
+    blob.insert(blob.cend(), dataptr, dataptr + realsize);
+    std::cout << "Bytes received size = " << realsize << std::endl;
+    return realsize;
+  }
+
+  bool receiveTile(int z, int x, int y, std::vector<std::byte> &blob) {
+    // 1. Инициализируем структуру curl
+    CURL *curl{curl_easy_init()};
+
+    // 2. Формируем строку запроса, зная Z, X, Y
+    std::ostringstream urlmaker;
+    urlmaker << "https://a.tile.openstreetmap.org";
+    urlmaker << '/' << z << '/' << x << '/' << y << ".png";
+
+    // 3. Указываем строку (urlmaker) для структуры curl + немного настроект запроса
+    curl_easy_setopt(curl, CURLOPT_URL, urlmaker.c_str());
+    curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 1L);
+    curl_easy_setopt(curl, CURLOPT_USERAGENT, "curl");
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 1);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 1);
+
+    // 3.1. Здесь говорим положить результать в массив байтиков blob
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&blob);
+
+    // 3.2. При каждом поступлении данны (chunk'ов) вызывается callback, наша функция onPullResponse (функция определена выше)
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, onPullResponse);
+  
+    // 4. Собственно, выполнение запроса и проверка на его успешность выполнения.
+    const bool ok{curl_easy_perform(curl) == CURLE_OK};
+    curl_easy_cleanup(curl);
+    loaded = true;
+    return ok;
+  }
+
+.. code-block:: c
+
+  // Вызываем фукнцию очень просто 
+  std::vector<std::byte> blob;
+  if (receiveTile(z, x, y, blob)) {
+      std::cout << "tile is received" << std::endl;
+      // тут в blob лежат байтики после получения тайлов
+  }
+
+
 Преобразования Меркатора на языке СИ
-^^^^^^^^^^^^^^^^^^^^^
+'''''''''''''
+
 
 `Пример преобразований <https://wiki.openstreetmap.org/wiki/Mercator>`_ ``Latitude`` и ``Longitude`` в проекцию Меркатора на языке ``СИ``:
 
@@ -325,8 +408,10 @@
 
 
 Отправляем HTTP-запрос при помощи CURL
-^^^^^^^^^^^^^^^^^^^^^
+'''''''''''''
+
 
 
 Преобразуем в пиксельную карту (матрицу пикселей RGB)
-^^^^^^^^^^^^^^^^^^^^^
+'''''''''''''
+
