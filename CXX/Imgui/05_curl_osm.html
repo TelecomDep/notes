@@ -334,12 +334,14 @@
 <li><p>Умножаем <code class="docutils literal notranslate"><span class="pre">X</span></code> и <code class="docutils literal notranslate"><span class="pre">Y</span></code> на количество тайлов - получаем “<strong>имена</strong>” тайлов в формате <code class="docutils literal notranslate"><span class="pre">zoom/x/y</span></code>.</p></li>
 </ul>
 <ol class="arabic simple">
-<li><p>Преобразование в Web-проекцию Меркатора</p></li>
+<li><p>Преобразование в Web-проекцию Меркатора (из <code class="docutils literal notranslate"><span class="pre">Lat,</span> <span class="pre">Lon</span></code> в <code class="docutils literal notranslate"><span class="pre">X,</span> <span class="pre">Y</span></code>):</p></li>
 </ol>
 <div class="math notranslate nohighlight" id="equation-1">
 <span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation"></a></span>\[ X_{EPSG:3857} = lon_{EPSG:4326}\]</div>
+<p>, где <span class="math notranslate nohighlight">\(lon_{EPSG:4326}\)</span> - <strong>longitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(X_{EPSG:3857}\)</span> - <strong>X</strong> в система Меркатора.</p>
 <div class="math notranslate nohighlight" id="equation-2">
 <span class="eqno">(2)<a class="headerlink" href="#equation-2" title="Permalink to this equation"></a></span>\[ Y_{EPSG:3857} = \ln(\tan(lat_{EPSG:4326}) + \frac{1}{\cos(lat_{EPSG:4326})})\]</div>
+<p>, где <span class="math notranslate nohighlight">\(lat_{EPSG:4326}\)</span> - <strong>latitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(Y_{EPSG:3857}\)</span> - <strong>X</strong> в система Меркатора.</p>
 <ol class="arabic simple" start="2">
 <li><p>Нормируем к интервалу <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code></p></li>
 </ol>
