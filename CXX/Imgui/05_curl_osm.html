@@ -429,35 +429,6 @@
 </tr>
 </tbody>
 </table>
-<ol class="arabic simple">
-<li><p><strong>Web-Меркатор</strong></p></li>
-</ol>
-<p><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 82.944546\)</span>;</p>
-<p><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 1.1544770655\)</span>;</p>
-<ol class="arabic simple" start="2">
-<li><p><strong>Нормирование</strong></p></li>
-</ol>
-<p><span class="math notranslate nohighlight">\(x = 0.73040151666\)</span>;</p>
-<p><span class="math notranslate nohighlight">\(y = 0.31625926833\)</span>;</p>
-<ol class="arabic simple" start="3">
-<li><p><strong>Масштаб</strong></p></li>
-</ol>
-<p><span class="math notranslate nohighlight">\(2^{16} = 65536\)</span>;</p>
-<ol class="arabic simple" start="4">
-<li><p>Точные индексы тайла по <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code></p></li>
-</ol>
-<p><span class="math notranslate nohighlight">\(x_{tile} = 0.73040151666 * 65536 = 47867.5937958\)</span>;</p>
-<p><span class="math notranslate nohighlight">\(y_{tile} = 0.31625926833 * 65536 = 20726.3674093\)</span>;</p>
-<p><span class="math notranslate nohighlight">\(fractional_{x} =59.37958\)</span> %;</p>
-<p><span class="math notranslate nohighlight">\(fractional_{y} =36.74093\)</span> %;</p>
-<p><span class="math notranslate nohighlight">\(fractional_{x}\)</span> и <span class="math notranslate nohighlight">\(fractional_{y}\)</span> дадут нам значения пикселя для искомой точки координат:</p>
-<ol class="arabic simple" start="5">
-<li><p>Значения пикселей в картинке <code class="docutils literal notranslate"><span class="pre">256x256</span></code>:</p></li>
-</ol>
-<ul class="simple">
-<li><p>Пиксель X - <span class="math notranslate nohighlight">\(256 * 0.5937 = 151.9872\)</span>;</p></li>
-<li><p>Пиксель Y - <span class="math notranslate nohighlight">\(256 * 0.3674 = 94.0544\)</span>.</p></li>
-</ul>
 <p>С округлением вниз получаем: <cite>z = 16</cite>, <cite>x = 47867</cite>, <cite>y = 20726</cite>. Как мы можем заметить, это совпадает с запросом к тайл-серверу OpenStreetmap: <code class="docutils literal notranslate"><span class="pre">https://tile.openstreetmap.org/16/47867/20726.png</span></code>.</p>
 </section>
 </section>
