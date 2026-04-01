@@ -319,7 +319,7 @@ int main(){
 7. Обновить `github`-репозиторий, дописать `README.md`.
     - В REAMDE.md должны быть описаны пункты: установка зависимостей, компиляция, запуск ПО, описание архитектуры ПО.
 
-Примеры всех этапов можно найти в [лекции]https://telecomdep.github.io/notes/CXX/Imgui/05_curl_osm.html).
+Примеры всех этапов можно найти в [лекции](https://telecomdep.github.io/notes/CXX/Imgui/05_curl_osm.html).
 
 
 
