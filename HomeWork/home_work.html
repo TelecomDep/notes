@@ -69,6 +69,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#android-background-service">11. Android background service.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id6">12. Драйв-тест.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#postgresql">13. Работа с базой данных (PostgreSQL) из С/С++</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#openstreetmap">13. Отрисовка OpenStreetMap карты</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-android-backend">XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-postgresql-backend">XX. PostgreSQL. База данных (на стороне backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx">XX. Тайлы. Работа с картами.</a></li>
@@ -519,6 +520,49 @@
 </li>
 <li><p>Обновить <code class="docutils literal notranslate"><span class="pre">Github</span></code>-репозиторий. Обновить <code class="docutils literal notranslate"><span class="pre">README.md</span></code>, описать возможности вашего приложения.</p></li>
 </ol>
+</section>
+<section id="openstreetmap">
+<h3>13. Отрисовка OpenStreetMap карты<a class="headerlink" href="#openstreetmap" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Добработать backend-сервер для работы с <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code> картами:</p>
+<ol class="arabic simple">
+<li><p>Реализовать пересчет текущих координат в номера тайлов;</p></li>
+<li><p>Получить <code class="docutils literal notranslate"><span class="pre">.png</span></code>-файл при помощи <code class="docutils literal notranslate"><span class="pre">curl</span></code> с сервера тайлов;</p></li>
+<li><p>Преобразовать изображение <code class="docutils literal notranslate"><span class="pre">.png</span> </code>в пиксельную карту (<code class="docutils literal notranslate"><span class="pre">RGBa</span></code> массив);</p></li>
+<li><p>Отобразить карту на графике при помощи <code class="docutils literal notranslate"><span class="pre">ImPlot</span></code> в отдельном окне.</p></li>
+</ol>
+</li>
+<li><p>Необходимо заргужать несколько тайлов (зависиот от текущего размера окна <code class="docutils literal notranslate"><span class="pre">ImGui</span></code>):</p>
+<ol class="arabic simple">
+<li><p>Например, если размер окна равен <code class="docutils literal notranslate"><span class="pre">512x512</span></code>, то вы должны загрузить и отобразить 4 тайла (<code class="docutils literal notranslate"><span class="pre">256x256</span></code> [<code class="docutils literal notranslate"><span class="pre">pix</span></code>] каждый);</p></li>
+<li><p>Количество загружаемых тайлов должно динамически менять в зависимости от изменения размера окна.</p></li>
+</ol>
+</li>
+<li><p>Адаптировать вашу карту под изменения местоположения центра экрана в <code class="docutils literal notranslate"><span class="pre">zoom</span></code>’а:</p>
+<ol class="arabic simple">
+<li><p>Т.е. имитировать перемещение карты “<strong>на лету</strong>”.</p></li>
+</ol>
+</li>
+<li><p>Все уже загруженные тайлы сохранять в директории <code class="docutils literal notranslate"><span class="pre">build</span></code>:</p>
+<ul class="simple">
+<li><p>Если тайл, который вы хотите отобразить уже был загружен, выводим на экран его (из файла)</p></li>
+<li><p>Иначе, загружаем через <code class="docutils literal notranslate"><span class="pre">curl</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Провести рефакторинг кода, разделить разные по смыслу сущности (функции) на разные файлы:</p>
+<ul class="simple">
+<li><p>Например, функции по работе с <code class="docutils literal notranslate"><span class="pre">curl</span></code> сложить в файл <code class="docutils literal notranslate"><span class="pre">curl_func.h/.cpp</span></code>;</p></li>
+<li><p>и т.д. <strong>ДЛЯ ВСЕХ</strong> функций (сокеты, БД, ImGui, и т.д.).</p></li>
+</ul>
+</li>
+<li><p><strong>Со звездочкой</strong>. Реализовать асинхронную загрузку изображений во время отправки запросов <code class="docutils literal notranslate"><span class="pre">curl</span></code>.</p></li>
+<li><p>Обновить <code class="docutils literal notranslate"><span class="pre">github</span></code>-репозиторий, дописать <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p>
+<ul class="simple">
+<li><p>В REAMDE.md должны быть описаны пункты: установка зависимостей, компиляция, запуск ПО, описание архитектуры ПО.</p></li>
+</ul>
+</li>
+</ol>
+<p>Примеры всех этапов можно найти в [лекции]https://telecomdep.github.io/notes/CXX/Imgui/05_curl_osm.html).</p>
 <!-- 2. **Для всех групп**: Объединить данные каждого человека в один json-файл:
     1. При объединении проверить форматы Json-схем;
     2. Если не соответствует, привести к единому формату.
