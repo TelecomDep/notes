@@ -398,7 +398,7 @@
   0x61 0x62 0x62 0x5c 0x89 0x69 0x33 0x68 0x68 0x68 0xb4 0x71 0x15 0xc7 0x74 0x0 0xc8 0x76 .........................
   ..................................................................................................................
 
-Отрисовка **.PNG** изображения
+**.PNG** изображения
 '''''''''''''
 
 - Почитать про `.PNG можно здесь <https://habr.com/ru/articles/130472/>`_;
@@ -483,6 +483,81 @@
 .. figure:: ./image/png_minimum.png
 
    Минимальный PNG-файл.
+
+Преобразование **.PNG ** в пиксельную карту (pixel map)
+'''''''''''''
+
+Преобразование будет выполнять при помощи библиотеки ``libstb-dev``, которую мы подключили в ``CMakeLists`` в начале.
+
+.. code-block:: c 
+
+  ...
+  #include <stb_image.h>
+  ...
+  int _width{256}, _height{256}, _channels{}; // Размеры изображения
+  std::vector<std::byte> _rawBlob;            // То куда мы положили наши байтики PNG
+  std::vector<std::byte> _rgbaBlob;           // В этот массив мы запишем значения Пикселей
+  GLuint _id{0};
+
+  // Преобразуем PNG в rgba-массив
+  void stbLoad() {
+    stbi_set_flip_vertically_on_load(false);
+    const auto ptr{
+        stbi_load_from_memory(reinterpret_cast<stbi_uc const *>(_rawBlob.data()),
+                              static_cast<int>(_rawBlob.size()), &_width, &_height,
+                              &_channels, STBI_rgb_alpha)};
+    if (ptr) {
+      const size_t nbytes{size_t(_width * _height * STBI_rgb_alpha)};
+      _rgbaBlob.resize(nbytes);
+      _rgbaBlob.shrink_to_fit();
+      const auto byteptr{reinterpret_cast<std::byte *>(ptr)};
+      _rgbaBlob.insert(_rgbaBlob.begin(), byteptr, byteptr + nbytes);
+      stbi_image_free(ptr);
+    }
+  } 
+
+  // Преобразуем в текстуру GL
+  void glLoad(){
+    glGenTextures(1, &_id);
+    glBindTexture(GL_TEXTURE_2D, _id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA,
+                GL_UNSIGNED_BYTE, _rgbaBlob.data());
+  }
+
+  int main(){
+
+    ...
+    while(1){
+      ...
+      ImPlot::BeginPlot("##ImOsmMapPlot");
+
+      // Параметры для отображения картинки
+      ImVec2 _uv0{0, 1};        // Top-left of the texture
+      ImVec2 _uv1{1, 0};        // Bottom-right of the texture
+      ImVec4 _tint{1, 1, 1, 1}; // Цвет, накладываемый поверх нашего изображения
+      ImVec2 bmin{0, 0};
+      ImVec2 bmax{256, 256};
+
+      stbLoad();
+      glLoad();
+
+      // Отображаем текстуру GL - _id, которую мы создали из RGBa
+      ImPlot::PlotImage("##", _id, bmin, bmax, _uv0, _uv1, _tint);
+
+      ImPlot::EndPlot();
+      ...
+    }
+    ...
+  }
+
+**Готово**:
+
+.. figure:: ./image/png_tile_plot.png
+
+   Результат.
 
 
 .. Преобразования Меркатора на языке СИ
