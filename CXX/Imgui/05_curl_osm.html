@@ -351,7 +351,7 @@
 <p>Состоит из 4 этапов:</p>
 <ul class="simple">
 <li><p>Преобразовать углы <code class="docutils literal notranslate"><span class="pre">Latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">Longitude</span></code> в сферическую проекцию Меркатора (из EPSG:4326 в EPSG:3857) <a class="reference external" href="https://epsg.io/3857">https://epsg.io/3857</a>;</p></li>
-<li><p>Преобразовать значения <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code> к отрезку <code class="docutils literal notranslate"><span class="pre">[0</span> <span class="pre">-</span> <span class="pre">1]</span></code> и сместить к <strong>верхнему левому</strong> углу;</p></li>
+<li><p>Преобразовать значения <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code> к отрезку <code class="docutils literal notranslate"><span class="pre">[0</span> <span class="pre">-</span> <span class="pre">1]</span></code>, получая относительный квадрат;</p></li>
 <li><p>Получить количество всей тайлов для текущего масштаба (<code class="docutils literal notranslate"><span class="pre">zoom</span></code>);</p></li>
 <li><p>Умножаем <code class="docutils literal notranslate"><span class="pre">X</span></code> и <code class="docutils literal notranslate"><span class="pre">Y</span></code> на количество тайлов - получаем “<strong>имена</strong>” тайлов в формате <code class="docutils literal notranslate"><span class="pre">zoom/x/y</span></code>.</p></li>
 </ul>
@@ -403,6 +403,8 @@
 <tbody>
 <tr class="row-even"><td><p>Web-Меркатор</p></td>
 <td><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lat</span> <span class="pre">=</span> <span class="pre">55.007969</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lon</span> <span class="pre">=</span> <span class="pre">82.944546</span></code></div>
 <div class="line"><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 82.944546\)</span></div>
 <div class="line"><span class="math notranslate nohighlight">\(Y_{EPSG:3857} = 1.1544770655\)</span></div>
 </div>
