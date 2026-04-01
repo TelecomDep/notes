@@ -16,7 +16,7 @@
 .. figure:: ./image/Geoid_undulation_10k_scale.jpg
    :width: 60%
 
-    (Авторство: International Centre for Global Earth Models (ICGEM). http://icgem.gfz-potsdam.de/vis3d/longtime / Ince, E. S., Barthelmes, F., Reißland, S., Elger, K., Förste, C., Flechtner, F., Schuh, H. (2019): ICGEM – 15 years of successful collection and distribution of global gravitational models, associated services and future plans. - Earth System Science Data, 11, pp. 647-674,DOI: http://doi.org/10.5194/essd-11-647-2019., CC BY 4.0, https://commons.wikimedia.org/w/index.php?curid=81462823)
+   (Авторство: International Centre for Global Earth Models (ICGEM). http://icgem.gfz-potsdam.de/vis3d/longtime / Ince, E. S., Barthelmes, F., Reißland, S., Elger, K., Förste, C., Flechtner, F., Schuh, H. (2019): ICGEM – 15 years of successful collection and distribution of global gravitational models, associated services and future plans. - Earth System Science Data, 11, pp. 647-674,DOI: http://doi.org/10.5194/essd-11-647-2019., CC BY 4.0, https://commons.wikimedia.org/w/index.php?curid=81462823)
 
 Форма геоида обусловлена неравномерным распределением **масс** внутри и на поверхности Земли. Геоид является поверхностью, относительно которой ведётся отсчёт высот над уровнем моря, в силу чего точное знание параметров геоида необходимо, в частности, в навигации — для определения высоты над уровнем моря на основе геодезической (эллипсоидальной) высоты, измеряемой ``GPS``-приёмниками, а также в физической океанологии — для определения высот морской поверхности.
 
@@ -29,7 +29,7 @@
 .. figure:: ./image/projection_geoid.png
    :width: 100%
 
-    Разрывы при проекции сферы на плоскость. Источник: https://habr.com/ru/companies/bft/articles/773814/.
+   Разрывы при проекции сферы на плоскость. Источник: https://habr.com/ru/companies/bft/articles/773814/.
 
 Для решений данной пробелемы существуют проекции сферы на плоскость, например, проекция **Меркатора**.
 
