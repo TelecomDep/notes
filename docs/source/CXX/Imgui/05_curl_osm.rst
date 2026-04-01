@@ -555,6 +555,8 @@
 
 **Готово**:
 
+`Полный пример можно найти здесь <https://github.com/TelecomDep/backend_notes/blob/main/examples/osm_tiles/tile_catcher.cpp>`_.
+
 .. figure:: ./image/png_tile_plot.png
 
    Результат.
