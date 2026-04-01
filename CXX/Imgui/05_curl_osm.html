@@ -593,6 +593,29 @@
 <section id="chunks-png">
 <h4>Чанки (chunks) PNG<a class="headerlink" href="#chunks-png" title="Permalink to this heading"></a></h4>
 <p>Чанки — это блоки данных, из которых состоит файл. Каждый чанк состоит из 4 секций.</p>
+<table class="docutils align-default" id="id32">
+<caption><span class="caption-text">Формат чанков</span><a class="headerlink" href="#id32" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Length (длина)</p></th>
+<th class="head"><p>Type (тип)</p></th>
+<th class="head"><p>Data (данные)</p></th>
+<th class="head"><p>CRC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4 байта</p></td>
+<td><p>4 байта</p></td>
+<td><p>Length байт</p></td>
+<td><p>4 байта</p></td>
+</tr>
+</tbody>
+</table>
 <p>, где:</p>
 <ul class="simple">
 <li><p><strong>Длина</strong> — это числовое значение длины блока данных;</p></li>
@@ -608,10 +631,10 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">IEND</span></code> — завершающий чанк, обязан быть последним в файле.</p></li>
 </ul>
 <p>Минимальный PNG-файл выглядит следующим образом:</p>
-<figure class="align-default" id="id32">
+<figure class="align-default" id="id33">
 <img alt="../../_images/png_minimum.png" src="../../_images/png_minimum.png" />
 <figcaption>
-<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id32" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id33" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
