@@ -557,7 +557,7 @@
 Если вывести на экран первые несколько значений ``std::vector<std::byte> _rgbaBlob;``, увидим следующее:
 
 .. code-block:: 
-  
+
   228, 228, 227, 255
   156, 156, 155, 255
   148, 147, 147, 255
@@ -625,13 +625,3 @@
 
 ..     double lat2y_m(double lat) { return log(tan( DEG2RAD(lat) / 2 + M_PI/4 )) * EARTH_RADIUS; }
 ..     double lon2x_m(double lon) { return          DEG2RAD(lon)                 * EARTH_RADIUS; }
-
-
-Отправляем HTTP-запрос при помощи CURL
-'''''''''''''
-
-
-
-Преобразуем в пиксельную карту (матрицу пикселей RGB)
-'''''''''''''
-
