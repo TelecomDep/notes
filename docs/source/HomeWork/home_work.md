@@ -300,7 +300,10 @@ int main(){
 
 ### 14. Отрисовка OpenStreetMap карты
 
-Примеры всех этапов можно найти в [лекции](https://telecomdep.github.io/notes/CXX/Imgui/05_curl_osm.html).
+Примеры всех этапов можно найти в **лекциях**:
+- Про наименования тайлов - [здесь](https://telecomdep.github.io/notes/CXX/Imgui/05_osm_tile_naming.html);
+- Получаем тайлы из `OSM-тайл-сервера`, используя код `С`/`C++` - [здесь](https://telecomdep.github.io/notes/CXX/Imgui/06_curl_get_tiles.html);
+- Работа с изображениями, преобразуем `.png` в пиксели и накладываем на `implot` - [здесь](https://telecomdep.github.io/notes/CXX/Imgui/07_stb_play_with_images.html).
 
 1. Добработать backend-сервер для работы с ``OpenStreetMap`` картами:
     1. Реализовать пересчет текущих координат в номера тайлов;
@@ -323,7 +326,6 @@ int main(){
 7. Обновить `github`-репозиторий, дописать `README.md`.
     - В `REAMDE.md` должны быть описаны пункты: установка зависимостей, компиляция, запуск ПО, описание архитектуры ПО.
 
-Примеры всех этапов можно найти в [лекции](https://telecomdep.github.io/notes/CXX/Imgui/05_curl_osm.html).
 
 
 
