@@ -18,7 +18,9 @@
    Imgui/03_widgets
    Imgui/04_plots
    ../DataBase/c_psql
-   Imgui/05_curl_osm
+   Imgui/05_osm_tile_naming
+   Imgui/06_curl_get_tiles
+   Imgui/07_stb_play_with_images
 
 
 .. toctree::

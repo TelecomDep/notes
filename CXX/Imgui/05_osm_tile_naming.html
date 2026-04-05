@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Получение тайлов карты (Open Street Map) &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="https://wavedrom.com/skins/default.js"></script>
+        <script src="https://wavedrom.com/wavedrom.min.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Получение тайлов из кода С / С++" href="06_curl_get_tiles.html" />
+    <link rel="prev" title="Clang + PSQL" href="../../DataBase/c_psql.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html">Практические задания</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html#id7">Вопросы к экзамену\зачету</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CXX</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../cxx.html">Немного про C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../cxx_fundamentals.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_introduction.html">1. Dear ImGui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_int_main.html">2. Первая программа с Dear Imgui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_widgets.html">3. Виджеты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_plots.html">4. Работа с графиками</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../DataBase/c_psql.html">Clang + PSQL</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Получение тайлов карты (Open Street Map)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id4">Картографические проекции и системы координат</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id7">Проекция Меркатора</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#id9">Что такое тайлы?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id10">Правила наименований тайлов</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id11">Тайл серверы</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#zoom-levels">Масштаб (zoom levels)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id13">Получение наименований тайлов</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="06_curl_get_tiles.html">Получение тайлов из кода С / С++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07_stb_play_with_images.html">Преобразование изображения в значения пикселей</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../React/react.html">React</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../os/os.html">Операционные системы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cxx.html">Немного про C++</a></li>
+      <li class="breadcrumb-item active">Получение тайлов карты (Open Street Map)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/CXX/Imgui/05_osm_tile_naming.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="open-street-map">
+<h1>Получение тайлов карты (Open Street Map)<a class="headerlink" href="#open-street-map" title="Permalink to this heading"></a></h1>
+<p>Данный материал частично основан на информации с источников:</p>
+<ol class="arabic simple">
+<li><p>Хорошая статья по <a class="reference external" href="https://habr.com/ru/companies/bft/articles/773814/">ГИС</a>;</p></li>
+<li><p>Про <a class="reference external" href="https://gis-lab.info/qa/gentle-intro-gis-7.html">системы координат</a>;</p></li>
+<li><p>И еще про <a class="reference external" href="https://habr.com/ru/articles/399257/">проекции</a>.</p></li>
+</ol>
+<section id="id4">
+<h2>Картографические проекции и системы координат<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<p>Земля имеет форму, так называемого, <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%93%D0%B5%D0%BE%D0%B8%D0%B4">геоида</a>.  Впервые фигуру геоида описал немецкий математик <strong>К. Ф. Гаусс</strong>, который определял её как <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%93%D0%B5%D0%BE%D0%B8%D0%B4">«математическую фигуру Земли»</a> — гладкую, но неправильную поверхность.</p>
+<figure class="align-default" id="id17">
+<a class="reference internal image-reference" href="../../_images/Geoid_undulation_10k_scale.jpg"><img alt="../../_images/Geoid_undulation_10k_scale.jpg" src="../../_images/Geoid_undulation_10k_scale.jpg" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-text">(Авторство: International Centre for Global Earth Models (ICGEM). <a class="reference external" href="http://icgem.gfz-potsdam.de/vis3d/longtime">http://icgem.gfz-potsdam.de/vis3d/longtime</a> / Ince, E. S., Barthelmes, F., Reißland, S., Elger, K., Förste, C., Flechtner, F., Schuh, H. (2019): ICGEM – 15 years of successful collection and distribution of global gravitational models, associated services and future plans. - Earth System Science Data, 11, pp. 647-674,DOI: <a class="reference external" href="http://doi.org/10.5194/essd-11-647-2019">http://doi.org/10.5194/essd-11-647-2019</a>., CC BY 4.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=81462823">https://commons.wikimedia.org/w/index.php?curid=81462823</a>)</span><a class="headerlink" href="#id17" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Форма геоида обусловлена неравномерным распределением <strong>масс</strong> внутри и на поверхности Земли. Геоид является поверхностью, относительно которой ведётся отсчёт высот над уровнем моря, в силу чего точное знание параметров геоида необходимо, в частности, в навигации — для определения высоты над уровнем моря на основе геодезической (эллипсоидальной) высоты, измеряемой <code class="docutils literal notranslate"><span class="pre">GPS</span></code>-приёмниками, а также в физической океанологии — для определения высот морской поверхности.</p>
+<p><strong>Проблема геоида в обычной жизни?</strong></p>
+<p>Работать с элипсоидом (аппроксиморованный геоид) напрямую неудобно. Если мы работаем с маленькими масштабами на бумаге, нам потребуется <strong>ОГРОМНЫХ</strong> размеров глобус. И наоборот, при работе с большими масштабами, сложно было бы с таким глобусом охватить взглядом разные материки, например. Для многих задач намного удобнее использовать <strong>плоскую проекцию</strong>.</p>
+<p>НО, создать плоскую проекцию Земли без искажений <strong>невозможно</strong> и точка. Не получится преобразовать глобус в плоскость без разрывов (кроме экватора):</p>
+<figure class="align-default" id="id18">
+<a class="reference internal image-reference" href="../../_images/projection_geoid.png"><img alt="../../_images/projection_geoid.png" src="../../_images/projection_geoid.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">Разрывы при проекции сферы на плоскость. Источник: <a class="reference external" href="https://habr.com/ru/companies/bft/articles/773814/">https://habr.com/ru/companies/bft/articles/773814/</a>.</span><a class="headerlink" href="#id18" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Для решений данной пробелемы существуют проекции сферы на плоскость, например, проекция <strong>Меркатора</strong>.</p>
+<section id="id7">
+<h3>Проекция Меркатора<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<p>Проекция <strong>Меркатора</strong> является лишь одной из большого списка. Список некоторых проекций можно посмотреть <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%B0%D1%80%D1%82%D0%BE%D0%B3%D1%80%D0%B0%D1%84%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D1%85_%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%86%D0%B8%D0%B9">здесь</a>.</p>
+<p>Это цилиндрическая проекция, которая сохраняет углы и формы объектов (равноугольная), но сильно искажает площади ближе к полюсам. Основные области использования — морская навигация, авиация, веб-карты (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс.Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">Open</span> <span class="pre">Street</span> <span class="pre">Map</span></code> и др.) и крупномасштабные карты приэкваториальных областей.</p>
+<figure class="align-default" id="id19">
+<a class="reference internal image-reference" href="../../_images/Worlds_animate.gif"><img alt="../../_images/Worlds_animate.gif" src="../../_images/Worlds_animate.gif" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-text">Пример искажений в проекции Меркатора. Авторство: Jakub Nowosad. Собственная работа, CC BY-SA 4.0, <a class="reference external" href="https://commons.wikimedia.org/w/index.php?curid=73955926">https://commons.wikimedia.org/w/index.php?curid=73955926</a></span><a class="headerlink" href="#id19" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Про <strong>стандарты</strong>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EPSG:4326</span></code> — географическая система координат, основанная на системе параметров <code class="docutils literal notranslate"><span class="pre">WGS84</span></code> ((<a class="reference external" href="https://en.wikipedia.org/wiki/World_Geodetic_System#WGS84">World Geodetic System 1984</a>) традиционно использует порядок <strong>широта</strong> — <strong>долгота</strong>, а <code class="docutils literal notranslate"><span class="pre">EPSG</span> <span class="pre">4326</span></code> —  <strong>долгота</strong> — <strong>широта</strong>.). Единица измерения — <strong>градус</strong>;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EPSG:3857</span></code> — прямоугольная система координат, основанная на проекции <strong>Меркатора</strong>, построенной по системе параметров <code class="docutils literal notranslate"><span class="pre">WGS84</span></code>. Единица измерения – <strong>метр</strong>.</p></li>
+</ul>
+</section>
+</section>
+<section id="id9">
+<h2>Что такое тайлы?<a class="headerlink" href="#id9" title="Permalink to this heading"></a></h2>
+<p><strong>Тайлы</strong> - это изображения небольшого размера (одинакового), являющиеся фрагментами большого изображения. В рамках работы с картами - это квадратные (обычно <code class="docutils literal notranslate"><span class="pre">256х256</span></code> пикселей, могут быть и <code class="docutils literal notranslate"><span class="pre">512x512</span></code>) изображения, формирующие карту мира.</p>
+<p>Они используются в веб-картографии (<code class="docutils literal notranslate"><span class="pre">Google</span> <span class="pre">Maps</span></code>, <code class="docutils literal notranslate"><span class="pre">Яндекс</span> <span class="pre">Карты</span></code>, <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code>) для быстрой загрузки: браузер загружает только те тайлы, которые видны на экране, экономя трафик и память.</p>
+<p>Например, если открыть в браузере карту [OpenStreetMap.org](www.openstreetmap.org), перейти в режим разработчика (<code class="docutils literal notranslate"><span class="pre">CTRL</span></code> + <code class="docutils literal notranslate"><span class="pre">SHIFT</span></code> + <code class="docutils literal notranslate"><span class="pre">I</span></code>) во вкладке <code class="docutils literal notranslate"><span class="pre">Network</span></code>, мы увидим следующую картину:</p>
+<figure class="align-default" id="id20">
+<a class="reference internal image-reference" href="../../_images/imgui_osm_tiles.png"><img alt="../../_images/imgui_osm_tiles.png" src="../../_images/imgui_osm_tiles.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-text">Как web-карта (Open Street Map) получает изображения (тайлы)</span><a class="headerlink" href="#id20" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>, где увидим, что были загружены несколько изображений <code class="docutils literal notranslate"><span class="pre">*.png</span></code> со странными названиями файлов.</p>
+<p>Например, <code class="docutils literal notranslate"><span class="pre">20726</span></code>:</p>
+<figure class="align-default" id="id21">
+<img alt="../../_images/20726.png" src="../../_images/20726.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id21" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Этот файл был получен при помощи запроса на сервер <code class="docutils literal notranslate"><span class="pre">OpenStreetMap</span></code> -
+<code class="docutils literal notranslate"><span class="pre">https://tile.openstreetmap.org/16/47867/20726.png</span></code>.</p>
+<p><cite>OSM</cite>-карты (и не только они) присваивают каждому изображению свои наименования. Правила наименований описаны в статье:<a class="reference external" href="https://wiki.openstreetmap.org/wiki/Slippy_map_tilenames">wiki.openstreetmap.org/wiki/Slippy_map_tilenames</a>.</p>
+<section id="id10">
+<h3>Правила наименований тайлов<a class="headerlink" href="#id10" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Все тайлы имеют размер <code class="docutils literal notranslate"><span class="pre">256</span> <span class="pre">×</span> <span class="pre">256</span></code> пикселей формата <code class="docutils literal notranslate"><span class="pre">PNG</span></code>;</p></li>
+<li><p>Каждое значение масштаба карты (zoom level) является директорией, каждый столбец также является директорией, в которой находятся изображения;</p></li>
+<li><p>Ссылка (<code class="docutils literal notranslate"><span class="pre">URL</span></code>) на получения конкретного файла (<code class="docutils literal notranslate"><span class="pre">*.png</span></code>) формируется в формате: <code class="docutils literal notranslate"><span class="pre">/zoom/x/y.png</span></code></p></li>
+</ol>
+<p>Например, для масштаба карты 2 (<code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">2</span></code>) будут след. наименования:</p>
+<figure class="align-default" id="id22">
+<a class="reference internal image-reference" href="../../_images/Tiled_web_map_numbering.png"><img alt="../../_images/Tiled_web_map_numbering.png" src="../../_images/Tiled_web_map_numbering.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-text">Пример нумерации тайлов</span><a class="headerlink" href="#id22" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Можно заметить, что:</p>
+<ul class="simple">
+<li><p>Координата <code class="docutils literal notranslate"><span class="pre">Z</span></code> - не меняется, <code class="docutils literal notranslate"><span class="pre">Z</span> <span class="pre">=</span> <span class="pre">2</span></code>.</p></li>
+<li><p>Координаты <code class="docutils literal notranslate"><span class="pre">X</span></code> - это <strong>столбцы</strong> матрицы, <code class="docutils literal notranslate"><span class="pre">Y</span></code> - <strong>строки</strong> матрицы.</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>Тайл серверы<a class="headerlink" href="#id11" title="Permalink to this heading"></a></h3>
+<p>С названиями координат изображений мы определились, но первая часть URL (например, <code class="docutils literal notranslate"><span class="pre">tile.openstreetmap.org</span></code>) отвечает за сервер, на который вы или ваше приложение будет отправлять запрос.</p>
+<table class="docutils align-default" id="id23">
+<caption><span class="caption-text">Таблица тайл-серверов</span><a class="headerlink" href="#id23" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 18.2%" />
+<col style="width: 59.1%" />
+<col style="width: 22.7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>URL template</p></th>
+<th class="head"><p>zoomlevels</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>OSM ‘standard’ style</p></td>
+<td><p><a class="reference external" href="https://tile.openstreetmap.org/">https://tile.openstreetmap.org/</a><strong>zoom/x/y.png</strong></p></td>
+<td><p>0-19</p></td>
+</tr>
+<tr class="row-odd"><td><p>OpenCycleMap</p></td>
+<td><p><a class="reference external" href="http://[abc].tile.thunderforest.com/cycle/">http://[abc].tile.thunderforest.com/cycle/</a><strong>zoom/x/y.png</strong></p></td>
+<td><p>0-22</p></td>
+</tr>
+<tr class="row-even"><td><p>Thunderforest Transport</p></td>
+<td><p><a class="reference external" href="http://[abc].tile.thunderforest.com/transport/">http://[abc].tile.thunderforest.com/transport/</a><strong>zoom/x/y.png</strong></p></td>
+<td><p>0-22</p></td>
+</tr>
+<tr class="row-odd"><td><p>MapTiles API Standard</p></td>
+<td><p><a class="reference external" href="https://maptiles.p.rapidapi.com/local/osm/v1/">https://maptiles.p.rapidapi.com/local/osm/v1/</a><strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY</p></td>
+<td><p>0-19 globally</p></td>
+</tr>
+<tr class="row-even"><td><p>MapTiles API English</p></td>
+<td><p><a class="reference external" href="https://maptiles.p.rapidapi.com/en/map/v1/">https://maptiles.p.rapidapi.com/en/map/v1/</a><strong>zoom/x/y.png</strong>?rapidapi-key=YOUR-KEY</p></td>
+<td><p>0-19 globally with English labels</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="zoom-levels">
+<h3>Масштаб (zoom levels)<a class="headerlink" href="#zoom-levels" title="Permalink to this heading"></a></h3>
+<p>Ниже приведена таблица по каждому уровню масштабирования (от <cite>0</cite> до <cite>19</cite>). Более подробная таблица находится <a class="reference external" href="https://wiki.openstreetmap.org/wiki/Zoom_levels">здесь</a>.</p>
+<span id="my-zoom-info-table"></span><table class="docutils align-default" id="id24">
+<caption><span class="caption-text">Информация по тайлам для масштабов (0 - 19)</span><a class="headerlink" href="#id24" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 23.1%" />
+<col style="width: 15.4%" />
+<col style="width: 46.2%" />
+<col style="width: 15.4%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>zoom level</p></th>
+<th class="head"><p>tile coverage</p></th>
+<th class="head"><p>number of tiles</p></th>
+<th class="head"><p>tile size(*) in degrees</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>1 tile covers whole world</p></td>
+<td><p>1 tile</p></td>
+<td><p>360° x 170.1022°</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>2 × 2 tiles</p></td>
+<td><p>4 tiles</p></td>
+<td><p>180° x 85.0511°</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>4 × 4 tiles</p></td>
+<td><p>16 tiles</p></td>
+<td><p>90° x [variable]</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p><span class="math notranslate nohighlight">\(2^n × 2^n\)</span> tiles</p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{2n}\)</span> tiles</p></td>
+<td><p>360/2&lt;sup&gt;n&lt;/sup&gt; ° x [variable]</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>4096 x 4096 tiles</p></td>
+<td><p>16 777 216</p></td>
+<td><p>0.0879° x [variable]</p></td>
+</tr>
+<tr class="row-odd"><td><p>16</p></td>
+<td><p>…</p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{32}\)</span> ≈ 4 295 million tiles</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-even"><td><p>17</p></td>
+<td><p>…</p></td>
+<td><p>17.2 billion tiles</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-odd"><td><p>18</p></td>
+<td><p>…</p></td>
+<td><p>68.7 billion tiles</p></td>
+<td><p>…</p></td>
+</tr>
+<tr class="row-even"><td><p>19</p></td>
+<td><p>Maximum zoom for Mapnik layer</p></td>
+<td><p>274.9 billion tiles</p></td>
+<td><p>…</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id13">
+<h3>Получение наименований тайлов<a class="headerlink" href="#id13" title="Permalink to this heading"></a></h3>
+<p>Вспомним про странные названия изображений, которые получает наш браузер: <code class="docutils literal notranslate"><span class="pre">20726.png</span></code>.</p>
+<figure class="align-default" id="id25">
+<img alt="../../_images/20726.png" src="../../_images/20726.png" />
+<figcaption>
+<p><span class="caption-text"><a class="reference external" href="https://tile.openstreetmap.org/16/47867/20726.png">https://tile.openstreetmap.org/16/47867/20726.png</a></span><a class="headerlink" href="#id25" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Если посмотрим на полный путь до этого файла, то увидим: <code class="docutils literal notranslate"><span class="pre">16/47867/20726.png</span></code>, где:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">16</span></code> - zoom;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">47867</span></code> - это номер столбца (координата <code class="docutils literal notranslate"><span class="pre">X</span></code>) во всей матрице тайлов для текущего масштаба;</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">20726</span></code> - это номер строки (или координата <code class="docutils literal notranslate"><span class="pre">Y</span></code>) в матрице.</p></li>
+</ul>
+<section id="id14">
+<h4><strong>Наша цель</strong><a class="headerlink" href="#id14" title="Permalink to this heading"></a></h4>
+<p>Преобразовать GPS-координаты в позиции (<code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>) тайлов <a class="reference external" href="https://ru.wikipedia.org/wiki/%D0%9F%D1%80%D0%BE%D0%B5%D0%BA%D1%86%D0%B8%D1%8F_%D0%9C%D0%B5%D1%80%D0%BA%D0%B0%D1%82%D0%BE%D1%80%D0%B0">Меркатора</a>.</p>
+<p>Состоит из 4 этапов:</p>
+<ul class="simple">
+<li><p>Преобразовать углы <code class="docutils literal notranslate"><span class="pre">Latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">Longitude</span></code> в сферическую проекцию Меркатора (из EPSG:4326 в EPSG:3857) <a class="reference external" href="https://epsg.io/3857">https://epsg.io/3857</a>;</p></li>
+<li><p>Преобразовать значения <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code> к отрезку <code class="docutils literal notranslate"><span class="pre">[0</span> <span class="pre">-</span> <span class="pre">1]</span></code>, получая относительный квадрат;</p></li>
+<li><p>Получить количество всей тайлов для текущего масштаба (<code class="docutils literal notranslate"><span class="pre">zoom</span></code>);</p></li>
+<li><p>Умножаем <code class="docutils literal notranslate"><span class="pre">X</span></code> и <code class="docutils literal notranslate"><span class="pre">Y</span></code> на количество тайлов - получаем “<strong>имена</strong>” тайлов в формате <code class="docutils literal notranslate"><span class="pre">zoom/x/y</span></code>.</p></li>
+</ul>
+</section>
+<section id="id16">
+<h4>Математика<a class="headerlink" href="#id16" title="Permalink to this heading"></a></h4>
+<ol class="arabic simple">
+<li><p>Преобразование в Web-проекцию Меркатора (из <code class="docutils literal notranslate"><span class="pre">Lat,</span> <span class="pre">Lon</span></code> в <code class="docutils literal notranslate"><span class="pre">X,</span> <span class="pre">Y</span></code>):</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-1">
+<span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation"></a></span>\[ X_{EPSG:3857} = lon_{EPSG:4326}\]</div>
+<p>, где <span class="math notranslate nohighlight">\(lon_{EPSG:4326}\)</span> - <strong>longitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(X_{EPSG:3857}\)</span> - <strong>X</strong> в системе Меркатора.</p>
+<div class="math notranslate nohighlight" id="equation-2">
+<span class="eqno">(2)<a class="headerlink" href="#equation-2" title="Permalink to this equation"></a></span>\[ Y_{EPSG:3857} = \ln(\tan(lat_{EPSG:4326}) + \frac{1}{\cos(lat_{EPSG:4326})})\]</div>
+<p>, где <span class="math notranslate nohighlight">\(lat_{EPSG:4326}\)</span> - <strong>latitude</strong> в системе EPSG:4326, <span class="math notranslate nohighlight">\(Y_{EPSG:3857}\)</span> - <strong>Y</strong> в системе Меркатора.</p>
+<ol class="arabic simple" start="2">
+<li><p>Нормируем к интервалу <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">1)</span></code></p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-3">
+<span class="eqno">(3)<a class="headerlink" href="#equation-3" title="Permalink to this equation"></a></span>\[ x = 0.5 + \frac{X_{EPSG:3857}}{360}\]</div>
+<div class="math notranslate nohighlight" id="equation-4">
+<span class="eqno">(4)<a class="headerlink" href="#equation-4" title="Permalink to this equation"></a></span>\[ y = 0.5 - \frac{Y_{EPSG:3857}}{2 * \pi}\]</div>
+<ol class="arabic simple" start="3">
+<li><p>Считаем количество тайлов, которое есть на карте данного масштаба (см. <a class="reference internal" href="#my-zoom-info-table"><span class="std std-ref">Информация по тайлам для масштабов (0 - 19)</span></a>):</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-5">
+<span class="eqno">(5)<a class="headerlink" href="#equation-5" title="Permalink to this equation"></a></span>\[ N_{tiles} = 2^{zoom}\]</div>
+<p>, где <span class="math notranslate nohighlight">\(N_{tiles}\)</span> - количество тайлов, <span class="math notranslate nohighlight">\(zoom\)</span> - уровень масштабирования.</p>
+<ol class="arabic simple" start="4">
+<li><p>Получаем значения координат тайла (в матрице всех тайлов для <span class="math notranslate nohighlight">\(2^{zoom}\)</span>)</p></li>
+</ol>
+<div class="math notranslate nohighlight" id="equation-6">
+<span class="eqno">(6)<a class="headerlink" href="#equation-6" title="Permalink to this equation"></a></span>\[x_{tile} = N_{tiles} * x\]</div>
+<div class="math notranslate nohighlight" id="equation-7">
+<span class="eqno">(7)<a class="headerlink" href="#equation-7" title="Permalink to this equation"></a></span>\[y_{tile} = N_{tiles} * y\]</div>
+<p><strong>Пример</strong>:</p>
+<p>Возьмем координаты <code class="docutils literal notranslate"><span class="pre">lat</span> <span class="pre">=</span> <span class="pre">55.007969</span></code>, <code class="docutils literal notranslate"><span class="pre">lon</span> <span class="pre">=</span> <span class="pre">82.944546</span></code> (широта, долгота), <code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">16</span></code>.</p>
+<table class="docutils align-default" id="id26">
+<caption><span class="caption-text">Пример вычисления наименования тайла</span><a class="headerlink" href="#id26" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Этап</p></th>
+<th class="head"><p>Значения</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Web-Меркатор</p></td>
+<td><div class="line-block">
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lat</span> <span class="pre">=</span> <span class="pre">55.007969</span></code></div>
+<div class="line"><code class="docutils literal notranslate"><span class="pre">lon</span> <span class="pre">=</span> <span class="pre">82.944546</span></code></div>
+<div class="line"><span class="math notranslate nohighlight">\(X_{EPSG:3857} = 82.944546\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(Y_{EPSG:3857} = 1.1544770655\)</span></div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Нормирование</p></td>
+<td><div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\(x = 0.73040151666\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y = 0.31625926833\)</span></div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Масштаб</p></td>
+<td><p><span class="math notranslate nohighlight">\(2^{16} = 65536\)</span></p></td>
+</tr>
+<tr class="row-odd"><td><p>Точные индексы тайла по <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code></p></td>
+<td><div class="line-block">
+<div class="line"><span class="math notranslate nohighlight">\(x_{tile} = 0.73040151666 * 65536 = 47867.5937958\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(y_{tile} = 0.31625926833 * 65536 = 20726.3674093\)</span></div>
+<div class="line"><span class="math notranslate nohighlight">\(fractional_{x} =59.37958\)</span> %</div>
+<div class="line"><span class="math notranslate nohighlight">\(fractional_{y} =36.74093\)</span> %;</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Значения пикселей в картинке <code class="docutils literal notranslate"><span class="pre">256x256</span></code></p></td>
+<td><div class="line-block">
+<div class="line">X - <span class="math notranslate nohighlight">\(256 * 0.5937 = 151.9872\)</span></div>
+<div class="line">Y - <span class="math notranslate nohighlight">\(256 * 0.3674 = 94.0544\)</span></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p>С округлением вниз получаем: <cite>z = 16</cite>, <cite>x = 47867</cite>, <cite>y = 20726</cite>. Как мы можем заметить, это совпадает с запросом к тайл-серверу OpenStreetmap: <code class="docutils literal notranslate"><span class="pre">https://tile.openstreetmap.org/16/47867/20726.png</span></code>.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../DataBase/c_psql.html" class="btn btn-neutral float-left" title="Clang + PSQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="06_curl_get_tiles.html" class="btn btn-neutral float-right" title="Получение тайлов из кода С / С++" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

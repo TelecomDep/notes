@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Преобразование изображения в значения пикселей &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="https://wavedrom.com/skins/default.js"></script>
+        <script src="https://wavedrom.com/wavedrom.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Установка Qt" href="../Qt/qt_install.html" />
+    <link rel="prev" title="Получение тайлов из кода С / С++" href="06_curl_get_tiles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html">Практические задания</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html#id7">Вопросы к экзамену\зачету</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CXX</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../cxx.html">Немного про C++</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../cxx_fundamentals.html">C++</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01_introduction.html">1. Dear ImGui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02_int_main.html">2. Первая программа с Dear Imgui</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03_widgets.html">3. Виджеты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04_plots.html">4. Работа с графиками</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../DataBase/c_psql.html">Clang + PSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05_osm_tile_naming.html">Получение тайлов карты (Open Street Map)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="06_curl_get_tiles.html">Получение тайлов из кода С / С++</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Преобразование изображения в значения пикселей</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#png">1) Немного теории про <strong>.PNG</strong></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id4">Подпись PNG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#chunks-png">Чанки (chunks) PNG</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#stb">2) Библиотека STB</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../Qt/qt_introduction.html">Разработка визуального интерфейса при помощи Qt.</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../React/react.html">React</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../os/os.html">Операционные системы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../cxx.html">Немного про C++</a></li>
+      <li class="breadcrumb-item active">Преобразование изображения в значения пикселей</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/CXX/Imgui/07_stb_play_with_images.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Преобразование изображения в значения пикселей<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="png">
+<h2>1) Немного теории про <strong>.PNG</strong><a class="headerlink" href="#png" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Почитать про <a class="reference external" href="https://habr.com/ru/articles/130472/">.PNG можно здесь</a>;</p></li>
+<li><p><a class="reference external" href="https://www.libpng.org/pub/png/spec/1.2/PNG-Rationale.html#R.PNG-file-signature">Официальная документация</a></p></li>
+</ul>
+<p>Вкратце, .png состоит из двух основных частей:</p>
+<ul class="simple">
+<li><p>Подпись <code class="docutils literal notranslate"><span class="pre">.png</span></code>;</p></li>
+<li><p>Чанки (<code class="docutils literal notranslate"><span class="pre">chunks</span></code>) с данными.</p></li>
+</ul>
+<figure class="align-default" id="id7">
+<img alt="../../_images/png_signature_chunks.png" src="../../_images/png_signature_chunks.png" />
+<figcaption>
+<p><span class="caption-text">Обобщенный формат PNG-файла</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<section id="id4">
+<h3>Подпись PNG<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<p>Подпись PNG-файла состоит из 8 байт и представляет собой (в hex-записи):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mh">0x89</span> <span class="mh">0x50</span> <span class="mh">0x4e</span> <span class="mh">0x47</span> <span class="mh">0xd</span> <span class="mh">0xa</span> <span class="mh">0x1a</span> <span class="mh">0xa</span>
+</pre></div>
+</div>
+<p>, где:</p>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">Заголовок PNG-подписи</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 40.0%" />
+<col style="width: 60.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Значение (hex)</p></th>
+<th class="head"><p>Назначение</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x89</p></td>
+<td><p>Non-ASCII символ. Препятствует распознаванию PNG, как текстового файла.</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x50 0x4e 0x47</p></td>
+<td><p>PNG в ASCII записи.</p></td>
+</tr>
+<tr class="row-even"><td><p>0D 0A</p></td>
+<td><p>CRLF (Carriage-return, Line-feed), DOS-style перевод строки.</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x1a</p></td>
+<td><p>Останавливает вывод файла в DOS режиме (end-of-file), чтобы вам не вываливалось многокилобайтное изображение в текстовом виде.</p></td>
+</tr>
+<tr class="row-even"><td><p>0xa</p></td>
+<td><p>LF, Unix-style перевод строки.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="chunks-png">
+<h3>Чанки (chunks) PNG<a class="headerlink" href="#chunks-png" title="Permalink to this heading"></a></h3>
+<p>Чанки — это блоки данных, из которых состоит файл. Каждый чанк состоит из 4 секций.</p>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-text">Формат чанков</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Length (длина)</p></th>
+<th class="head"><p>Type (тип)</p></th>
+<th class="head"><p>Data (данные)</p></th>
+<th class="head"><p>CRC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4 байта</p></td>
+<td><p>4 байта</p></td>
+<td><p>Length байт</p></td>
+<td><p>4 байта</p></td>
+</tr>
+</tbody>
+</table>
+<p>, где:</p>
+<ul class="simple">
+<li><p><strong>Длина</strong> — это числовое значение длины блока данных;</p></li>
+<li><p><strong>Тип</strong> -  представляет собой 4 чувствительных к регистру <code class="docutils literal notranslate"><span class="pre">ASCII</span></code>-символа;</p></li>
+<li><p><strong>Данные</strong> - собственно, само изображение;</p></li>
+<li><p><strong>CRC</strong> - контрольная сумма для проверки целостности.</p></li>
+</ul>
+<p>Также, важно отметить, что существуют <strong>Критические чанки:</strong></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">IHDR</span></code> — заголовок файла, содержит основную информацию о изображении. Обязан быть первым чанком.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PLTE</span></code> — палитра, список цветов.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IDAT</span></code> — содержит, собственно, изображение. Рисунок можно разбить на несколько <code class="docutils literal notranslate"><span class="pre">IDAT</span></code> чанков, для потоковой передачи. В каждом файле должен быть хотя бы один - <code class="docutils literal notranslate"><span class="pre">IDAT</span></code> чанк.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">IEND</span></code> — завершающий чанк, обязан быть последним в файле.</p></li>
+</ul>
+<p>Минимальный PNG-файл выглядит следующим образом:</p>
+<figure class="align-default" id="id10">
+<img alt="../../_images/png_minimum.png" src="../../_images/png_minimum.png" />
+<figcaption>
+<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="stb">
+<h2>2) Библиотека STB<a class="headerlink" href="#stb" title="Permalink to this heading"></a></h2>
+<p>Баблиотека (на базе <code class="docutils literal notranslate"><span class="pre">С</span></code>) <a class="reference external" href="https://github.com/nothings/stb">STB</a> является довольно популярной (<code class="docutils literal notranslate"><span class="pre">33.2k</span></code> stars on github) библиотекой для чтения изображений формата STB, библиотека состоит из одного заголовочного файла.</p>
+<p>Есть более полный список библиотек для работы с изображениями и не только: <a class="reference external" href="https://habr.com/ru/articles/831754/">https://habr.com/ru/articles/831754/</a>.</p>
+<p>Устанавливаем пакеты:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>libstb-dev
+</pre></div>
+</div>
+<p>Добавляем в CmakLists нашего проекта (где уже подключены <code class="docutils literal notranslate"><span class="pre">ImGUI</span></code> + <code class="docutils literal notranslate"><span class="pre">PSQL</span></code> + <code class="docutils literal notranslate"><span class="pre">curl</span></code>):</p>
+<div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">include</span><span class="p">(</span><span class="s">FindPkgConfig</span><span class="p">)</span>
+<span class="nb">pkg_check_modules</span><span class="p">(</span><span class="s">STB</span><span class="w"> </span><span class="s">REQUIRED</span><span class="w"> </span><span class="s">stb</span><span class="p">)</span>
+
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="o">${</span><span class="nv">EXAMPLES_DIR</span><span class="o">}</span><span class="s">/osm_tiles/tile_catcher.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="s">imgui</span><span class="w"> </span><span class="s">implot</span><span class="w"> </span><span class="s">curl</span><span class="w"> </span><span class="o">${</span><span class="nv">SDL2_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">OPENGL_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">GLEW_LIBRARIES</span><span class="o">}</span><span class="w"> </span><span class="o">${</span><span class="nv">STB_LIBRARIES</span><span class="o">}</span><span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="o">${</span><span class="nv">STB_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils align-default" id="id11">
+<caption><span class="caption-text">Основные функции</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 23.5%" />
+<col style="width: 76.5%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Имя</p></th>
+<th class="head"><p>Что делает?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stbi_load_from_memory</span></code></p></td>
+<td><p>загрузка изображений из оперативной памяти, а не с диска. Она принимает указатель на буфер данных, размер, возвращает пиксели и параметры изображения (x, y, channels). Поддерживает <code class="docutils literal notranslate"><span class="pre">JPEG</span></code>, <code class="docutils literal notranslate"><span class="pre">PNG</span></code>, <code class="docutils literal notranslate"><span class="pre">TGA</span></code>, <code class="docutils literal notranslate"><span class="pre">BMP</span></code>, <code class="docutils literal notranslate"><span class="pre">GIF</span></code>, <code class="docutils literal notranslate"><span class="pre">HDR</span></code> и др., возвращая <code class="docutils literal notranslate"><span class="pre">stbi_uc</span></code> (<code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>).</p></td>
+</tr>
+</tbody>
+</table>
+<p>Преобразование будет выполнять при помощи библиотеки <code class="docutils literal notranslate"><span class="pre">libstb-dev</span></code>, которую мы подключили в <code class="docutils literal notranslate"><span class="pre">CMakeLists</span></code> в начале.</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stb_image.h&gt;</span>
+<span class="p">...</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">_width</span><span class="p">{</span><span class="mi">256</span><span class="p">},</span><span class="w"> </span><span class="n">_height</span><span class="p">{</span><span class="mi">256</span><span class="p">},</span><span class="w"> </span><span class="n">_channels</span><span class="p">{};</span><span class="w"> </span><span class="c1">// Размеры изображения</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">byte</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_rawBlob</span><span class="p">;</span><span class="w">            </span><span class="c1">// То куда мы положили наши байтики PNG</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">byte</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_rgbaBlob</span><span class="p">;</span><span class="w">           </span><span class="c1">// В этот массив мы запишем значения Пикселей</span>
+<span class="n">GLuint</span><span class="w"> </span><span class="n">_id</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+
+<span class="c1">// Преобразуем PNG в rgba-массив</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">stbLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">stbi_set_flip_vertically_on_load</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">ptr</span><span class="p">{</span>
+<span class="w">      </span><span class="n">stbi_load_from_memory</span><span class="p">(</span><span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="n">stbi_uc</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">_rawBlob</span><span class="p">.</span><span class="n">data</span><span class="p">()),</span>
+<span class="w">                            </span><span class="n">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_rawBlob</span><span class="p">.</span><span class="n">size</span><span class="p">()),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_width</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_height</span><span class="p">,</span>
+<span class="w">                            </span><span class="o">&amp;</span><span class="n">_channels</span><span class="p">,</span><span class="w"> </span><span class="n">STBI_rgb_alpha</span><span class="p">)};</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nbytes</span><span class="p">{</span><span class="kt">size_t</span><span class="p">(</span><span class="n">_width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_height</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">STBI_rgb_alpha</span><span class="p">)};</span>
+<span class="w">    </span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nbytes</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">shrink_to_fit</span><span class="p">();</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">byteptr</span><span class="p">{</span><span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">byte</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ptr</span><span class="p">)};</span>
+<span class="w">    </span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">byteptr</span><span class="p">,</span><span class="w"> </span><span class="n">byteptr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nbytes</span><span class="p">);</span>
+<span class="w">    </span><span class="n">stbi_image_free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Преобразуем в текстуру GL</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">glLoad</span><span class="p">(){</span>
+<span class="w">  </span><span class="n">glGenTextures</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_id</span><span class="p">);</span>
+<span class="w">  </span><span class="n">glBindTexture</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="n">_id</span><span class="p">);</span>
+<span class="w">  </span><span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TEXTURE_MIN_FILTER</span><span class="p">,</span><span class="w"> </span><span class="n">GL_NEAREST</span><span class="p">);</span>
+<span class="w">  </span><span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TEXTURE_MAG_FILTER</span><span class="p">,</span><span class="w"> </span><span class="n">GL_NEAREST</span><span class="p">);</span>
+<span class="w">  </span><span class="n">glPixelStorei</span><span class="p">(</span><span class="n">GL_UNPACK_ROW_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">  </span><span class="n">glTexImage2D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA</span><span class="p">,</span><span class="w"> </span><span class="n">_width</span><span class="p">,</span><span class="w"> </span><span class="n">_height</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA</span><span class="p">,</span>
+<span class="w">              </span><span class="n">GL_UNSIGNED_BYTE</span><span class="p">,</span><span class="w"> </span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">data</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
+
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">){</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">BeginPlot</span><span class="p">(</span><span class="s">&quot;##ImOsmMapPlot&quot;</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Параметры для отображения картинки</span>
+<span class="w">    </span><span class="n">ImVec2</span><span class="w"> </span><span class="n">_uv0</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span><span class="w">        </span><span class="c1">// Top-left of the texture</span>
+<span class="w">    </span><span class="n">ImVec2</span><span class="w"> </span><span class="n">_uv1</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span><span class="w">        </span><span class="c1">// Bottom-right of the texture</span>
+<span class="w">    </span><span class="n">ImVec4</span><span class="w"> </span><span class="n">_tint</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span><span class="w"> </span><span class="c1">// Цвет, накладываемый поверх нашего изображения</span>
+<span class="w">    </span><span class="n">ImVec2</span><span class="w"> </span><span class="n">bmin</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">ImVec2</span><span class="w"> </span><span class="n">bmax</span><span class="p">{</span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">stbLoad</span><span class="p">();</span>
+<span class="w">    </span><span class="n">glLoad</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Отображаем текстуру GL - _id, которую мы создали из RGBa</span>
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">PlotImage</span><span class="p">(</span><span class="s">&quot;##&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">_id</span><span class="p">,</span><span class="w"> </span><span class="n">bmin</span><span class="p">,</span><span class="w"> </span><span class="n">bmax</span><span class="p">,</span><span class="w"> </span><span class="n">_uv0</span><span class="p">,</span><span class="w"> </span><span class="n">_uv1</span><span class="p">,</span><span class="w"> </span><span class="n">_tint</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">ImPlot</span><span class="o">::</span><span class="n">EndPlot</span><span class="p">();</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Если вывести на экран первые несколько значений <code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::byte&gt;</span> <span class="pre">_rgbaBlob;</span></code>, увидим следующее:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">228</span><span class="p">,</span> <span class="mi">228</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">156</span><span class="p">,</span> <span class="mi">156</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">148</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">212</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">211</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">245</span><span class="p">,</span> <span class="mi">244</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">242</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">230</span><span class="p">,</span> <span class="mi">228</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">160</span><span class="p">,</span> <span class="mi">159</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">212</span><span class="p">,</span> <span class="mi">209</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">242</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">242</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">242</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">242</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">242</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">237</span><span class="p">,</span> <span class="mi">235</span><span class="p">,</span> <span class="mi">229</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">197</span><span class="p">,</span> <span class="mi">218</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">149</span><span class="p">,</span> <span class="mi">177</span><span class="p">,</span> <span class="mi">92</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">180</span><span class="p">,</span> <span class="mi">188</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">247</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">247</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">247</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">247</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">247</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">247</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">255</span>
+<span class="mi">247</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">255</span>
+</pre></div>
+</div>
+<p><strong>Готово</strong>:</p>
+<p><a class="reference external" href="https://github.com/TelecomDep/backend_notes/blob/main/examples/osm_tiles/tile_catcher.cpp">Полный пример можно найти здесь</a>.</p>
+<figure class="align-default" id="id12">
+<img alt="../../_images/png_tile_plot.png" src="../../_images/png_tile_plot.png" />
+<figcaption>
+<p><span class="caption-text">Результат.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="06_curl_get_tiles.html" class="btn btn-neutral float-left" title="Получение тайлов из кода С / С++" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Qt/qt_install.html" class="btn btn-neutral float-right" title="Установка Qt" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
