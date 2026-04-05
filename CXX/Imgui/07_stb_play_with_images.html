@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Преобразование изображения в значения пикселей &mdash; Telecom Notes 0.1 documentation</title>
+  <title>Преобразование изображения в значения пикселей (PNG + STB_IMAGE) &mdash; Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
@@ -74,9 +74,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../../DataBase/c_psql.html">Clang + PSQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05_osm_tile_naming.html">Получение тайлов карты (Open Street Map)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="06_curl_get_tiles.html">Получение тайлов из кода С / С++</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Преобразование изображения в значения пикселей</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Преобразование изображения в значения пикселей (PNG + STB_IMAGE)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#png">1) Немного теории про <strong>.PNG</strong></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#id4">Подпись PNG</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Подпись PNG</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#chunks-png">Чанки (chunks) PNG</a></li>
 </ul>
 </li>
@@ -120,7 +120,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../cxx.html">Немного про C++</a></li>
-      <li class="breadcrumb-item active">Преобразование изображения в значения пикселей</li>
+      <li class="breadcrumb-item active">Преобразование изображения в значения пикселей (PNG + STB_IMAGE)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/CXX/Imgui/07_stb_play_with_images.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -130,8 +130,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="id1">
-<h1>Преобразование изображения в значения пикселей<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+  <section id="png-stb-image">
+<h1>Преобразование изображения в значения пикселей (PNG + STB_IMAGE)<a class="headerlink" href="#png-stb-image" title="Permalink to this heading"></a></h1>
 <section id="png">
 <h2>1) Немного теории про <strong>.PNG</strong><a class="headerlink" href="#png" title="Permalink to this heading"></a></h2>
 <ul class="simple">
@@ -143,21 +143,21 @@
 <li><p>Подпись <code class="docutils literal notranslate"><span class="pre">.png</span></code>;</p></li>
 <li><p>Чанки (<code class="docutils literal notranslate"><span class="pre">chunks</span></code>) с данными.</p></li>
 </ul>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id6">
 <img alt="../../_images/png_signature_chunks.png" src="../../_images/png_signature_chunks.png" />
 <figcaption>
-<p><span class="caption-text">Обобщенный формат PNG-файла</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Обобщенный формат PNG-файла</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<section id="id4">
-<h3>Подпись PNG<a class="headerlink" href="#id4" title="Permalink to this heading"></a></h3>
+<section id="id3">
+<h3>Подпись PNG<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
 <p>Подпись PNG-файла состоит из 8 байт и представляет собой (в hex-записи):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mh">0x89</span> <span class="mh">0x50</span> <span class="mh">0x4e</span> <span class="mh">0x47</span> <span class="mh">0xd</span> <span class="mh">0xa</span> <span class="mh">0x1a</span> <span class="mh">0xa</span>
 </pre></div>
 </div>
 <p>, где:</p>
-<table class="docutils align-default" id="id8">
-<caption><span class="caption-text">Заголовок PNG-подписи</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Заголовок PNG-подписи</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 40.0%" />
 <col style="width: 60.0%" />
@@ -189,8 +189,8 @@
 <section id="chunks-png">
 <h3>Чанки (chunks) PNG<a class="headerlink" href="#chunks-png" title="Permalink to this heading"></a></h3>
 <p>Чанки — это блоки данных, из которых состоит файл. Каждый чанк состоит из 4 секций.</p>
-<table class="docutils align-default" id="id9">
-<caption><span class="caption-text">Формат чанков</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id8">
+<caption><span class="caption-text">Формат чанков</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 25.0%" />
@@ -227,10 +227,10 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">IEND</span></code> — завершающий чанк, обязан быть последним в файле.</p></li>
 </ul>
 <p>Минимальный PNG-файл выглядит следующим образом:</p>
-<figure class="align-default" id="id10">
+<figure class="align-default" id="id9">
 <img alt="../../_images/png_minimum.png" src="../../_images/png_minimum.png" />
 <figcaption>
-<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -252,8 +252,8 @@
 <span class="nb">target_include_directories</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="o">${</span><span class="nv">STB_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils align-default" id="id11">
-<caption><span class="caption-text">Основные функции</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Основные функции</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 66.7%" />
@@ -375,10 +375,10 @@
 </div>
 <p><strong>Готово</strong>:</p>
 <p><a class="reference external" href="https://github.com/TelecomDep/backend_notes/blob/main/examples/osm_tiles/tile_catcher.cpp">Полный пример можно найти здесь</a>.</p>
-<figure class="align-default" id="id12">
+<figure class="align-default" id="id11">
 <img alt="../../_images/png_tile_plot.png" src="../../_images/png_tile_plot.png" />
 <figcaption>
-<p><span class="caption-text">Результат.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Результат.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
