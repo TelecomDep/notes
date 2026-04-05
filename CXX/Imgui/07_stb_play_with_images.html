@@ -143,10 +143,10 @@
 <li><p>Подпись <code class="docutils literal notranslate"><span class="pre">.png</span></code>;</p></li>
 <li><p>Чанки (<code class="docutils literal notranslate"><span class="pre">chunks</span></code>) с данными.</p></li>
 </ul>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id9">
 <img alt="../../_images/png_signature_chunks.png" src="../../_images/png_signature_chunks.png" />
 <figcaption>
-<p><span class="caption-text">Обобщенный формат PNG-файла</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Обобщенный формат PNG-файла</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <section id="id4">
@@ -156,8 +156,8 @@
 </pre></div>
 </div>
 <p>, где:</p>
-<table class="docutils align-default" id="id8">
-<caption><span class="caption-text">Заголовок PNG-подписи</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Заголовок PNG-подписи</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 40.0%" />
 <col style="width: 60.0%" />
@@ -189,8 +189,8 @@
 <section id="chunks-png">
 <h3>Чанки (chunks) PNG<a class="headerlink" href="#chunks-png" title="Permalink to this heading"></a></h3>
 <p>Чанки — это блоки данных, из которых состоит файл. Каждый чанк состоит из 4 секций.</p>
-<table class="docutils align-default" id="id9">
-<caption><span class="caption-text">Формат чанков</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id11">
+<caption><span class="caption-text">Формат чанков</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 25.0%" />
@@ -227,10 +227,10 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">IEND</span></code> — завершающий чанк, обязан быть последним в файле.</p></li>
 </ul>
 <p>Минимальный PNG-файл выглядит следующим образом:</p>
-<figure class="align-default" id="id10">
+<figure class="align-default" id="id12">
 <img alt="../../_images/png_minimum.png" src="../../_images/png_minimum.png" />
 <figcaption>
-<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -252,8 +252,8 @@
 <span class="nb">target_include_directories</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="o">${</span><span class="nv">STB_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils align-default" id="id11">
-<caption><span class="caption-text">Основные функции</span><a class="headerlink" href="#id11" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id13">
+<caption><span class="caption-text">Основные функции</span><a class="headerlink" href="#id13" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 23.5%" />
 <col style="width: 76.5%" />
@@ -265,7 +265,12 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">stbi_load_from_memory</span></code></p></td>
-<td><p>загрузка изображений из оперативной памяти, а не с диска. Она принимает указатель на буфер данных, размер, возвращает пиксели и параметры изображения (x, y, channels). Поддерживает <code class="docutils literal notranslate"><span class="pre">JPEG</span></code>, <code class="docutils literal notranslate"><span class="pre">PNG</span></code>, <code class="docutils literal notranslate"><span class="pre">TGA</span></code>, <code class="docutils literal notranslate"><span class="pre">BMP</span></code>, <code class="docutils literal notranslate"><span class="pre">GIF</span></code>, <code class="docutils literal notranslate"><span class="pre">HDR</span></code> и др., возвращая <code class="docutils literal notranslate"><span class="pre">stbi_uc</span></code> (<code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>).</p></td>
+<td><p>|| загрузка изображений из оперативной памяти, а не с диска.
+|| Она принимает указатель на буфер данных, размер, возвращает пиксели и параметры изображения (x, y, channels).
+|| Поддерживает <code class="docutils literal notranslate"><span class="pre">JPEG</span></code>, <code class="docutils literal notranslate"><span class="pre">PNG</span></code>, <code class="docutils literal notranslate"><span class="pre">TGA</span></code>, <code class="docutils literal notranslate"><span class="pre">BMP</span></code>, <code class="docutils literal notranslate"><span class="pre">GIF</span></code>, <code class="docutils literal notranslate"><span class="pre">HDR</span></code> и др., возвращая <code class="docutils literal notranslate"><span class="pre">stbi_uc</span></code> (<code class="docutils literal notranslate"><span class="pre">unsigned</span> <span class="pre">char</span></code>).</p></td>
+</tr>
+<tr class="row-odd"><td><p>stbi_image_free(void <a href="#id6"><span class="problematic" id="id7">*</span></a>retval_from_stbi_load)</p></td>
+<td><p>функция для освобождения памяти, выделенной функциями <code class="docutils literal notranslate"><span class="pre">stbi_load</span></code> или <code class="docutils literal notranslate"><span class="pre">stbi_load_from_memory</span></code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -363,10 +368,10 @@
 </div>
 <p><strong>Готово</strong>:</p>
 <p><a class="reference external" href="https://github.com/TelecomDep/backend_notes/blob/main/examples/osm_tiles/tile_catcher.cpp">Полный пример можно найти здесь</a>.</p>
-<figure class="align-default" id="id12">
+<figure class="align-default" id="id14">
 <img alt="../../_images/png_tile_plot.png" src="../../_images/png_tile_plot.png" />
 <figcaption>
-<p><span class="caption-text">Результат.</span><a class="headerlink" href="#id12" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Результат.</span><a class="headerlink" href="#id14" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
