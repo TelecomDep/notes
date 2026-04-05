@@ -47,6 +47,10 @@
 
 1. [implot_demos](https://github.com/Flinterpop/implot_demos) - хорошие примеры с картами.
 
+**Open-source библиотеки**
+
+1. Довольно большой список библиотек для работы с изображениями и не только: `https://habr.com/ru/articles/831754/ <https://habr.com/ru/articles/831754/>`_.
+
 
 **Основы С++**
 1. 
