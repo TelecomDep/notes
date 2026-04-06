@@ -49,7 +49,10 @@
 
 **Open-source библиотеки**
 
-1. Довольно большой список библиотек для работы с изображениями и не только: `https://habr.com/ru/articles/831754/ <https://habr.com/ru/articles/831754/>`_.
+1. Довольно большой список библиотек для работы с изображениями и не только: `https://habr.com/ru/articles/831754/ <https://habr.com/ru/articles/831754/>`_;
+2. A list of open-source C++ libraries: ["официальный список"](https://en.cppreference.com/w/cpp/links/libs);
+3. Список от Фараза Фаллахи - [Awesome C++](https://github.com/fffaraz/awesome-cpp);
+4. Еще один спискок популярных библиотек - [https://github.com/p-ranav/awesome-hpp](https://github.com/p-ranav/awesome-hpp);
 
 
 **Основы С++**

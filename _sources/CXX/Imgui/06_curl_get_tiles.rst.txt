@@ -37,8 +37,8 @@
   // Наш callback при получении данных от libcurl
   size_t onPullResponse(void *data, size_t size, size_t nmemb, void *userp) {
     size_t realsize{size * nmemb};
-    auto &blob{*static_cast<std::vector<std::byte> *>(userp)};
-    auto const *const dataptr{static_cast<std::byte *>(data)};
+    auto &blob{*static_cast<std::vector<unsigned char> *>(userp)};
+    auto const *const dataptr{static_cast<unsigned char *>(data)};
     blob.insert(blob.cend(), dataptr, dataptr + realsize);
     std::cout << "Bytes received size = " << realsize << std::endl;
     return realsize;
@@ -51,7 +51,7 @@
 
     // 0. Здесь нам нужно из координат Lat, Lon получить координаты X, Y, Z ()
     int z, int x, int y;
-    std::vector<std::byte> &blob
+    std::vector<unsigned char> &blob
 
     // 1. Инициализируем структуру curl
     CURL *curl{curl_easy_init()};

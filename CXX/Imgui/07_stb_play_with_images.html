@@ -285,26 +285,21 @@
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stb_image.h&gt;</span>
 <span class="p">...</span>
-<span class="kt">int</span><span class="w"> </span><span class="n">_width</span><span class="p">{</span><span class="mi">256</span><span class="p">},</span><span class="w"> </span><span class="n">_height</span><span class="p">{</span><span class="mi">256</span><span class="p">},</span><span class="w"> </span><span class="n">_channels</span><span class="p">{};</span><span class="w"> </span><span class="c1">// Размеры изображения</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">byte</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_rawBlob</span><span class="p">;</span><span class="w">            </span><span class="c1">// То куда мы положили наши байтики PNG</span>
-<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">byte</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_rgbaBlob</span><span class="p">;</span><span class="w">           </span><span class="c1">// В этот массив мы запишем значения Пикселей</span>
+<span class="kt">int</span><span class="w"> </span><span class="n">_width</span><span class="p">{</span><span class="mi">256</span><span class="p">},</span><span class="w"> </span><span class="n">_height</span><span class="p">{</span><span class="mi">256</span><span class="p">},</span><span class="w"> </span><span class="n">_channels</span><span class="p">{};</span><span class="w">     </span><span class="c1">// Размеры изображения</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_rawBlob</span><span class="p">;</span><span class="w">            </span><span class="c1">// Байтики PNG-изображения</span>
+<span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="w">                             </span><span class="c1">// Байтики пикселей</span>
 <span class="n">GLuint</span><span class="w"> </span><span class="n">_id</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
 
 <span class="c1">// Преобразуем PNG в rgba-массив</span>
 <span class="kt">void</span><span class="w"> </span><span class="nf">stbLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">stbi_set_flip_vertically_on_load</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">ptr</span><span class="p">{</span>
-<span class="w">      </span><span class="n">stbi_load_from_memory</span><span class="p">(</span><span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="n">stbi_uc</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">_rawBlob</span><span class="p">.</span><span class="n">data</span><span class="p">()),</span>
-<span class="w">                            </span><span class="n">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_rawBlob</span><span class="p">.</span><span class="n">size</span><span class="p">()),</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_width</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">_height</span><span class="p">,</span>
-<span class="w">                            </span><span class="o">&amp;</span><span class="n">_channels</span><span class="p">,</span><span class="w"> </span><span class="n">STBI_rgb_alpha</span><span class="p">)};</span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">nbytes</span><span class="p">{</span><span class="kt">size_t</span><span class="p">(</span><span class="n">_width</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">_height</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">STBI_rgb_alpha</span><span class="p">)};</span>
-<span class="w">    </span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">nbytes</span><span class="p">);</span>
-<span class="w">    </span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">shrink_to_fit</span><span class="p">();</span>
-<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">byteptr</span><span class="p">{</span><span class="n">reinterpret_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">byte</span><span class="w"> </span><span class="o">*&gt;</span><span class="p">(</span><span class="n">ptr</span><span class="p">)};</span>
-<span class="w">    </span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">byteptr</span><span class="p">,</span><span class="w"> </span><span class="n">byteptr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">nbytes</span><span class="p">);</span>
-<span class="w">    </span><span class="n">stbi_image_free</span><span class="p">(</span><span class="n">ptr</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stbi_load_from_memory</span><span class="p">(</span>
+<span class="w">    </span><span class="n">_rawBlob</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w">  </span><span class="c1">// указатель на байты PNG-изображения</span>
+<span class="w">    </span><span class="n">_rawBlob</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w">  </span><span class="c1">// Количество байт</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="n">_width</span><span class="p">,</span><span class="w">          </span><span class="c1">// Ширины изображения</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="n">_height</span><span class="p">,</span><span class="w">         </span><span class="c1">// Высота изображения</span>
+<span class="w">    </span><span class="o">&amp;</span><span class="n">_channels</span><span class="p">,</span><span class="w">       </span><span class="c1">// Количество RGB-каналов</span>
+<span class="w">    </span><span class="n">STBI_rgb_alpha</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="c1">// Преобразуем в текстуру GL</span>
@@ -315,7 +310,7 @@
 <span class="w">  </span><span class="n">glTexParameteri</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="n">GL_TEXTURE_MAG_FILTER</span><span class="p">,</span><span class="w"> </span><span class="n">GL_NEAREST</span><span class="p">);</span>
 <span class="w">  </span><span class="n">glPixelStorei</span><span class="p">(</span><span class="n">GL_UNPACK_ROW_LENGTH</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
 <span class="w">  </span><span class="n">glTexImage2D</span><span class="p">(</span><span class="n">GL_TEXTURE_2D</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA</span><span class="p">,</span><span class="w"> </span><span class="n">_width</span><span class="p">,</span><span class="w"> </span><span class="n">_height</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">GL_RGBA</span><span class="p">,</span>
-<span class="w">              </span><span class="n">GL_UNSIGNED_BYTE</span><span class="p">,</span><span class="w"> </span><span class="n">_rgbaBlob</span><span class="p">.</span><span class="n">data</span><span class="p">());</span>
+<span class="w">              </span><span class="n">GL_UNSIGNED_BYTE</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">);</span>
 <span class="p">}</span>
 
 <span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">(){</span>
@@ -332,6 +327,7 @@
 <span class="w">    </span><span class="n">ImVec2</span><span class="w"> </span><span class="n">bmin</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">};</span>
 <span class="w">    </span><span class="n">ImVec2</span><span class="w"> </span><span class="n">bmax</span><span class="p">{</span><span class="mi">256</span><span class="p">,</span><span class="w"> </span><span class="mi">256</span><span class="p">};</span>
 
+<span class="w">    </span><span class="n">_rawBlob</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ЗДЕСЬ</span><span class="w"> </span><span class="n">ВЫ</span><span class="w"> </span><span class="n">выполняете</span><span class="w"> </span><span class="n">CURL</span><span class="o">-</span><span class="n">запрос</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="o">-</span><span class="n">тайла</span>
 <span class="w">    </span><span class="n">stbLoad</span><span class="p">();</span>
 <span class="w">    </span><span class="n">glLoad</span><span class="p">();</span>
 
@@ -345,7 +341,7 @@
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Если вывести на экран первые несколько значений <code class="docutils literal notranslate"><span class="pre">std::vector&lt;std::byte&gt;</span> <span class="pre">_rgbaBlob;</span></code>, увидим следующее:</p>
+<p>Если вывести на экран первые несколько значений <code class="docutils literal notranslate"><span class="pre">std::vector&lt;unsigned</span> <span class="pre">char&gt;</span> <span class="pre">data;</span></code>, увидим следующее:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">228</span><span class="p">,</span> <span class="mi">228</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">255</span>
 <span class="mi">156</span><span class="p">,</span> <span class="mi">156</span><span class="p">,</span> <span class="mi">155</span><span class="p">,</span> <span class="mi">255</span>
 <span class="mi">148</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">255</span>
