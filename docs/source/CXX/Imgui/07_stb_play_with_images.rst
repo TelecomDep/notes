@@ -151,26 +151,21 @@
   ...
   #include <stb_image.h>
   ...
-  int _width{256}, _height{256}, _channels{}; // Размеры изображения
-  std::vector<std::byte> _rawBlob;            // То куда мы положили наши байтики PNG
-  std::vector<std::byte> _rgbaBlob;           // В этот массив мы запишем значения Пикселей
+  int _width{256}, _height{256}, _channels{};     // Размеры изображения
+  std::vector<unsigned char> _rawBlob;            // Байтики PNG-изображения
+  unsigned char *data                             // Байтики пикселей
   GLuint _id{0};
 
   // Преобразуем PNG в rgba-массив
   void stbLoad() {
-    stbi_set_flip_vertically_on_load(false);
-    const auto ptr{
-        stbi_load_from_memory(reinterpret_cast<stbi_uc const *>(_rawBlob.data()),
-                              static_cast<int>(_rawBlob.size()), &_width, &_height,
-                              &_channels, STBI_rgb_alpha)};
-    if (ptr) {
-      const size_t nbytes{size_t(_width * _height * STBI_rgb_alpha)};
-      _rgbaBlob.resize(nbytes);
-      _rgbaBlob.shrink_to_fit();
-      const auto byteptr{reinterpret_cast<std::byte *>(ptr)};
-      _rgbaBlob.insert(_rgbaBlob.begin(), byteptr, byteptr + nbytes);
-      stbi_image_free(ptr);
-    }
+    data = stbi_load_from_memory(
+      _rawBlob.data(),  // указатель на байты PNG-изображения
+      _rawBlob.size(),  // Количество байт
+      &_width,          // Ширины изображения
+      &_height,         // Высота изображения
+      &_channels,       // Количество RGB-каналов
+      STBI_rgb_alpha
+      );
   } 
 
   // Преобразуем в текстуру GL
@@ -181,7 +176,7 @@
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA,
-                GL_UNSIGNED_BYTE, _rgbaBlob.data());
+                GL_UNSIGNED_BYTE, data);
   }
 
   int main(){
@@ -198,6 +193,7 @@
       ImVec2 bmin{0, 0};
       ImVec2 bmax{256, 256};
 
+      _rawBlob = ЗДЕСЬ ВЫ выполняете CURL-запрос (x, y, z)-тайла
       stbLoad();
       glLoad();
 
@@ -210,7 +206,7 @@
     ...
   }
 
-Если вывести на экран первые несколько значений ``std::vector<std::byte> _rgbaBlob;``, увидим следующее:
+Если вывести на экран первые несколько значений ``std::vector<unsigned char> data;``, увидим следующее:
 
 .. code-block:: 
 
