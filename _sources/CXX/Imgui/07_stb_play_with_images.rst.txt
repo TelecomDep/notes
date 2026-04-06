@@ -136,8 +136,22 @@
    * - ``stbi_info()``
      - позволяет получить информацию об изображении (ширину, высоту, количество компонентов) без полной загрузки пикселей. 
 
-Здесь будут примеры:
 
+stbi_load_from_memory()
+.............
+
+.. code-block:: c
+
+  std::vector<unsigned char> _rawBlob; // Байты PNG-изображения
+
+  data = stbi_load_from_memory(
+        _rawBlob.data(),  // указатель на байты PNG-изображения
+        _rawBlob.size(),  // Количество байт
+        &_width,          // Ширины изображения
+        &_height,         // Высота изображения
+        &_channels,       // Количество RGB-каналов
+        STBI_rgb_alpha
+        );
 
 
 

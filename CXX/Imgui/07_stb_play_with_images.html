@@ -80,7 +80,10 @@
 <li class="toctree-l4"><a class="reference internal" href="#chunks-png">Чанки (chunks) PNG</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#stb">2) Библиотека STB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#stb">2) Библиотека STB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#stbi-load-from-memory">stbi_load_from_memory()</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../Qt/qt_install.html">Установка Qt</a></li>
@@ -143,10 +146,10 @@
 <li><p>Подпись <code class="docutils literal notranslate"><span class="pre">.png</span></code>;</p></li>
 <li><p>Чанки (<code class="docutils literal notranslate"><span class="pre">chunks</span></code>) с данными.</p></li>
 </ul>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id8">
 <img alt="../../_images/png_signature_chunks.png" src="../../_images/png_signature_chunks.png" />
 <figcaption>
-<p><span class="caption-text">Обобщенный формат PNG-файла</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Обобщенный формат PNG-файла</span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 <section id="id3">
@@ -156,8 +159,8 @@
 </pre></div>
 </div>
 <p>, где:</p>
-<table class="docutils align-default" id="id7">
-<caption><span class="caption-text">Заголовок PNG-подписи</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id9">
+<caption><span class="caption-text">Заголовок PNG-подписи</span><a class="headerlink" href="#id9" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 40.0%" />
 <col style="width: 60.0%" />
@@ -189,8 +192,8 @@
 <section id="chunks-png">
 <h3>Чанки (chunks) PNG<a class="headerlink" href="#chunks-png" title="Permalink to this heading"></a></h3>
 <p>Чанки — это блоки данных, из которых состоит файл. Каждый чанк состоит из 4 секций.</p>
-<table class="docutils align-default" id="id8">
-<caption><span class="caption-text">Формат чанков</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id10">
+<caption><span class="caption-text">Формат чанков</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 25.0%" />
 <col style="width: 25.0%" />
@@ -227,10 +230,10 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">IEND</span></code> — завершающий чанк, обязан быть последним в файле.</p></li>
 </ul>
 <p>Минимальный PNG-файл выглядит следующим образом:</p>
-<figure class="align-default" id="id9">
+<figure class="align-default" id="id11">
 <img alt="../../_images/png_minimum.png" src="../../_images/png_minimum.png" />
 <figcaption>
-<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Минимальный PNG-файл.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -252,8 +255,8 @@
 <span class="nb">target_include_directories</span><span class="p">(</span><span class="s">tile</span><span class="w"> </span><span class="s">PRIVATE</span><span class="w"> </span><span class="o">${</span><span class="nv">STB_INCLUDE_DIRS</span><span class="o">}</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils align-default" id="id10">
-<caption><span class="caption-text">Основные функции</span><a class="headerlink" href="#id10" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id12">
+<caption><span class="caption-text">Основные функции</span><a class="headerlink" href="#id12" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 33.3%" />
 <col style="width: 66.7%" />
@@ -280,7 +283,22 @@
 </tr>
 </tbody>
 </table>
-<p>Здесь будут примеры:</p>
+<section id="stbi-load-from-memory">
+<h3>stbi_load_from_memory()<a class="headerlink" href="#stbi-load-from-memory" title="Permalink to this heading"></a></h3>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">char</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_rawBlob</span><span class="p">;</span><span class="w"> </span><span class="c1">// Байты PNG-изображения</span>
+
+<span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">stbi_load_from_memory</span><span class="p">(</span>
+<span class="w">      </span><span class="n">_rawBlob</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w">  </span><span class="c1">// указатель на байты PNG-изображения</span>
+<span class="w">      </span><span class="n">_rawBlob</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w">  </span><span class="c1">// Количество байт</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">_width</span><span class="p">,</span><span class="w">          </span><span class="c1">// Ширины изображения</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">_height</span><span class="p">,</span><span class="w">         </span><span class="c1">// Высота изображения</span>
+<span class="w">      </span><span class="o">&amp;</span><span class="n">_channels</span><span class="p">,</span><span class="w">       </span><span class="c1">// Количество RGB-каналов</span>
+<span class="w">      </span><span class="n">STBI_rgb_alpha</span>
+<span class="w">      </span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="png-pixel-map">
+<h4>Преобразование <a href="#id5"><span class="problematic" id="id6">**</span></a>.PNG ** в пиксельную карту (pixel map)<a class="headerlink" href="#png-pixel-map" title="Permalink to this heading"></a></h4>
 <p>Преобразование будет выполнять при помощи библиотеки <code class="docutils literal notranslate"><span class="pre">libstb-dev</span></code>, которую мы подключили в <code class="docutils literal notranslate"><span class="pre">CMakeLists</span></code> в начале.</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">...</span>
 <span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stb_image.h&gt;</span>
@@ -371,12 +389,14 @@
 </div>
 <p><strong>Готово</strong>:</p>
 <p><a class="reference external" href="https://github.com/TelecomDep/backend_notes/blob/main/examples/osm_tiles/tile_catcher.cpp">Полный пример можно найти здесь</a>.</p>
-<figure class="align-default" id="id11">
+<figure class="align-default" id="id13">
 <img alt="../../_images/png_tile_plot.png" src="../../_images/png_tile_plot.png" />
 <figcaption>
-<p><span class="caption-text">Результат.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Результат.</span><a class="headerlink" href="#id13" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
+</section>
+</section>
 </section>
 </section>
 
