@@ -165,6 +165,7 @@ stbi_load_from_memory()
   ...
   #include <stb_image.h>
   ...
+  
   int _width{256}, _height{256}, _channels{};     // Размеры изображения
   std::vector<unsigned char> _rawBlob;            // Байтики PNG-изображения
   unsigned char *data                             // Байтики пикселей
