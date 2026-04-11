@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Имитация GNSS данных (Adalm Pluto SDR) и декодирование (USRP B200) &mdash; Telecom Notes 0.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/stylesheet.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=e031e9a9"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+        <script src="https://wavedrom.com/skins/default.js"></script>
+        <script src="https://wavedrom.com/wavedrom.min.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="Software Defined Radio" href="../sdr.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Telecom Notes
+          </a>
+              <div class="version">
+                0.1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Практические задания</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html">Практические задания</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../HomeWork/home_work.html#id7">Вопросы к экзамену\зачету</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Визуальное</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Android/android.html">Android</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../CXX/cxx.html">Немного про C++</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Git</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Git/git_tips.html">Git tips</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Android</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Android/android.html">Android</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">CXX</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../CXX/cxx.html">Немного про C++</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">PostgreSQL</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../DataBase/database.html">PostgreSQL</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../React/react.html">React</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">ОС</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../os/os.html">Операционные системы</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Полезные ссылки</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../References/usefull_links.html">Полезные ссылки</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">SDR</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../sdr.html">Software Defined Radio</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Имитация GNSS данных (Adalm Pluto SDR) и декодирование (USRP B200)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gnss-adalm-pluto">Имитация GNSS (Adalm Pluto)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usrp-b200">Декодирование (USRP B200)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">Установка зависимостей и компиляция</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">Запуск</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Telecom Notes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../sdr.html">Software Defined Radio</a></li>
+      <li class="breadcrumb-item active">Имитация GNSS данных (Adalm Pluto SDR) и декодирование (USRP B200)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/SDR/gnss/gnss_sim_and_recv_sdr.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="gnss-adalm-pluto-sdr-usrp-b200">
+<h1>Имитация GNSS данных (Adalm Pluto SDR) и декодирование (USRP B200)<a class="headerlink" href="#gnss-adalm-pluto-sdr-usrp-b200" title="Permalink to this heading"></a></h1>
+<section id="gnss-adalm-pluto">
+<h2>Имитация GNSS (Adalm Pluto)<a class="headerlink" href="#gnss-adalm-pluto" title="Permalink to this heading"></a></h2>
+<figure class="align-default" id="id4">
+<img alt="../../_images/gnss_sim_sdr_simulation.png" src="../../_images/gnss_sim_sdr_simulation.png" />
+<figcaption>
+<p><span class="caption-text">Пример формирования GNSS-данных и излучения при помощи SDR Adalm Pluto.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="usrp-b200">
+<h2>Декодирование (USRP B200)<a class="headerlink" href="#usrp-b200" title="Permalink to this heading"></a></h2>
+<section id="id1">
+<h3>Установка зависимостей и компиляция<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>cmake<span class="w"> </span>git<span class="w"> </span>pkg-config<span class="w"> </span>libboost-dev<span class="w"> </span>libboost-date-time-dev<span class="w"> </span><span class="se">\</span>
+libboost-system-dev<span class="w"> </span>libboost-filesystem-dev<span class="w"> </span>libboost-thread-dev<span class="w"> </span>libboost-chrono-dev<span class="w"> </span><span class="se">\</span>
+libboost-serialization-dev<span class="w"> </span>liblog4cpp5-dev<span class="w"> </span>libuhd-dev<span class="w"> </span>gnuradio-dev<span class="w"> </span>gr-osmosdr<span class="w"> </span><span class="se">\</span>
+libblas-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>libarmadillo-dev<span class="w"> </span>libgflags-dev<span class="w"> </span>libgoogle-glog-dev<span class="w"> </span><span class="se">\</span>
+libssl-dev<span class="w"> </span>libpcap-dev<span class="w"> </span>libmatio-dev<span class="w"> </span>libpugixml-dev<span class="w"> </span>libgtest-dev<span class="w"> </span><span class="se">\</span>
+libprotobuf-dev<span class="w"> </span>libcpu-features-dev<span class="w"> </span>protobuf-compiler<span class="w"> </span>python3-mako
+</pre></div>
+</div>
+<section id="uhd-usrp-b200">
+<h4>Настройка драйвера UHD для USRP B200<a class="headerlink" href="#uhd-usrp-b200" title="Permalink to this heading"></a></h4>
+<p>Проверить установленную версию UHD можно:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uhd_find_devices
+</pre></div>
+</div>
+<p>Далее, вы увидите след. сообщение: <code class="docutils literal notranslate"><span class="pre">[INFO]</span> <span class="pre">[UHD]</span> <span class="pre">linux;</span> <span class="pre">GNU</span> <span class="pre">C++</span> <span class="pre">version</span> <span class="pre">13.3.0;</span> <span class="pre">Boost_108300;</span> <span class="pre">UHD_4.9.0.0-0ubuntu1~noble3</span></code></p>
+<p>Для работы с <code class="docutils literal notranslate"><span class="pre">USRP</span> <span class="pre">B200</span></code> необходимо скачать <strong>драйвера</strong> (или образы) и поместить в директорию образов.
+Скачать файлы образов для работы USRP B200 можно по <a class="reference external" href="https://github.com/TelecomDep/uhd_images/upload">ссылке здесь</a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>cp<span class="w"> </span>usrp_b200_fw.hex<span class="w"> </span>/usr/share/uhd/images/
+sudo<span class="w"> </span>cp<span class="w"> </span>usrp_b200_fpga.rpt<span class="w"> </span>/usr/share/uhd/images/
+sudo<span class="w"> </span>cp<span class="w"> </span>usrp_b200_fpga.bin<span class="w"> </span>/usr/share/uhd/images/
+
+sudo<span class="w"> </span>cp<span class="w"> </span>usrp_b200_fw.hex<span class="w"> </span>/usr/share/uhd/&lt;версия<span class="w"> </span>UHD&gt;/images/
+sudo<span class="w"> </span>cp<span class="w"> </span>usrp_b200_fpga.rpt<span class="w"> </span>/usr/share/uhd/&lt;версия<span class="w"> </span>UHD&gt;/images/
+sudo<span class="w"> </span>cp<span class="w"> </span>usrp_b200_fpga.bin<span class="w"> </span>/usr/share/uhd/&lt;версия<span class="w"> </span>UHD&gt;/images/
+</pre></div>
+</div>
+<p>Клонируем проект:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gnss-sdr/gnss-sdr
+</pre></div>
+</div>
+</section>
+</section>
+<section id="id3">
+<h3>Запуск<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h3>
+<p>Конфиг файл <code class="docutils literal notranslate"><span class="pre">USRP</span> <span class="pre">B200</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>; This is a GNSS-SDR configuration file
+; The configuration API is described at https://gnss-sdr.org/docs/sp-blocks/
+; SPDX-License-Identifier: GPL-3.0-or-later
+; SPDX-FileCopyrightText: (C) 2010-2020  (see AUTHORS file for a list of contributors)
+
+; Configuration file for using USRP 1 as a RF front-end for GPS L1 signals.
+; Run:
+; gnss-sdr --config_file=/path/to/gnss-sdr_GPS_L1_USRP_realtime.conf
+;
+
+[GNSS-SDR]
+
+;######### GLOBAL OPTIONS ##################
+;internal_fs_sps: Internal signal sampling frequency after the signal conditioning stage [samples per second].
+GNSS-SDR.internal_fs_sps=2000000
+GNSS-SDR.telecommand_enabled=true
+GNSS-SDR.telecommand_tcp_port=3333
+
+
+;######### SUPL RRLP GPS assistance configuration #####
+; Check https://www.mcc-mnc.com/
+; On Android: https://play.google.com/store/apps/details?id=net.its_here.cellidinfo&amp;hl=en
+GNSS-SDR.SUPL_gps_enabled=true
+GNSS-SDR.SUPL_read_gps_assistance_xml=true
+GNSS-SDR.SUPL_gps_ephemeris_server=supl.google.com
+GNSS-SDR.SUPL_gps_ephemeris_port=7275
+GNSS-SDR.SUPL_gps_acquisition_server=supl.google.com
+GNSS-SDR.SUPL_gps_acquisition_port=7275
+GNSS-SDR.SUPL_MCC=250
+GNSS-SDR.SUPL_MNC=1
+GNSS-SDR.SUPL_LAC=0x59e2
+GNSS-SDR.SUPL_CI=0x31b0
+
+;######### SIGNAL_SOURCE CONFIG ############
+SignalSource.implementation=UHD_Signal_Source
+;SignalSource.device_address=192.168.40.2 ; &lt;- PUT THE IP ADDRESS OF YOUR USRP HERE
+SignalSource.item_type=gr_complex
+SignalSource.sampling_frequency=2000000
+SignalSource.freq=1575420000
+SignalSource.gain=60
+SignalSource.subdevice=A:A
+SignalSource.samples=0
+SignalSource.repeat=false
+SignalSource.dump=false
+SignalSource.dump_filename=./signal_source.dat
+
+
+;######### SIGNAL_CONDITIONER CONFIG ############
+SignalConditioner.implementation=Pass_Through
+
+
+;######### CHANNELS GLOBAL CONFIG ############
+Channels_1C.count=8
+Channels_1B.count=0
+Channels.in_acquisition=1
+
+
+;#signal:
+;# &quot;1C&quot; GPS L1 C/A
+;# &quot;1B&quot; GALILEO E1 B (I/NAV OS/CS/SoL)
+;# &quot;1G&quot; GLONASS L1 C/A
+;# &quot;2S&quot; GPS L2 L2C (M)
+;# &quot;5X&quot; GALILEO E5a I+Q
+;# &quot;L5&quot; GPS L5
+
+Channel.signal=1C
+
+
+;######### ACQUISITION GLOBAL CONFIG ############
+Acquisition_1C.implementation=GPS_L1_CA_PCPS_Acquisition
+Acquisition_1C.item_type=gr_complex
+Acquisition_1C.coherent_integration_time_ms=1
+Acquisition_1C.threshold=0.01
+;Acquisition_1C.pfa=0.0001
+Acquisition_1C.doppler_max=50000
+Acquisition_1C.doppler_step=250
+Acquisition_1C.bit_transition_flag=false
+Acquisition_1C.max_dwells=1
+Acquisition_1C.dump=false
+Acquisition_1C.dump_filename=./acq_dump.dat
+
+
+;######### TRACKING GLOBAL CONFIG ############
+Tracking_1C.implementation=GPS_L1_CA_DLL_PLL_Tracking
+Tracking_1C.item_type=gr_complex
+Tracking_1C.pll_bw_hz=30.0;
+Tracking_1C.dll_bw_hz=4.0;
+Tracking_1C.order=3;
+Tracking_1C.early_late_space_chips=0.5;
+Tracking_1C.dump=false
+Tracking_1C.dump_filename=./tracking_ch_
+
+
+;######### TELEMETRY DECODER GPS CONFIG ############
+TelemetryDecoder_1C.implementation=GPS_L1_CA_Telemetry_Decoder
+TelemetryDecoder_1C.dump=false
+
+
+;######### OBSERVABLES CONFIG ############
+Observables.implementation=Hybrid_Observables
+Observables.dump=false
+Observables.dump_filename=./observables.dat
+
+;######### PVT CONFIG ############
+;#implementation: Position Velocity and Time (PVT) implementation:
+PVT.implementation=RTKLIB_PVT
+PVT.positioning_mode=Single
+PVT.output_rate_ms=100
+PVT.display_rate_ms=1000
+PVT.iono_model=Broadcast
+PVT.trop_model=Saastamoinen
+PVT.flag_rtcm_server=true
+PVT.flag_rtcm_tty_port=false
+PVT.rtcm_dump_devname=/dev/pts/1
+PVT.rtcm_tcp_port=2101
+PVT.rtcm_MT1019_rate_ms=5000
+PVT.rtcm_MT1077_rate_ms=1000
+PVT.rinex_version=2
+PVT.enable_monitor=true
+PVT.monitor_client_addresses=127.0.0.1
+PVT.monitor_udp_port=1111
+
+
+;######### MONITOR CONFIG ############
+Monitor.enable_monitor=true
+Monitor.decimation_factor=1
+Monitor.client_addresses=127.0.0.1
+Monitor.udp_port=1112
+</pre></div>
+</div>
+<p>Запускаем:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>build/src/main/
+sudo<span class="w"> </span>./gnss-sdr<span class="w"> </span>--config_file<span class="o">=</span>gnss-sdr_GPS_L1_plutosdr_realtime.conf<span class="w"> </span>--log_dir<span class="o">=</span>logs
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/javascript">
+        function init() {
+            WaveDrom.ProcessAll();
+        }
+        window.onload = init;
+    </script>
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../sdr.html" class="btn btn-neutral float-left" title="Software Defined Radio" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, ....</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
