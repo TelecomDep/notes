@@ -13,6 +13,19 @@ Introduction
 
    HomeWork/home_work
 
+
+.. raw:: Vis
+   \chapter{Визуальное программированиеф}
+.. toctree::
+   :caption: Визуальное
+   :maxdepth: 1
+
+   Kotlin/kotlin
+   Android/android
+   CXX/cxx
+   DataBase/database
+
+
 .. raw:: git
    \chapter{Git}
 .. toctree::
