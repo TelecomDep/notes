@@ -14,8 +14,6 @@ Introduction
    HomeWork/home_work
 
 
-.. raw:: Vis
-   \chapter{Визуальное программированиеф}
 .. toctree::
    :caption: Визуальное
    :maxdepth: 1
@@ -95,3 +93,10 @@ Introduction
    :maxdepth: 1
 
    References/usefull_links
+
+
+.. toctree::
+   :caption: SDR
+   :maxdepth: 1
+
+   SDR/sdr
