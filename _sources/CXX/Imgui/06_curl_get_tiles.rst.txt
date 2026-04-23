@@ -10,7 +10,7 @@
 
 .. code-block:: bash
 
-  sudo apt install curl
+  sudo apt install curl libcurl4-openssl-dev
 
 Добавляем в CmakLists нашего проекта (пример с добавлением проект с ImGUI + PSQL):
 
