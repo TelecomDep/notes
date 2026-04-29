@@ -158,11 +158,29 @@
 <h1>Генерация тепловой карты<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
 <section id="inverse-distance-weighting-idw">
 <h2>Пространственная интерполяция методом Inverse Distance Weighting (IDW)<a class="headerlink" href="#inverse-distance-weighting-idw" title="Permalink to this heading"></a></h2>
+<figure class="align-default" id="id2">
+<img alt="../../_images/IDW-3Points-425x213.png" src="../../_images/IDW-3Points-425x213.png" />
+<figcaption>
+<p><span class="caption-text">Как найти значение в точках, где нет экспериментальных данных?</span><a class="headerlink" href="#id2" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id3">
+<img alt="../../_images/IDW-3Points-425x213.png" src="../../_images/IDW-3Points-425x213.png" />
+<figcaption>
+<p><span class="caption-text">Пример с ограничением радиуса. Источник: <a class="reference external" href="https://gisgeography.com/inverse-distance-weighting-idw-interpolation/">https://gisgeography.com/inverse-distance-weighting-idw-interpolation/</a></span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <div class="math notranslate nohighlight">
 \[\begin{split}weight(x) = \left\{ \begin{array}{cl}
 \frac{\sum_{i=1}^{N} w_{i}(x)weight_{i}}{\sum_{i=1}^{N} w_{i}(x)}  &amp; , \text{if } d(x, x_{i}) \neq  0  \\
 weight_{i} &amp; ,  \text{if }d(x, x_{i}) = 0
 \end{array} \right.\end{split}\]</div>
+<figure class="align-default" id="id4">
+<img alt="../../_images/IDW-Power1-Surface-425x135.png" src="../../_images/IDW-Power1-Surface-425x135.png" />
+<figcaption>
+<p><span class="caption-text">Результат интерполяции. Источник: <a class="reference external" href="https://gisgeography.com/inverse-distance-weighting-idw-interpolation/">https://gisgeography.com/inverse-distance-weighting-idw-interpolation/</a></span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 </section>
 </section>
 
