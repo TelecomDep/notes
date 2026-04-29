@@ -21,6 +21,7 @@
    Imgui/05_osm_tile_naming
    Imgui/06_curl_get_tiles
    Imgui/07_stb_play_with_images
+   Imgui/08_heatmap
 
 
 .. toctree::
