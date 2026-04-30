@@ -70,6 +70,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#id6">12. Драйв-тест.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#postgresql">13. Работа с базой данных (PostgreSQL) из С/С++</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#openstreetmap">14. Отрисовка OpenStreetMap карты</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#heatmap">15. Генерация тепловой карты (Heatmap)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-android-backend">XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx-postgresql-backend">XX. PostgreSQL. База данных (на стороне backend)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xx">XX. Тайлы. Работа с картами.</a></li>
@@ -579,6 +580,28 @@
 <li><p>В <code class="docutils literal notranslate"><span class="pre">REAMDE.md</span></code> должны быть описаны пункты: установка зависимостей, компиляция, запуск ПО, описание архитектуры ПО.</p></li>
 </ul>
 </li>
+</ol>
+</section>
+<section id="heatmap">
+<h3>15. Генерация тепловой карты (Heatmap)<a class="headerlink" href="#heatmap" title="Permalink to this heading"></a></h3>
+<p><strong>Примеры</strong> каждого этапа формирования тепловой карты можно нати <a class="reference external" href="https://telecomdep.github.io/notes/CXX/Imgui/08_heatmap.html">в лекции</a>.</p>
+<ol class="arabic simple">
+<li><p>Реализовать генерацию тепловой карты на базе метода обратных взвешенных расстояний (IDW).</p>
+<ol class="arabic simple">
+<li><p>Выполнил вычисление по нескольким критериям: <code class="docutils literal notranslate"><span class="pre">RSRP</span></code>, <code class="docutils literal notranslate"><span class="pre">RSRQ</span></code>, <code class="docutils literal notranslate"><span class="pre">RSSI</span></code>, <code class="docutils literal notranslate"><span class="pre">Altitude</span></code>;</p></li>
+<li><p>Ограничивать радиус вычисления интерполяции (учет экспериментальных значений) в пределах 10 - 40 метров до вычисляемой точки;</p></li>
+<li><p>В ImGui-интерфейсе добавить выбор критерия, по которому будет отображаться тепловая карта.</p></li>
+</ol>
+</li>
+<li><p>Выполнить вычисление:</p>
+<ol class="arabic simple">
+<li><p>Либо одной большой картинкой для всех точек;</p></li>
+<li><p>Либо для каждого тайла в отдельности.</p></li>
+<li><p><strong>Рекомендация</strong> выполнять вычисления в отдельном потоке.</p></li>
+</ol>
+</li>
+<li><p>Все вычисленные картинки тепловой карты сохранять в директориях <code class="docutils literal notranslate"><span class="pre">build/zoom/x/y.png</span></code> (если вычисляете для каждого тайла), било в <code class="docutils literal notranslate"><span class="pre">/build</span></code> (если одна общая картинка);</p></li>
+<li><p>Обновить <code class="docutils literal notranslate"><span class="pre">github</span></code>-репозиторий, доработать <code class="docutils literal notranslate"><span class="pre">README.md</span></code>.</p></li>
 </ol>
 <!-- 2. **Для всех групп**: Объединить данные каждого человека в один json-файл:
     1. При объединении проверить форматы Json-схем;
