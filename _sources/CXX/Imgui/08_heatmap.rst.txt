@@ -37,7 +37,7 @@
 
 .. math::
 
-   w_{i}(x) = \frac{1}{d(x, x_{i})^{p}},
+   w_{i}(x) = \frac{1}{d(x, x_{i})^{p}}, \\
    d(x, x_{i})^{p} & , \text{ distance between points }
 
 
