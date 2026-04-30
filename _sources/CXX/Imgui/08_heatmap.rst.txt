@@ -37,8 +37,8 @@
 
 .. math::
 
-   w_{i}(x) = \frac{1}{d(x, x_{i})^{p}}
-
+   w_{i}(x) = \frac{1}{d(x, x_{i})^{p}},
+   d(x, x_{i})^{p} & , \text{ distance between points }
 
 
 .. figure:: ./image/heatmap/IDW-Power1-Surface-425x135.png
@@ -158,3 +158,10 @@ Pixmap (PNG)
 .. figure:: ./image/heatmap/gradient.png
 
    Реализация градиента.
+
+
+Примечания к нашей работе
+.............
+
+
+`формула вычисления дистанции между двумя точками на карте Земли <https://www.movable-type.co.uk/scripts/latlong.html>`_
