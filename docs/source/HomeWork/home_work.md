@@ -340,8 +340,20 @@ int main(){
     1. Либо одной большой картинкой для всех точек;
     2. Либо для каждого тайла в отдельности.
     3. **Рекомендация** выполнять вычисления в отдельном потоке.
-3. Все вычисленные картинки тепловой карты сохранять в директориях `build/zoom/x/y.png` (если вычисляете для каждого тайла), било в `/build` (если одна общая картинка);
+3. Все вычисленные картинки тепловой карты сохранять в директориях `build/zoom/x/y.png` (если вычисляете для каждого тайла), било в `/build` (если одна общая картинка); 
 4. Обновить `github`-репозиторий, доработать `README.md`.
+
+**Критерии по RSRP**:
+
+Источние: [здесь](https://wiki.teltonika-networks.com/view/RSRP_and_RSRQ)
+```
+Excellent           (>-80 dBm): Strong signal, maximum data speeds.
+Good                (-80 to -90 dBm): Reliable data speeds.
+Fair/Marginal       (-90 to -100 dBm): Serviceable, but potential for lower throughput or dropouts.
+Poor/Weak           (-100 to -110 dBm): Frequent dropped calls or very slow data.
+No Signal/Unusable  (<-110 dBm): Connection often fails
+```
+Значения цвета на ваше усмотрение. Обычно: `Excellent` - красный, `Poor/Weak` - темно-синий. `No Signal/Unusable` - не закрашиваем.
 
 
 
