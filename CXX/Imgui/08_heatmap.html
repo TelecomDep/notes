@@ -185,13 +185,16 @@
 <p><span class="caption-text">Пример с ограничением радиуса. Источник: <a class="reference external" href="https://gisgeography.com/inverse-distance-weighting-idw-interpolation/">https://gisgeography.com/inverse-distance-weighting-idw-interpolation/</a></span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
-<p>Ниже представлена формула расчета <code class="docutils literal notranslate"><span class="pre">IDW</span></code>:</p>
+<p>Ниже представлена формула вычисления <code class="docutils literal notranslate"><span class="pre">IDW</span></code>:</p>
 <div class="math notranslate nohighlight" id="equation-1">
 <span class="eqno">(1)<a class="headerlink" href="#equation-1" title="Permalink to this equation"></a></span>\[\begin{split}weight(x) = \left\{ \begin{array}{cl}
 \frac{\sum_{i=1}^{N} w_{i}(x)weight_{i}}{\sum_{i=1}^{N} w_{i}(x)}  &amp; , \text{if } d(x, x_{i}) \neq  0  \\
 weight_{i} &amp; ,  \text{if }d(x, x_{i}) = 0
 \end{array} \right.\end{split}\]</div>
-<p>, где: :math: <cite>w_{i}(x) = frac{1}{d(x, x_{i})^{p}}</cite>, :math: <cite>d(x, x_{i})^{p} &amp; , text{ distance between points }</cite></p>
+<p>, где:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}w_{i}(x) = \frac{1}{d(x, x_{i})^{p}} \\
+d(x, x_{i})^{p} &amp; , \text{ distance between points }\end{split}\]</div>
 <figure class="align-default" id="id8">
 <img alt="../../_images/Shepard_interpolation_2.png" src="../../_images/Shepard_interpolation_2.png" />
 <figcaption>

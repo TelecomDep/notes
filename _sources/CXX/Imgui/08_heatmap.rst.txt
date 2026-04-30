@@ -23,7 +23,7 @@
    Пример с ограничением радиуса. Источник: https://gisgeography.com/inverse-distance-weighting-idw-interpolation/
 
 
-Ниже представлена формула расчета ``IDW``:
+Ниже представлена формула вычисления ``IDW``:
 
 .. math::
    :label: (1)
@@ -34,8 +34,13 @@
    \end{array} \right.
 
 
-, где: :math: `w_{i}(x) = \frac{1}{d(x, x_{i})^{p}}`, :math: `d(x, x_{i})^{p} & , \text{ distance between points }`
+, где:
 
+.. math::
+
+   w_{i}(x) = \frac{1}{d(x, x_{i})^{p}} \\
+   d(x, x_{i})^{p} & , \text{ distance between points }
+   
 
 .. figure:: ./image/heatmap/Shepard_interpolation_2.png
 
