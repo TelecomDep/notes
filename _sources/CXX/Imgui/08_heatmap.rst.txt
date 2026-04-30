@@ -33,19 +33,15 @@
    weight_{i} & ,  \text{if }d(x, x_{i}) = 0
    \end{array} \right.
 
-, где:
 
-.. math::
-
-   w_{i}(x) = \frac{1}{d(x, x_{i})^{p}}, \\
-   d(x, x_{i})^{p} & , \text{ distance between points }
+, где: :math: `w_{i}(x) = \frac{1}{d(x, x_{i})^{p}}`, :math: `d(x, x_{i})^{p} & , \text{ distance between points }`
 
 
 .. figure:: ./image/heatmap/Shepard_interpolation_2.png
 
    Влияние степени :math: `p` на интерполяцию. Источник: https://en.wikipedia.org/wiki/Inverse_distance_weighting
 
-   
+
 
 .. figure:: ./image/heatmap/IDW-Power1-Surface-425x135.png
 
