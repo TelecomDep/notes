@@ -196,9 +196,15 @@ weight_{i} &amp; ,  \text{if }d(x, x_{i}) = 0
 \[\begin{split}w_{i}(x) = \frac{1}{d(x, x_{i})^{p}}, \\
 d(x, x_{i})^{p} &amp; , \text{ distance between points }\end{split}\]</div>
 <figure class="align-default" id="id8">
+<img alt="../../_images/Shepard_interpolation_2.png" src="../../_images/Shepard_interpolation_2.png" />
+<figcaption>
+<p><span class="caption-text">Влияние степени :math: <cite>p</cite> на интерполяцию. Источник: <a class="reference external" href="https://en.wikipedia.org/wiki/Inverse_distance_weighting">https://en.wikipedia.org/wiki/Inverse_distance_weighting</a></span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="align-default" id="id9">
 <img alt="../../_images/IDW-Power1-Surface-425x135.png" src="../../_images/IDW-Power1-Surface-425x135.png" />
 <figcaption>
-<p><span class="caption-text">Результат интерполяции. Источник: <a class="reference external" href="https://gisgeography.com/inverse-distance-weighting-idw-interpolation/">https://gisgeography.com/inverse-distance-weighting-idw-interpolation/</a></span><a class="headerlink" href="#id8" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Результат интерполяции. Источник: <a class="reference external" href="https://gisgeography.com/inverse-distance-weighting-idw-interpolation/">https://gisgeography.com/inverse-distance-weighting-idw-interpolation/</a></span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -235,10 +241,10 @@ d(x, x_{i})^{p} &amp; , \text{ distance between points }\end{split}\]</div>
 </pre></div>
 </div>
 <p>Результатом будет след. изображение, которое сохранится в директории <code class="docutils literal notranslate"><span class="pre">/build</span></code> вашего проекта.</p>
-<figure class="align-default" id="id9">
+<figure class="align-default" id="id10">
 <img alt="../../_images/pix_map_example.png" src="../../_images/pix_map_example.png" />
 <figcaption>
-<p><span class="caption-text">Первая пиксельная карта в формате <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Первая пиксельная карта в формате <code class="docutils literal notranslate"><span class="pre">.png</span></code>.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -294,10 +300,10 @@ d(x, x_{i})^{p} &amp; , \text{ distance between points }\end{split}\]</div>
 <span class="n">stbi_write_png</span><span class="p">(</span><span class="s">&quot;gradient.png&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">w</span><span class="p">,</span><span class="w"> </span><span class="n">h</span><span class="p">,</span><span class="w"> </span><span class="n">channels</span><span class="p">,</span><span class="w"> </span><span class="n">image</span><span class="p">.</span><span class="n">data</span><span class="p">(),</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">channels</span><span class="p">);</span>
 </pre></div>
 </div>
-<figure class="align-default" id="id10">
+<figure class="align-default" id="id11">
 <img alt="../../_images/gradient.png" src="../../_images/gradient.png" />
 <figcaption>
-<p><span class="caption-text">Реализация градиента.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+<p><span class="caption-text">Реализация градиента.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
 </figcaption>
 </figure>
 </section>

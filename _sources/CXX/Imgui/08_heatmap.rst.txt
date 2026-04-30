@@ -41,6 +41,12 @@
    d(x, x_{i})^{p} & , \text{ distance between points }
 
 
+.. figure:: ./image/heatmap/Shepard_interpolation_2.png
+
+   Влияние степени :math: `p` на интерполяцию. Источник: https://en.wikipedia.org/wiki/Inverse_distance_weighting
+
+   
+
 .. figure:: ./image/heatmap/IDW-Power1-Surface-425x135.png
 
    Результат интерполяции. Источник: https://gisgeography.com/inverse-distance-weighting-idw-interpolation/
