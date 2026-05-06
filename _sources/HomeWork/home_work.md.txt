@@ -356,7 +356,17 @@ No Signal/Unusable  (<-110 dBm): Connection often fails
 Значения цвета на ваше усмотрение. Обычно: `Excellent` - красный, `Poor/Weak` - темно-синий. `No Signal/Unusable` - не закрашиваем.
 
 
+### Курсовой проект (или РГР). Программно-аппаратный комплекс (ПАК).
 
+1. Сформировать отчет про проделанной работе по практикам: с `№6` по `№15`;
+2. За основу оформления взять шаблон [LaTeX](https://github.com/TelecomDep/essay_g7-32_template_tsvs_dep);
+    1. Можно работать в `Online`-редакторе: [Overleaf](https://ru.overleaf.com/) с [шаблоном](https://ru.overleaf.com/latex/templates/essay-template-itmo-rus/qfhzpzxstvvw);
+    2. Оформление формул, изображений, таблиц и пр. выполняем строго по шаблону. 
+3. Результат на выходе: `pdf`-отчет (минимум 15 страниц).
+
+**Альтернативные темы**:
+
+1. Предлагаем свои варианты??
 <!-- 2. **Для всех групп**: Объединить данные каждого человека в один json-файл:
     1. При объединении проверить форматы Json-схем;
     2. Если не соответствует, привести к единому формату.
@@ -416,7 +426,7 @@ No Signal/Unusable  (<-110 dBm): Connection often fails
         7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
 3. Ссылка на [пример получения данных](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt).  -->
 
-### XX. Двустороннее управление поверх сокетов (Android <-> Backend)
+<!-- ### XX. Двустороннее управление поверх сокетов (Android <-> Backend)
 1. В вашем приложении (`backend gui`) настроить фильтрацию передаваемых данных c со стороны `Android-приложения`:
     1. В `backend-gui` приложении реализовать вкладку с фильтрами (при помощи объектов `Checkbox`, у которого есть состояния `true` и `false`). Список переменных должен совпадать со списком из **Практической работы** №`XX. Android background service`.
     2. При состоянии какого-либо `Checkbox = false`, передать команду на `Android-приложение` **НЕ** передавать (или передавать, если `true`) при помощи `ZMQ-сокетов`:
@@ -425,7 +435,7 @@ No Signal/Unusable  (<-110 dBm): Connection often fails
 
 ### XX. PostgreSQL. База данных (на стороне backend)
 
-### XX. Тайлы. Работа с картами. 
+### XX. Тайлы. Работа с картами.  -->
 
 <!-- ### 10. Сериализация. Data-классы. Формирование JSON.
 

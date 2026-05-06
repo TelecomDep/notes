@@ -71,14 +71,12 @@
 <li class="toctree-l3"><a class="reference internal" href="#postgresql">13. Работа с базой данных (PostgreSQL) из С/С++</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#openstreetmap">14. Отрисовка OpenStreetMap карты</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#heatmap">15. Генерация тепловой карты (Heatmap)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xx-android-backend">XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xx-postgresql-backend">XX. PostgreSQL. База данных (на стороне backend)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xx">XX. Тайлы. Работа с картами.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">Курсовой проект (или РГР). Программно-аппаратный комплекс (ПАК).</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="#id7">Вопросы к экзамену\зачету</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#id8">Вопросы к экзамену\зачету</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Визуальное</span></p>
 <ul>
@@ -613,6 +611,23 @@
 </pre></div>
 </div>
 <p>Значения цвета на ваше усмотрение. Обычно: <code class="docutils literal notranslate"><span class="pre">Excellent</span></code> - красный, <code class="docutils literal notranslate"><span class="pre">Poor/Weak</span></code> - темно-синий. <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">Signal/Unusable</span></code> - не закрашиваем.</p>
+</section>
+<section id="id7">
+<h3>Курсовой проект (или РГР). Программно-аппаратный комплекс (ПАК).<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Сформировать отчет про проделанной работе по практикам: с <code class="docutils literal notranslate"><span class="pre">№6</span></code> по <code class="docutils literal notranslate"><span class="pre">№15</span></code>;</p></li>
+<li><p>За основу оформления взять шаблон <a class="reference external" href="https://github.com/TelecomDep/essay_g7-32_template_tsvs_dep">LaTeX</a>;</p>
+<ol class="arabic simple">
+<li><p>Можно работать в <code class="docutils literal notranslate"><span class="pre">Online</span></code>-редакторе: <a class="reference external" href="https://ru.overleaf.com/">Overleaf</a> с <a class="reference external" href="https://ru.overleaf.com/latex/templates/essay-template-itmo-rus/qfhzpzxstvvw">шаблоном</a>;</p></li>
+<li><p>Оформление формул, изображений, таблиц и пр. выполняем строго по шаблону.</p></li>
+</ol>
+</li>
+<li><p>Результат на выходе: <code class="docutils literal notranslate"><span class="pre">pdf</span></code>-отчет (минимум 15 страниц).</p></li>
+</ol>
+<p><strong>Альтернативные темы</strong>:</p>
+<ol class="arabic simple">
+<li><p>Предлагаем свои варианты??</p></li>
+</ol>
 <!-- 2. **Для всех групп**: Объединить данные каждого человека в один json-файл:
     1. При объединении проверить форматы Json-схем;
     2. Если не соответствует, привести к единому формату.
@@ -670,25 +685,16 @@
         1. CellIdentityNr: Band, NCI, PCI, Nrargcn, TAC, MCC, MNC;
         7. CellSignalStrengthNr: SS-RSRP, SS-RSRQ, SS-SINR, Timing Advance;
 3. Ссылка на [пример получения данных](https://github.com/TelecomDep/android_notes/blob/master/Examples/android_notes/app/src/main/java/com/example/android_notes/activities/TelephonyActivity.kt).  -->
-</section>
-<section id="xx-android-backend">
-<h3>XX. Двустороннее управление поверх сокетов (Android &lt;-&gt; Backend)<a class="headerlink" href="#xx-android-backend" title="Permalink to this heading"></a></h3>
-<ol class="arabic simple">
-<li><p>В вашем приложении (<code class="docutils literal notranslate"><span class="pre">backend</span> <span class="pre">gui</span></code>) настроить фильтрацию передаваемых данных c со стороны <code class="docutils literal notranslate"><span class="pre">Android-приложения</span></code>:</p>
-<ol class="arabic simple">
-<li><p>В <code class="docutils literal notranslate"><span class="pre">backend-gui</span></code> приложении реализовать вкладку с фильтрами (при помощи объектов <code class="docutils literal notranslate"><span class="pre">Checkbox</span></code>, у которого есть состояния <code class="docutils literal notranslate"><span class="pre">true</span></code> и <code class="docutils literal notranslate"><span class="pre">false</span></code>). Список переменных должен совпадать со списком из <strong>Практической работы</strong> №<code class="docutils literal notranslate"><span class="pre">XX.</span> <span class="pre">Android</span> <span class="pre">background</span> <span class="pre">service</span></code>.</p></li>
-<li><p>При состоянии какого-либо <code class="docutils literal notranslate"><span class="pre">Checkbox</span> <span class="pre">=</span> <span class="pre">false</span></code>, передать команду на <code class="docutils literal notranslate"><span class="pre">Android-приложение</span></code> <strong>НЕ</strong> передавать (или передавать, если <code class="docutils literal notranslate"><span class="pre">true</span></code>) при помощи <code class="docutils literal notranslate"><span class="pre">ZMQ-сокетов</span></code>:
-2. Это значит, что при получении или передачи пакетов между вашими приложениями необходимо добавить некоторые <code class="docutils literal notranslate"><span class="pre">управляющие</span></code> команды, которые Вы должны обработать вручную (<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">else</span></code> или <code class="docutils literal notranslate"><span class="pre">switch</span> <span class="pre">case</span></code> и т.д.).</p></li>
-<li><p>Продолжение следует…</p></li>
-</ol>
-</li>
-</ol>
-</section>
-<section id="xx-postgresql-backend">
-<h3>XX. PostgreSQL. База данных (на стороне backend)<a class="headerlink" href="#xx-postgresql-backend" title="Permalink to this heading"></a></h3>
-</section>
-<section id="xx">
-<h3>XX. Тайлы. Работа с картами.<a class="headerlink" href="#xx" title="Permalink to this heading"></a></h3>
+<!-- ### XX. Двустороннее управление поверх сокетов (Android <-> Backend)
+1. В вашем приложении (`backend gui`) настроить фильтрацию передаваемых данных c со стороны `Android-приложения`:
+    1. В `backend-gui` приложении реализовать вкладку с фильтрами (при помощи объектов `Checkbox`, у которого есть состояния `true` и `false`). Список переменных должен совпадать со списком из **Практической работы** №`XX. Android background service`.
+    2. При состоянии какого-либо `Checkbox = false`, передать команду на `Android-приложение` **НЕ** передавать (или передавать, если `true`) при помощи `ZMQ-сокетов`:
+        2. Это значит, что при получении или передачи пакетов между вашими приложениями необходимо добавить некоторые `управляющие` команды, которые Вы должны обработать вручную (`if else` или `switch case` и т.д.).
+    3. Продолжение следует...
+
+### XX. PostgreSQL. База данных (на стороне backend)
+
+### XX. Тайлы. Работа с картами.  -->
 <!-- ### 10. Сериализация. Data-классы. Формирование JSON.
 
 1. В приложении `Android`, `Desktop-сервере` сформировать [Data-классы](https://metanit.com/kotlin/tutorial/4.12.php) для данных, которые будем передавать с между приложениями. Список данных:
@@ -749,8 +755,8 @@ conn.close()
 </section>
 </section>
 </section>
-<section id="id7">
-<h1>Вопросы к экзамену\зачету<a class="headerlink" href="#id7" title="Permalink to this heading"></a></h1>
+<section id="id8">
+<h1>Вопросы к экзамену\зачету<a class="headerlink" href="#id8" title="Permalink to this heading"></a></h1>
 <ol class="arabic simple">
 <li><p>В чем разница между переменными <code class="docutils literal notranslate"><span class="pre">val</span></code> и <code class="docutils literal notranslate"><span class="pre">var</span></code> в языке Kotlin?</p></li>
 <li><p>Что такое свойство(свойства) класса?</p></li>
