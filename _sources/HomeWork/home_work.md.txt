@@ -345,7 +345,7 @@ int main(){
 
 **Критерии по RSRP**:
 
-Источние: [здесь](https://wiki.teltonika-networks.com/view/RSRP_and_RSRQ)
+Источник: [здесь](https://wiki.teltonika-networks.com/view/RSRP_and_RSRQ)
 ```
 Excellent           (>-80 dBm): Strong signal, maximum data speeds.
 Good                (-80 to -90 dBm): Reliable data speeds.
