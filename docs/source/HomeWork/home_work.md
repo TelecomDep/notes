@@ -356,7 +356,7 @@ No Signal/Unusable  (<-110 dBm): Connection often fails
 Значения цвета на ваше усмотрение. Обычно: `Excellent` - красный, `Poor/Weak` - темно-синий. `No Signal/Unusable` - не закрашиваем.
 
 
-### Курсовой проект (или РГР). Программно-аппаратный комплекс (ПАК).
+# Курсовой проект (или РГР). Программно-аппаратный комплекс (ПАК).
 
 1. За основу оформления взять шаблон [LaTeX](https://github.com/TelecomDep/essay_g7-32_template_tsvs_dep);
     1. Можно работать в `Online`-редакторе: [Overleaf](https://ru.overleaf.com/) с [шаблоном](https://ru.overleaf.com/latex/templates/essay-template-itmo-rus/qfhzpzxstvvw);
