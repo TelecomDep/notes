@@ -49,7 +49,7 @@
 
 
 Для работы с ``USRP B200`` необходимо скачать **драйвера** (или образы) и поместить в директорию образов.
-Скачать файлы образов для работы USRP B200 можно по `ссылке здесь <https://github.com/TelecomDep/uhd_images/upload>`_
+Скачать файлы образов для работы USRP B200 можно по `ссылке здесь <https://github.com/TelecomDep/uhd_images/>`_
 
 .. code-block:: bash
 
