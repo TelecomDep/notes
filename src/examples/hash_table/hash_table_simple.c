@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <stdint.h>
 
 #define CAPACITY 50000 // Емкость хэш-таблицы
 
