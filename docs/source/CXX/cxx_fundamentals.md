@@ -24,3 +24,5 @@ scratch; §1.2.1.
 In general: To write a good program takes intelligence, taste, and patience. You are not going to get
 it right the first time. Experiment!
 ```
+
+# Управление ресурсами. Идиома RAII
