@@ -21,6 +21,13 @@
 '''''''''''''
 
 .. code-block:: bash
+    sudo add-apt-repository ppa:ettusresearch/uhd
+    sudo apt-get update
+    sudo apt install uhd-host 
+
+
+
+.. code-block:: bash
 
     sudo apt install build-essential cmake git pkg-config libboost-dev libboost-date-time-dev \
     libboost-system-dev libboost-filesystem-dev libboost-thread-dev libboost-chrono-dev \
@@ -29,11 +36,6 @@
     libssl-dev libpcap-dev libmatio-dev libpugixml-dev libgtest-dev \
     libprotobuf-dev libcpu-features-dev protobuf-compiler python3-mako
 
-
-.. code-block:: bash
-    sudo add-apt-repository ppa:ettusresearch/uhd
-    sudo apt-get update
-    sudo apt install uhd-host 
 
     
 Настройка драйвера UHD для USRP B200
