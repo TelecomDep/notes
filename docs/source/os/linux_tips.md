@@ -38,3 +38,29 @@ insmod normal
 normal
 ```
 Готово!
+
+
+### Ноутбук с закрытой крышкой не включается если переключать KVM (внешние мониторы)
+
+```bash
+sudo nano /etc/systemd/logind.conf 
+```
+
+Меняем значения полей:
+
+```bash
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+```
+
+Перезагружаем сервис:
+
+```bash
+sudo systemctl restart systemd-logind.service 
+```
+
+### Ручное изменение яркости экрана на ноутбуке (Lenovo)
+
+```bash
+xrandr --output eDP-1 --brightness 0.3
+```
