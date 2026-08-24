@@ -59,7 +59,7 @@ jobs:
     #     path: docs/source/ # Downloads to the 'src' directory
 
     - name: Build HTML
-      uses: ammaraskar/sphinx-action@master
+      uses: ammaraskar/sphinx-action@change_theme
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
@@ -69,7 +69,7 @@ jobs:
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/change_theme'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: docs/build/html
