@@ -13,17 +13,6 @@ Introduction
 
    HomeWork/home_work
 
-
-.. toctree::
-   :caption: Визуальное
-   :maxdepth: 1
-
-   Kotlin/kotlin
-   Android/android
-   CXX/cxx
-   DataBase/database
-
-
 .. raw:: git
    \chapter{Git}
 .. toctree::
