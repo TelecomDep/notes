@@ -59,7 +59,7 @@ jobs:
     #     path: docs/source/ # Downloads to the 'src' directory
 
     - name: Build HTML
-      uses: ammaraskar/sphinx-action@main
+      uses: ammaraskar/sphinx-action@master
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
