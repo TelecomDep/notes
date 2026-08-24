@@ -1,22 +1,91 @@
-Welcome to Lumache's documentation!
-===================================
+**********************************
+Documentation for Telecom Notes
+**********************************
 
-**Lumache** (/lu'make/) is a Python library for cooks and food lovers
-that creates recipes mixing random ingredients.
-It pulls data from the `Open Food Facts database <https://world.openfoodfacts.org/>`_
-and offers a *simple* and *intuitive* API.
+Introduction
+============
 
-Check out the :doc:`usage` section for further information, including
-how to :ref:`installation` the project.
+.. raw:: HomeWork
+   \chapter{Практические задания}
+.. toctree::
+   :caption: Практические задания
+   :maxdepth: 1
 
-.. note::
+   HomeWork/home_work
 
-   This project is under active development.
+.. raw:: git
+   \chapter{Git}
+.. toctree::
+   :caption: Git
+   :maxdepth: 1
 
-Contents
---------
+   Git/git_tips
+
+
+.. raw:: latex
+   \chapter{Kotlin}
+.. toctree::
+   :caption: Kotlin
+   :maxdepth: 1
+
+   Kotlin/kotlin
+
+
+.. raw:: latex
+   \chapter{Android}
+.. toctree::
+   :caption: Android
+   :maxdepth: 1
+
+   Android/android
+
+
+.. raw:: latex
+   \chapter{CXX}
+.. toctree::
+   :caption: CXX
+   :maxdepth: 1
+
+   CXX/cxx
+
+
+.. raw:: latex
+   \chapter{PostgreSQL}
+.. toctree::
+   :caption: PostgreSQL
+   :maxdepth: 1
+
+   DataBase/database
+
+
+.. raw:: latex
+   \chapter{React}
+.. toctree::
+   :caption: React
+   :maxdepth: 1
+
+   React/react
+
+.. raw:: latex
+   \chapter{Операционные системы}
+.. toctree::
+   :caption: ОС
+   :maxdepth: 1
+
+   os/os
+
+
+.. raw:: latex
+   \chapter{Полезные ссылки}
+.. toctree::
+   :caption: Полезные ссылки
+   :maxdepth: 1
+
+   References/usefull_links
+
 
 .. toctree::
+   :caption: SDR
+   :maxdepth: 1
 
-   usage
-   api
+   SDR/sdr
