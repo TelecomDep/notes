@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Файловый дескриптор" href="file_descriptor.html" /><link rel="prev" title="52. Сокеты" href="52_sockets.html" />
 
     <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
-        <title>Grub (while booting) - Telecom Notes 0.1 documentation</title>
+        <title>Подсказки по Linux - Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -137,7 +137,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -158,7 +158,7 @@
 </form>
 <div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
   <p class="caption" role="heading"><span class="caption-text">Заметки</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../Android/Kotlin/kotlin.html">Kotlin</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../Android/Kotlin/00_introduction.html">Введение в язык Kotlin</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../Android/Kotlin/01_install_first_program.html">Установка средств разработки</a></li>
@@ -207,9 +207,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../DataBase/python_psql.html">Python + PSQL</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="os.html">Операционные системы</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l1 current has-children"><a class="reference internal" href="os.html">Операционные системы</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="todo.html">Описать</a></li>
 <li class="toctree-l2"><a class="reference internal" href="52_sockets.html">52. Сокеты</a></li>
+<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">Подсказки по Linux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="file_descriptor.html">Файловый дескриптор</a></li>
 <li class="toctree-l2"><a class="reference internal" href="cache_misses.html">Промахи кэша (L1, L2, L3)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="qemu/qemu_risc_v.html">Установка Ubuntu (Risc-V) на QEMU</a></li>
@@ -252,14 +253,16 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
         </div>
         <article role="main">
-          <section id="grub-while-booting">
-<h1>Grub (while booting)<a class="headerlink" href="#grub-while-booting" title="Permalink to this heading"></a></h1>
+          <section id="linux">
+<h1>Подсказки по Linux<a class="headerlink" href="#linux" title="Permalink to this heading"></a></h1>
+<section id="grub-while-booting">
+<h2>Grub (while booting)<a class="headerlink" href="#grub-while-booting" title="Permalink to this heading"></a></h2>
 <p>Нашел <a class="reference external" href="https://unix.stackexchange.com/questions/329926/grub-starts-in-command-line-after-reboot/330852#330852">здесь</a>.
 Cause: boot process can’t find the root partition</p>
 <p>Please type ls This will show all partitions, and then type individual</p>
@@ -292,7 +295,7 @@ normal
 <p>Готово!</p>
 </section>
 <section id="kvm">
-<h1>Ноутбук с закрытой крышкой не включается если переключать KVM (внешние мониторы)<a class="headerlink" href="#kvm" title="Permalink to this heading"></a></h1>
+<h2>Ноутбук с закрытой крышкой не включается если переключать KVM (внешние мониторы)<a class="headerlink" href="#kvm" title="Permalink to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>nano<span class="w"> </span>/etc/systemd/logind.conf<span class="w"> </span>
 </pre></div>
 </div>
@@ -307,13 +310,13 @@ normal
 </div>
 </section>
 <section id="lenovo">
-<h1>Ручное изменение яркости экрана на ноутбуке (Lenovo)<a class="headerlink" href="#lenovo" title="Permalink to this heading"></a></h1>
+<h2>Ручное изменение яркости экрана на ноутбуке (Lenovo)<a class="headerlink" href="#lenovo" title="Permalink to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xrandr<span class="w"> </span>--output<span class="w"> </span>eDP-1<span class="w"> </span>--brightness<span class="w"> </span><span class="m">0</span>.3
 </pre></div>
 </div>
 </section>
 <section id="ssh-windows-wsl">
-<h1>Использование .ssh директории Windows через WSL (т.е. общие ключи и конфиги)<a class="headerlink" href="#ssh-windows-wsl" title="Permalink to this heading"></a></h1>
+<h2>Использование .ssh директории Windows через WSL (т.е. общие ключи и конфиги)<a class="headerlink" href="#ssh-windows-wsl" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Enable Linux Metadata for Windows Drives</p></li>
 </ol>
@@ -349,14 +352,33 @@ chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>~
 </pre></div>
 </div>
 </section>
+</section>
 
         </article>
       </div>
       <footer>
         
         <div class="related-pages">
-          
-          
+          <a class="next-page" href="file_descriptor.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Файловый дескриптор</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="52_sockets.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">52. Сокеты</div>
+                
+              </div>
+            </a>
         </div>
         <div class="bottom-of-page">
           <div class="left-details">
@@ -375,8 +397,30 @@ chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>~
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Подсказки по Linux</a><ul>
+<li><a class="reference internal" href="#grub-while-booting">Grub (while booting)</a></li>
+<li><a class="reference internal" href="#kvm">Ноутбук с закрытой крышкой не включается если переключать KVM (внешние мониторы)</a></li>
+<li><a class="reference internal" href="#lenovo">Ручное изменение яркости экрана на ноутбуке (Lenovo)</a></li>
+<li><a class="reference internal" href="#ssh-windows-wsl">Использование .ssh директории Windows через WSL (т.е. общие ключи и конфиги)</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
