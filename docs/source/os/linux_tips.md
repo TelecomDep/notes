@@ -1,4 +1,4 @@
-
+# Подсказки по Linux
 
 ### Grub (while booting)
 
