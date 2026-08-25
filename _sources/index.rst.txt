@@ -69,7 +69,7 @@ Introduction
 .. raw:: latex
    \chapter{Операционные системы чаптер}
 .. toctree::
-   :caption: __________
+   :caption: ____________________
    :maxdepth: 1
 
    os/os
