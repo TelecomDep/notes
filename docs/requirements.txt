@@ -1,11 +1,9 @@
-sphinx
-myst-parser
-myst-nb
-jinja2>=3.0
-docutils
-setuptools
-nbclient
-furo
+sphinx==8.2.3
+furo==2024.8.6
+myst_parser==4.0.1
+sphinx-copybutton==0.5.2
+sphinx_design==0.6.1
+sphinx-inline-tabs==2023.4.21
 sphinx-rtd-theme
 sphinx_bootstrap_theme
 sphinxcontrib-googleanalytics
