@@ -12,7 +12,7 @@ Introduction
    :caption: Заметки
    :maxdepth: 1
 
-   Kotlin/kotlin
+   Android/Kotlin/kotlin
    Android/android
    CXX/cxx
    DataBase/database
