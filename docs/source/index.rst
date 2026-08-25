@@ -16,8 +16,17 @@ Introduction
    CXX/cxx
    DataBase/database
    os/os
-   References/usefull_links
+   SDR/sdr
    Git/git_tips
+
+
+.. raw:: latex
+   \chapter{Полезные ссылки}
+.. toctree::
+   :caption: ____________________
+   :maxdepth: 1
+
+   References/usefull_links
 
 
 .. .. raw:: HomeWork
@@ -81,13 +90,7 @@ Introduction
 
 ..    React/react
 
-.. .. raw:: latex
-..    \chapter{Операционные системы чаптер}
-.. .. toctree::
-..    :caption: ____________________
-..    :maxdepth: 1
 
-..    os/os
 
 
 .. .. raw:: latex
