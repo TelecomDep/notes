@@ -12,7 +12,6 @@
    :maxdepth: 0
 
    52_sockets
-   linux_tips
    file_descriptor
    cache_misses
 
