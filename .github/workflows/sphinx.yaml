@@ -17,9 +17,9 @@ jobs:
 
     - name: Upgrade pip
       run: |
-        python3 -m pip install --upgrade pip setuptools wheel
+        python -m pip install --upgrade pip setuptools wheel
         # Downgrade Sphinx versions to match your theme/parser ecosystem
-        # pip install "docutils<0.19" "sphinx<6,>=4" "nbclient<0.8,>=0.2" myst-parser myst-nb jupyter-cache furo
+        pip install "docutils<0.19" "sphinx<6,>=4" "nbclient<0.8,>=0.2" myst-parser myst-nb sphinx-rtd-theme jupyter-cache
 
     - name: Install minimal Python packages
       run: |
@@ -69,7 +69,7 @@ jobs:
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
-      if: github.ref == 'refs/heads/change_theme'
+      if: github.ref == 'refs/heads/main'
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: docs/build/html
