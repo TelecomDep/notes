@@ -21,6 +21,7 @@ sys.path.append('.')
 Tells Sphinx which extensions to use.
 """
 extensions = [
+    'furo',
     'myst_nb',
     'sphinxcontrib.mermaid',
     'sphinxcontrib.plantuml',
@@ -38,7 +39,6 @@ extensions = [
     'sphinx.ext.ifconfig',
     'sphinx.ext.graphviz',
     'sphinxcontrib.exceltable',
-    'furo',
 ]
 
 
