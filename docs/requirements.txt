@@ -1,6 +1,6 @@
 sphinx==6
-myst-parser~=0.18.0
-myst-nb==0.17.2
+myst-parser<0.18.0
+myst-nb<0.17.2
 jinja2>=3.0
 docutils<0.21,>=0.18.1
 setuptools<69.0.0
