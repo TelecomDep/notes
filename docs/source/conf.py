@@ -21,7 +21,6 @@ sys.path.append('.')
 Tells Sphinx which extensions to use.
 """
 extensions = [
-    'furo',
     'myst_nb',
     'sphinxcontrib.mermaid',
     'sphinxcontrib.plantuml',
