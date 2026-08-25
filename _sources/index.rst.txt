@@ -10,7 +10,7 @@ Introduction
    \chapter{notes}
 .. toctree::
    :caption: Заметки
-   :maxdepth: 0
+   :maxdepth: 1
 
    Android/Kotlin/kotlin
    Android/android
