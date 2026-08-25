@@ -1,5 +1,5 @@
 sphinx>=7.1.2
-myst-parser~=0.18.0
+myst-parser
 myst-nb
 jinja2>=3.0
 docutils<0.21,>=0.18.1
