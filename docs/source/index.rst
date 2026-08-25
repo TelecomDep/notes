@@ -9,7 +9,6 @@ Documentation for Telecom Notes
 .. raw:: notes
    \chapter{notes}
 .. toctree::
-   :caption: Заметки
    :maxdepth: 1
 
    Android/Kotlin/kotlin
