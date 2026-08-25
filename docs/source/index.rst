@@ -67,9 +67,8 @@ Introduction
    React/react
 
 .. raw:: latex
-   \chapter{Операционные системы}
+   \chapter{Операционные системы чаптер}
 .. toctree::
-   :caption: ОС
    :maxdepth: 1
 
    os/os
