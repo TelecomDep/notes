@@ -1,3 +1,4 @@
+lumache
 sphinx
 myst-parser
 myst-nb
