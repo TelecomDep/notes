@@ -23,7 +23,7 @@ void scalar_add_int(const int* a, const int* b, int* result, size_t size) {
 // __m256i - переменная (тип данных), соответствующая 256-битному векторному регистру
 // _mm256_load_si256 - интринсик загрузки из памяти в 256-битный регистр
 // _mm256_add_epi32 - складываем внутри 256 битного регистра значения по 32 бита
-// _mm256_store_si256 - сохраняем в массив r
+// _mm256_store_si256 - сохраняем в массив result
 void avx_add_int(const int* a, const int* b, int* result, size_t size) {
     size_t i = 0;
     for (; i <= size - 8; i += 8) {
@@ -52,7 +52,9 @@ int main() {
     struct timespec start, end;
 
     clock_gettime(CLOCK_MONOTONIC, &start);
-    scalar_add_int(a, b, r_scalar, SIZE);
+    for (size_t i = 0; i < SIZE; ++i) {
+        r_scalar[i] = a[i] + b[i];
+    }
     clock_gettime(CLOCK_MONOTONIC, &end);
     double time_scalar = get_elapsed_ns(start, end);
     printf("Скалярное сложение: %.0f [ns]\n", time_scalar);
@@ -61,7 +63,7 @@ int main() {
     avx_add_int(a, b, r_avx, SIZE);
     clock_gettime(CLOCK_MONOTONIC, &end);
     double time_avx = get_elapsed_ns(start, end);
-    printf("AVX-256 сложение:   %.0f [ns]\n", time_avx);
+    printf("AVX-256 сложени-е:   %.0f [ns]\n", time_avx);
 
     return 0;
 }
