@@ -52,10 +52,12 @@ int main() {
     struct timespec start, end;
 
     clock_gettime(CLOCK_MONOTONIC, &start);
-    for (size_t i = 0; i < SIZE; ++i) {
+    for (int i = 0; i < 1024; i = i + 1) {
         r_scalar[i] = a[i] + b[i];
     }
     clock_gettime(CLOCK_MONOTONIC, &end);
+
+
     double time_scalar = get_elapsed_ns(start, end);
     printf("Скалярное сложение: %.0f [ns]\n", time_scalar);
 
