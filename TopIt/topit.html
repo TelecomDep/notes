@@ -3,10 +3,10 @@
   <head><meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1"/>
     <meta name="color-scheme" content="light dark"><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Подсказки по Linux" href="linux_tips.html" /><link rel="prev" title="Описать" href="todo.html" />
+<link rel="index" title="Index" href="../genindex.html" /><link rel="search" title="Search" href="../search.html" /><link rel="next" title="Gitverse" href="gitverse/gitverse.html" /><link rel="prev" title="Git tips" href="../Git/git_tips.html" />
 
     <!-- Generated with Sphinx 5.3.0 and Furo 2023.03.27 -->
-        <title>52. Сокеты - Telecom Notes 0.1 documentation</title>
+        <title>Инструкция по ТОП-ИТ Gitverse - Telecom Notes 0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?digest=fad236701ea90a88636c2a8c73b44ae642ed2a53" />
     <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
@@ -206,13 +206,13 @@
 <li class="toctree-l2"><a class="reference internal" href="../DataBase/python_psql.html">Python + PSQL</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current has-children"><a class="reference internal" href="os.html">Операционные системы</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="todo.html">Описать</a></li>
-<li class="toctree-l2 current current-page"><a class="current reference internal" href="#">52. Сокеты</a></li>
-<li class="toctree-l2"><a class="reference internal" href="linux_tips.html">Подсказки по Linux</a></li>
-<li class="toctree-l2"><a class="reference internal" href="file_descriptor.html">Файловый дескриптор</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cache_misses.html">Промахи кэша (L1, L2, L3)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qemu/qemu_risc_v.html">Установка Ubuntu (Risc-V) на QEMU</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../os/os.html">Операционные системы</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" role="switch" type="checkbox"/><label for="toctree-checkbox-5"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../os/todo.html">Описать</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../os/52_sockets.html">52. Сокеты</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../os/linux_tips.html">Подсказки по Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../os/file_descriptor.html">Файловый дескриптор</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../os/cache_misses.html">Промахи кэша (L1, L2, L3)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../os/qemu/qemu_risc_v.html">Установка Ubuntu (Risc-V) на QEMU</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../SDR/sdr.html">Software Defined Radio</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" role="switch" type="checkbox"/><label for="toctree-checkbox-6"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
@@ -220,8 +220,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../Git/git_tips.html">Git tips</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../TopIt/topit.html">Инструкция по ТОП-ИТ Gitverse</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../TopIt/gitverse/gitverse.html">Gitverse</a></li>
+<li class="toctree-l1 current has-children current-page"><a class="current reference internal" href="#">Инструкция по ТОП-ИТ Gitverse</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" role="switch" type="checkbox"/><label for="toctree-checkbox-7"><div class="visually-hidden">Toggle child pages in navigation</div><i class="icon"><svg><use href="#svg-arrow-right"></use></svg></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="gitverse/gitverse.html">Gitverse</a></li>
 </ul>
 </li>
 </ul>
@@ -262,9 +262,14 @@
           </label>
         </div>
         <article role="main">
-          <section id="id1">
-<h1>52. Сокеты<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
-<p>Сокеты - это межанизм межпроцессного взаимодействия.</p>
+          <section id="gitverse">
+<h1>Инструкция по ТОП-ИТ Gitverse<a class="headerlink" href="#gitverse" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Gitverse</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gitverse/gitverse.html">Gitverse</a></li>
+</ul>
+</div>
 </section>
 
         </article>
@@ -272,23 +277,23 @@
       <footer>
         
         <div class="related-pages">
-          <a class="next-page" href="linux_tips.html">
+          <a class="next-page" href="gitverse/gitverse.html">
               <div class="page-info">
                 <div class="context">
                   <span>Next</span>
                 </div>
-                <div class="title">Подсказки по Linux</div>
+                <div class="title">Gitverse</div>
               </div>
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
             </a>
-          <a class="prev-page" href="todo.html">
+          <a class="prev-page" href="../Git/git_tips.html">
               <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
               <div class="page-info">
                 <div class="context">
                   <span>Previous</span>
                 </div>
                 
-                <div class="title">Описать</div>
+                <div class="title">Git tips</div>
                 
               </div>
             </a>
