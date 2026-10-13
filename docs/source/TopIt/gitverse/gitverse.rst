@@ -1,6 +1,11 @@
 Gitverse
 ============
 
+.. contents:: Содержание
+   :local:
+   :depth: 2
+
+
 1. Заходим по ссылке: `<https://gitverse.ru/>`_
 2. Шаблон репозитория ППС: `<https://gitverse.ru/KAA85/reverse-engineering-demo>`_
 3. Инструкция по работе с репозитрием: `инструкция <https://gitverse.ru/KAA85/reverse-engineering-demo/content/master/инструкция-по-работе-с-репозиторием-ППС.md>`_
