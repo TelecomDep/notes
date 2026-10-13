@@ -72,8 +72,6 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 latex_test_doc = 'usage'
 
-exhale_args = { "contentsDirectives" : False}
-
 # -- Options for HTML output
 
 html_theme = 'furo'
