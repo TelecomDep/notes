@@ -72,14 +72,14 @@ source_suffix = ['.rst', '.md']
 master_doc = 'index'
 latex_test_doc = 'usage'
 
+exhale_args = { "contentsDirectives" : False}
+
 # -- Options for HTML output
 
 html_theme = 'furo'
 
 # -- Options for EPUB output
 epub_show_urls = 'footnote'
-
-exhale_args = { "contentsDirectives" : False}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
