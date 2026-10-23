@@ -355,6 +355,53 @@ chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>~
 </pre></div>
 </div>
 </section>
+<section id="tmux">
+<h2>Работа с Tmux<a class="headerlink" href="#tmux" title="Permalink to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">c</span></code> - это сочетание клавиш (по умолчанию <code class="docutils literal notranslate"><span class="pre">ctrl</span> <span class="pre">+</span> <span class="pre">b</span></code>).</p>
+<p>Создайте или отредактируйте файл <code class="docutils literal notranslate"><span class="pre">~/.tmux.conf</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Включение поддержки мыши (прокрутка, выбор панелей, изменение размера)</span>
+<span class="nb">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">mouse</span> <span class="n">on</span>
+
+<span class="c1"># Изменение префикса на Ctrl + a (вместо неудобного Ctrl + b)</span>
+<span class="n">unbind</span> <span class="n">C</span><span class="o">-</span><span class="n">b</span>
+<span class="nb">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">prefix</span> <span class="n">C</span><span class="o">-</span><span class="n">a</span>
+<span class="n">bind</span> <span class="n">C</span><span class="o">-</span><span class="n">a</span> <span class="n">send</span><span class="o">-</span><span class="n">prefix</span>
+
+<span class="c1"># Нумерация окон и панелей с 1, а не с 0 (удобно переключаться с клавиатуры)</span>
+<span class="nb">set</span> <span class="o">-</span><span class="n">g</span> <span class="n">base</span><span class="o">-</span><span class="n">index</span> <span class="mi">1</span>
+<span class="n">setw</span> <span class="o">-</span><span class="n">g</span> <span class="n">pane</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">index</span> <span class="mi">1</span>
+
+<span class="c1"># Удобная перезагрузка конфига по клавише prefix + r</span>
+<span class="n">bind</span> <span class="n">r</span> <span class="n">source</span><span class="o">-</span><span class="n">file</span> <span class="o">~/.</span><span class="n">tmux</span><span class="o">.</span><span class="n">conf</span> \<span class="p">;</span> <span class="n">display</span> <span class="s2">&quot;Конфиг перезагружен!&quot;</span>
+
+<span class="c1"># Интуитивное разделение панелей (через | и -)</span>
+<span class="n">bind</span> <span class="o">|</span> <span class="n">split</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">h</span>
+<span class="n">bind</span> <span class="o">-</span> <span class="n">split</span><span class="o">-</span><span class="n">window</span> <span class="o">-</span><span class="n">v</span>
+<span class="n">unbind</span> <span class="s1">&#39;&quot;&#39;</span>
+<span class="n">unbind</span> <span class="o">%</span>
+</pre></div>
+</div>
+<p>Основные горячие клавиши по умолчанию</p>
+<p>Префикс по умолчанию: Ctrl + b (если не изменен в конфиге):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">c</span></code> — создать новое окно</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">w</span></code> — список всех окон и сессий</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">n</span></code> / Prefix + p — следующее / предыдущее окно</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">&quot;</span></code>  — разделить панель по горизонтали</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">%</span></code> — разделить панель по вертикали</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">стрелки</span></code> — переключение между панелями</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">d</span></code> — отсоединиться от сессии (оставить работать в фоне)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Prefix</span> <span class="pre">+</span> <span class="pre">x</span> </code>— закрыть текущую панель</p></li>
+</ul>
+<p>Полезные команды сессий в терминале</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span></code> — запустить новую сессию</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new</span> <span class="pre">-s</span> <span class="pre">myname</span></code> — создать сессию с именем myname</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">ls</span></code> — посмотреть список запущенных сессий</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">attach</span> <span class="pre">-t</span> <span class="pre">myname</span></code> — подключиться к сессии myname</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">kill-session</span> <span class="pre">-t</span> <span class="pre">myname</span></code> — завершить сессию myname</p></li>
+</ul>
+</section>
 </section>
 
         </article>
@@ -417,6 +464,7 @@ chmod<span class="w"> </span><span class="m">644</span><span class="w"> </span>~
 <li><a class="reference internal" href="#kvm">Ноутбук с закрытой крышкой не включается если переключать KVM (внешние мониторы)</a></li>
 <li><a class="reference internal" href="#lenovo">Ручное изменение яркости экрана на ноутбуке (Lenovo)</a></li>
 <li><a class="reference internal" href="#ssh-windows-wsl">Использование .ssh директории Windows через WSL (т.е. общие ключи и конфиги)</a></li>
+<li><a class="reference internal" href="#tmux">Работа с Tmux</a></li>
 </ul>
 </li>
 </ul>
